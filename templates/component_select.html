@@ -52,7 +52,7 @@
     </div>
     
     <!-- Component Cards -->
-    <div class="row g-4 component-container">
+    <div class="row g-4 component-container" style="max-height: calc(100vh - 250px); overflow-y: auto;">
         {% for component in components %}
         <div class="col-lg-4 col-md-6 component-card-wrapper" data-price="{{ component.price }}">
             <div class="card h-100 component-card" data-price="{{ component.price }}">
