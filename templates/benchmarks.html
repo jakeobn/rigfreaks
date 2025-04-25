@@ -1,0 +1,708 @@
+{% extends "layout.html" %}
+
+{% block title %}Performance Benchmarks - PC Builder{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-header mb-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('builder') }}">PC Builder</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('summary') }}">Summary</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Benchmarks</li>
+                    </ol>
+                </nav>
+                <h1 class="mb-3">Performance Benchmarks</h1>
+                <p class="lead text-muted">Detailed performance analysis for your PC configuration.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading animation container -->
+    <div id="benchmarks-loading-container" class="py-5 text-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h5 class="mt-3">Calculating performance benchmarks...</h5>
+    </div>
+    
+    <!-- Content container (initially hidden) -->
+    <div id="benchmarks-content" style="visibility: hidden; opacity: 0;">
+        <div class="row">
+            <!-- System Configuration -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">Your System</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for category, component in config.items() %}
+                                <li class="list-group-item benchmark-component">
+                                    <div class="d-flex align-items-center">
+                                        <span class="component-icon me-2">
+                                            {% if category == 'cpu' %}
+                                                <i class="fas fa-microchip"></i>
+                                            {% elif category == 'gpu' %}
+                                                <i class="fas fa-desktop"></i>
+                                            {% elif category == 'ram' %}
+                                                <i class="fas fa-memory"></i>
+                                            {% elif category == 'storage' %}
+                                                <i class="fas fa-hdd"></i>
+                                            {% elif category == 'power_supply' %}
+                                                <i class="fas fa-bolt"></i>
+                                            {% elif category == 'case' %}
+                                                <i class="fas fa-server"></i>
+                                            {% elif category == 'cooling' %}
+                                                <i class="fas fa-wind"></i>
+                                            {% elif category == 'motherboard' %}
+                                                <i class="fas fa-square"></i>
+                                            {% else %}
+                                                <i class="fas fa-cog"></i>
+                                            {% endif %}
+                                        </span>
+                                        <div>
+                                            <strong>{{ category.replace('_', ' ').capitalize() }}</strong>
+                                            <div>{{ component.name }}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Performance Overview -->
+                <div class="card mt-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Performance Tier</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if performance.gaming['1080p'] > 210 %}
+                            <div class="tier-badge ultimate">
+                                <i class="fas fa-trophy-alt"></i>
+                                <h2>Ultimate</h2>
+                            </div>
+                            <p class="mt-2">This configuration offers top-tier performance for all use cases, including 4K gaming and professional workloads.</p>
+                        {% elif performance.gaming['1080p'] > 180 %}
+                            <div class="tier-badge enthusiast">
+                                <i class="fas fa-award"></i>
+                                <h2>Enthusiast</h2>
+                            </div>
+                            <p class="mt-2">High-end performance suitable for demanding gaming and content creation workloads.</p>
+                        {% elif performance.gaming['1080p'] > 150 %}
+                            <div class="tier-badge high-end">
+                                <i class="fas fa-rocket"></i>
+                                <h2>High-End</h2>
+                            </div>
+                            <p class="mt-2">Strong performance for gaming at 1440p and most content creation tasks.</p>
+                        {% elif performance.gaming['1080p'] > 120 %}
+                            <div class="tier-badge mainstream">
+                                <i class="fas fa-star"></i>
+                                <h2>Mainstream</h2>
+                            </div>
+                            <p class="mt-2">Good all-around performance for 1080p gaming and everyday computing.</p>
+                        {% else %}
+                            <div class="tier-badge entry-level">
+                                <i class="fas fa-seedling"></i>
+                                <h2>Entry-Level</h2>
+                            </div>
+                            <p class="mt-2">Suitable for casual gaming and basic productivity tasks.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Scores -->
+            <div class="col-md-8">
+                <!-- Gaming Benchmarks -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Gaming Performance</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Gaming Scores by Resolution -->
+                        <div class="row mb-4">
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="performance-score">
+                                    <div class="score-circle">
+                                        {{ performance.gaming['1080p']|round|int }}
+                                    </div>
+                                    <h5 class="mt-2">1080p Gaming</h5>
+                                    <p class="text-muted">Full HD Performance</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="performance-score">
+                                    <div class="score-circle">
+                                        {{ performance.gaming['1440p']|round|int }}
+                                    </div>
+                                    <h5 class="mt-2">1440p Gaming</h5>
+                                    <p class="text-muted">QHD Performance</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="performance-score">
+                                    <div class="score-circle">
+                                        {{ performance.gaming['4k']|round|int }}
+                                    </div>
+                                    <h5 class="mt-2">4K Gaming</h5>
+                                    <p class="text-muted">Ultra HD Performance</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Popular Games Benchmarks -->
+                        <h5 class="mb-3">Estimated FPS in Popular Games</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Game</th>
+                                        <th class="text-center">1080p</th>
+                                        <th class="text-center">1440p</th>
+                                        <th class="text-center">4K</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Cyberpunk 2077</strong><br>
+                                            <small class="text-muted">Ultra Settings, RT Off</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.cyberpunk_2077['1080p'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.cyberpunk_2077['1440p'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.cyberpunk_2077['4k'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Fortnite</strong><br>
+                                            <small class="text-muted">Epic Settings</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.fortnite['1080p'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.fortnite['1440p'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.fortnite['4k'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Call of Duty: Warzone</strong><br>
+                                            <small class="text-muted">High Settings</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.call_of_duty_warzone['1080p'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.call_of_duty_warzone['1440p'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fps-value">{{ performance.games.call_of_duty_warzone['4k'] }}</span><br>
+                                            <small class="fps-label">FPS</small>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Productivity & Content Creation Benchmarks -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Productivity & Content Creation</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Overall Scores -->
+                        <div class="row mb-4">
+                            <div class="col-md-6 text-center mb-3">
+                                <div class="performance-score">
+                                    <div class="score-circle content">
+                                        {{ performance.content_creation|round|int }}
+                                    </div>
+                                    <h5 class="mt-2">Content Creation</h5>
+                                    <p class="text-muted">Video Editing, 3D Rendering, etc.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center mb-3">
+                                <div class="performance-score">
+                                    <div class="score-circle productivity">
+                                        {{ performance.productivity|round|int }}
+                                    </div>
+                                    <h5 class="mt-2">Productivity</h5>
+                                    <p class="text-muted">Office, Web Browsing, Multitasking</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- App Benchmarks -->
+                        <h5 class="mb-3">Application Performance</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Application</th>
+                                        <th>Category</th>
+                                        <th class="text-center">Performance Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>DaVinci Resolve</strong></td>
+                                        <td>Video Editing</td>
+                                        <td class="text-center">
+                                            <div class="progress" style="height: 20px;">
+                                                {% set davinci_score = performance.applications.davinci_resolve %}
+                                                {% set davinci_percent = (davinci_score / 200) * 100 %}
+                                                <div class="progress-bar bg-primary" role="progressbar" 
+                                                     style="width: {{ davinci_percent }}%;" 
+                                                     aria-valuenow="{{ davinci_score }}" 
+                                                     aria-valuemin="0" aria-valuemax="200">
+                                                    {{ davinci_score }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Blender</strong></td>
+                                        <td>3D Rendering</td>
+                                        <td class="text-center">
+                                            <div class="progress" style="height: 20px;">
+                                                {% set blender_score = performance.applications.blender %}
+                                                {% set blender_percent = (blender_score / 200) * 100 %}
+                                                <div class="progress-bar bg-success" role="progressbar" 
+                                                     style="width: {{ blender_percent }}%;" 
+                                                     aria-valuenow="{{ blender_score }}" 
+                                                     aria-valuemin="0" aria-valuemax="200">
+                                                    {{ blender_score }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Adobe Photoshop</strong></td>
+                                        <td>Photo Editing</td>
+                                        <td class="text-center">
+                                            <div class="progress" style="height: 20px;">
+                                                {% set photoshop_score = performance.applications.photoshop %}
+                                                {% set photoshop_percent = (photoshop_score / 200) * 100 %}
+                                                <div class="progress-bar bg-info" role="progressbar" 
+                                                     style="width: {{ photoshop_percent }}%;" 
+                                                     aria-valuenow="{{ photoshop_score }}" 
+                                                     aria-valuemin="0" aria-valuemax="200">
+                                                    {{ photoshop_score }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Adobe Premiere Pro</strong></td>
+                                        <td>Video Editing</td>
+                                        <td class="text-center">
+                                            <div class="progress" style="height: 20px;">
+                                                {% set premiere_score = performance.applications.premier_pro %}
+                                                {% set premiere_percent = (premiere_score / 200) * 100 %}
+                                                <div class="progress-bar bg-warning" role="progressbar" 
+                                                     style="width: {{ premiere_percent }}%;" 
+                                                     aria-valuenow="{{ premiere_score }}" 
+                                                     aria-valuemin="0" aria-valuemax="200">
+                                                    {{ premiere_score }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comparison against reference systems -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Performance Comparison</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">How your build compares to reference systems (100% = equal performance)</p>
+                        
+                        <!-- Budget System Comparison -->
+                        <h5 class="mb-2">Compared to Budget System</h5>
+                        <div class="row mb-4">
+                            <div class="col-3">
+                                <small class="text-muted d-block">Gaming (1080p)</small>
+                                <div class="comparison-badge {% if comparisons.budget.gaming_1080p > 150 %}excellent{% elif comparisons.budget.gaming_1080p > 120 %}good{% elif comparisons.budget.gaming_1080p > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.budget.gaming_1080p }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Gaming (4K)</small>
+                                <div class="comparison-badge {% if comparisons.budget.gaming_4k > 150 %}excellent{% elif comparisons.budget.gaming_4k > 120 %}good{% elif comparisons.budget.gaming_4k > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.budget.gaming_4k }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Content Creation</small>
+                                <div class="comparison-badge {% if comparisons.budget.content_creation > 150 %}excellent{% elif comparisons.budget.content_creation > 120 %}good{% elif comparisons.budget.content_creation > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.budget.content_creation }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Productivity</small>
+                                <div class="comparison-badge {% if comparisons.budget.productivity > 150 %}excellent{% elif comparisons.budget.productivity > 120 %}good{% elif comparisons.budget.productivity > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.budget.productivity }}%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mid-range System Comparison -->
+                        <h5 class="mb-2">Compared to Mid-range System</h5>
+                        <div class="row mb-4">
+                            <div class="col-3">
+                                <small class="text-muted d-block">Gaming (1080p)</small>
+                                <div class="comparison-badge {% if comparisons.mid_range.gaming_1080p > 150 %}excellent{% elif comparisons.mid_range.gaming_1080p > 120 %}good{% elif comparisons.mid_range.gaming_1080p > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.mid_range.gaming_1080p }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Gaming (4K)</small>
+                                <div class="comparison-badge {% if comparisons.mid_range.gaming_4k > 150 %}excellent{% elif comparisons.mid_range.gaming_4k > 120 %}good{% elif comparisons.mid_range.gaming_4k > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.mid_range.gaming_4k }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Content Creation</small>
+                                <div class="comparison-badge {% if comparisons.mid_range.content_creation > 150 %}excellent{% elif comparisons.mid_range.content_creation > 120 %}good{% elif comparisons.mid_range.content_creation > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.mid_range.content_creation }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Productivity</small>
+                                <div class="comparison-badge {% if comparisons.mid_range.productivity > 150 %}excellent{% elif comparisons.mid_range.productivity > 120 %}good{% elif comparisons.mid_range.productivity > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.mid_range.productivity }}%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- High-end System Comparison -->
+                        <h5 class="mb-2">Compared to High-end System</h5>
+                        <div class="row">
+                            <div class="col-3">
+                                <small class="text-muted d-block">Gaming (1080p)</small>
+                                <div class="comparison-badge {% if comparisons.high_end.gaming_1080p > 150 %}excellent{% elif comparisons.high_end.gaming_1080p > 120 %}good{% elif comparisons.high_end.gaming_1080p > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.high_end.gaming_1080p }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Gaming (4K)</small>
+                                <div class="comparison-badge {% if comparisons.high_end.gaming_4k > 150 %}excellent{% elif comparisons.high_end.gaming_4k > 120 %}good{% elif comparisons.high_end.gaming_4k > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.high_end.gaming_4k }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Content Creation</small>
+                                <div class="comparison-badge {% if comparisons.high_end.content_creation > 150 %}excellent{% elif comparisons.high_end.content_creation > 120 %}good{% elif comparisons.high_end.content_creation > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.high_end.content_creation }}%
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <small class="text-muted d-block">Productivity</small>
+                                <div class="comparison-badge {% if comparisons.high_end.productivity > 150 %}excellent{% elif comparisons.high_end.productivity > 120 %}good{% elif comparisons.high_end.productivity > 100 %}average{% else %}poor{% endif %}">
+                                    {{ comparisons.high_end.productivity }}%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Back to Builder / Summary Buttons -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                    <a href="{{ url_for('summary') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-1"></i>Back to Summary
+                    </a>
+                    <a href="{{ url_for('builder') }}" class="btn btn-primary">
+                        <i class="fas fa-edit me-1"></i>Edit Configuration
+                    </a>
+                    {% if 'cart' in config_modules %}
+                    <form action="{{ url_for('cart.add_to_cart') }}" method="post">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Performance Score Circles */
+    .performance-score {
+        position: relative;
+    }
+    
+    .score-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #2c3e50, #3498db);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0 auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .score-circle::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+        border-radius: 50%;
+    }
+    
+    .score-circle.content {
+        background: linear-gradient(145deg, #16a085, #1abc9c);
+    }
+    
+    .score-circle.productivity {
+        background: linear-gradient(145deg, #8e44ad, #9b59b6);
+    }
+    
+    /* Tier Badge Styling */
+    .tier-badge {
+        padding: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        color: white;
+    }
+    
+    .tier-badge i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .tier-badge h2 {
+        margin: 0;
+        font-weight: bold;
+    }
+    
+    .tier-badge.ultimate {
+        background: linear-gradient(145deg, #7b4397, #dc2430);
+    }
+    
+    .tier-badge.enthusiast {
+        background: linear-gradient(145deg, #4b6cb7, #182848);
+    }
+    
+    .tier-badge.high-end {
+        background: linear-gradient(145deg, #2c3e50, #4ca1af);
+    }
+    
+    .tier-badge.mainstream {
+        background: linear-gradient(145deg, #134e5e, #71b280);
+    }
+    
+    .tier-badge.entry-level {
+        background: linear-gradient(145deg, #3c3b3f, #605c3c);
+    }
+    
+    /* FPS Display */
+    .fps-value {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #27ae60;
+    }
+    
+    .fps-label {
+        color: #7f8c8d;
+    }
+    
+    /* Comparison Badges */
+    .comparison-badge {
+        background-color: #f1f1f1;
+        padding: 0.75rem 0.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.25rem;
+        margin-top: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .comparison-badge.excellent {
+        background-color: #27ae60;
+        color: white;
+    }
+    
+    .comparison-badge.good {
+        background-color: #3498db;
+        color: white;
+    }
+    
+    .comparison-badge.average {
+        background-color: #f39c12;
+        color: white;
+    }
+    
+    .comparison-badge.poor {
+        background-color: #e74c3c;
+        color: white;
+    }
+    
+    /* Component list styling */
+    .benchmark-component {
+        transition: all 0.3s ease;
+    }
+    
+    .benchmark-component:hover {
+        background-color: rgba(0, 123, 255, 0.05);
+    }
+    
+    .component-icon {
+        width: 30px;
+        text-align: center;
+        color: #3498db;
+    }
+    
+    /* Table Styling for Benchmarks */
+    .table th {
+        background-color: rgba(0, 123, 255, 0.1);
+        border-color: rgba(0, 123, 255, 0.2);
+    }
+    
+    /* Progress Bars */
+    .progress {
+        border-radius: 2rem;
+        overflow: hidden;
+    }
+    
+    .progress-bar {
+        transition: width 1.5s ease;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show loading animation initially
+        const loadingContainer = document.getElementById('benchmarks-loading-container');
+        const contentContainer = document.getElementById('benchmarks-content');
+        
+        // Initially hide content
+        contentContainer.style.opacity = '0';
+        contentContainer.style.visibility = 'hidden';
+        
+        // Show loading animation
+        loadingContainer.style.display = 'block';
+        
+        // Simulate loading delay for benchmark calculations
+        setTimeout(() => {
+            // Hide loading animation
+            loadingContainer.style.display = 'none';
+            
+            // Show content with fade-in effect
+            contentContainer.style.transition = 'opacity 0.5s ease';
+            contentContainer.style.visibility = 'visible';
+            contentContainer.style.opacity = '1';
+            
+            // Animate score circles
+            const scoreCircles = document.querySelectorAll('.score-circle');
+            scoreCircles.forEach((circle, index) => {
+                circle.style.transform = 'scale(0)';
+                circle.style.opacity = '0';
+                circle.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    circle.style.transform = 'scale(1)';
+                    circle.style.opacity = '1';
+                }, 300 + (index * 150));
+            });
+            
+            // Animate comparison badges
+            const badges = document.querySelectorAll('.comparison-badge');
+            badges.forEach((badge, index) => {
+                badge.style.transform = 'translateY(20px)';
+                badge.style.opacity = '0';
+                badge.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    badge.style.transform = 'translateY(0)';
+                    badge.style.opacity = '1';
+                }, 800 + (index * 100));
+            });
+            
+            // Animate progress bars
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach((bar) => {
+                const finalWidth = bar.style.width;
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.width = finalWidth;
+                }, 1000);
+            });
+            
+            // Animate component list
+            const components = document.querySelectorAll('.benchmark-component');
+            components.forEach((component, index) => {
+                component.style.transform = 'translateX(-20px)';
+                component.style.opacity = '0';
+                component.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    component.style.transform = 'translateX(0)';
+                    component.style.opacity = '1';
+                }, 300 + (index * 100));
+            });
+            
+            // Add hover animations to performance score circles
+            scoreCircles.forEach(circle => {
+                circle.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                });
+                
+                circle.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                });
+            });
+        }, 1500); // 1.5 seconds loading animation
+    });
+</script>
+{% endblock %}

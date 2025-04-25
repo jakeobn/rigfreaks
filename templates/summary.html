@@ -204,55 +204,185 @@
             <!-- System Performance Estimate -->
             {% if config %}
             <div class="card mb-4">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="mb-0">Performance Estimate</h3>
+                    {% if performance and 'cpu' in config and 'gpu' in config %}
+                    <a href="{{ url_for('benchmarks') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-chart-line me-1"></i>Detailed Benchmarks
+                    </a>
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     {% if 'cpu' in config and 'gpu' in config %}
-                        <div class="mb-3">
-                            <h6>Gaming Performance</h6>
-                            <div class="progress" style="height: 20px;">
-                                {% if config['gpu'].price > 800 and config['cpu'].price > 400 %}
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Excellent</div>
-                                {% elif config['gpu'].price > 500 and config['cpu'].price > 300 %}
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;">Very Good</div>
-                                {% elif config['gpu'].price > 300 and config['cpu'].price > 200 %}
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%;">Good</div>
-                                {% else %}
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;">Moderate</div>
-                                {% endif %}
+                        {% if performance %}
+                            <div class="mb-3 text-center">
+                                <span class="badge bg-primary fs-5 p-2 mb-3">{{ performance.tier }} Performance</span>
                             </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <h6>Productivity Performance</h6>
-                            <div class="progress" style="height: 20px;">
-                                {% if config['cpu'].cores > 16 and config['ram'].capacity > 24 %}
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Excellent</div>
-                                {% elif config['cpu'].cores > 8 and config['ram'].capacity > 16 %}
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;">Very Good</div>
-                                {% elif config['cpu'].cores > 4 and config['ram'].capacity > 8 %}
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%;">Good</div>
-                                {% else %}
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;">Moderate</div>
-                                {% endif %}
+                            
+                            <div class="mb-3">
+                                <h6>Gaming Performance</h6>
+                                <div class="row mb-2">
+                                    <div class="col-4 text-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="fs-2 text-primary fw-bold">{{ performance.gaming_1080p }}</span>
+                                            <small class="text-muted">1080p Score</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="fs-2 text-primary fw-bold">{{ performance.gaming_1440p }}</span>
+                                            <small class="text-muted">1440p Score</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="fs-2 text-primary fw-bold">{{ performance.gaming_4k }}</span>
+                                            <small class="text-muted">4K Score</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div>
-                            <h6>Content Creation</h6>
-                            <div class="progress" style="height: 20px;">
-                                {% if config['cpu'].price > 500 and config['gpu'].price > 800 and config['ram'].capacity > 32 %}
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Excellent</div>
-                                {% elif config['cpu'].price > 300 and config['gpu'].price > 500 and config['ram'].capacity > 16 %}
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;">Very Good</div>
-                                {% elif config['cpu'].price > 200 and config['gpu'].price > 300 and config['ram'].capacity > 8 %}
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%;">Good</div>
-                                {% else %}
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;">Moderate</div>
-                                {% endif %}
+                            
+                            <hr>
+                            
+                            <div class="mb-3">
+                                <h6>Popular Games Performance (Avg. FPS at 1080p)</h6>
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="fs-3 text-success fw-bold">{{ performance.game_fps.cyberpunk_2077_1080p }}</span>
+                                            <small class="text-muted">Cyberpunk 2077</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="fs-3 text-success fw-bold">{{ performance.game_fps.fortnite_1080p }}</span>
+                                            <small class="text-muted">Fortnite</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="fs-3 text-success fw-bold">{{ performance.game_fps.cod_warzone_1080p }}</span>
+                                            <small class="text-muted">COD: Warzone</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            
+                            <hr>
+                            
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h6>Content Creation</h6>
+                                    <div class="progress mb-2" style="height: 20px;">
+                                        {% set cc_score = performance.content_creation %}
+                                        {% set cc_percent = (cc_score / 250) * 100 %}
+                                        {% if cc_score > 200 %}
+                                            <div class="progress-bar bg-success" role="progressbar" 
+                                                 style="width: {{ cc_percent }}%;" aria-valuenow="{{ cc_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ cc_score }}
+                                            </div>
+                                        {% elif cc_score > 160 %}
+                                            <div class="progress-bar bg-primary" role="progressbar" 
+                                                 style="width: {{ cc_percent }}%;" aria-valuenow="{{ cc_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ cc_score }}
+                                            </div>
+                                        {% elif cc_score > 120 %}
+                                            <div class="progress-bar bg-info" role="progressbar" 
+                                                 style="width: {{ cc_percent }}%;" aria-valuenow="{{ cc_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ cc_score }}
+                                            </div>
+                                        {% else %}
+                                            <div class="progress-bar bg-warning" role="progressbar" 
+                                                 style="width: {{ cc_percent }}%;" aria-valuenow="{{ cc_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ cc_score }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Productivity</h6>
+                                    <div class="progress mb-2" style="height: 20px;">
+                                        {% set prod_score = performance.productivity %}
+                                        {% set prod_percent = (prod_score / 250) * 100 %}
+                                        {% if prod_score > 200 %}
+                                            <div class="progress-bar bg-success" role="progressbar" 
+                                                 style="width: {{ prod_percent }}%;" aria-valuenow="{{ prod_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ prod_score }}
+                                            </div>
+                                        {% elif prod_score > 160 %}
+                                            <div class="progress-bar bg-primary" role="progressbar" 
+                                                 style="width: {{ prod_percent }}%;" aria-valuenow="{{ prod_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ prod_score }}
+                                            </div>
+                                        {% elif prod_score > 120 %}
+                                            <div class="progress-bar bg-info" role="progressbar" 
+                                                 style="width: {{ prod_percent }}%;" aria-valuenow="{{ prod_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ prod_score }}
+                                            </div>
+                                        {% else %}
+                                            <div class="progress-bar bg-warning" role="progressbar" 
+                                                 style="width: {{ prod_percent }}%;" aria-valuenow="{{ prod_score }}"
+                                                 aria-valuemin="0" aria-valuemax="250">
+                                                {{ prod_score }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="mb-3">
+                                <h6>Gaming Performance</h6>
+                                <div class="progress" style="height: 20px;">
+                                    {% if config['gpu'].price > 800 and config['cpu'].price > 400 %}
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Excellent</div>
+                                    {% elif config['gpu'].price > 500 and config['cpu'].price > 300 %}
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;">Very Good</div>
+                                    {% elif config['gpu'].price > 300 and config['cpu'].price > 200 %}
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 60%;">Good</div>
+                                    {% else %}
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;">Moderate</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6>Productivity Performance</h6>
+                                <div class="progress" style="height: 20px;">
+                                    {% if config['cpu'].cores > 16 and config['ram'].capacity > 24 %}
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Excellent</div>
+                                    {% elif config['cpu'].cores > 8 and config['ram'].capacity > 16 %}
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;">Very Good</div>
+                                    {% elif config['cpu'].cores > 4 and config['ram'].capacity > 8 %}
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 60%;">Good</div>
+                                    {% else %}
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;">Moderate</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h6>Content Creation</h6>
+                                <div class="progress" style="height: 20px;">
+                                    {% if config['cpu'].price > 500 and config['gpu'].price > 800 and config['ram'].capacity > 32 %}
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 90%;">Excellent</div>
+                                    {% elif config['cpu'].price > 300 and config['gpu'].price > 500 and config['ram'].capacity > 16 %}
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;">Very Good</div>
+                                    {% elif config['cpu'].price > 200 and config['gpu'].price > 300 and config['ram'].capacity > 8 %}
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 60%;">Good</div>
+                                    {% else %}
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;">Moderate</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
                     {% else %}
                         <p class="text-muted">Performance estimate requires at least a CPU and GPU selection.</p>
                     {% endif %}

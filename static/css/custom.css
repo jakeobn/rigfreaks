@@ -427,3 +427,151 @@
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
 }
+
+/* Benchmark Styling */
+.performance-score .score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #2c3e50, #3498db);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.performance-score .score-circle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    border-radius: 50%;
+}
+
+.performance-score .score-circle.content {
+    background: linear-gradient(145deg, #16a085, #1abc9c);
+}
+
+.performance-score .score-circle.productivity {
+    background: linear-gradient(145deg, #8e44ad, #9b59b6);
+}
+
+/* Tier Badge Styling */
+.tier-badge {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.tier-badge:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.tier-badge i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.tier-badge h2 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.tier-badge.ultimate {
+    background: linear-gradient(145deg, #7b4397, #dc2430);
+}
+
+.tier-badge.enthusiast {
+    background: linear-gradient(145deg, #4b6cb7, #182848);
+}
+
+.tier-badge.high-end {
+    background: linear-gradient(145deg, #2c3e50, #4ca1af);
+}
+
+.tier-badge.mainstream {
+    background: linear-gradient(145deg, #134e5e, #71b280);
+}
+
+.tier-badge.entry-level {
+    background: linear-gradient(145deg, #3c3b3f, #605c3c);
+}
+
+/* FPS Display */
+.fps-value {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.fps-label {
+    color: #7f8c8d;
+}
+
+/* Comparison Badges */
+.comparison-badge {
+    background-color: var(--bs-dark);
+    padding: 0.75rem 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.comparison-badge:hover {
+    transform: scale(1.05);
+}
+
+.comparison-badge.excellent {
+    background-color: #27ae60;
+    color: white;
+}
+
+.comparison-badge.good {
+    background-color: #3498db;
+    color: white;
+}
+
+.comparison-badge.average {
+    background-color: #f39c12;
+    color: white;
+}
+
+.comparison-badge.poor {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Benchmark component list styling */
+.benchmark-component {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.benchmark-component:hover {
+    background-color: var(--bs-dark);
+    border-left-color: #3498db;
+    transform: translateX(5px);
+}
+
+.component-icon {
+    width: 30px;
+    text-align: center;
+    color: #3498db;
+}

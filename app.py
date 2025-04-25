@@ -162,11 +162,54 @@ def summary():
     compatibility_issues = check_compatibility(session['pc_config'])
     total_price = calculate_total_price(session['pc_config'])
     
+    # Get performance benchmarks if CPU and GPU are selected
+    performance_summary = None
+    if 'cpu' in session['pc_config'] and 'gpu' in session['pc_config']:
+        from benchmarks import get_performance_summary
+        performance_summary = get_performance_summary(session['pc_config'])
+    
     return render_template(
         'summary.html',
         config=config_details,
         compatibility_issues=compatibility_issues,
-        total_price=total_price
+        total_price=total_price,
+        performance=performance_summary
+    )
+
+@app.route('/benchmarks')
+def benchmarks():
+    if 'pc_config' not in session or not session['pc_config']:
+        flash("Please build a PC configuration first", "warning")
+        return redirect(url_for('builder'))
+    
+    # Check if we have the necessary components for benchmarks
+    if 'cpu' not in session['pc_config'] or 'gpu' not in session['pc_config']:
+        flash("CPU and GPU are required for benchmark calculations", "warning")
+        return redirect(url_for('builder'))
+    
+    components = load_component_data()
+    config_details = {}
+    
+    for category, component_id in session['pc_config'].items():
+        category_components = components.get(category, [])
+        component = next((c for c in category_components if c['id'] == component_id), None)
+        if component:
+            config_details[category] = component
+    
+    # Get detailed benchmark data
+    from benchmarks import get_performance_score, get_comparison_data, BENCHMARK_CATEGORIES, GAME_BENCHMARKS, APP_BENCHMARKS
+    
+    performance_data = get_performance_score(session['pc_config'])
+    comparison_data = get_comparison_data(session['pc_config'])
+    
+    return render_template(
+        'benchmarks.html',
+        config=config_details,
+        performance=performance_data,
+        comparisons=comparison_data,
+        benchmark_categories=BENCHMARK_CATEGORIES,
+        games=GAME_BENCHMARKS,
+        applications=APP_BENCHMARKS
     )
 
 @app.route('/compare/<category>')
