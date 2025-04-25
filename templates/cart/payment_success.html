@@ -1,0 +1,162 @@
+{% extends 'layout.html' %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card mb-4 border-success">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success fa-5x"></i>
+                    </div>
+                    <h1 class="mb-3">Payment Successful!</h1>
+                    <p class="lead mb-4">Thank you for your order! Your payment has been processed successfully.</p>
+                    
+                    <div class="alert alert-success mb-4">
+                        <h5 class="alert-heading">Order #{{ order.order_number }}</h5>
+                        <p class="mb-0">A confirmation email has been sent to <strong>{{ order.email }}</strong>.</p>
+                    </div>
+                    
+                    <div class="d-grid gap-2 col-md-8 mx-auto">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Homepage</a>
+                        {% if current_user.is_authenticated %}
+                            <a href="#" class="btn btn-outline-secondary">View Your Orders</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Order Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Order Number:</strong> {{ order.order_number }}</p>
+                            <p class="mb-1"><strong>Order Date:</strong> {{ order.created_at.strftime('%B %d, %Y') }}</p>
+                            <p class="mb-0"><strong>Order Status:</strong> <span class="badge bg-success">Paid</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Full Name:</strong> {{ order.full_name }}</p>
+                            <p class="mb-1"><strong>Email:</strong> {{ order.email }}</p>
+                            {% if order.phone %}
+                                <p class="mb-0"><strong>Phone:</strong> {{ order.phone }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Shipping Address</h6>
+                            <p class="mb-1">{{ order.address_line1 }}</p>
+                            {% if order.address_line2 %}
+                                <p class="mb-1">{{ order.address_line2 }}</p>
+                            {% endif %}
+                            <p class="mb-1">{{ order.city }}, {{ order.state }} {{ order.postal_code }}</p>
+                            <p class="mb-0">{{ order.country }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Payment Information</h6>
+                            <p class="mb-1"><strong>Payment Method:</strong> Credit Card</p>
+                            <p class="mb-1"><strong>Total Amount:</strong> ${{ order.total_amount }}</p>
+                            <p class="mb-0"><strong>Order Status:</strong> <span class="badge bg-success">Paid</span></p>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h6 class="mb-3">Order Items</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th class="text-end">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if order.build_id %}
+                                    {% set build = order.build %}
+                                    <tr>
+                                        <td>
+                                            <div><strong>{{ build.name }}</strong></div>
+                                            <div class="text-muted small">{{ build.description }}</div>
+                                        </td>
+                                        <td class="text-end">${{ build.total_price }}</td>
+                                    </tr>
+                                {% elif order.build_config %}
+                                    <tr>
+                                        <td>
+                                            <div><strong>Custom PC Build</strong></div>
+                                            <div class="text-muted small">Your custom configuration</div>
+                                        </td>
+                                        <td class="text-end">${{ order.total_amount }}</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Total</th>
+                                    <th class="text-end">${{ order.total_amount }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">What Happens Next?</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary rounded-circle p-3 text-center me-3" style="width: 50px; height: 50px;">
+                            <i class="fas fa-inbox text-white"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Order Confirmation</h6>
+                            <p class="mb-0 small">You'll receive an email confirmation with your order details.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary rounded-circle p-3 text-center me-3" style="width: 50px; height: 50px;">
+                            <i class="fas fa-cogs text-white"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Order Processing</h6>
+                            <p class="mb-0 small">We'll build and test your PC to ensure everything works perfectly.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary rounded-circle p-3 text-center me-3" style="width: 50px; height: 50px;">
+                            <i class="fas fa-truck text-white"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Shipping</h6>
+                            <p class="mb-0 small">Your PC will be carefully packaged and shipped to you. You'll receive tracking information when it's on the way.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary rounded-circle p-3 text-center me-3" style="width: 50px; height: 50px;">
+                            <i class="fas fa-headset text-white"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Support</h6>
+                            <p class="mb-0 small">Our team is available to help with any questions or issues. Contact us anytime!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

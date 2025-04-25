@@ -1,0 +1,272 @@
+{% extends 'layout.html' %}
+
+{% block title %}Payment{% endblock %}
+
+{% block head %}
+{{ super() }}
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+    #payment-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    #payment-element {
+        margin-bottom: 24px;
+    }
+    
+    /* Stripe Elements styling */
+    .StripeElement {
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        border-radius: 4px;
+    }
+    
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+    
+    .StripeElement--webkit-autofill {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .loading-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Payment</h1>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4 position-relative">
+                <div class="loading-overlay" id="loading-overlay">
+                    <div class="spinner-border text-light" role="status">
+                        <span class="visually-hidden">Processing payment...</span>
+                    </div>
+                    <div class="text-light ms-3">Processing payment...</div>
+                </div>
+                
+                <div class="card-header">
+                    <h5 class="mb-0">Payment Information</h5>
+                </div>
+                <div class="card-body">
+                    <form id="payment-form">
+                        <div id="payment-element">
+                            <!-- Stripe Elements will be inserted here -->
+                        </div>
+                        
+                        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button id="submit-button" class="btn btn-primary">
+                                <i class="fas fa-lock me-1"></i>Pay Now ${{ order.total_amount }}
+                            </button>
+                            <a href="{{ url_for('cart.checkout') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i>Back to Checkout
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Secure Payment Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-lock text-success me-3 fa-2x"></i>
+                        <div>
+                            <h6 class="mb-1">Secure Payment</h6>
+                            <p class="mb-0 small">Your payment information is processed securely. We do not store credit card details.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-shield-alt text-success me-3 fa-2x"></i>
+                        <div>
+                            <h6 class="mb-1">Protected Information</h6>
+                            <p class="mb-0 small">Your personal data is encrypted and protected using industry-standard protocols.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-credit-card text-success me-3 fa-2x"></i>
+                        <div>
+                            <h6 class="mb-1">Payment Methods</h6>
+                            <p class="mb-0 small">We accept all major credit cards, including Visa, Mastercard, American Express, and Discover.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Order Number</span>
+                        <span>{{ order.order_number }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Date</span>
+                        <span>{{ order.created_at.strftime('%B %d, %Y') }}</span>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h6 class="mb-3">Items</h6>
+                    {% if order.build_id %}
+                        {% set build = order.build %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>{{ build.name }}</span>
+                            <span>${{ build.total_price }}</span>
+                        </div>
+                    {% elif order.build_config %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Custom PC Build</span>
+                            <span>${{ order.total_amount }}</span>
+                        </div>
+                    {% endif %}
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal</span>
+                        <span>${{ order.total_amount }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tax</span>
+                        <span>Included</span>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Total:</h5>
+                        <div class="price-total">${{ order.total_amount }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Shipping Information</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-1"><strong>{{ order.full_name }}</strong></p>
+                    <p class="mb-1">{{ order.address_line1 }}</p>
+                    {% if order.address_line2 %}
+                        <p class="mb-1">{{ order.address_line2 }}</p>
+                    {% endif %}
+                    <p class="mb-1">{{ order.city }}, {{ order.state }} {{ order.postal_code }}</p>
+                    <p class="mb-1">{{ order.country }}</p>
+                    {% if order.phone %}
+                        <p class="mb-1">{{ order.phone }}</p>
+                    {% endif %}
+                    <p class="mb-0">{{ order.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Stripe
+        const stripe = Stripe('{{ stripe_key }}');
+        const clientSecret = '{{ client_secret }}';
+        const paymentIntentId = '{{ payment_intent_id }}';
+        
+        // Create Elements instance
+        const appearance = {
+            theme: 'night',
+            variables: {
+                colorPrimary: '#0d6efd',
+                colorBackground: '#212529',
+                colorText: '#ffffff',
+                colorDanger: '#dc3545',
+                fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+                spacingUnit: '4px',
+                borderRadius: '4px'
+            }
+        };
+        
+        const elements = stripe.elements({
+            appearance: appearance,
+            clientSecret: clientSecret
+        });
+        
+        // Create and mount the Payment Element
+        const paymentElement = elements.create('payment');
+        paymentElement.mount('#payment-element');
+        
+        // Handle form submission
+        const form = document.getElementById('payment-form');
+        const submitButton = document.getElementById('submit-button');
+        const errorElement = document.getElementById('error-message');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            // Disable the submit button and show loading overlay
+            submitButton.disabled = true;
+            loadingOverlay.classList.add('visible');
+            
+            // Confirm the payment
+            const {error} = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: window.location.origin + '/payment/success?payment_intent=' + paymentIntentId
+                }
+            });
+            
+            // Handle errors
+            if (error) {
+                errorElement.textContent = error.message;
+                errorElement.style.display = 'block';
+                
+                // Re-enable the submit button and hide loading overlay
+                submitButton.disabled = false;
+                loadingOverlay.classList.remove('visible');
+            }
+            // Otherwise, the user is redirected to the return_url
+        });
+    });
+</script>
+{% endblock %}
