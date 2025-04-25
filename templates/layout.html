@@ -40,6 +40,11 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path.startswith('/builds/prebuilt') %}active{% endif %}" href="{{ url_for('builds.prebuilt_configs') }}">Pre-built PCs</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('benchmarks') %}active{% endif %}" href="{{ url_for('benchmarks') }}">
+                            <i class="fas fa-chart-line me-1"></i>Benchmarks
+                        </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     {% if session.get('pc_config') %}
@@ -112,6 +117,7 @@
                         <li><a href="{{ url_for('builder') }}" class="text-decoration-none text-white-50">PC Builder</a></li>
                         <li><a href="{{ url_for('builds.list_builds') }}" class="text-decoration-none text-white-50">Browse Builds</a></li>
                         <li><a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none text-white-50">Pre-built PCs</a></li>
+                        <li><a href="{{ url_for('benchmarks') }}" class="text-decoration-none text-white-50">Benchmarks</a></li>
                         {% if session.get('pc_config') %}
                         <li><a href="{{ url_for('summary') }}" class="text-decoration-none text-white-50">View Configuration</a></li>
                         {% endif %}

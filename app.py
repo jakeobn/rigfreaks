@@ -165,8 +165,11 @@ def summary():
     # Get performance benchmarks if CPU and GPU are selected
     performance_summary = None
     if 'cpu' in session['pc_config'] and 'gpu' in session['pc_config']:
-        from benchmarks import get_performance_summary
-        performance_summary = get_performance_summary(session['pc_config'])
+        try:
+            from benchmarks import get_performance_summary
+            performance_summary = get_performance_summary(session['pc_config'])
+        except Exception as e:
+            app.logger.error(f"Error retrieving performance summary: {str(e)}")
     
     return render_template(
         'summary.html',
@@ -197,20 +200,31 @@ def benchmarks():
             config_details[category] = component
     
     # Get detailed benchmark data
-    from benchmarks import get_performance_score, get_comparison_data, BENCHMARK_CATEGORIES, GAME_BENCHMARKS, APP_BENCHMARKS
-    
-    performance_data = get_performance_score(session['pc_config'])
-    comparison_data = get_comparison_data(session['pc_config'])
-    
-    return render_template(
-        'benchmarks.html',
-        config=config_details,
-        performance=performance_data,
-        comparisons=comparison_data,
-        benchmark_categories=BENCHMARK_CATEGORIES,
-        games=GAME_BENCHMARKS,
-        applications=APP_BENCHMARKS
-    )
+    try:
+        from benchmarks import (
+            get_performance_score, 
+            get_comparison_data, 
+            BENCHMARK_CATEGORIES, 
+            GAME_BENCHMARKS, 
+            APP_BENCHMARKS
+        )
+        
+        performance_data = get_performance_score(session['pc_config'])
+        comparison_data = get_comparison_data(session['pc_config'])
+        
+        return render_template(
+            'benchmarks.html',
+            config=config_details,
+            performance=performance_data,
+            comparisons=comparison_data,
+            benchmark_categories=BENCHMARK_CATEGORIES,
+            games=GAME_BENCHMARKS,
+            applications=APP_BENCHMARKS
+        )
+    except Exception as e:
+        app.logger.error(f"Error retrieving benchmark data: {str(e)}")
+        flash("Unable to load benchmark data. Please try again later.", "danger")
+        return redirect(url_for('summary'))
 
 @app.route('/compare/<category>')
 def compare_components(category):
