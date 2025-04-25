@@ -112,6 +112,18 @@ def add_to_cart():
         flash("Please build a PC configuration first", "warning")
         return redirect(url_for('builder'))
     
+    # Define the required component categories
+    required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']
+    
+    # Check if all required components are selected
+    config = session.get('pc_config', {})
+    missing_components = [category for category in required_categories if category not in config]
+    
+    if missing_components:
+        missing_list = ", ".join([category.replace('_', ' ').capitalize() for category in missing_components])
+        flash(f"Cannot add to cart: Missing required components: {missing_list}", "warning")
+        return redirect(url_for('builder'))
+    
     # Get or create cart
     cart = get_or_create_cart()
     

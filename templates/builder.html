@@ -190,11 +190,26 @@
                             <a href="{{ url_for('summary') }}" class="btn btn-success">
                                 <i class="fas fa-check-circle me-1"></i>Review Build
                             </a>
-                            <form action="{{ url_for('cart.add_to_cart') }}" method="post">
-                                <button type="submit" class="btn btn-primary w-100 mb-2">
-                                    <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                            {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
+                            {% set missing_components = [] %}
+                            {% for category in required_categories %}
+                                {% if category not in current_config %}
+                                    {% do missing_components.append(category) %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if missing_components|length == 0 %}
+                                <form action="{{ url_for('cart.add_to_cart') }}" method="post">
+                                    <button type="submit" class="btn btn-primary w-100 mb-2">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </form>
+                            {% else %}
+                                <button disabled class="btn btn-secondary w-100 mb-2" title="Complete your build to add to cart">
+                                    <i class="fas fa-lock me-1"></i>Add to Cart
                                 </button>
-                            </form>
+                                <small class="text-muted d-block mb-2">Complete your build to enable "Add to Cart".</small>
+                            {% endif %}
                             <form action="{{ url_for('reset_configuration') }}" method="post">
                                 <button type="submit" class="btn btn-outline-danger w-100">
                                     <i class="fas fa-trash-alt me-1"></i>Reset Configuration
