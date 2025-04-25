@@ -2794,7 +2794,7 @@ body {
 .component-selection-modal .modal-content {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     border: none;
-    overflow: auto;
+    overflow: hidden; /* We don't want double scrollbars */
     background-color: var(--bs-gray-900);
     max-height: calc(100vh - 60px);
 }
@@ -2868,7 +2868,7 @@ body {
     position: sticky;
     top: 0;
     background-color: var(--bs-gray-800);
-    z-index: 1;
+    z-index: 10;
     border-bottom: 2px solid rgba(var(--bs-primary-rgb), 0.3);
     color: var(--bs-gray-300);
     font-weight: 600;
