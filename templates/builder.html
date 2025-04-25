@@ -962,9 +962,11 @@
             cardContainer.innerHTML = '';
             loadingElement.style.display = 'block';
             
-            // Show the component selection container
+            // Show the component selection container and backdrop
             const componentSelectionContainer = document.getElementById('componentSelectionContainer');
+            const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
             componentSelectionContainer.classList.remove('d-none');
+            componentSelectionBackdrop.classList.remove('d-none');
             
             // Position the component selection container at the top of the page
             componentSelectionContainer.style.position = 'fixed';
@@ -999,10 +1001,18 @@
     // Add event listeners for closing the component selection
     document.getElementById('closeComponentSelection').addEventListener('click', function() {
         document.getElementById('componentSelectionContainer').classList.add('d-none');
+        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
     });
     
     document.getElementById('cancelComponentSelection').addEventListener('click', function() {
         document.getElementById('componentSelectionContainer').classList.add('d-none');
+        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
+    });
+    
+    // Close when clicking on backdrop
+    document.getElementById('componentSelectionBackdrop').addEventListener('click', function() {
+        document.getElementById('componentSelectionContainer').classList.add('d-none');
+        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
     });
     
     // Filter components when search input changes
