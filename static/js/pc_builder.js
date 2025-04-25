@@ -386,7 +386,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
     const closeMobileSummary = document.getElementById('closeMobileSummary');
     
-    if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop) {
+    // Check if we're on the PC builder page with mobile summary elements
+    if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
+        console.log('Mobile summary panel elements found');
+        
         // Open mobile summary panel
         mobileSummaryBtn.addEventListener('click', function() {
             mobileSummaryPanel.classList.add('active');
@@ -423,5 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
             touchStartY = 0;
             touchEndY = 0;
         }, false);
+    } else {
+        console.log('Mobile summary panel elements not found on this page');
     }
 });
