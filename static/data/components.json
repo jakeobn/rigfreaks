@@ -89,6 +89,96 @@
         "Cache": "30MB L3 Cache",
         "Integrated Graphics": "Intel UHD Graphics 770"
       }
+    },
+    {
+      "id": "cpu6",
+      "name": "AMD Ryzen 5 7600X",
+      "description": "Mid-range AMD desktop processor with 6 cores and 12 threads",
+      "price": 249.99,
+      "brand": "AMD",
+      "socket": "AM5",
+      "cores": 6,
+      "threads": 12,
+      "base_clock": "4.7 GHz",
+      "boost_clock": "5.3 GHz",
+      "tdp": 105,
+      "image_url": "https://cdn.example.com/cpu6.webp",
+      "specs": {
+        "Cache": "32MB L3 Cache",
+        "Integrated Graphics": "Radeon Graphics"
+      }
+    },
+    {
+      "id": "cpu7",
+      "name": "Intel Core i5-14600K",
+      "description": "New generation mid-range desktop processor with 14 cores (6P+8E) and 20 threads",
+      "price": 369.99,
+      "brand": "Intel",
+      "socket": "LGA1700",
+      "cores": 14,
+      "threads": 20,
+      "base_clock": "3.5 GHz",
+      "boost_clock": "5.3 GHz",
+      "tdp": 125,
+      "image_url": "https://cdn.example.com/cpu7.webp",
+      "specs": {
+        "Cache": "24MB L3 Cache",
+        "Integrated Graphics": "Intel UHD Graphics 770"
+      }
+    },
+    {
+      "id": "cpu8",
+      "name": "AMD Ryzen 7 5800X3D",
+      "description": "Gaming-focused processor with 3D V-Cache, 8 cores and 16 threads",
+      "price": 329.99,
+      "brand": "AMD",
+      "socket": "AM4",
+      "cores": 8,
+      "threads": 16,
+      "base_clock": "3.4 GHz",
+      "boost_clock": "4.5 GHz",
+      "tdp": 105,
+      "image_url": "https://cdn.example.com/cpu8.webp",
+      "specs": {
+        "Cache": "96MB L3 Cache",
+        "Integrated Graphics": "None"
+      }
+    },
+    {
+      "id": "cpu9",
+      "name": "Intel Core i9-14900K",
+      "description": "Next-gen flagship Intel processor with 24 cores (8P+16E) and 32 threads",
+      "price": 649.99,
+      "brand": "Intel",
+      "socket": "LGA1700",
+      "cores": 24,
+      "threads": 32,
+      "base_clock": "3.2 GHz",
+      "boost_clock": "6.0 GHz",
+      "tdp": 125,
+      "image_url": "https://cdn.example.com/cpu9.webp",
+      "specs": {
+        "Cache": "36MB L3 Cache",
+        "Integrated Graphics": "Intel UHD Graphics 770"
+      }
+    },
+    {
+      "id": "cpu10",
+      "name": "AMD Ryzen 9 7900X",
+      "description": "High-performance AMD processor with 12 cores and 24 threads",
+      "price": 449.99,
+      "brand": "AMD",
+      "socket": "AM5",
+      "cores": 12,
+      "threads": 24,
+      "base_clock": "4.7 GHz",
+      "boost_clock": "5.6 GHz",
+      "tdp": 170,
+      "image_url": "https://cdn.example.com/cpu10.webp",
+      "specs": {
+        "Cache": "64MB L3 Cache",
+        "Integrated Graphics": "Radeon Graphics"
+      }
     }
   ],
   "motherboard": [
@@ -338,6 +428,138 @@
         "Ray Accelerators": "40 (1st Gen)",
         "AI Accelerators": "40",
         "Display Outputs": "3x DisplayPort 1.4, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu5",
+      "name": "NVIDIA GeForce RTX 4080",
+      "description": "High-end NVIDIA graphics card with excellent ray tracing performance",
+      "price": 1099.99,
+      "brand": "NVIDIA",
+      "memory": 16,
+      "memory_type": "GDDR6X",
+      "memory_bus": 256,
+      "core_clock": "2.21 GHz",
+      "boost_clock": "2.51 GHz",
+      "tdp": 320,
+      "length": 304,
+      "power_connectors": "1x 16-pin",
+      "image_url": "https://cdn.example.com/gpu5.webp",
+      "specs": {
+        "CUDA Cores": "9728",
+        "RT Cores": "76 (3rd Gen)",
+        "Tensor Cores": "304 (4th Gen)",
+        "Display Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu6",
+      "name": "AMD Radeon RX 7800 XT",
+      "description": "High-performance AMD graphics card for 1440p gaming",
+      "price": 499.99,
+      "brand": "AMD",
+      "memory": 16,
+      "memory_type": "GDDR6",
+      "memory_bus": 256,
+      "core_clock": "2.12 GHz",
+      "boost_clock": "2.43 GHz",
+      "tdp": 263,
+      "length": 267,
+      "power_connectors": "2x 8-pin",
+      "image_url": "https://cdn.example.com/gpu6.webp",
+      "specs": {
+        "Stream Processors": "3840",
+        "Ray Accelerators": "60 (2nd Gen)",
+        "AI Accelerators": "120",
+        "Display Outputs": "2x DisplayPort 2.1, 1x HDMI 2.1, 1x USB-C"
+      }
+    },
+    {
+      "id": "gpu7",
+      "name": "NVIDIA GeForce RTX 4060 Ti",
+      "description": "Mid-range NVIDIA graphics card for 1080p/1440p gaming",
+      "price": 399.99,
+      "brand": "NVIDIA",
+      "memory": 8,
+      "memory_type": "GDDR6",
+      "memory_bus": 128,
+      "core_clock": "2.31 GHz",
+      "boost_clock": "2.54 GHz",
+      "tdp": 160,
+      "length": 240,
+      "power_connectors": "1x 8-pin",
+      "image_url": "https://cdn.example.com/gpu7.webp",
+      "specs": {
+        "CUDA Cores": "4352",
+        "RT Cores": "34 (3rd Gen)",
+        "Tensor Cores": "136 (4th Gen)",
+        "Display Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu8",
+      "name": "AMD Radeon RX 6600 XT",
+      "description": "Budget-friendly AMD graphics card for 1080p gaming",
+      "price": 299.99,
+      "brand": "AMD",
+      "memory": 8,
+      "memory_type": "GDDR6",
+      "memory_bus": 128,
+      "core_clock": "2.36 GHz",
+      "boost_clock": "2.59 GHz",
+      "tdp": 160,
+      "length": 240,
+      "power_connectors": "1x 8-pin",
+      "image_url": "https://cdn.example.com/gpu8.webp",
+      "specs": {
+        "Stream Processors": "2048",
+        "Ray Accelerators": "32 (1st Gen)",
+        "AI Accelerators": "32",
+        "Display Outputs": "3x DisplayPort 1.4, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu9",
+      "name": "NVIDIA GeForce RTX 4070 SUPER",
+      "description": "Refreshed mid-range NVIDIA graphics card with improved performance",
+      "price": 599.99,
+      "brand": "NVIDIA",
+      "memory": 12,
+      "memory_type": "GDDR6X",
+      "memory_bus": 192,
+      "core_clock": "1.98 GHz",
+      "boost_clock": "2.48 GHz",
+      "tdp": 220,
+      "length": 267,
+      "power_connectors": "1x 16-pin",
+      "image_url": "https://cdn.example.com/gpu9.webp",
+      "specs": {
+        "CUDA Cores": "7168",
+        "RT Cores": "56 (3rd Gen)",
+        "Tensor Cores": "224 (4th Gen)",
+        "Display Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu10",
+      "name": "Intel Arc A770 16GB",
+      "description": "Intel's flagship discrete graphics card for gaming and content creation",
+      "price": 349.99,
+      "brand": "Intel",
+      "memory": 16,
+      "memory_type": "GDDR6",
+      "memory_bus": 256,
+      "core_clock": "2.10 GHz",
+      "boost_clock": "2.40 GHz",
+      "tdp": 225,
+      "length": 267,
+      "power_connectors": "2x 8-pin",
+      "image_url": "https://cdn.example.com/gpu10.webp",
+      "specs": {
+        "Xe Cores": "32",
+        "RT Units": "32 (1st Gen)",
+        "XMX Engines": "512",
+        "Display Outputs": "3x DisplayPort 2.0, 1x HDMI 2.1"
       }
     }
   ],
