@@ -48,7 +48,7 @@
         <div class="col-lg-4 col-md-6" data-price="{{ component.price }}">
             <div class="card h-100 component-card" data-price="{{ component.price }}">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span class="component-name">{{ component.name }}</span>
+                    <a href="{{ url_for('component_detail', category=category, component_id=component.id) }}" class="component-name text-decoration-none">{{ component.name }}</a>
                     {% if component.id == current_selection %}
                     <span class="badge bg-success">Selected</span>
                     {% endif %}
@@ -112,15 +112,24 @@
                 </div>
                 
                 <div class="card-footer">
-                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
-                        <button type="submit" class="btn btn-primary w-100">
-                            {% if component.id == current_selection %}
-                                <i class="fas fa-check me-1"></i>Selected
-                            {% else %}
-                                <i class="fas fa-plus me-1"></i>Select
-                            {% endif %}
-                        </button>
-                    </form>
+                    <div class="row g-2">
+                        <div class="col-sm-6">
+                            <a href="{{ url_for('component_detail', category=category, component_id=component.id) }}" class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-info-circle me-1"></i>Details
+                            </a>
+                        </div>
+                        <div class="col-sm-6">
+                            <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    {% if component.id == current_selection %}
+                                        <i class="fas fa-check me-1"></i>Selected
+                                    {% else %}
+                                        <i class="fas fa-plus me-1"></i>Select
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

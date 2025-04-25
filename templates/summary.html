@@ -62,7 +62,11 @@
                         <div class="col-md-10">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title mb-0">{{ component.name }}</h5>
+                                    <h5 class="card-title mb-0">
+                                        <a href="{{ url_for('component_detail', category=category, component_id=component.id) }}" class="text-decoration-none">
+                                            {{ component.name }}
+                                        </a>
+                                    </h5>
                                     <span class="fs-5 fw-bold text-success">${{ component.price }}</span>
                                 </div>
                                 <p class="card-text">{{ component.description }}</p>
@@ -93,9 +97,14 @@
                                 </div>
                                 
                                 <div class="mt-3">
-                                    <a href="{{ url_for('select_component', category=category) }}" class="btn btn-outline-primary btn-sm">
-                                        <i class="fas fa-exchange-alt me-1"></i>Change Component
-                                    </a>
+                                    <div class="btn-group">
+                                        <a href="{{ url_for('component_detail', category=category, component_id=component.id) }}" class="btn btn-outline-secondary btn-sm">
+                                            <i class="fas fa-info-circle me-1"></i>View Details
+                                        </a>
+                                        <a href="{{ url_for('select_component', category=category) }}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-exchange-alt me-1"></i>Change Component
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
