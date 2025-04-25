@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% block title %}PC Builds{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">PC Builds</h1>
+    
+    {% if 'user_id' in session and user_builds %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Your Builds</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        {% for build in user_builds %}
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">{{ build.name }}</h5>
+                                    {% if build.is_public %}
+                                    <span class="badge bg-success">Public</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Private</span>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">
+                                    {% if build.description %}
+                                    <p class="card-text">{{ build.description }}</p>
+                                    {% else %}
+                                    <p class="card-text text-muted">No description provided.</p>
+                                    {% endif %}
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="text-primary">${{ build.total_price }}</span>
+                                        <span class="text-muted small">{{ build.created_at.strftime('%b %d, %Y') }}</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ url_for('builds.view_build', build_id=build.id) }}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-eye me-1"></i>View Details
+                                        </a>
+                                        <a href="{{ url_for('builds.load_build', build_id=build.id) }}" class="btn btn-outline-secondary btn-sm">
+                                            <i class="fas fa-edit me-1"></i>Load
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Public Builds</h3>
+        </div>
+        <div class="card-body">
+            {% if public_builds %}
+            <div class="row g-4">
+                {% for build in public_builds %}
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">{{ build.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if build.description %}
+                            <p class="card-text">{{ build.description }}</p>
+                            {% else %}
+                            <p class="card-text text-muted">No description provided.</p>
+                            {% endif %}
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-primary">${{ build.total_price }}</span>
+                                <span class="text-muted small">{{ build.created_at.strftime('%b %d, %Y') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ url_for('builds.view_build', build_id=build.id) }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye me-1"></i>View Details
+                                </a>
+                                <a href="{{ url_for('builds.load_build', build_id=build.id) }}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Load
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h5>No Public Builds</h5>
+                <p>There are no public builds available yet. Create and share your own!</p>
+                <a href="{{ url_for('builder') }}" class="btn btn-primary">Start Building</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
