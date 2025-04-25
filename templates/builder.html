@@ -605,8 +605,18 @@
             cardContainer.innerHTML = '';
             loadingElement.style.display = 'block';
             
+            // Remove any existing modal backdrops that might be causing issues
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            
             // Show the modal
-            const componentModal = new bootstrap.Modal(document.getElementById('componentModal'));
+            const componentModal = new bootstrap.Modal(document.getElementById('componentModal'), {
+                backdrop: true,
+                keyboard: true,
+                focus: true
+            });
             componentModal.show();
             
             // Simulate loading delay (remove in production)
@@ -625,6 +635,14 @@
                 }
             }, 500); // 500ms delay to show the loading animation
         });
+    });
+    
+    // Add event listener to clean up modal backdrop when closed
+    document.getElementById('componentModal').addEventListener('hidden.bs.modal', function () {
+        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
     });
     
     // Filter components when search input changes
