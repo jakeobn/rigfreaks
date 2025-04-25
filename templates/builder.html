@@ -8,29 +8,76 @@
     
     <!-- Component Selection Modal -->
     <div class="modal fade" id="componentModal" tabindex="-1" aria-labelledby="componentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl component-selection-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="componentModalLabel">Select Component</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="modal-icon-container me-3" id="modalCategoryIcon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title mb-0" id="componentModalLabel">Select Component</h5>
+                            <div class="modal-subtitle text-muted small" id="modalCategoryDescription">
+                                Choose from compatible components
+                            </div>
+                        </div>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                
+                <div class="modal-search-container py-2 px-3 border-bottom">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0" id="componentSearch" placeholder="Search components...">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-sort me-1"></i>Sort By
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><button class="dropdown-item sort-option" data-sort="name">Name</button></li>
+                            <li><button class="dropdown-item sort-option" data-sort="price-asc">Price (Low to High)</button></li>
+                            <li><button class="dropdown-item sort-option" data-sort="price-desc">Price (High to Low)</button></li>
+                            <li><button class="dropdown-item sort-option" data-sort="performance">Performance</button></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modal-body p-0">
                     <div class="table-responsive">
-                        <table class="table table-hover" id="componentTable">
+                        <table class="table table-hover mb-0" id="componentTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Specs</th>
-                                    <th>Price</th>
-                                    <th>Action</th>
+                                    <th width="30%">Name</th>
+                                    <th width="30%">Specifications</th>
+                                    <th width="20%">Performance</th>
+                                    <th width="10%">Price</th>
+                                    <th width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Component rows will be injected here via JavaScript -->
+                                <tr>
+                                    <td colspan="5" class="text-center py-5">
+                                        <div class="loading-animation">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <p class="mt-3">Loading components...</p>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <div class="compatibility-note me-auto">
+                        <i class="fas fa-info-circle me-1 text-primary"></i>
+                        <small class="text-muted">Only compatible components are shown based on your current selection</small>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -388,6 +435,51 @@
     // Store component data globally to use in the modal
     const componentData = {{ components|tojson }};
     let currentCategory = '';
+    let filteredComponents = [];
+    
+    // Category information and icons
+    const categoryInfo = {
+        'cpu': {
+            icon: 'microchip',
+            description: 'Central Processing Unit is the brain of your computer',
+            performanceMetric: 'Processing Power'
+        },
+        'motherboard': {
+            icon: 'server',
+            description: 'Main circuit board that connects all components',
+            performanceMetric: 'Features & Connectivity'
+        },
+        'ram': {
+            icon: 'memory',
+            description: 'Memory modules for temporary data storage',
+            performanceMetric: 'Memory Speed'
+        },
+        'gpu': {
+            icon: 'tv',
+            description: 'Graphics Processing Unit for rendering visuals',
+            performanceMetric: 'Graphics Performance'
+        },
+        'storage': {
+            icon: 'hdd',
+            description: 'Storage devices for your data and programs',
+            performanceMetric: 'Read/Write Speed'
+        },
+        'power_supply': {
+            icon: 'plug',
+            description: 'Provides power to all PC components',
+            performanceMetric: 'Power Efficiency'
+        },
+        'case': {
+            icon: 'desktop',
+            description: 'Enclosure that houses all PC components',
+            performanceMetric: 'Airflow & Design'
+        },
+        'cooling': {
+            icon: 'wind',
+            description: 'Keeps components cool under load',
+            performanceMetric: 'Cooling Capacity'
+        }
+    };
     
     // When the component dropdown button is clicked
     document.querySelectorAll('.component-dropdown-btn').forEach(button => {
