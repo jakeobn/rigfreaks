@@ -257,7 +257,7 @@ def checkout():
 
 @cart_bp.route('/payment')
 def payment():
-    """Payment processing."""
+    """Payment processing using Stripe hosted checkout."""
     # Get the current order from session
     order_id = session.get('current_order_id')
     if not order_id:
@@ -269,31 +269,125 @@ def payment():
         flash("Order not found. Please try again.", "danger")
         return redirect(url_for('cart.view_cart'))
     
-    # Create a Stripe payment intent
+    # Create a description of the order
+    components_info = order.get_build_config()
+    line_items = []
+    
+    # If there's a build configuration, create line items for the components
+    if components_info:
+        # Load components data
+        components_data = load_component_data()
+        
+        # Add each component as a line item
+        for category, component_id in components_info.items():
+            if not component_id:
+                continue
+                
+            # Find the component details
+            for comp in components_data.get(category, []):
+                if comp['id'] == component_id:
+                    line_items.append({
+                        'price_data': {
+                            'currency': 'usd',
+                            'product_data': {
+                                'name': f"{category.replace('_', ' ').title()}: {comp['name']}",
+                                'description': comp.get('description', ''),
+                            },
+                            'unit_amount': int(float(comp['price']) * 100),  # Convert to cents
+                        },
+                        'quantity': 1,
+                    })
+                    break
+    else:
+        # If no components, use the total amount as a single line item
+        line_items.append({
+            'price_data': {
+                'currency': 'usd',
+                'product_data': {
+                    'name': f"Custom PC Build - {order.order_number}",
+                    'description': "Complete custom PC build",
+                },
+                'unit_amount': int(order.total_amount * 100),  # Convert to cents
+            },
+            'quantity': 1,
+        })
+    
+    # Create a Stripe checkout session
     try:
-        payment_intent = stripe.PaymentIntent.create(
-            amount=int(order.total_amount * 100),  # Amount in cents
-            currency='usd',
+        # Ensure we're using HTTPS URL
+        success_url = f"https://{DOMAIN}{url_for('cart.payment_success')}?session_id={{CHECKOUT_SESSION_ID}}"
+        cancel_url = f"https://{DOMAIN}{url_for('cart.payment_cancel')}"
+        
+        if not success_url.startswith('https://'):
+            success_url = f"https://{success_url}"
+        if not cancel_url.startswith('https://'):
+            cancel_url = f"https://{cancel_url}"
+        
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=line_items,
+            mode='payment',
+            success_url=success_url,
+            cancel_url=cancel_url,
+            customer_email=order.email,
+            client_reference_id=str(order.id),
             metadata={
                 'order_id': order.id,
                 'order_number': order.order_number
-            }
+            },
+            shipping_address_collection={
+                'allowed_countries': ['US', 'CA', 'GB', 'AU'],
+            },
+            shipping_options=[
+                {
+                    'shipping_rate_data': {
+                        'type': 'fixed_amount',
+                        'fixed_amount': {
+                            'amount': 0,
+                            'currency': 'usd',
+                        },
+                        'display_name': 'Standard Shipping',
+                        'delivery_estimate': {
+                            'minimum': {
+                                'unit': 'business_day',
+                                'value': 5,
+                            },
+                            'maximum': {
+                                'unit': 'business_day',
+                                'value': 7,
+                            },
+                        }
+                    }
+                },
+                {
+                    'shipping_rate_data': {
+                        'type': 'fixed_amount',
+                        'fixed_amount': {
+                            'amount': 2500,
+                            'currency': 'usd',
+                        },
+                        'display_name': 'Express Shipping',
+                        'delivery_estimate': {
+                            'minimum': {
+                                'unit': 'business_day',
+                                'value': 2,
+                            },
+                            'maximum': {
+                                'unit': 'business_day',
+                                'value': 3,
+                            },
+                        }
+                    }
+                },
+            ],
         )
         
-        # Store the payment intent ID in the order
-        order.payment_id = payment_intent.id
+        # Store the checkout session ID in the order
+        order.payment_id = checkout_session.id
         db.session.commit()
         
-        # Get the Stripe publishable key for the frontend
-        stripe_key = 'pk_test_TYooMQauvdEDq54NiTphI7jx'  # This would normally be your test public key
-        
-        return render_template(
-            'cart/payment.html',
-            order=order,
-            client_secret=payment_intent.client_secret,
-            payment_intent_id=payment_intent.id,
-            stripe_key=stripe_key
-        )
+        # Redirect to Stripe checkout
+        return redirect(checkout_session.url)
     
     except Exception as e:
         flash(f"Error setting up payment: {str(e)}", "danger")

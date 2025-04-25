@@ -1,6 +1,6 @@
 /* Additional custom styles to complement Bootstrap */
 
-/* Chillblast-inspired styling */
+/* Chillblast-inspired styling - Building on the Replit bootstrap dark theme */
 :root {
     --primary-color: var(--bs-primary);
     --secondary-color: #0dcaf0;
@@ -2736,4 +2736,97 @@ body {
     width: 30px;
     text-align: center;
     color: #3498db;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background-color: var(--bg-lighter);
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(13, 110, 253, 0.2) 0%, rgba(13, 110, 253, 0.05) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(60px);
+}
+
+.newsletter-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(13, 202, 240, 0.2) 0%, rgba(13, 202, 240, 0.05) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(60px);
+}
+
+.newsletter-container {
+    background-color: var(--bg-dark);
+    border-radius: 12px;
+    padding: 3rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.newsletter-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.newsletter-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.newsletter-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.newsletter-features li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.newsletter-form-container {
+    padding: 0 1rem;
+}
+
+.newsletter-form .form-control {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg-lighter);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-light);
+}
+
+.newsletter-form .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: var(--primary-color);
+}
+
+.newsletter-privacy {
+    text-align: center;
 }
