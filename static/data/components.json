@@ -1,0 +1,632 @@
+{
+  "cpu": [
+    {
+      "id": "cpu1",
+      "name": "Intel Core i9-13900K",
+      "description": "High-end desktop processor with 24 cores (8P+16E) and 32 threads",
+      "price": 599.99,
+      "brand": "Intel",
+      "socket": "LGA1700",
+      "cores": 24,
+      "threads": 32,
+      "base_clock": "3.0 GHz",
+      "boost_clock": "5.8 GHz",
+      "tdp": 125,
+      "image_url": "https://cdn.example.com/cpu1.webp",
+      "specs": {
+        "Cache": "36MB L3 Cache",
+        "Integrated Graphics": "Intel UHD Graphics 770"
+      }
+    },
+    {
+      "id": "cpu2",
+      "name": "AMD Ryzen 9 7950X",
+      "description": "Flagship AMD desktop processor with 16 cores and 32 threads",
+      "price": 569.99,
+      "brand": "AMD",
+      "socket": "AM5",
+      "cores": 16,
+      "threads": 32,
+      "base_clock": "4.5 GHz",
+      "boost_clock": "5.7 GHz",
+      "tdp": 170,
+      "image_url": "https://cdn.example.com/cpu2.webp",
+      "specs": {
+        "Cache": "64MB L3 Cache",
+        "Integrated Graphics": "Radeon Graphics"
+      }
+    },
+    {
+      "id": "cpu3",
+      "name": "Intel Core i5-13600K",
+      "description": "Mid-range desktop processor with 14 cores (6P+8E) and 20 threads",
+      "price": 329.99,
+      "brand": "Intel",
+      "socket": "LGA1700",
+      "cores": 14,
+      "threads": 20,
+      "base_clock": "3.5 GHz",
+      "boost_clock": "5.1 GHz",
+      "tdp": 125,
+      "image_url": "https://cdn.example.com/cpu3.webp",
+      "specs": {
+        "Cache": "24MB L3 Cache",
+        "Integrated Graphics": "Intel UHD Graphics 770"
+      }
+    },
+    {
+      "id": "cpu4",
+      "name": "AMD Ryzen 7 7700X",
+      "description": "High-performance desktop processor with 8 cores and 16 threads",
+      "price": 349.99,
+      "brand": "AMD",
+      "socket": "AM5",
+      "cores": 8,
+      "threads": 16,
+      "base_clock": "4.5 GHz",
+      "boost_clock": "5.4 GHz",
+      "tdp": 105,
+      "image_url": "https://cdn.example.com/cpu4.webp",
+      "specs": {
+        "Cache": "32MB L3 Cache",
+        "Integrated Graphics": "Radeon Graphics"
+      }
+    },
+    {
+      "id": "cpu5",
+      "name": "Intel Core i7-13700K",
+      "description": "High-performance desktop processor with 16 cores (8P+8E) and 24 threads",
+      "price": 429.99,
+      "brand": "Intel",
+      "socket": "LGA1700",
+      "cores": 16,
+      "threads": 24,
+      "base_clock": "3.4 GHz",
+      "boost_clock": "5.4 GHz",
+      "tdp": 125,
+      "image_url": "https://cdn.example.com/cpu5.webp",
+      "specs": {
+        "Cache": "30MB L3 Cache",
+        "Integrated Graphics": "Intel UHD Graphics 770"
+      }
+    }
+  ],
+  "motherboard": [
+    {
+      "id": "mobo1",
+      "name": "ASUS ROG Maximus Z790 Hero",
+      "description": "High-end Z790 motherboard for Intel 12th/13th gen processors",
+      "price": 599.99,
+      "brand": "ASUS",
+      "socket": "LGA1700",
+      "form_factor": "ATX",
+      "chipset": "Z790",
+      "ram_type": "DDR5",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 3,
+      "m2_slots": 5,
+      "sata_ports": 6,
+      "image_url": "https://cdn.example.com/mobo1.webp",
+      "specs": {
+        "USB Ports": "10x USB-A, 2x USB-C",
+        "Networking": "2.5G LAN, Wi-Fi 6E, Bluetooth 5.3",
+        "Audio": "ROG SupremeFX 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo2",
+      "name": "MSI MAG B650 TOMAHAWK WIFI",
+      "description": "Mid-range B650 motherboard for AMD Ryzen 7000 processors",
+      "price": 259.99,
+      "brand": "MSI",
+      "socket": "AM5",
+      "form_factor": "ATX",
+      "chipset": "B650",
+      "ram_type": "DDR5",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 2,
+      "m2_slots": 3,
+      "sata_ports": 6,
+      "image_url": "https://cdn.example.com/mobo2.webp",
+      "specs": {
+        "USB Ports": "8x USB-A, 1x USB-C",
+        "Networking": "2.5G LAN, Wi-Fi 6E, Bluetooth 5.2",
+        "Audio": "Realtek ALC1220P 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo3",
+      "name": "ASUS TUF Gaming B760M-PLUS WIFI",
+      "description": "Micro-ATX B760 motherboard for Intel 12th/13th gen processors",
+      "price": 179.99,
+      "brand": "ASUS",
+      "socket": "LGA1700",
+      "form_factor": "Micro-ATX",
+      "chipset": "B760",
+      "ram_type": "DDR4",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 2,
+      "m2_slots": 2,
+      "sata_ports": 4,
+      "image_url": "https://cdn.example.com/mobo3.webp",
+      "specs": {
+        "USB Ports": "6x USB-A, 1x USB-C",
+        "Networking": "1G LAN, Wi-Fi 6, Bluetooth 5.2",
+        "Audio": "Realtek ALC897 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo4",
+      "name": "GIGABYTE X670E AORUS MASTER",
+      "description": "High-end X670E motherboard for AMD Ryzen 7000 processors",
+      "price": 499.99,
+      "brand": "GIGABYTE",
+      "socket": "AM5",
+      "form_factor": "ATX",
+      "chipset": "X670E",
+      "ram_type": "DDR5",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 3,
+      "m2_slots": 4,
+      "sata_ports": 6,
+      "image_url": "https://cdn.example.com/mobo4.webp",
+      "specs": {
+        "USB Ports": "9x USB-A, 2x USB-C",
+        "Networking": "10G LAN, Wi-Fi 6E, Bluetooth 5.2",
+        "Audio": "Realtek ALC1220-VB 7.1 Surround Sound"
+      }
+    }
+  ],
+  "ram": [
+    {
+      "id": "ram1",
+      "name": "Corsair Vengeance DDR5 32GB (2x16GB)",
+      "description": "High-performance DDR5 memory kit",
+      "price": 149.99,
+      "brand": "Corsair",
+      "type": "DDR5",
+      "capacity": 32,
+      "speed": 6000,
+      "modules": 2,
+      "cas_latency": 36,
+      "image_url": "https://cdn.example.com/ram1.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "No"
+      }
+    },
+    {
+      "id": "ram2",
+      "name": "G.Skill Trident Z RGB DDR4 32GB (2x16GB)",
+      "description": "RGB-enabled high-performance DDR4 memory kit",
+      "price": 129.99,
+      "brand": "G.Skill",
+      "type": "DDR4",
+      "capacity": 32,
+      "speed": 3600,
+      "modules": 2,
+      "cas_latency": 16,
+      "image_url": "https://cdn.example.com/ram2.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "Yes"
+      }
+    },
+    {
+      "id": "ram3",
+      "name": "Kingston FURY Beast DDR5 16GB (2x8GB)",
+      "description": "Performance DDR5 memory kit",
+      "price": 89.99,
+      "brand": "Kingston",
+      "type": "DDR5",
+      "capacity": 16,
+      "speed": 5200,
+      "modules": 2,
+      "cas_latency": 40,
+      "image_url": "https://cdn.example.com/ram3.webp",
+      "specs": {
+        "Voltage": "1.25V",
+        "RGB": "No"
+      }
+    },
+    {
+      "id": "ram4",
+      "name": "Crucial Ballistix DDR4 16GB (2x8GB)",
+      "description": "Value DDR4 memory kit",
+      "price": 69.99,
+      "brand": "Crucial",
+      "type": "DDR4",
+      "capacity": 16,
+      "speed": 3200,
+      "modules": 2,
+      "cas_latency": 16,
+      "image_url": "https://cdn.example.com/ram4.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "No"
+      }
+    }
+  ],
+  "gpu": [
+    {
+      "id": "gpu1",
+      "name": "NVIDIA GeForce RTX 4090",
+      "description": "Flagship NVIDIA graphics card based on the Ada Lovelace architecture",
+      "price": 1599.99,
+      "brand": "NVIDIA",
+      "memory": 24,
+      "memory_type": "GDDR6X",
+      "memory_bus": 384,
+      "core_clock": "2.23 GHz",
+      "boost_clock": "2.52 GHz",
+      "tdp": 450,
+      "length": 336,
+      "power_connectors": "1x 16-pin",
+      "image_url": "https://cdn.example.com/gpu1.webp",
+      "specs": {
+        "CUDA Cores": "16384",
+        "RT Cores": "128 (3rd Gen)",
+        "Tensor Cores": "512 (4th Gen)",
+        "Display Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu2",
+      "name": "AMD Radeon RX 7900 XTX",
+      "description": "Flagship AMD graphics card based on the RDNA 3 architecture",
+      "price": 999.99,
+      "brand": "AMD",
+      "memory": 24,
+      "memory_type": "GDDR6",
+      "memory_bus": 384,
+      "core_clock": "1.9 GHz",
+      "boost_clock": "2.5 GHz",
+      "tdp": 355,
+      "length": 287,
+      "power_connectors": "2x 8-pin",
+      "image_url": "https://cdn.example.com/gpu2.webp",
+      "specs": {
+        "Stream Processors": "12288",
+        "Ray Accelerators": "96 (2nd Gen)",
+        "AI Accelerators": "192",
+        "Display Outputs": "2x DisplayPort 2.1, 1x HDMI 2.1, 1x USB-C"
+      }
+    },
+    {
+      "id": "gpu3",
+      "name": "NVIDIA GeForce RTX 4070 Ti",
+      "description": "High-performance NVIDIA graphics card based on the Ada Lovelace architecture",
+      "price": 799.99,
+      "brand": "NVIDIA",
+      "memory": 12,
+      "memory_type": "GDDR6X",
+      "memory_bus": 192,
+      "core_clock": "2.31 GHz",
+      "boost_clock": "2.61 GHz",
+      "tdp": 285,
+      "length": 285,
+      "power_connectors": "1x 16-pin",
+      "image_url": "https://cdn.example.com/gpu3.webp",
+      "specs": {
+        "CUDA Cores": "7680",
+        "RT Cores": "60 (3rd Gen)",
+        "Tensor Cores": "240 (4th Gen)",
+        "Display Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1"
+      }
+    },
+    {
+      "id": "gpu4",
+      "name": "AMD Radeon RX 6700 XT",
+      "description": "Mid-range AMD graphics card based on the RDNA 2 architecture",
+      "price": 429.99,
+      "brand": "AMD",
+      "memory": 12,
+      "memory_type": "GDDR6",
+      "memory_bus": 192,
+      "core_clock": "2.32 GHz",
+      "boost_clock": "2.58 GHz",
+      "tdp": 230,
+      "length": 267,
+      "power_connectors": "1x 8-pin, 1x 6-pin",
+      "image_url": "https://cdn.example.com/gpu4.webp",
+      "specs": {
+        "Stream Processors": "2560",
+        "Ray Accelerators": "40 (1st Gen)",
+        "AI Accelerators": "40",
+        "Display Outputs": "3x DisplayPort 1.4, 1x HDMI 2.1"
+      }
+    }
+  ],
+  "storage": [
+    {
+      "id": "storage1",
+      "name": "Samsung 990 PRO 2TB NVMe SSD",
+      "description": "High-performance PCIe 4.0 NVMe SSD",
+      "price": 199.99,
+      "brand": "Samsung",
+      "type": "NVMe SSD",
+      "capacity": 2000,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 4.0 x4",
+      "read_speed": 7450,
+      "write_speed": 6900,
+      "image_url": "https://cdn.example.com/storage1.webp",
+      "specs": {
+        "TBW": "1200 TB",
+        "Cache": "2GB LPDDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage2",
+      "name": "Crucial MX500 1TB SATA SSD",
+      "description": "Reliable SATA SSD for general use",
+      "price": 79.99,
+      "brand": "Crucial",
+      "type": "SATA SSD",
+      "capacity": 1000,
+      "form_factor": "2.5-inch",
+      "interface": "SATA III",
+      "read_speed": 560,
+      "write_speed": 510,
+      "image_url": "https://cdn.example.com/storage2.webp",
+      "specs": {
+        "TBW": "360 TB",
+        "Cache": "1GB LPDDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage3",
+      "name": "WD Black SN850X 1TB NVMe SSD",
+      "description": "High-performance PCIe 4.0 NVMe SSD for gaming",
+      "price": 129.99,
+      "brand": "Western Digital",
+      "type": "NVMe SSD",
+      "capacity": 1000,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 4.0 x4",
+      "read_speed": 7300,
+      "write_speed": 6300,
+      "image_url": "https://cdn.example.com/storage3.webp",
+      "specs": {
+        "TBW": "600 TB",
+        "Cache": "1GB DDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage4",
+      "name": "Seagate Barracuda 4TB HDD",
+      "description": "High-capacity mechanical hard drive",
+      "price": 84.99,
+      "brand": "Seagate",
+      "type": "HDD",
+      "capacity": 4000,
+      "form_factor": "3.5-inch",
+      "interface": "SATA III",
+      "read_speed": 190,
+      "write_speed": 190,
+      "image_url": "https://cdn.example.com/storage4.webp",
+      "specs": {
+        "RPM": "5400",
+        "Cache": "256MB",
+        "Warranty": "2 years"
+      }
+    }
+  ],
+  "power_supply": [
+    {
+      "id": "psu1",
+      "name": "Corsair RM1000x 80+ Gold",
+      "description": "High-end fully modular power supply",
+      "price": 189.99,
+      "brand": "Corsair",
+      "wattage": 1000,
+      "efficiency": "80+ Gold",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu1.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 8x PCIe, 12x SATA, 4x Molex",
+        "Fan Size": "135mm",
+        "Warranty": "10 years"
+      }
+    },
+    {
+      "id": "psu2",
+      "name": "EVGA SuperNOVA 750 G5 80+ Gold",
+      "description": "Mid-range fully modular power supply",
+      "price": 129.99,
+      "brand": "EVGA",
+      "wattage": 750,
+      "efficiency": "80+ Gold",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu2.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 6x PCIe, 10x SATA, 3x Molex",
+        "Fan Size": "135mm",
+        "Warranty": "10 years"
+      }
+    },
+    {
+      "id": "psu3",
+      "name": "be quiet! Pure Power 11 600W 80+ Gold",
+      "description": "Quiet semi-modular power supply",
+      "price": 89.99,
+      "brand": "be quiet!",
+      "wattage": 600,
+      "efficiency": "80+ Gold",
+      "modular": "Semi-Modular",
+      "image_url": "https://cdn.example.com/psu3.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 1x EPS, 4x PCIe, 8x SATA, 3x Molex",
+        "Fan Size": "120mm",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "psu4",
+      "name": "Seasonic PRIME TX-1600 80+ Titanium",
+      "description": "Ultra-high-end fully modular power supply",
+      "price": 499.99,
+      "brand": "Seasonic",
+      "wattage": 1600,
+      "efficiency": "80+ Titanium",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu4.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 12x PCIe, 16x SATA, 6x Molex",
+        "Fan Size": "135mm",
+        "Warranty": "12 years"
+      }
+    }
+  ],
+  "case": [
+    {
+      "id": "case1",
+      "name": "Lian Li O11 Dynamic EVO",
+      "description": "Premium mid-tower case with excellent thermal performance",
+      "price": 169.99,
+      "brand": "Lian Li",
+      "form_factor": "ATX",
+      "dimensions": "465 x 290 x 459 mm",
+      "weight": 11.5,
+      "image_url": "https://cdn.example.com/case1.webp",
+      "specs": {
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "420mm",
+        "Maximum CPU Cooler Height": "167mm",
+        "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    },
+    {
+      "id": "case2",
+      "name": "Fractal Design Meshify 2 Compact",
+      "description": "Compact ATX case with excellent airflow",
+      "price": 129.99,
+      "brand": "Fractal Design",
+      "form_factor": "ATX",
+      "dimensions": "424 x 210 x 475 mm",
+      "weight": 8.1,
+      "image_url": "https://cdn.example.com/case2.webp",
+      "specs": {
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "360mm",
+        "Maximum CPU Cooler Height": "169mm",
+        "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    },
+    {
+      "id": "case3",
+      "name": "Corsair 4000D Airflow",
+      "description": "Mid-tower ATX case with high airflow design",
+      "price": 94.99,
+      "brand": "Corsair",
+      "form_factor": "ATX",
+      "dimensions": "453 x 230 x 466 mm",
+      "weight": 7.8,
+      "image_url": "https://cdn.example.com/case3.webp",
+      "specs": {
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "360mm",
+        "Maximum CPU Cooler Height": "170mm",
+        "Front I/O": "1x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    },
+    {
+      "id": "case4",
+      "name": "NZXT H7 Flow",
+      "description": "Modern mid-tower case with excellent cable management",
+      "price": 129.99,
+      "brand": "NZXT",
+      "form_factor": "ATX",
+      "dimensions": "480 x 230 x 505 mm",
+      "weight": 9.5,
+      "image_url": "https://cdn.example.com/case4.webp",
+      "specs": {
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "400mm",
+        "Maximum CPU Cooler Height": "185mm",
+        "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    }
+  ],
+  "cooling": [
+    {
+      "id": "cooling1",
+      "name": "NZXT Kraken X73 RGB 360mm",
+      "description": "High-end 360mm AIO liquid CPU cooler with RGB",
+      "price": 199.99,
+      "brand": "NZXT",
+      "type": "Liquid",
+      "radiator_size": 360,
+      "fan_count": 3,
+      "noise_level": "21-36 dBA",
+      "image_url": "https://cdn.example.com/cooling1.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "500-2,000 RPM",
+        "RGB": "Yes",
+        "Warranty": "6 years"
+      }
+    },
+    {
+      "id": "cooling2",
+      "name": "Noctua NH-D15 chromax.black",
+      "description": "Premium dual-tower air CPU cooler",
+      "price": 109.99,
+      "brand": "Noctua",
+      "type": "Air",
+      "radiator_size": null,
+      "fan_count": 2,
+      "noise_level": "19.2-24.6 dBA",
+      "image_url": "https://cdn.example.com/cooling2.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "300-1,500 RPM",
+        "RGB": "No",
+        "Warranty": "6 years"
+      }
+    },
+    {
+      "id": "cooling3",
+      "name": "Corsair iCUE H150i ELITE CAPELLIX 360mm",
+      "description": "High-performance 360mm AIO liquid CPU cooler with RGB",
+      "price": 189.99,
+      "brand": "Corsair",
+      "type": "Liquid",
+      "radiator_size": 360,
+      "fan_count": 3,
+      "noise_level": "10-36 dBA",
+      "image_url": "https://cdn.example.com/cooling3.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "400-2,400 RPM",
+        "RGB": "Yes",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "cooling4",
+      "name": "be quiet! Dark Rock Pro 4",
+      "description": "High-end dual-tower air CPU cooler with silent operation",
+      "price": 89.99,
+      "brand": "be quiet!",
+      "type": "Air",
+      "radiator_size": null,
+      "fan_count": 2,
+      "noise_level": "12.8-24.3 dBA",
+      "image_url": "https://cdn.example.com/cooling4.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "1,200-1,500 RPM",
+        "RGB": "No",
+        "Warranty": "3 years"
+      }
+    }
+  ]
+}

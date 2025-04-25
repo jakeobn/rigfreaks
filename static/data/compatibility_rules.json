@@ -1,0 +1,66 @@
+{
+  "cpu_motherboard": [
+    {
+      "rule_type": "socket_match",
+      "description": "CPU socket must match motherboard socket",
+      "check": "cpu.socket == motherboard.socket"
+    }
+  ],
+  "ram_motherboard": [
+    {
+      "rule_type": "ram_type_match",
+      "description": "RAM type must match motherboard supported RAM type",
+      "check": "ram.type == motherboard.ram_type"
+    },
+    {
+      "rule_type": "ram_capacity_check",
+      "description": "Total RAM capacity must not exceed motherboard maximum",
+      "check": "ram.capacity <= motherboard.max_ram"
+    }
+  ],
+  "case_motherboard": [
+    {
+      "rule_type": "form_factor_match",
+      "description": "Motherboard form factor must be compatible with case",
+      "check": "case.form_factor supports motherboard.form_factor"
+    }
+  ],
+  "gpu_case": [
+    {
+      "rule_type": "gpu_length_check",
+      "description": "GPU length must fit within case",
+      "check": "gpu.length <= case.max_gpu_length"
+    }
+  ],
+  "cooling_case": [
+    {
+      "rule_type": "cooler_clearance",
+      "description": "CPU cooler height must fit within case",
+      "check": "cooling.height <= case.max_cpu_cooler_height"
+    },
+    {
+      "rule_type": "radiator_support",
+      "description": "Case must support liquid cooler radiator size",
+      "check": "case.radiator_support includes cooling.radiator_size"
+    }
+  ],
+  "power_requirements": [
+    {
+      "rule_type": "power_sufficient",
+      "description": "Power supply must provide sufficient wattage for all components",
+      "check": "power_supply.wattage >= total_system_power_required"
+    }
+  ],
+  "storage_motherboard": [
+    {
+      "rule_type": "m2_slots_check",
+      "description": "Number of M.2 SSDs must not exceed motherboard M.2 slots",
+      "check": "count(storage.form_factor == 'M.2') <= motherboard.m2_slots"
+    },
+    {
+      "rule_type": "sata_ports_check",
+      "description": "Number of SATA drives must not exceed motherboard SATA ports",
+      "check": "count(storage.interface == 'SATA') <= motherboard.sata_ports"
+    }
+  ]
+}

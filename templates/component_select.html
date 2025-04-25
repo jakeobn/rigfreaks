@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+
+{% block title %}Select {{ category|capitalize }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Select {{ category|capitalize }}</h1>
+        <a href="{{ url_for('builder') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i>Back to Builder
+        </a>
+    </div>
+    
+    <!-- Filters and Sorting -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="component-filter" class="form-label">Filter Components</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" id="component-filter" class="form-control" placeholder="Search by name or specs...">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="component-sort" class="form-label">Sort By</label>
+                    <select id="component-sort" class="form-select">
+                        <option value="price-low">Price (Low to High)</option>
+                        <option value="price-high">Price (High to Low)</option>
+                        <option value="name-asc">Name (A to Z)</option>
+                        <option value="name-desc">Name (Z to A)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Compare Components Link -->
+    <div class="mb-4">
+        <a href="{{ url_for('compare_components', category=category) }}" class="btn btn-outline-primary">
+            <i class="fas fa-columns me-1"></i>Compare Components
+        </a>
+    </div>
+    
+    <!-- Component Cards -->
+    <div class="row g-4 component-container">
+        {% for component in components %}
+        <div class="col-lg-4 col-md-6" data-price="{{ component.price }}">
+            <div class="card h-100 component-card" data-price="{{ component.price }}">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span class="component-name">{{ component.name }}</span>
+                    {% if component.id == current_selection %}
+                    <span class="badge bg-success">Selected</span>
+                    {% endif %}
+                </div>
+                
+                <!-- No real image, using icon placeholder -->
+                <div class="text-center py-5 bg-dark">
+                    {% if category == 'cpu' %}
+                        <i class="fas fa-microchip fa-5x text-secondary"></i>
+                    {% elif category == 'motherboard' %}
+                        <i class="fas fa-server fa-5x text-secondary"></i>
+                    {% elif category == 'ram' %}
+                        <i class="fas fa-memory fa-5x text-secondary"></i>
+                    {% elif category == 'gpu' %}
+                        <i class="fas fa-tv fa-5x text-secondary"></i>
+                    {% elif category == 'storage' %}
+                        <i class="fas fa-hdd fa-5x text-secondary"></i>
+                    {% elif category == 'power_supply' %}
+                        <i class="fas fa-plug fa-5x text-secondary"></i>
+                    {% elif category == 'case' %}
+                        <i class="fas fa-desktop fa-5x text-secondary"></i>
+                    {% elif category == 'cooling' %}
+                        <i class="fas fa-wind fa-5x text-secondary"></i>
+                    {% endif %}
+                </div>
+                
+                <div class="card-body">
+                    <p class="card-text component-specs">{{ component.description }}</p>
+                    
+                    <!-- Component Specifications -->
+                    <div class="mt-3">
+                        <h6>Specifications:</h6>
+                        <ul class="spec-list">
+                            {% for key, value in component.items() %}
+                                {% if key not in ['id', 'name', 'description', 'price', 'image_url', 'specs'] %}
+                                <li class="spec-item">
+                                    <span class="spec-label">{{ key|replace('_', ' ')|capitalize }}:</span>
+                                    <span class="spec-value">{{ value }}</span>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if component.specs %}
+                                {% for key, value in component.specs.items() %}
+                                <li class="spec-item">
+                                    <span class="spec-label">{{ key }}:</span>
+                                    <span class="spec-value">{{ value }}</span>
+                                </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <span class="fs-5 fw-bold text-success">${{ component.price }}</span>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input compare-checkbox" id="compare-{{ component.id }}" value="{{ component.id }}">
+                            <label class="form-check-label" for="compare-{{ component.id }}">Compare</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
+                        <button type="submit" class="btn btn-primary w-100">
+                            {% if component.id == current_selection %}
+                                <i class="fas fa-check me-1"></i>Selected
+                            {% else %}
+                                <i class="fas fa-plus me-1"></i>Select
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

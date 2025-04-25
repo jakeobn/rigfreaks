@@ -1,0 +1,188 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-4">Build Your Dream PC</h1>
+        <p class="lead mb-5">Customize your perfect computer with our easy-to-use PC builder tool. Select compatible components and create a system tailored to your needs.</p>
+        <a href="{{ url_for('builder') }}" class="btn btn-primary btn-lg px-5 py-3">
+            <i class="fas fa-tools me-2"></i>Start Building
+        </a>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Features Section -->
+    <section class="my-5">
+        <h2 class="text-center mb-5">Why Build With Us?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="card-body text-center">
+                        <i class="fas fa-puzzle-piece fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Component Compatibility</h3>
+                        <p class="card-text">Our system automatically checks compatibility between components, ensuring your build will work seamlessly together.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="card-body text-center">
+                        <i class="fas fa-sliders-h fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Customization Options</h3>
+                        <p class="card-text">Choose from a wide range of components to create a PC that's perfectly tailored to your needs and budget.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Performance Insights</h3>
+                        <p class="card-text">Get detailed information about how your components work together and the expected performance of your build.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="my-5 py-5 bg-dark rounded-3">
+        <div class="container">
+            <h2 class="text-center mb-5">How It Works</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card h-100 border-0">
+                        <div class="card-body text-center">
+                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <span class="fs-4 fw-bold text-white">1</span>
+                            </div>
+                            <h4 class="card-title">Select Components</h4>
+                            <p class="card-text">Browse our extensive catalog and choose the components you want for your build.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border-0">
+                        <div class="card-body text-center">
+                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <span class="fs-4 fw-bold text-white">2</span>
+                            </div>
+                            <h4 class="card-title">Check Compatibility</h4>
+                            <p class="card-text">Our system verifies that all your selected parts will work well together.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border-0">
+                        <div class="card-body text-center">
+                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <span class="fs-4 fw-bold text-white">3</span>
+                            </div>
+                            <h4 class="card-title">Review Your Build</h4>
+                            <p class="card-text">See a complete summary of your configuration with total price and performance estimates.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border-0">
+                        <div class="card-body text-center">
+                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <span class="fs-4 fw-bold text-white">4</span>
+                            </div>
+                            <h4 class="card-title">Save Your Config</h4>
+                            <p class="card-text">Save your configuration for future reference or share it with others.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="{{ url_for('builder') }}" class="btn btn-outline-light btn-lg">Start Building Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popular Components Section -->
+    <section class="my-5">
+        <h2 class="text-center mb-5">Popular Component Categories</h2>
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('builder') }}" class="text-decoration-none">
+                    <div class="card h-100 component-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-microchip fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Processors</h4>
+                            <p class="card-text">Browse CPUs from Intel and AMD for all performance needs.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('builder') }}" class="text-decoration-none">
+                    <div class="card h-100 component-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-tv fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Graphics Cards</h4>
+                            <p class="card-text">Select GPUs from NVIDIA and AMD for gaming and creative work.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('builder') }}" class="text-decoration-none">
+                    <div class="card h-100 component-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-memory fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Memory</h4>
+                            <p class="card-text">Choose DDR4 and DDR5 RAM options for your build.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('builder') }}" class="text-decoration-none">
+                    <div class="card h-100 component-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-hdd fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Storage</h4>
+                            <p class="card-text">Explore SSDs, NVMe drives, and HDDs for all storage needs.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('builder') }}" class="text-decoration-none">
+                    <div class="card h-100 component-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-server fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Motherboards</h4>
+                            <p class="card-text">Find the right motherboard for your CPU and other components.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('builder') }}" class="text-decoration-none">
+                    <div class="card h-100 component-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-bolt fa-3x mb-3 text-primary"></i>
+                            <h4 class="card-title">Power Supplies</h4>
+                            <p class="card-text">Get reliable power with the right wattage for your system.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="my-5 py-5 text-center bg-primary text-white rounded-3">
+        <h2 class="mb-3">Ready to Build Your Dream PC?</h2>
+        <p class="lead mb-4">Create a custom configuration that perfectly matches your needs.</p>
+        <a href="{{ url_for('builder') }}" class="btn btn-light btn-lg">Start Building Now</a>
+    </section>
+</div>
+{% endblock %}
