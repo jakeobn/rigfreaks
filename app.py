@@ -3,6 +3,7 @@ import logging
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from models import db, User, Build, PreBuiltConfig, ContactMessage
 from werkzeug.middleware.proxy_fix import ProxyFix
+from flask_login import LoginManager
 from utils import load_component_data, load_compatibility_rules, check_compatibility, calculate_total_price
 
 # Configure logging
@@ -23,6 +24,15 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Initialize the database
 db.init_app(app)
+
+# Initialize Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'auth.login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 # Create database tables
 with app.app_context():
