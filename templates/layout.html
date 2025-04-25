@@ -102,47 +102,92 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>PC Builder</h5>
-                    <p>Build your dream PC with our easy-to-use PC configuration tool. Select compatible components and create a custom build that suits your needs and budget.</p>
-                </div>
-                <div class="col-md-3">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url_for('index') }}" class="text-decoration-none text-white-50">Home</a></li>
-                        <li><a href="{{ url_for('builder') }}" class="text-decoration-none text-white-50">PC Builder</a></li>
-                        <li><a href="{{ url_for('builds.list_builds') }}" class="text-decoration-none text-white-50">Browse Builds</a></li>
-                        <li><a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none text-white-50">Pre-built PCs</a></li>
-                        <li><a href="{{ url_for('benchmarks') }}" class="text-decoration-none text-white-50">Benchmarks</a></li>
-                        {% if session.get('pc_config') %}
-                        <li><a href="{{ url_for('summary') }}" class="text-decoration-none text-white-50">View Configuration</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Contact & Support</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url_for('contact') }}" class="text-decoration-none text-white-50">Contact Us</a></li>
-                        <li><i class="fas fa-envelope me-2"></i> support@pcbuilder.com</li>
-                        <li><i class="fas fa-phone me-2"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Tech Street, Silicon Valley</li>
-                    </ul>
-                    <h5 class="mt-3">Legal</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url_for('terms') }}" class="text-decoration-none text-white-50">Terms of Service</a></li>
-                        <li><a href="{{ url_for('privacy') }}" class="text-decoration-none text-white-50">Privacy Policy</a></li>
-                        <li><a href="{{ url_for('returns') }}" class="text-decoration-none text-white-50">Return Policy</a></li>
-                    </ul>
+    <!-- Modern Footer -->
+    <footer class="footer-modern mt-5">
+        <div class="footer-top py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand mb-4">
+                            <div class="d-flex align-items-center">
+                                <div class="footer-logo-icon">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                                <h3 class="mb-0 ms-2">PC Builder</h3>
+                            </div>
+                        </div>
+                        <p class="footer-description">Build your dream PC with our easy-to-use PC configuration tool. Select compatible components and create a custom build that suits your needs and budget.</p>
+                        <div class="social-icons mt-4">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Explore</h5>
+                        <ul class="footer-links">
+                            <li><a href="{{ url_for('index') }}">Home</a></li>
+                            <li><a href="{{ url_for('builder') }}">PC Builder</a></li>
+                            <li><a href="{{ url_for('builds.list_builds') }}">Browse Builds</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}">Pre-built PCs</a></li>
+                            <li><a href="{{ url_for('benchmarks') }}">Benchmarks</a></li>
+                            {% if session.get('pc_config') %}
+                            <li><a href="{{ url_for('summary') }}">View Configuration</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Support</h5>
+                        <ul class="footer-links">
+                            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
+                            <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                            <li><a href="{{ url_for('returns') }}">Return Policy</a></li>
+                        </ul>
+                        <div class="contact-info mt-4">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>support@pcbuilder.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>(555) 123-4567</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Newsletter</h5>
+                        <p class="mb-3">Subscribe to receive updates on new components, builds and special offers.</p>
+                        <div class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Your email address">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="payment-methods mt-4">
+                            <span class="payment-icon"><i class="fab fa-cc-visa"></i></span>
+                            <span class="payment-icon"><i class="fab fa-cc-mastercard"></i></span>
+                            <span class="payment-icon"><i class="fab fa-cc-amex"></i></span>
+                            <span class="payment-icon"><i class="fab fa-cc-paypal"></i></span>
+                            <span class="payment-icon"><i class="fab fa-cc-apple-pay"></i></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2025 PC Builder. All rights reserved.</p>
+        </div>
+        <div class="footer-bottom py-3">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <p class="copyright mb-0">&copy; 2025 PC Builder. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="{{ url_for('privacy') }}">Privacy</a>
+                        <a href="{{ url_for('terms') }}">Terms</a>
+                        <a href="{{ url_for('contact') }}">Contact</a>
+                    </div>
                 </div>
             </div>
         </div>
