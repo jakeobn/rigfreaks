@@ -17,10 +17,10 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Modern Header -->
+    <!-- Mobile-Friendly Modern Header -->
     <header class="modern-header">
-        <!-- Top Bar with Announcement -->
-        <div class="announcement-bar">
+        <!-- Top Bar with Announcement (hidden on smallest screens) -->
+        <div class="announcement-bar d-none d-sm-block">
             <div class="container-fluid">
                 <div class="announcement-content">
                     <div class="announcement-slider">
@@ -41,20 +41,29 @@
                 <div class="announcement-actions">
                     <a href="{{ url_for('contact') }}" class="announcement-link">
                         <i class="fas fa-phone-alt"></i>
-                        <span class="d-none d-sm-inline">Contact</span>
+                        <span class="d-none d-md-inline">Contact</span>
                     </a>
                     <a href="{{ url_for('contact') }}" class="announcement-link">
                         <i class="fas fa-question-circle"></i>
-                        <span class="d-none d-sm-inline">Support</span>
+                        <span class="d-none d-md-inline">Support</span>
                     </a>
                 </div>
             </div>
         </div>
 
+        <!-- Mobile Status Bar (only visible on smallest screens) -->
+        <div class="mobile-status-bar d-block d-sm-none">
+            <div class="container-fluid">
+                <div class="status-item">
+                    <i class="fas fa-truck-fast text-success"></i> Free Shipping
+                </div>
+            </div>
+        </div>
+
         <!-- Main Navigation Bar -->
-        <nav class="navbar navbar-expand-lg modern-navbar">
+        <nav class="navbar mobile-friendly-navbar navbar-expand-lg modern-navbar">
             <div class="container">
-                <!-- Logo -->
+                <!-- Logo with improved mobile display -->
                 <a class="modern-brand" href="{{ url_for('index') }}">
                     <div class="modern-logo-container">
                         <div class="modern-logo">
@@ -63,30 +72,34 @@
                         </div>
                         <div class="modern-brand-text">
                             <span class="modern-brand-name">PC Builder</span>
-                            <span class="modern-brand-tagline">Custom Gaming Computers</span>
+                            <span class="modern-brand-tagline d-none d-sm-block">Custom Gaming Computers</span>
                         </div>
                     </div>
                 </a>
                 
-                <!-- Mobile Cart Icon -->
-                <div class="d-flex d-lg-none ms-auto me-2">
-                    <a href="{{ url_for('cart.view_cart') }}" class="modern-nav-icon {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
-                        <div class="icon-bubble">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="badge rounded-pill bg-primary icon-badge">0</span>
-                        </div>
+                <!-- Mobile Quick Actions (Search & Cart) -->
+                <div class="d-flex d-lg-none ms-auto me-2 mobile-quick-actions">
+                    <!-- Search Button -->
+                    <button class="mobile-action-button me-2" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <!-- Cart Button -->
+                    <a href="{{ url_for('cart.view_cart') }}" class="mobile-action-button {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge rounded-pill bg-primary mobile-badge">0</span>
                     </a>
                 </div>
                 
-                <!-- Mobile Menu Toggle -->
+                <!-- Mobile Menu Toggle (Hamburger) -->
                 <button class="modern-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="toggler-icon"></span>
                     <span class="toggler-icon"></span>
                     <span class="toggler-icon"></span>
                 </button>
                 
-                <!-- Navigation Menu -->
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Navigation Menu with Improved Mobile Display -->
+                <div class="collapse navbar-collapse mobile-nav-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto main-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -342,54 +355,123 @@
         </div>
     </nav>
     
-    <!-- Mobile Menu Actions Bar -->
+    <!-- Mobile Bottom Navigation Bar -->
     <div class="d-lg-none mobile-actions-bar">
-        <div class="container-fluid">
+        <div class="container-fluid px-0">
             <div class="mobile-actions-row">
-                {% if 'user_id' in session %}
-                <a href="{{ url_for('auth.profile') }}" class="mobile-action-btn">
+                <!-- Home Link -->
+                <a href="{{ url_for('index') }}" class="mobile-action-btn {% if request.path == url_for('index') %}active{% endif %}">
                     <div class="mobile-action-icon">
-                        <i class="fas fa-user-circle"></i>
+                        <i class="fas fa-home"></i>
                     </div>
-                    <span class="mobile-action-label">Profile</span>
+                    <span class="mobile-action-label">Home</span>
                 </a>
-                <a href="{{ url_for('auth.logout') }}" class="mobile-action-btn">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </div>
-                    <span class="mobile-action-label">Logout</span>
-                </a>
-                {% else %}
-                <a href="{{ url_for('auth.login') }}" class="mobile-action-btn">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-sign-in-alt"></i>
-                    </div>
-                    <span class="mobile-action-label">Login</span>
-                </a>
-                <a href="{{ url_for('auth.register') }}" class="mobile-action-btn">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <span class="mobile-action-label">Register</span>
-                </a>
-                {% endif %}
                 
-                <button type="button" class="mobile-action-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <!-- PC Builder Link -->
+                <a href="{{ url_for('builder') }}" class="mobile-action-btn {% if request.path == url_for('builder') %}active{% endif %}">
                     <div class="mobile-action-icon">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
-                    <span class="mobile-action-label">Search</span>
-                </button>
+                    <span class="mobile-action-label">Builder</span>
+                </a>
                 
+                <!-- Current Build Link (if exists) -->
                 {% if session.get('pc_config') %}
-                <a href="{{ url_for('summary') }}" class="mobile-action-btn">
+                <a href="{{ url_for('summary') }}" class="mobile-action-btn {% if request.path == url_for('summary') %}active{% endif %}">
                     <div class="mobile-action-icon">
                         <i class="fas fa-desktop"></i>
                         <span class="mobile-action-indicator"></span>
                     </div>
                     <span class="mobile-action-label">Your Build</span>
                 </a>
+                {% else %}
+                <!-- Pre-built PCs -->
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-action-btn {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <span class="mobile-action-label">Pre-built</span>
+                </a>
                 {% endif %}
+                
+                <!-- Cart Link -->
+                <a href="{{ url_for('cart.view_cart') }}" class="mobile-action-btn {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge rounded-pill bg-primary mobile-action-badge">0</span>
+                    </div>
+                    <span class="mobile-action-label">Cart</span>
+                </a>
+                
+                <!-- Account Link (opens menu) -->
+                <button type="button" class="mobile-action-btn" data-bs-toggle="modal" data-bs-target="#mobileAccountModal">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <span class="mobile-action-label">Account</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Account Modal -->
+    <div class="modal fade" id="mobileAccountModal" tabindex="-1" aria-labelledby="mobileAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="mobileAccountModalLabel">
+                        {% if 'user_id' in session %}
+                            Hello, {{ session.get('username', 'User') }}!
+                        {% else %}
+                            Account
+                        {% endif %}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group mobile-menu-list">
+                        <!-- Search option -->
+                        <button type="button" class="list-group-item list-group-item-action d-flex align-items-center" 
+                                data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-dismiss="modal">
+                            <i class="fas fa-search me-3 text-primary"></i>
+                            <span>Search Products</span>
+                        </button>
+                        
+                        {% if 'user_id' in session %}
+                            <!-- Logged in user options -->
+                            <a href="{{ url_for('auth.profile') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-user me-3 text-primary"></i>
+                                <span>My Profile</span>
+                            </a>
+                            <a href="{{ url_for('builds.list_builds') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-save me-3 text-primary"></i>
+                                <span>My Saved Builds</span>
+                            </a>
+                            <a href="{{ url_for('contact') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-headset me-3 text-primary"></i>
+                                <span>Support</span>
+                            </a>
+                            <a href="{{ url_for('auth.logout') }}" class="list-group-item list-group-item-action d-flex align-items-center text-danger">
+                                <i class="fas fa-sign-out-alt me-3"></i>
+                                <span>Logout</span>
+                            </a>
+                        {% else %}
+                            <!-- Guest options -->
+                            <a href="{{ url_for('auth.login') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-sign-in-alt me-3 text-primary"></i>
+                                <span>Login</span>
+                            </a>
+                            <a href="{{ url_for('auth.register') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-user-plus me-3 text-primary"></i>
+                                <span>Register</span>
+                            </a>
+                            <a href="{{ url_for('contact') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="fas fa-question-circle me-3 text-primary"></i>
+                                <span>Help & Support</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

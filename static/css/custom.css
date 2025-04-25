@@ -512,9 +512,146 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Mobile Status Bar */
+.mobile-status-bar {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-item i {
+    margin-right: 0.5rem;
+}
+
+/* Mobile-Friendly Navbar */
+.mobile-friendly-navbar {
+    padding: 0.5rem 0;
+}
+
+/* Mobile Quick Actions */
+.mobile-quick-actions {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-action-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-muted);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    border: none;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.mobile-action-button:hover,
+.mobile-action-button:active,
+.mobile-action-button.active {
+    color: var(--primary-color);
+    background-color: rgba(13, 110, 253, 0.15);
+}
+
+.mobile-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    padding: 0 5px;
+}
+
+/* Mobile Navigation Collapse */
+.mobile-nav-collapse {
+    background-color: var(--bg-dark);
+    margin: 0 -1rem;
+    padding: 1rem;
+    border-radius: 0 0 12px 12px;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 991.98px) {
+    .mobile-nav-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .main-nav .nav-item {
+        margin: 0.5rem 0;
+    }
+    
+    .main-nav .nav-link {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+    }
+    
+    .dropdown-menu.mega-menu {
+        position: static !important;
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 1rem;
+        transform: none !important;
+        border-radius: 8px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    
+    .mega-menu .row > [class*="col-"] {
+        margin-bottom: 1.5rem;
+    }
+    
+    .dropdown-menu-promo {
+        display: none;
+    }
+    
+    /* Simplify dropdown items on mobile */
+    .components-menu .dropdown-item {
+        padding: 0.6rem 1rem;
+    }
+    
+    .dropdown-item-desc {
+        display: none;
+    }
+}
+
+/* Modern Navbar Improvements */
+@media (max-width: 576px) {
+    .modern-brand-name {
+        font-size: 1.1rem;
+    }
+    
+    .modern-logo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
 /* Mobile Actions Bar */
 .mobile-actions-bar {
-    background-color: var(--bg-lighter);
+    background-color: var(--bg-darker);
     padding: 0.75rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     position: fixed;
@@ -522,6 +659,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1020;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .mobile-actions-row {
@@ -559,7 +697,7 @@ body {
     justify-content: center;
     margin-bottom: 0.35rem;
     font-size: 1.1rem;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .mobile-action-btn:hover .mobile-action-icon,
@@ -567,6 +705,7 @@ body {
 .mobile-action-btn.active .mobile-action-icon {
     background-color: rgba(13, 110, 253, 0.15);
     color: var(--primary-color);
+    transform: translateY(-3px);
 }
 
 .mobile-action-indicator {
@@ -581,6 +720,76 @@ body {
 
 .mobile-action-label {
     font-weight: 500;
+}
+
+/* Add bottom padding to main content to accommodate the fixed mobile bar */
+@media (max-width: 991.98px) {
+    body {
+        padding-bottom: 70px;
+    }
+    
+    .site-footer {
+        margin-bottom: 60px;
+    }
+}
+
+/* Mobile Menu Styling */
+.mobile-action-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid var(--bg-darker);
+}
+
+.mobile-menu-list .list-group-item {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+    padding: 0.85rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-list .list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu-list .list-group-item i {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* Mobile Account Modal */
+#mobileAccountModal .modal-content {
+    background-color: var(--bg-dark);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#mobileAccountModal .modal-header {
+    padding: 1.25rem 1.5rem;
+}
+
+#mobileAccountModal .modal-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+#mobileAccountModal .modal-body {
+    padding: 0.75rem;
+}
+
+#mobileAccountModal .btn-close {
+    color: var(--text-light);
+    opacity: 0.7;
 }
 
 /* Chillblast-inspired Hero Section */
