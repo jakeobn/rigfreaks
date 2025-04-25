@@ -247,9 +247,9 @@
                         }
                     }
                     
-                    // Component name
+                    // Component name with link to details
                     const nameCell = document.createElement('td');
-                    nameCell.innerHTML = `<strong>${component.name}</strong>`;
+                    nameCell.innerHTML = `<a href="/component/${currentCategory}/${component.id}" class="component-name"><strong>${component.name}</strong></a>`;
                     row.appendChild(nameCell);
                     
                     // Component description
@@ -273,8 +273,21 @@
                     priceCell.innerHTML = `<span class="text-success fw-bold">$${component.price}</span>`;
                     row.appendChild(priceCell);
                     
-                    // Action button
+                    // Action buttons
                     const actionCell = document.createElement('td');
+                    
+                    // Create container for buttons
+                    const btnGroup = document.createElement('div');
+                    btnGroup.setAttribute('class', 'd-flex gap-2');
+                    
+                    // Details button
+                    const detailsLink = document.createElement('a');
+                    detailsLink.setAttribute('href', `/component/${currentCategory}/${component.id}`);
+                    detailsLink.setAttribute('class', 'btn btn-outline-primary btn-sm details-btn');
+                    detailsLink.innerHTML = '<i class="fas fa-info-circle me-1"></i>Details';
+                    btnGroup.appendChild(detailsLink);
+                    
+                    // Select button
                     const selectForm = document.createElement('form');
                     selectForm.setAttribute('method', 'post');
                     selectForm.setAttribute('action', `/add/${currentCategory}/${component.id}`);
@@ -285,7 +298,9 @@
                     selectButton.innerHTML = '<i class="fas fa-plus-circle me-1"></i>Select';
                     
                     selectForm.appendChild(selectButton);
-                    actionCell.appendChild(selectForm);
+                    btnGroup.appendChild(selectForm);
+                    
+                    actionCell.appendChild(btnGroup);
                     row.appendChild(actionCell);
                     
                     tableBody.appendChild(row);
