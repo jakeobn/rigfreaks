@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session
-from flask_sqlalchemy import SQLAlchemy
-from models import db, ContactMessage, User
+from models import db, ContactMessage, User, Build
 from functools import wraps
 from auth import login_required
 import logging
@@ -29,9 +28,19 @@ def admin_required(f):
 def view_messages():
     page = request.args.get('page', 1, type=int)
     per_page = 10
+    filter_type = request.args.get('filter', 'all')
+    
+    # Base query
+    query = ContactMessage.query
+    
+    # Apply filter if specified
+    if filter_type == 'unread':
+        query = query.filter_by(is_read=False)
+    elif filter_type == 'read':
+        query = query.filter_by(is_read=True)
     
     # Get messages with pagination
-    messages = ContactMessage.query.order_by(
+    messages = query.order_by(
         ContactMessage.created_at.desc()
     ).paginate(page=page, per_page=per_page)
     
@@ -72,6 +81,7 @@ def dashboard():
     message_count = ContactMessage.query.count()
     unread_message_count = ContactMessage.query.filter_by(is_read=False).count()
     user_count = User.query.count()
+    build_count = Build.query.count()
     
     # Get latest messages
     latest_messages = ContactMessage.query.order_by(
@@ -83,5 +93,6 @@ def dashboard():
         message_count=message_count,
         unread_message_count=unread_message_count,
         user_count=user_count,
+        build_count=build_count,
         latest_messages=latest_messages
     )

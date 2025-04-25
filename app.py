@@ -31,9 +31,11 @@ with app.app_context():
 # Register blueprints
 from auth import auth_bp
 from builds import builds_bp
+from admin import admin_bp
 
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(builds_bp, url_prefix='/builds')
+app.register_blueprint(admin_bp)
 
 @app.route('/')
 def index():

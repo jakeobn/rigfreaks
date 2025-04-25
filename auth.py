@@ -4,9 +4,20 @@ from models import db, User
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from functools import wraps
 
 # Create a blueprint for auth routes
 auth_bp = Blueprint('auth', __name__)
+
+# Define login_required decorator
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            flash('Please log in to access this page.', 'warning')
+            return redirect(url_for('auth.login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 # Define login form
 class LoginForm(FlaskForm):

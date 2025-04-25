@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-lg-10 offset-lg-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Admin Dashboard</li>
+                </ol>
+            </nav>
+            
+            <h1 class="mb-4">Admin Dashboard</h1>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card h-100 bg-primary text-white">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope fa-3x mb-3"></i>
+                            <h2 class="card-title">{{ message_count }}</h2>
+                            <p class="card-text">Total Messages</p>
+                            {% if unread_message_count > 0 %}
+                            <span class="badge bg-danger">{{ unread_message_count }} unread</span>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{ url_for('admin.view_messages') }}" class="btn btn-light btn-sm">View All Messages</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 bg-success text-white">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users fa-3x mb-3"></i>
+                            <h2 class="card-title">{{ user_count }}</h2>
+                            <p class="card-text">Registered Users</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="#" class="btn btn-light btn-sm">Manage Users</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 bg-info text-white">
+                        <div class="card-body text-center">
+                            <i class="fas fa-desktop fa-3x mb-3"></i>
+                            <h2 class="card-title">{{ build_count|default(0) }}</h2>
+                            <p class="card-text">PC Builds</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{ url_for('builds.list_builds') }}" class="btn btn-light btn-sm">View Builds</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Recent Contact Messages</h5>
+                            <a href="{{ url_for('admin.view_messages') }}" class="btn btn-sm btn-primary">View All</a>
+                        </div>
+                        <div class="card-body p-0">
+                            {% if latest_messages %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Subject</th>
+                                            <th>Category</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for message in latest_messages %}
+                                        <tr {% if not message.is_read %}class="table-primary"{% endif %}>
+                                            <td>{{ message.name }}</td>
+                                            <td><a href="mailto:{{ message.email }}">{{ message.email }}</a></td>
+                                            <td>{{ message.subject or 'No Subject' }}</td>
+                                            <td>{{ message.category or 'N/A' }}</td>
+                                            <td>{{ message.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                                            <td>
+                                                {% if message.is_replied %}
+                                                <span class="badge bg-success">Replied</span>
+                                                {% elif message.is_read %}
+                                                <span class="badge bg-warning">Read</span>
+                                                {% else %}
+                                                <span class="badge bg-danger">Unread</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('admin.view_message', message_id=message.id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <div class="p-4 text-center">
+                                <p class="text-muted mb-0">No messages yet.</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
