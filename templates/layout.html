@@ -113,11 +113,18 @@
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h5>Contact</h5>
+                    <h5>Contact & Support</h5>
                     <ul class="list-unstyled">
+                        <li><a href="{{ url_for('contact') }}" class="text-decoration-none text-white-50">Contact Us</a></li>
                         <li><i class="fas fa-envelope me-2"></i> support@pcbuilder.com</li>
                         <li><i class="fas fa-phone me-2"></i> (555) 123-4567</li>
                         <li><i class="fas fa-map-marker-alt me-2"></i> 123 Tech Street, Silicon Valley</li>
+                    </ul>
+                    <h5 class="mt-3">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('terms') }}" class="text-decoration-none text-white-50">Terms of Service</a></li>
+                        <li><a href="{{ url_for('privacy') }}" class="text-decoration-none text-white-50">Privacy Policy</a></li>
+                        <li><a href="{{ url_for('returns') }}" class="text-decoration-none text-white-50">Return Policy</a></li>
                     </ul>
                 </div>
             </div>

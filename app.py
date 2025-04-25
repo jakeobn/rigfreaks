@@ -168,5 +168,21 @@ def reset_configuration():
     
     return redirect(url_for('builder'))
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/terms')
+def terms():
+    return render_template('legal/terms.html')
+
+@app.route('/privacy')
+def privacy():
+    return render_template('legal/privacy.html')
+
+@app.route('/returns')
+def returns():
+    return render_template('legal/returns.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

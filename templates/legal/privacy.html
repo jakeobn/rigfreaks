@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block title %}Privacy Policy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card">
+                <div class="card-body p-lg-5">
+                    <h1 class="text-center mb-5">Privacy Policy</h1>
+                    <p class="text-muted text-center mb-5">Last Updated: April 25, 2025</p>
+                    
+                    <div class="mb-5">
+                        <h3>1. Introduction</h3>
+                        <p>PC Builder ("we," "our," or "us") respects your privacy and is committed to protecting it through our compliance with this policy. This Privacy Policy describes the types of information we may collect from you or that you may provide when you visit the PC Builder website (our "Website") and our practices for collecting, using, maintaining, protecting, and disclosing that information.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>2. Information We Collect</h3>
+                        <p>We collect several types of information from and about users of our Website, including:</p>
+                        
+                        <h5 class="mt-4">2.1 Personal Information</h5>
+                        <p>When you register for an account or use certain features of our Website, we may collect personally identifiable information, such as:</p>
+                        <ul>
+                            <li>Your name</li>
+                            <li>Email address</li>
+                            <li>Username and password</li>
+                            <li>Any other identifier that permits the physical or online contacting of a specific individual</li>
+                        </ul>
+                        
+                        <h5 class="mt-4">2.2 Usage Information</h5>
+                        <p>We may automatically collect certain information about your equipment, browsing actions, and patterns when you visit our Website, including:</p>
+                        <ul>
+                            <li>Details of your visits to our Website, including traffic data, location data, logs, and other communication data</li>
+                            <li>Information about your computer and internet connection, including your IP address, operating system, and browser type</li>
+                            <li>Information about the PC configurations you create, save, or share</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>3. How We Use Your Information</h3>
+                        <p>We use information that we collect about you or that you provide to us, including any personal information:</p>
+                        <ul>
+                            <li>To present our Website and its contents to you</li>
+                            <li>To provide you with information, products, or services that you request from us</li>
+                            <li>To fulfill any other purpose for which you provide it</li>
+                            <li>To provide you with notices about your account</li>
+                            <li>To improve our Website and user experience</li>
+                            <li>To allow you to participate in interactive features on our Website</li>
+                            <li>To carry out our obligations and enforce our rights</li>
+                            <li>In any other way we may describe when you provide the information</li>
+                            <li>For any other purpose with your consent</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>4. Cookies and Tracking Technologies</h3>
+                        <p>We use cookies and similar tracking technologies to track the activity on our Website and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Website.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>5. Data Security</h3>
+                        <p>We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. All information you provide to us is stored on secure servers.</p>
+                        <p>Unfortunately, the transmission of information via the internet is not completely secure. Although we do our best to protect your personal information, we cannot guarantee the security of your personal information transmitted to our Website. Any transmission of personal information is at your own risk.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>6. Data Retention</h3>
+                        <p>We will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>7. Your Rights</h3>
+                        <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+                        <ul>
+                            <li>The right to access the personal information we have about you</li>
+                            <li>The right to rectify inaccurate personal information</li>
+                            <li>The right to request the deletion of your personal information</li>
+                            <li>The right to restrict or object to the processing of your personal information</li>
+                            <li>The right to data portability</li>
+                        </ul>
+                        <p>To exercise any of these rights, please <a href="{{ url_for('contact') }}">contact us</a>.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>8. Children's Privacy</h3>
+                        <p>Our Website is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are under 13, do not use or provide any information on this Website. If we learn we have collected or received personal information from a child under 13 without verification of parental consent, we will delete that information.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>9. Changes to Our Privacy Policy</h3>
+                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>10. Contact Us</h3>
+                        <p>If you have any questions about this Privacy Policy, please <a href="{{ url_for('contact') }}">contact us</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

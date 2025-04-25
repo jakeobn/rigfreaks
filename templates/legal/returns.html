@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+
+{% block title %}Return Policy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card">
+                <div class="card-body p-lg-5">
+                    <h1 class="text-center mb-5">Return & Refund Policy</h1>
+                    <p class="text-muted text-center mb-5">Last Updated: April 25, 2025</p>
+                    
+                    <div class="alert alert-info mb-5">
+                        <h5 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Information Notice</h5>
+                        <p class="mb-0">PC Builder is a configuration and planning tool. We do not sell computer components directly. This policy provides general guidelines for returns and refunds of PC components purchased from retailers based on our recommendations.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>1. General Information</h3>
+                        <p>PC Builder is a service that helps users configure compatible PC builds. We do not sell physical products directly. The components you select and purchase will be subject to the return policies of the retailer where you make your purchase.</p>
+                        <p>This document provides general guidelines and best practices for returns and exchanges of PC components. For specific return policies, always refer to the retailer where you purchased your components.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>2. Retailer Return Policies</h3>
+                        <p>When purchasing computer components based on our recommendations, we suggest checking the following details from your retailer:</p>
+                        <ul>
+                            <li>Return window (typically 14-30 days from purchase)</li>
+                            <li>Restocking fees (if applicable)</li>
+                            <li>Return shipping costs</li>
+                            <li>Condition requirements for returns (packaging, accessories, etc.)</li>
+                            <li>Special policies for opened electronic components</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>3. Compatibility Issues</h3>
+                        <p>While our PC Builder tool performs compatibility checks on components, we cannot guarantee 100% compatibility in all scenarios due to variations in manufacturing, firmware versions, and other factors beyond our control.</p>
+                        <p>If you encounter compatibility issues with components selected through our service:</p>
+                        <ol>
+                            <li>Contact us through our <a href="{{ url_for('contact') }}">support channels</a> for troubleshooting assistance</li>
+                            <li>If the issue cannot be resolved, we can provide documentation explaining the compatibility issue to support your return request with the retailer</li>
+                            <li>Follow the retailer's return process for components that need to be exchanged</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>4. Best Practices for PC Component Returns</h3>
+                        <h5 class="mt-4">4.1 Documentation</h5>
+                        <p>Keep all of the following documents for at least 90 days after purchase:</p>
+                        <ul>
+                            <li>Original receipts and order confirmations</li>
+                            <li>Shipping labels and tracking information</li>
+                            <li>All packaging materials and boxes</li>
+                            <li>Warranty cards and product documentation</li>
+                        </ul>
+                        
+                        <h5 class="mt-4">4.2 Testing</h5>
+                        <p>Test all components as soon as possible after receiving them:</p>
+                        <ul>
+                            <li>Verify the component matches the specifications you ordered</li>
+                            <li>Check for any physical damage before installation</li>
+                            <li>Document the condition of the component before installation with photos if possible</li>
+                        </ul>
+                        
+                        <h5 class="mt-4">4.3 Return Preparation</h5>
+                        <p>If you need to return a component:</p>
+                        <ul>
+                            <li>Repackage the item in its original packaging</li>
+                            <li>Include all accessories, manuals, and items that came with the product</li>
+                            <li>Remove any personal data from storage devices</li>
+                            <li>Take photos of the packaged item before shipping</li>
+                            <li>Get a tracking number for your return shipment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>5. Warranty Information</h3>
+                        <p>Most PC components come with manufacturer warranties that extend beyond the retailer's return period:</p>
+                        <ul>
+                            <li>CPUs: Typically 3 years</li>
+                            <li>Motherboards: Typically 2-3 years</li>
+                            <li>Graphics Cards: Typically 2-3 years</li>
+                            <li>RAM: Often lifetime warranty or 10+ years</li>
+                            <li>Power Supplies: Typically 5-10 years for quality units</li>
+                            <li>Storage (SSDs, HDDs): Typically 3-5 years</li>
+                            <li>Cases: Typically 1-2 years</li>
+                        </ul>
+                        <p>For warranty claims after the retailer's return period, contact the component manufacturer directly.</p>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>6. PC Builder Premium Service Refunds</h3>
+                        <p>For our premium services (if applicable):</p>
+                        <ul>
+                            <li>We offer a 14-day money-back guarantee on premium subscription services</li>
+                            <li>Refunds are processed within 5-7 business days to the original payment method</li>
+                            <li>To request a refund for premium services, contact our support team through the <a href="{{ url_for('contact') }}">Contact Us</a> page</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <h3>7. Contact Us</h3>
+                        <p>If you have any questions about returns or need assistance with a component issue, please <a href="{{ url_for('contact') }}">contact our support team</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
