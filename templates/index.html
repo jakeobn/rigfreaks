@@ -128,6 +128,60 @@
         </div>
     </section>
     
+    <!-- Featured Build Slider (pcspecialist & chillblast inspired) -->
+    <section class="featured-slider-section mb-5">
+        <div id="featuredBuildCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="featured-build-slide" style="background-image: url('https://images.unsplash.com/photo-1623934199716-9f432696d095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                        <div class="featured-build-content">
+                            <span class="featured-build-badge">MOST POPULAR</span>
+                            <h2 class="featured-build-title">Performance Gaming PC</h2>
+                            <p class="featured-build-desc">Perfect for 1440p gaming with RTX 4070 Ti</p>
+                            <div class="featured-build-price">From $1,599</div>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-light">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="featured-build-slide" style="background-image: url('https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                        <div class="featured-build-content">
+                            <span class="featured-build-badge">ULTIMATE</span>
+                            <h2 class="featured-build-title">Elite Gaming PC</h2>
+                            <p class="featured-build-desc">Dominate at 4K with the RTX 4090</p>
+                            <div class="featured-build-price">From $2,899</div>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-light">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="featured-build-slide" style="background-image: url('https://images.unsplash.com/photo-1625842268584-8f3296236761?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                        <div class="featured-build-content">
+                            <span class="featured-build-badge">BEST VALUE</span>
+                            <h2 class="featured-build-title">Starter Gaming PC</h2>
+                            <p class="featured-build-desc">Excellent 1080p gaming at an affordable price</p>
+                            <div class="featured-build-price">From $899</div>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-light">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
     <!-- Pre-built Gaming PCs Section (Chillblast-inspired) -->
     <section class="prebuilt-section mb-5 pb-5">
         <div class="section-header text-center mb-5">
