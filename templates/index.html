@@ -49,10 +49,74 @@
         </div>
     </section>
     
+    <!-- Pre-built Configurations Section -->
+    <section class="my-5">
+        <h2 class="text-center mb-5">Pre-built Gaming Configurations</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">Budget Gaming</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Perfect for 1080p gaming with medium settings on modern titles.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-microchip me-2 text-primary"></i>Intel Core i5 or AMD Ryzen 5</li>
+                            <li class="mb-2"><i class="fas fa-tv me-2 text-primary"></i>RX 6700 XT or equivalent</li>
+                            <li class="mb-2"><i class="fas fa-memory me-2 text-primary"></i>16GB DDR4 RAM</li>
+                            <li class="mb-2"><i class="fas fa-hdd me-2 text-primary"></i>1TB NVMe SSD</li>
+                        </ul>
+                        <div class="text-center mt-3">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View Pre-built PCs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">High-End Gaming</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Designed for smooth 1440p gaming with high framerates and ray tracing.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-microchip me-2 text-primary"></i>Intel Core i7 or AMD Ryzen 7</li>
+                            <li class="mb-2"><i class="fas fa-tv me-2 text-primary"></i>RTX 4070 Ti or equivalent</li>
+                            <li class="mb-2"><i class="fas fa-memory me-2 text-primary"></i>32GB DDR5 RAM</li>
+                            <li class="mb-2"><i class="fas fa-hdd me-2 text-primary"></i>2TB NVMe SSD</li>
+                        </ul>
+                        <div class="text-center mt-3">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View Pre-built PCs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-danger text-white">
+                        <h4 class="mb-0">Ultimate Gaming</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">The ultimate gaming experience for 4K gaming, streaming, and content creation.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-microchip me-2 text-primary"></i>Intel Core i9 or AMD Ryzen 9</li>
+                            <li class="mb-2"><i class="fas fa-tv me-2 text-primary"></i>RTX 4090 or equivalent</li>
+                            <li class="mb-2"><i class="fas fa-memory me-2 text-primary"></i>64GB DDR5 RAM</li>
+                            <li class="mb-2"><i class="fas fa-hdd me-2 text-primary"></i>4TB NVMe SSD</li>
+                        </ul>
+                        <div class="text-center mt-3">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View Pre-built PCs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- How It Works Section -->
     <section class="my-5 py-5 bg-dark rounded-3">
         <div class="container">
-            <h2 class="text-center mb-5">How It Works</h2>
+            <h2 class="text-center mb-5 text-white">How It Works</h2>
             <div class="row g-4">
                 <div class="col-md-3">
                     <div class="card h-100 border-0">
@@ -61,7 +125,7 @@
                                 <span class="fs-4 fw-bold text-white">1</span>
                             </div>
                             <h4 class="card-title">Select Components</h4>
-                            <p class="card-text">Browse our extensive catalog and choose the components you want for your build.</p>
+                            <p class="card-text">Choose from our catalog of quality PC components or start with a pre-built configuration.</p>
                         </div>
                     </div>
                 </div>
@@ -72,7 +136,7 @@
                                 <span class="fs-4 fw-bold text-white">2</span>
                             </div>
                             <h4 class="card-title">Check Compatibility</h4>
-                            <p class="card-text">Our system verifies that all your selected parts will work well together.</p>
+                            <p class="card-text">Our system automatically verifies that all your selected parts work together perfectly.</p>
                         </div>
                     </div>
                 </div>
@@ -83,7 +147,7 @@
                                 <span class="fs-4 fw-bold text-white">3</span>
                             </div>
                             <h4 class="card-title">Review Your Build</h4>
-                            <p class="card-text">See a complete summary of your configuration with total price and performance estimates.</p>
+                            <p class="card-text">See detailed specs, pricing, and performance estimates for your custom PC build.</p>
                         </div>
                     </div>
                 </div>
@@ -93,8 +157,8 @@
                             <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
                                 <span class="fs-4 fw-bold text-white">4</span>
                             </div>
-                            <h4 class="card-title">Save Your Config</h4>
-                            <p class="card-text">Save your configuration for future reference or share it with others.</p>
+                            <h4 class="card-title">Save & Share</h4>
+                            <p class="card-text">Save your configuration to your account and share it with friends or the community.</p>
                         </div>
                     </div>
                 </div>
@@ -178,11 +242,89 @@
         </div>
     </section>
     
+    <!-- Community Builds Section -->
+    <section class="my-5">
+        <h2 class="text-center mb-5">Community Build Showcase</h2>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                            <h3>Browse Community PC Builds</h3>
+                            <p class="lead">Explore PC configurations shared by our community members. Get inspiration for your own build or share yours with others!</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-eye text-primary me-3 fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Browse Builds</h5>
+                                        <p>Explore builds created by other users filtered by budget, purpose, or component.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-share-alt text-primary me-3 fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Share Your Builds</h5>
+                                        <p>Make your builds public to showcase your PC building skills to the community.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-copy text-primary me-3 fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Clone & Customize</h5>
+                                        <p>Use any public build as a starting point for your own custom PC configuration.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-trophy text-primary me-3 fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Featured Builds</h5>
+                                        <p>Check out our featured builds selected for their creativity and value.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('builds.list_builds') }}" class="btn btn-primary">Browse Community Builds</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- CTA Section -->
     <section class="my-5 py-5 text-center bg-primary text-white rounded-3">
         <h2 class="mb-3">Ready to Build Your Dream PC?</h2>
-        <p class="lead mb-4">Create a custom configuration that perfectly matches your needs.</p>
-        <a href="{{ url_for('builder') }}" class="btn btn-light btn-lg">Start Building Now</a>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <p class="lead mb-4">Create a custom configuration that perfectly matches your needs or start with one of our pre-built templates.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{{ url_for('builder') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-tools me-2"></i>Custom Build
+                    </a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-desktop me-2"></i>Pre-built PCs
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 {% endblock %}

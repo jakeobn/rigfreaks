@@ -214,3 +214,52 @@
     font-size: 0.8rem;
     text-align: center;
 }
+
+/* Component modal styling */
+#componentModal .modal-dialog {
+    max-width: 900px;
+}
+
+#componentModal .modal-header {
+    border-bottom: 2px solid var(--bs-primary);
+}
+
+#componentTable {
+    margin-bottom: 0;
+}
+
+#componentTable thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--bs-dark);
+    z-index: 1;
+    border-bottom: 2px solid var(--bs-primary);
+}
+
+#componentTable tbody tr {
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+#componentTable tbody tr:hover {
+    background-color: var(--bs-gray-800);
+}
+
+#componentTable tbody tr.table-primary {
+    background-color: rgba(var(--bs-primary-rgb), 0.2);
+    border-left: 3px solid var(--bs-primary);
+}
+
+#componentTable tbody tr.table-primary:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.3);
+}
+
+#componentTable .component-specs {
+    font-size: 0.875rem;
+    color: var(--bs-gray-500);
+}
+
+#componentTable .component-price {
+    font-weight: bold;
+    color: var(--bs-success);
+}
