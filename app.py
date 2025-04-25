@@ -115,8 +115,9 @@ def component_detail(category, component_id):
         is_selected=is_selected
     )
 
-@app.route('/add/<category>/<component_id>', methods=['POST'])
+@app.route('/component/<category>/<component_id>/add', methods=['POST'])
 def add_component(category, component_id):
+    app.logger.debug(f"Adding component: {category} - {component_id}")
     # Initialize configuration if it doesn't exist
     if 'pc_config' not in session:
         session['pc_config'] = {}
