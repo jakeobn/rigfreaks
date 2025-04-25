@@ -7,22 +7,43 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 
-    // Component selection interface variables
+    // Component selection interface variables - initialize with error handling
     const componentSelectionContainer = document.getElementById('componentSelectionContainer');
-    const componentDropdownBtns = document.querySelectorAll('.component-dropdown-btn');
+    // Safely find component dropdown buttons (if they exist on this page)
+    const componentDropdownBtns = document.querySelectorAll('.component-dropdown-btn') || [];
     const closeComponentSelectionBtn = document.getElementById('closeComponentSelection');
     const cancelComponentSelectionBtn = document.getElementById('cancelComponentSelection');
-    // componentSearch is no longer used - we use componentSearchMobile and componentSearchDesktop
-    const sortOptions = document.querySelectorAll('.sort-option');
+    // Component search is now split between mobile and desktop versions
+    const componentSearchDesktop = document.getElementById('componentSearchDesktop');
+    const componentSearchMobile = document.getElementById('componentSearchMobile');
+    const sortOptions = document.querySelectorAll('.sort-option') || [];
     let currentCategory = '';
 
     // Helper function to load components for a category
     function loadComponentsForCategory(category) {
+        console.log('Loading components for category:', category);
+        
+        // Check if required elements exist
         const componentCardsWrapper = document.getElementById('componentCardsWrapper');
+        if (!componentCardsWrapper) {
+            console.error('Component cards wrapper not found');
+            return;
+        }
+        
         const componentLoading = document.getElementById('component-loading');
+        if (!componentLoading) {
+            console.error('Component loading element not found');
+            return;
+        }
+        
         const modalCategoryIcon = document.getElementById('modalCategoryIcon');
         const componentModalLabel = document.getElementById('componentModalLabel');
         const modalCategoryDescription = document.getElementById('modalCategoryDescription');
+        
+        if (!modalCategoryIcon || !componentModalLabel || !modalCategoryDescription) {
+            console.error('One or more modal elements not found');
+            return;
+        }
         
         // Update modal title and description
         let categoryName = '';
@@ -121,14 +142,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Show component selection
-    componentDropdownBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            currentCategory = this.getAttribute('data-category');
-            componentSelectionContainer.classList.remove('d-none');
-            loadComponentsForCategory(currentCategory);
+    // Show component selection - only if we're on the builder page
+    if (window.location.pathname === '/builder' && componentSelectionContainer && componentDropdownBtns.length > 0) {
+        console.log('Setting up component selection buttons');
+        
+        componentDropdownBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                console.log('Component dropdown button clicked:', this.getAttribute('data-category'));
+                currentCategory = this.getAttribute('data-category');
+                componentSelectionContainer.classList.remove('d-none');
+                loadComponentsForCategory(currentCategory);
+            });
         });
-    });
+    } else {
+        console.log('Skipping component dropdown button setup - not on builder page or elements missing');
+    }
     
     // Hide component selection
     if (closeComponentSelectionBtn) {
@@ -144,8 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Component search functionality - for both mobile and desktop
-    const componentSearchDesktop = document.getElementById('componentSearchDesktop');
-    const componentSearchMobile = document.getElementById('componentSearchMobile');
+    // Note: We already defined these variables above, so no need to redefine them here
     
     // Function to handle search filtering
     function handleSearch(searchTerm) {
@@ -382,62 +409,92 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Only initialize mobile summary panel on the builder page
-    // Check if we're on the builder page by looking at the URL
-    const isBuilderPage = window.location.pathname === '/builder';
-    
-    if (isBuilderPage) {
-        console.log('On builder page, initializing mobile summary panel');
-        // Mobile summary panel functionality
-        const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
-        const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
-        const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
-        const closeMobileSummary = document.getElementById('closeMobileSummary');
-        
-        // Check if we have all the necessary elements
-        if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
-            console.log('Mobile summary panel elements found');
+    // Mobile Panel Functionality - initialize only when needed
+    try {
+        // Check if we're on the builder page
+        if (window.location.pathname === '/builder') {
+            console.log('Initializing mobile panel on builder page');
             
-            // Open mobile summary panel
-            mobileSummaryBtn.addEventListener('click', function() {
-                mobileSummaryPanel.classList.add('active');
-                mobileSummaryBackdrop.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling behind panel
-            });
+            // Get references to all mobile panel elements
+            const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
+            const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
+            const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
+            const closeMobileSummary = document.getElementById('closeMobileSummary');
             
-            // Close mobile summary panel
-            function closeMobileSummaryPanel() {
-                mobileSummaryPanel.classList.remove('active');
-                mobileSummaryBackdrop.classList.remove('active');
-                document.body.style.overflow = ''; // Re-enable scrolling
+            // Only proceed if all elements exist
+            if (!mobileSummaryBtn) {
+                console.error('Mobile summary button not found');
+                return;
             }
             
-            closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
-            mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
+            if (!mobileSummaryPanel) {
+                console.error('Mobile summary panel not found');
+                return;
+            }
             
-            // Handle swipe down to close
+            if (!mobileSummaryBackdrop) {
+                console.error('Mobile summary backdrop not found');
+                return;
+            }
+            
+            if (!closeMobileSummary) {
+                console.error('Close mobile summary button not found');
+                return;
+            }
+            
+            console.log('All mobile summary elements found');
+            
+            // Open panel when the button is clicked
+            mobileSummaryBtn.addEventListener('click', function() {
+                console.log('Mobile summary button clicked');
+                mobileSummaryPanel.classList.add('active');
+                mobileSummaryBackdrop.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Function to close the panel
+            function closeMobileSummaryPanel() {
+                console.log('Closing mobile summary panel');
+                mobileSummaryPanel.classList.remove('active');
+                mobileSummaryBackdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Close panel when X button is clicked
+            closeMobileSummary.addEventListener('click', function() {
+                closeMobileSummaryPanel();
+            });
+            
+            // Close panel when backdrop is clicked
+            mobileSummaryBackdrop.addEventListener('click', function() {
+                closeMobileSummaryPanel();
+            });
+            
+            // Setup swipe to close
             let touchStartY = 0;
             let touchEndY = 0;
             
             mobileSummaryPanel.addEventListener('touchstart', function(e) {
                 touchStartY = e.touches[0].clientY;
-            }, false);
+            });
             
             mobileSummaryPanel.addEventListener('touchmove', function(e) {
                 touchEndY = e.touches[0].clientY;
-            }, false);
+            });
             
             mobileSummaryPanel.addEventListener('touchend', function() {
-                if (touchEndY - touchStartY > 100) { // Swipe down detected
+                if (touchEndY - touchStartY > 100) {
                     closeMobileSummaryPanel();
                 }
                 touchStartY = 0;
                 touchEndY = 0;
-            }, false);
+            });
+            
+            console.log('Mobile summary panel initialized successfully');
         } else {
-            console.error('Mobile summary panel elements not found on builder page');
+            console.log('Not on builder page, skipping mobile panel initialization');
         }
-    } else {
-        console.log('Not on builder page, skipping mobile summary panel initialization');
+    } catch (error) {
+        console.error('Error initializing mobile summary panel:', error);
     }
 });
