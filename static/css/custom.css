@@ -3579,3 +3579,42 @@ body {
     box-shadow: 0 4px 15px rgba(var(--bs-primary-rgb), 0.2);
     font-weight: 600;
 }
+
+/* Component Selection Container Styling */
+.component-scroll-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem;
+}
+
+/* Component Selection Modal Styling */
+.component-selection-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Component card hover effect */
+.component-card {
+    transition: all 0.2s ease-in-out;
+}
+
+.component-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Add backdrop for component selection */
+.component-selection-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1040;
+}

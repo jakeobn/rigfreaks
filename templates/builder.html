@@ -333,7 +333,8 @@
     <!-- Mobile Summary Panel Backdrop -->
     <div class="mobile-summary-backdrop d-md-none" id="mobileSummaryBackdrop"></div>
     
-    <!-- Component Selection Area - Fixed at the top -->
+    <!-- Component Selection Area - Fixed at the top with backdrop -->
+    <div class="component-selection-backdrop d-none" id="componentSelectionBackdrop"></div>
     <div class="container position-relative">
         <div class="component-selection-container d-none" id="componentSelectionContainer">
             <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
@@ -965,13 +966,17 @@
             const componentSelectionContainer = document.getElementById('componentSelectionContainer');
             componentSelectionContainer.classList.remove('d-none');
             
-            // Set the position of the component selection container
-            const rect = this.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            componentSelectionContainer.style.position = 'absolute';
-            componentSelectionContainer.style.top = (rect.bottom + scrollTop) + 'px';
+            // Position the component selection container at the top of the page
+            componentSelectionContainer.style.position = 'fixed';
+            componentSelectionContainer.style.top = '10px';
+            componentSelectionContainer.style.left = '50%'; 
+            componentSelectionContainer.style.transform = 'translateX(-50%)';
             componentSelectionContainer.style.zIndex = '1050';
-            componentSelectionContainer.style.width = '100%';
+            componentSelectionContainer.style.width = '90%';
+            componentSelectionContainer.style.maxWidth = '900px';
+            componentSelectionContainer.style.maxHeight = '85vh';
+            componentSelectionContainer.style.display = 'flex';
+            componentSelectionContainer.style.flexDirection = 'column';
             
             // Simulate loading delay (remove in production)
             setTimeout(() => {
