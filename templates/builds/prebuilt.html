@@ -26,6 +26,15 @@
                     <div class="card-header">
                         <h5 class="mb-0">{{ config.name }}</h5>
                     </div>
+                    {% if config.category == 'gaming' %}
+                    <img src="https://images.unsplash.com/photo-1625842268584-8f3296236761?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="{{ config.name }} PC">
+                    {% elif config.category == 'professional' %}
+                    <img src="https://images.unsplash.com/photo-1623934199716-9f432696d095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="{{ config.name }} PC">
+                    {% elif config.category == 'enthusiast' %}
+                    <img src="https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="{{ config.name }} PC">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1587202372616-b43abea06c2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="{{ config.name }} PC">
+                    {% endif %}
                     <div class="card-body">
                         <p class="card-text">{{ config.description }}</p>
                         
