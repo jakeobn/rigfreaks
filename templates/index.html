@@ -297,131 +297,383 @@
         </div>
     </section>
     
-    <!-- How It Works Section -->
-    <section class="my-5 py-5 bg-dark rounded-3">
+    <!-- How It Works Section (Chillblast-inspired) -->
+    <section class="how-it-works-section py-5">
         <div class="container">
-            <h2 class="text-center mb-5 text-white">How It Works</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                                <span class="fs-4 fw-bold text-white">1</span>
-                            </div>
-                            <h4 class="card-title">Select Components</h4>
-                            <p class="card-text">Choose from our catalog of quality PC components or start with a pre-built configuration.</p>
-                        </div>
-                    </div>
+            <div class="section-header text-center mb-5">
+                <span class="section-subheading">Simple Process</span>
+                <h2 class="section-title">How It Works</h2>
+                <div class="section-description mx-auto">
+                    <p>Building your perfect PC is easy with our guided step-by-step process</p>
                 </div>
-                <div class="col-md-3">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                                <span class="fs-4 fw-bold text-white">2</span>
+            </div>
+            
+            <div class="how-it-works-process">
+                <div class="row g-0">
+                    <div class="col-lg-3 process-step">
+                        <div class="process-step-inner">
+                            <div class="process-step-number">1</div>
+                            <div class="process-step-content">
+                                <div class="process-step-icon">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h3 class="process-step-title">Choose Components</h3>
+                                <p class="process-step-description">Select from our wide range of high-quality components or start with a pre-built configuration.</p>
                             </div>
-                            <h4 class="card-title">Check Compatibility</h4>
-                            <p class="card-text">Our system automatically verifies that all your selected parts work together perfectly.</p>
                         </div>
+                        <div class="process-connector"></div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                                <span class="fs-4 fw-bold text-white">3</span>
+                    
+                    <div class="col-lg-3 process-step">
+                        <div class="process-step-inner">
+                            <div class="process-step-number">2</div>
+                            <div class="process-step-content">
+                                <div class="process-step-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3 class="process-step-title">Compatibility Check</h3>
+                                <p class="process-step-description">Our system automatically ensures all components work together perfectly and suggests alternatives if needed.</p>
                             </div>
-                            <h4 class="card-title">Review Your Build</h4>
-                            <p class="card-text">See detailed specs, pricing, and performance estimates for your custom PC build.</p>
                         </div>
+                        <div class="process-connector"></div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
-                                <span class="fs-4 fw-bold text-white">4</span>
+                    
+                    <div class="col-lg-3 process-step">
+                        <div class="process-step-inner">
+                            <div class="process-step-number">3</div>
+                            <div class="process-step-content">
+                                <div class="process-step-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3 class="process-step-title">Performance Analysis</h3>
+                                <p class="process-step-description">Get detailed benchmark scores and see how your PC will perform in your favorite games and applications.</p>
                             </div>
-                            <h4 class="card-title">Save & Share</h4>
-                            <p class="card-text">Save your configuration to your account and share it with friends or the community.</p>
+                        </div>
+                        <div class="process-connector"></div>
+                    </div>
+                    
+                    <div class="col-lg-3 process-step">
+                        <div class="process-step-inner">
+                            <div class="process-step-number">4</div>
+                            <div class="process-step-content">
+                                <div class="process-step-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <h3 class="process-step-title">Build & Delivery</h3>
+                                <p class="process-step-description">We professionally assemble, test, and ship your custom PC with care, backed by our comprehensive warranty.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="text-center mt-5">
-                <a href="{{ url_for('builder') }}" class="btn btn-outline-light btn-lg">Start Building Now</a>
+                <a href="{{ url_for('builder') }}" class="btn btn-lg btn-primary">
+                    <i class="fas fa-wrench me-2"></i>Start Building Your PC
+                </a>
             </div>
         </div>
     </section>
     
-    <!-- Popular Components Section -->
-    <section class="my-5">
-        <h2 class="text-center mb-5">Popular Component Categories</h2>
-        <div class="row g-4">
-            <div class="col-md-4 col-sm-6">
-                <a href="{{ url_for('builder') }}" class="text-decoration-none">
-                    <div class="card h-100 component-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-microchip fa-3x mb-3 text-primary"></i>
-                            <h4 class="card-title">Processors</h4>
-                            <p class="card-text">Browse CPUs from Intel and AMD for all performance needs.</p>
+    <!-- Testimonials Section (Chillblast-inspired) -->
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-subheading">Our Customers</span>
+                <h2 class="section-title">What People Say</h2>
+                <div class="section-description mx-auto">
+                    <p>Join thousands of satisfied customers who've built their dream gaming PCs with us</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The PC builder tool made it incredibly easy to customize my dream gaming rig. The compatibility checker saved me from making some costly mistakes, and the benchmarks gave me confidence in my choices."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-img">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h5 class="testimonial-author-name">Sarah K.</h5>
+                                <p class="testimonial-author-title">Gaming Enthusiast</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card featured">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"As a content creator, I needed a PC that could handle video editing and gaming. The performance benchmarks helped me balance my budget while getting exactly what I needed. My new PC is blazing fast!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-img">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h5 class="testimonial-author-name">Michael T.</h5>
+                                <p class="testimonial-author-title">YouTuber & Streamer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"The customer service was exceptional. When I had questions about which components would be best for my needs, the team was knowledgeable and helped me make the right choices. Highly recommended!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-img">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h5 class="testimonial-author-name">David R.</h5>
+                                <p class="testimonial-author-title">Competitive Gamer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popular Components Section (Chillblast-inspired) -->
+    <section class="component-categories-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-subheading">Build Your PC</span>
+                <h2 class="section-title">Top Component Categories</h2>
+                <div class="section-description mx-auto">
+                    <p>Browse our extensive selection of high-quality PC components from top manufacturers</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Processors</h3>
+                                <p class="category-card-desc">Intel & AMD CPUs for all needs</p>
+                                <div class="category-card-brands">
+                                    <span>Intel</span>
+                                    <span>AMD</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Graphics Cards</h3>
+                                <p class="category-card-desc">High-performance GPUs</p>
+                                <div class="category-card-brands">
+                                    <span>NVIDIA</span>
+                                    <span>AMD</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Memory</h3>
+                                <p class="category-card-desc">DDR4 & DDR5 RAM options</p>
+                                <div class="category-card-brands">
+                                    <span>Corsair</span>
+                                    <span>G.Skill</span>
+                                    <span>Kingston</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-hdd"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Storage</h3>
+                                <p class="category-card-desc">SSDs, NVMe & HDDs</p>
+                                <div class="category-card-brands">
+                                    <span>Samsung</span>
+                                    <span>Western Digital</span>
+                                    <span>Seagate</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Motherboards</h3>
+                                <p class="category-card-desc">For Intel & AMD platforms</p>
+                                <div class="category-card-brands">
+                                    <span>ASUS</span>
+                                    <span>MSI</span>
+                                    <span>Gigabyte</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Power Supplies</h3>
+                                <p class="category-card-desc">Reliable PSUs for your build</p>
+                                <div class="category-card-brands">
+                                    <span>Corsair</span>
+                                    <span>EVGA</span>
+                                    <span>Seasonic</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">PC Cases</h3>
+                                <p class="category-card-desc">Stylish & functional cases</p>
+                                <div class="category-card-brands">
+                                    <span>Phanteks</span>
+                                    <span>NZXT</span>
+                                    <span>Corsair</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ url_for('builder') }}" class="category-card-link">
+                        <div class="category-card">
+                            <div class="category-card-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div class="category-card-content">
+                                <h3 class="category-card-title">Cooling</h3>
+                                <p class="category-card-desc">Air & liquid cooling solutions</p>
+                                <div class="category-card-brands">
+                                    <span>Noctua</span>
+                                    <span>Corsair</span>
+                                    <span>NZXT</span>
+                                </div>
+                                <div class="category-card-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="{{ url_for('builder') }}" class="btn btn-lg btn-outline-primary">
+                    <i class="fas fa-tools me-2"></i>Start Building Your PC
                 </a>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="{{ url_for('builder') }}" class="text-decoration-none">
-                    <div class="card h-100 component-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-tv fa-3x mb-3 text-primary"></i>
-                            <h4 class="card-title">Graphics Cards</h4>
-                            <p class="card-text">Select GPUs from NVIDIA and AMD for gaming and creative work.</p>
+        </div>
+    </section>
+    
+    <!-- Call-to-Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="cta-content text-center">
+                        <h2 class="cta-title">Ready to Build Your Dream PC?</h2>
+                        <p class="cta-text">Customize, compare, and create the perfect computer with our easy-to-use PC builder tool.</p>
+                        <div class="cta-buttons">
+                            <a href="{{ url_for('builder') }}" class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-wrench me-2"></i>Start Building
+                            </a>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-desktop me-2"></i>View Pre-built PCs
+                            </a>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="{{ url_for('builder') }}" class="text-decoration-none">
-                    <div class="card h-100 component-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-memory fa-3x mb-3 text-primary"></i>
-                            <h4 class="card-title">Memory</h4>
-                            <p class="card-text">Choose DDR4 and DDR5 RAM options for your build.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="{{ url_for('builder') }}" class="text-decoration-none">
-                    <div class="card h-100 component-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-hdd fa-3x mb-3 text-primary"></i>
-                            <h4 class="card-title">Storage</h4>
-                            <p class="card-text">Explore SSDs, NVMe drives, and HDDs for all storage needs.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="{{ url_for('builder') }}" class="text-decoration-none">
-                    <div class="card h-100 component-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-server fa-3x mb-3 text-primary"></i>
-                            <h4 class="card-title">Motherboards</h4>
-                            <p class="card-text">Find the right motherboard for your CPU and other components.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="{{ url_for('builder') }}" class="text-decoration-none">
-                    <div class="card h-100 component-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-bolt fa-3x mb-3 text-primary"></i>
-                            <h4 class="card-title">Power Supplies</h4>
-                            <p class="card-text">Get reliable power with the right wattage for your system.</p>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
