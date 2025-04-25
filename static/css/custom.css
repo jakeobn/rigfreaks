@@ -330,3 +330,26 @@
 .chart-label {
     margin-bottom: 0.5rem;
 }
+
+/* Details button styling */
+.details-btn {
+    transition: all 0.2s ease-in-out;
+    border-width: 2px;
+}
+
+.details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the component name links more obvious */
+.component-name {
+    color: var(--bs-primary);
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.component-name:hover {
+    color: var(--bs-info);
+    text-decoration: underline !important;
+}
