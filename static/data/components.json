@@ -269,6 +269,138 @@
         "Networking": "10G LAN, Wi-Fi 6E, Bluetooth 5.2",
         "Audio": "Realtek ALC1220-VB 7.1 Surround Sound"
       }
+    },
+    {
+      "id": "mobo5",
+      "name": "MSI PRO Z790-A WIFI DDR4",
+      "description": "Mid-range Z790 motherboard for Intel 12th/13th gen with DDR4 support",
+      "price": 229.99,
+      "brand": "MSI",
+      "socket": "LGA1700",
+      "form_factor": "ATX",
+      "chipset": "Z790",
+      "ram_type": "DDR4",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 3,
+      "m2_slots": 4,
+      "sata_ports": 6,
+      "image_url": "https://cdn.example.com/mobo5.webp",
+      "specs": {
+        "USB Ports": "7x USB-A, 1x USB-C",
+        "Networking": "2.5G LAN, Wi-Fi 6E, Bluetooth 5.2",
+        "Audio": "Realtek ALC897 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo6",
+      "name": "ASRock B550M Pro4",
+      "description": "Budget-friendly micro-ATX B550 motherboard for AMD Ryzen 5000 processors",
+      "price": 109.99,
+      "brand": "ASRock",
+      "socket": "AM4",
+      "form_factor": "Micro-ATX",
+      "chipset": "B550",
+      "ram_type": "DDR4",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 2,
+      "m2_slots": 2,
+      "sata_ports": 4,
+      "image_url": "https://cdn.example.com/mobo6.webp",
+      "specs": {
+        "USB Ports": "6x USB-A, 1x USB-C",
+        "Networking": "1G LAN",
+        "Audio": "Realtek ALC892 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo7",
+      "name": "GIGABYTE Z790 AORUS ELITE AX",
+      "description": "High-performance Z790 motherboard for Intel processors with Wi-Fi 6E",
+      "price": 289.99,
+      "brand": "GIGABYTE",
+      "socket": "LGA1700",
+      "form_factor": "ATX",
+      "chipset": "Z790",
+      "ram_type": "DDR5",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 3,
+      "m2_slots": 4,
+      "sata_ports": 6,
+      "image_url": "https://cdn.example.com/mobo7.webp",
+      "specs": {
+        "USB Ports": "8x USB-A, 1x USB-C",
+        "Networking": "2.5G LAN, Wi-Fi 6E, Bluetooth 5.2",
+        "Audio": "Realtek ALC1220 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo8",
+      "name": "ASUS ROG STRIX X570-E GAMING WIFI II",
+      "description": "High-end X570 motherboard for AMD Ryzen 5000 processors",
+      "price": 349.99,
+      "brand": "ASUS",
+      "socket": "AM4",
+      "form_factor": "ATX",
+      "chipset": "X570",
+      "ram_type": "DDR4",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 3,
+      "m2_slots": 3,
+      "sata_ports": 8,
+      "image_url": "https://cdn.example.com/mobo8.webp",
+      "specs": {
+        "USB Ports": "8x USB-A, 2x USB-C",
+        "Networking": "2.5G LAN, Wi-Fi 6, Bluetooth 5.1",
+        "Audio": "ROG SupremeFX 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo9",
+      "name": "ASRock H610M-HDV/M.2",
+      "description": "Budget micro-ATX H610 motherboard for Intel 12th gen processors",
+      "price": 89.99,
+      "brand": "ASRock",
+      "socket": "LGA1700",
+      "form_factor": "Micro-ATX",
+      "chipset": "H610",
+      "ram_type": "DDR4",
+      "ram_slots": 2,
+      "max_ram": 64,
+      "pcie_slots": 1,
+      "m2_slots": 1,
+      "sata_ports": 4,
+      "image_url": "https://cdn.example.com/mobo9.webp",
+      "specs": {
+        "USB Ports": "4x USB-A, 0x USB-C",
+        "Networking": "1G LAN",
+        "Audio": "Realtek ALC897 7.1 Surround Sound"
+      }
+    },
+    {
+      "id": "mobo10",
+      "name": "MSI MAG X670E TOMAHAWK WIFI",
+      "description": "Premium X670E motherboard for AMD Ryzen 7000 processors",
+      "price": 369.99,
+      "brand": "MSI",
+      "socket": "AM5",
+      "form_factor": "ATX",
+      "chipset": "X670E",
+      "ram_type": "DDR5",
+      "ram_slots": 4,
+      "max_ram": 128,
+      "pcie_slots": 3,
+      "m2_slots": 4,
+      "sata_ports": 6,
+      "image_url": "https://cdn.example.com/mobo10.webp",
+      "specs": {
+        "USB Ports": "8x USB-A, 2x USB-C",
+        "Networking": "2.5G LAN, Wi-Fi 6E, Bluetooth 5.3",
+        "Audio": "Realtek ALC1220 7.1 Surround Sound"
+      }
     }
   ],
   "ram": [
@@ -335,6 +467,108 @@
       "modules": 2,
       "cas_latency": 16,
       "image_url": "https://cdn.example.com/ram4.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "No"
+      }
+    },
+    {
+      "id": "ram5",
+      "name": "Corsair Dominator Platinum RGB DDR5 64GB (2x32GB)",
+      "description": "Premium high-capacity DDR5 memory with RGB lighting",
+      "price": 299.99,
+      "brand": "Corsair",
+      "type": "DDR5",
+      "capacity": 64,
+      "speed": 6400,
+      "modules": 2,
+      "cas_latency": 32,
+      "image_url": "https://cdn.example.com/ram5.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "Yes"
+      }
+    },
+    {
+      "id": "ram6",
+      "name": "TeamGroup T-Force Vulcan Z DDR4 16GB (2x8GB)",
+      "description": "Budget-friendly DDR4 memory kit",
+      "price": 54.99,
+      "brand": "TeamGroup",
+      "type": "DDR4",
+      "capacity": 16,
+      "speed": 3200,
+      "modules": 2,
+      "cas_latency": 16,
+      "image_url": "https://cdn.example.com/ram6.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "No"
+      }
+    },
+    {
+      "id": "ram7",
+      "name": "G.Skill Trident Z5 RGB DDR5 32GB (2x16GB)",
+      "description": "High-end DDR5 memory for enthusiast builds",
+      "price": 189.99,
+      "brand": "G.Skill",
+      "type": "DDR5",
+      "capacity": 32,
+      "speed": 6400,
+      "modules": 2,
+      "cas_latency": 32,
+      "image_url": "https://cdn.example.com/ram7.webp",
+      "specs": {
+        "Voltage": "1.4V",
+        "RGB": "Yes"
+      }
+    },
+    {
+      "id": "ram8",
+      "name": "Crucial DDR5 32GB (2x16GB)",
+      "description": "Value-oriented DDR5 memory kit",
+      "price": 119.99,
+      "brand": "Crucial",
+      "type": "DDR5",
+      "capacity": 32,
+      "speed": 4800,
+      "modules": 2,
+      "cas_latency": 40,
+      "image_url": "https://cdn.example.com/ram8.webp",
+      "specs": {
+        "Voltage": "1.1V",
+        "RGB": "No"
+      }
+    },
+    {
+      "id": "ram9",
+      "name": "Corsair Vengeance RGB Pro DDR4 64GB (4x16GB)",
+      "description": "High-capacity DDR4 memory kit with RGB lighting",
+      "price": 249.99,
+      "brand": "Corsair",
+      "type": "DDR4",
+      "capacity": 64,
+      "speed": 3600,
+      "modules": 4,
+      "cas_latency": 18,
+      "image_url": "https://cdn.example.com/ram9.webp",
+      "specs": {
+        "Voltage": "1.35V",
+        "RGB": "Yes"
+      }
+    },
+    {
+      "id": "ram10",
+      "name": "Kingston FURY Renegade DDR4 32GB (2x16GB)",
+      "description": "Performance DDR4 memory for gaming",
+      "price": 139.99,
+      "brand": "Kingston",
+      "type": "DDR4",
+      "capacity": 32,
+      "speed": 3600,
+      "modules": 2,
+      "cas_latency": 16,
+      "image_url": "https://cdn.example.com/ram10.webp",
       "specs": {
         "Voltage": "1.35V",
         "RGB": "No"
@@ -639,6 +873,120 @@
         "Cache": "256MB",
         "Warranty": "2 years"
       }
+    },
+    {
+      "id": "storage5",
+      "name": "Samsung 980 PRO 1TB NVMe SSD",
+      "description": "Premium PCIe 4.0 NVMe SSD",
+      "price": 119.99,
+      "brand": "Samsung",
+      "type": "NVMe SSD",
+      "capacity": 1000,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 4.0 x4",
+      "read_speed": 7000,
+      "write_speed": 5000,
+      "image_url": "https://cdn.example.com/storage5.webp",
+      "specs": {
+        "TBW": "600 TB",
+        "Cache": "1GB LPDDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage6",
+      "name": "WD Blue SN570 500GB NVMe SSD",
+      "description": "Mid-range NVMe SSD for everyday computing",
+      "price": 49.99,
+      "brand": "Western Digital",
+      "type": "NVMe SSD",
+      "capacity": 500,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 3.0 x4",
+      "read_speed": 3500,
+      "write_speed": 2300,
+      "image_url": "https://cdn.example.com/storage6.webp",
+      "specs": {
+        "TBW": "300 TB",
+        "Cache": "512MB DDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage7",
+      "name": "Corsair MP600 PRO XT 2TB NVMe SSD",
+      "description": "High-end PCIe 4.0 NVMe SSD with heatsink",
+      "price": 219.99,
+      "brand": "Corsair",
+      "type": "NVMe SSD",
+      "capacity": 2000,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 4.0 x4",
+      "read_speed": 7100,
+      "write_speed": 6800,
+      "image_url": "https://cdn.example.com/storage7.webp",
+      "specs": {
+        "TBW": "1400 TB",
+        "Cache": "2GB DDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage8",
+      "name": "Sabrent Rocket 4 Plus 4TB NVMe SSD",
+      "description": "Ultra-high capacity PCIe 4.0 NVMe SSD",
+      "price": 399.99,
+      "brand": "Sabrent",
+      "type": "NVMe SSD",
+      "capacity": 4000,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 4.0 x4",
+      "read_speed": 7100,
+      "write_speed": 6600,
+      "image_url": "https://cdn.example.com/storage8.webp",
+      "specs": {
+        "TBW": "2800 TB",
+        "Cache": "4GB DDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage9",
+      "name": "Kingston KC3000 2TB NVMe SSD",
+      "description": "Enterprise-grade PCIe 4.0 NVMe SSD",
+      "price": 169.99,
+      "brand": "Kingston",
+      "type": "NVMe SSD",
+      "capacity": 2000,
+      "form_factor": "M.2 2280",
+      "interface": "PCIe 4.0 x4",
+      "read_speed": 7000,
+      "write_speed": 7000,
+      "image_url": "https://cdn.example.com/storage9.webp",
+      "specs": {
+        "TBW": "1600 TB",
+        "Cache": "2GB DDR4",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "storage10",
+      "name": "WD Black 8TB HDD",
+      "description": "High-performance mechanical hard drive for gaming and storage",
+      "price": 249.99,
+      "brand": "Western Digital",
+      "type": "HDD",
+      "capacity": 8000,
+      "form_factor": "3.5-inch",
+      "interface": "SATA III",
+      "read_speed": 235,
+      "write_speed": 235,
+      "image_url": "https://cdn.example.com/storage10.webp",
+      "specs": {
+        "RPM": "7200",
+        "Cache": "256MB",
+        "Warranty": "5 years"
+      }
     }
   ],
   "power_supply": [
@@ -704,6 +1052,102 @@
         "Connectors": "1x 24-pin ATX, 2x EPS, 12x PCIe, 16x SATA, 6x Molex",
         "Fan Size": "135mm",
         "Warranty": "12 years"
+      }
+    },
+    {
+      "id": "psu5",
+      "name": "Thermaltake Toughpower GF3 850W 80+ Gold",
+      "description": "High-performance fully modular power supply with PCIe 5.0 support",
+      "price": 149.99,
+      "brand": "Thermaltake",
+      "wattage": 850,
+      "efficiency": "80+ Gold",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu5.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 3x PCIe 5.0, 6x SATA, 3x Molex",
+        "Fan Size": "140mm",
+        "Warranty": "10 years"
+      }
+    },
+    {
+      "id": "psu6",
+      "name": "Corsair CX550F RGB 550W 80+ Bronze",
+      "description": "Budget-friendly fully modular power supply with RGB fan",
+      "price": 69.99,
+      "brand": "Corsair",
+      "wattage": 550,
+      "efficiency": "80+ Bronze",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu6.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 1x EPS, 2x PCIe, 6x SATA, 3x Molex",
+        "Fan Size": "120mm RGB",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "psu7",
+      "name": "EVGA SuperNOVA 1300 P+ 80+ Platinum",
+      "description": "High-wattage fully modular power supply for extreme builds",
+      "price": 279.99,
+      "brand": "EVGA",
+      "wattage": 1300,
+      "efficiency": "80+ Platinum",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu7.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 10x PCIe, 14x SATA, 5x Molex",
+        "Fan Size": "140mm",
+        "Warranty": "10 years"
+      }
+    },
+    {
+      "id": "psu8",
+      "name": "Cooler Master MWE 400W 80+ Bronze",
+      "description": "Entry-level non-modular power supply for basic builds",
+      "price": 44.99,
+      "brand": "Cooler Master",
+      "wattage": 400,
+      "efficiency": "80+ Bronze",
+      "modular": "Non-Modular",
+      "image_url": "https://cdn.example.com/psu8.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 1x EPS, 1x PCIe, 4x SATA, 2x Molex",
+        "Fan Size": "120mm",
+        "Warranty": "3 years"
+      }
+    },
+    {
+      "id": "psu9",
+      "name": "Seasonic Focus GX-850 80+ Gold",
+      "description": "Reliable mid-range fully modular power supply",
+      "price": 139.99,
+      "brand": "Seasonic",
+      "wattage": 850,
+      "efficiency": "80+ Gold",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu9.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 4x PCIe, 8x SATA, 3x Molex",
+        "Fan Size": "120mm",
+        "Warranty": "10 years"
+      }
+    },
+    {
+      "id": "psu10",
+      "name": "Fractal Design Ion+ 2 Platinum 860W",
+      "description": "High-quality platinum-rated fully modular power supply",
+      "price": 159.99,
+      "brand": "Fractal Design",
+      "wattage": 860,
+      "efficiency": "80+ Platinum",
+      "modular": "Fully Modular",
+      "image_url": "https://cdn.example.com/psu10.webp",
+      "specs": {
+        "Connectors": "1x 24-pin ATX, 2x EPS, 4x PCIe, 10x SATA, 4x Molex",
+        "Fan Size": "140mm",
+        "Warranty": "10 years"
       }
     }
   ],
@@ -773,6 +1217,108 @@
         "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
         "Maximum GPU Length": "400mm",
         "Maximum CPU Cooler Height": "185mm",
+        "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    },
+    {
+      "id": "case5",
+      "name": "Phanteks Eclipse P500A D-RGB",
+      "description": "Spacious high-airflow mid-tower with RGB",
+      "price": 149.99,
+      "brand": "Phanteks",
+      "form_factor": "ATX",
+      "dimensions": "465 x 230 x 511 mm",
+      "weight": 10.0,
+      "image_url": "https://cdn.example.com/case5.webp",
+      "specs": {
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "430mm",
+        "Maximum CPU Cooler Height": "190mm",
+        "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    },
+    {
+      "id": "case6",
+      "name": "Cooler Master NR200P",
+      "description": "Compact Mini-ITX case with tempered glass option",
+      "price": 99.99,
+      "brand": "Cooler Master",
+      "form_factor": "Mini-ITX",
+      "dimensions": "360 x 185 x 274 mm",
+      "weight": 5.1,
+      "image_url": "https://cdn.example.com/case6.webp",
+      "specs": {
+        "Motherboard Support": "Mini-ITX",
+        "Maximum GPU Length": "330mm",
+        "Maximum CPU Cooler Height": "155mm",
+        "Front I/O": "2x USB 3.0, Audio In/Out"
+      }
+    },
+    {
+      "id": "case7",
+      "name": "be quiet! Pure Base 500DX",
+      "description": "Silence-optimized mid-tower with RGB accents",
+      "price": 119.99,
+      "brand": "be quiet!",
+      "form_factor": "ATX",
+      "dimensions": "450 x 232 x 463 mm",
+      "weight": 8.3,
+      "image_url": "https://cdn.example.com/case7.webp",
+      "specs": {
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "369mm",
+        "Maximum CPU Cooler Height": "190mm",
+        "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
+      }
+    },
+    {
+      "id": "case8",
+      "name": "Thermaltake Core P3",
+      "description": "Open-frame panoramic viewing chassis for showcase builds",
+      "price": 159.99,
+      "brand": "Thermaltake",
+      "form_factor": "ATX",
+      "dimensions": "512 x 333 x 470 mm",
+      "weight": 10.8,
+      "image_url": "https://cdn.example.com/case8.webp",
+      "specs": {
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "450mm",
+        "Maximum CPU Cooler Height": "180mm",
+        "Front I/O": "2x USB 3.0, 2x USB 2.0, Audio In/Out"
+      }
+    },
+    {
+      "id": "case9",
+      "name": "SilverStone SUGO SG13",
+      "description": "Ultra-compact Mini-ITX case for small form factor builds",
+      "price": 64.99,
+      "brand": "SilverStone",
+      "form_factor": "Mini-ITX",
+      "dimensions": "222 x 181 x 285 mm",
+      "weight": 2.5,
+      "image_url": "https://cdn.example.com/case9.webp",
+      "specs": {
+        "Motherboard Support": "Mini-ITX",
+        "Maximum GPU Length": "267mm",
+        "Maximum CPU Cooler Height": "82mm",
+        "Front I/O": "1x USB 3.0, 1x USB 2.0, Audio In/Out"
+      }
+    },
+    {
+      "id": "case10",
+      "name": "Fractal Design North",
+      "description": "Premium Scandinavian-design mid-tower with wood elements",
+      "price": 159.99,
+      "brand": "Fractal Design",
+      "form_factor": "ATX",
+      "dimensions": "467 x 214 x 444 mm",
+      "weight": 8.7,
+      "image_url": "https://cdn.example.com/case10.webp",
+      "specs": {
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Maximum GPU Length": "355mm",
+        "Maximum CPU Cooler Height": "168mm",
         "Front I/O": "2x USB 3.0, 1x USB 3.1 Type-C, Audio In/Out"
       }
     }
@@ -848,6 +1394,114 @@
         "Fan Speed": "1,200-1,500 RPM",
         "RGB": "No",
         "Warranty": "3 years"
+      }
+    },
+    {
+      "id": "cooling5",
+      "name": "Arctic Liquid Freezer II 240mm",
+      "description": "Value-oriented 240mm AIO liquid cooler with excellent performance",
+      "price": 89.99,
+      "brand": "Arctic",
+      "type": "Liquid",
+      "radiator_size": 240,
+      "fan_count": 2,
+      "noise_level": "0.5-28 dBA",
+      "image_url": "https://cdn.example.com/cooling5.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "200-1,800 RPM",
+        "RGB": "No",
+        "Warranty": "6 years"
+      }
+    },
+    {
+      "id": "cooling6",
+      "name": "Cooler Master Hyper 212 RGB",
+      "description": "Popular budget air cooler with RGB lighting",
+      "price": 44.99,
+      "brand": "Cooler Master",
+      "type": "Air",
+      "radiator_size": null,
+      "fan_count": 1,
+      "noise_level": "8-27 dBA",
+      "image_url": "https://cdn.example.com/cooling6.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "650-2,000 RPM",
+        "RGB": "Yes",
+        "Warranty": "2 years"
+      }
+    },
+    {
+      "id": "cooling7",
+      "name": "ASUS ROG RYUJIN II 360 OLED",
+      "description": "Premium 360mm AIO with OLED display and LCD panel",
+      "price": 299.99,
+      "brand": "ASUS",
+      "type": "Liquid",
+      "radiator_size": 360,
+      "fan_count": 3,
+      "noise_level": "15-38 dBA",
+      "image_url": "https://cdn.example.com/cooling7.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "450-2,000 RPM",
+        "RGB": "Yes",
+        "Warranty": "6 years"
+      }
+    },
+    {
+      "id": "cooling8",
+      "name": "Thermaltake Toughair 510 CPU Cooler",
+      "description": "Dual-tower air cooler with high TDP support",
+      "price": 69.99,
+      "brand": "Thermaltake",
+      "type": "Air",
+      "radiator_size": null,
+      "fan_count": 2,
+      "noise_level": "22-33 dBA",
+      "image_url": "https://cdn.example.com/cooling8.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "500-1,800 RPM",
+        "RGB": "No",
+        "Warranty": "2 years"
+      }
+    },
+    {
+      "id": "cooling9",
+      "name": "DeepCool LS720 360mm AIO",
+      "description": "High-performance 360mm liquid cooler with anti-leak technology",
+      "price": 149.99,
+      "brand": "DeepCool",
+      "type": "Liquid",
+      "radiator_size": 360,
+      "fan_count": 3,
+      "noise_level": "17-34 dBA",
+      "image_url": "https://cdn.example.com/cooling9.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "500-1,850 RPM",
+        "RGB": "Yes",
+        "Warranty": "5 years"
+      }
+    },
+    {
+      "id": "cooling10",
+      "name": "Scythe Fuma 2 Rev.B",
+      "description": "Compact dual-tower cooler with excellent RAM clearance",
+      "price": 59.99,
+      "brand": "Scythe",
+      "type": "Air",
+      "radiator_size": null,
+      "fan_count": 2,
+      "noise_level": "5-24.9 dBA",
+      "image_url": "https://cdn.example.com/cooling10.webp",
+      "specs": {
+        "Socket Compatibility": "Intel LGA 1700/1200/115x, AMD AM5/AM4",
+        "Fan Speed": "300-1,200 RPM",
+        "RGB": "No",
+        "Warranty": "2 years"
       }
     }
   ]
