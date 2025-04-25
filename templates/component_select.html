@@ -128,8 +128,8 @@
                             </a>
                         </div>
                         <div class="col-sm-6">
-                            <form action="/add/{{ category }}/{{ component.id }}" method="post">
-                                <button type="submit" class="btn btn-primary w-100 select-btn" data-component-id="{{ component.id }}">
+                            <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
+                                <button type="submit" class="btn btn-primary w-100 add-component-btn" data-component-id="{{ component.id }}">
                                     {% if component.id == current_selection %}
                                         <i class="fas fa-check me-1"></i><span class="btn-text">Selected</span>
                                     {% else %}
@@ -248,7 +248,7 @@
         });
         
         // Handle select button loading states
-        document.querySelectorAll('.select-btn').forEach(button => {
+        document.querySelectorAll('.add-component-btn').forEach(button => {
             button.closest('form').addEventListener('submit', function(e) {
                 // Prevent instant form submission to show loading state
                 e.preventDefault();

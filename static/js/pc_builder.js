@@ -3,20 +3,156 @@ document.addEventListener('DOMContentLoaded', function() {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    });
 
-    // Handle component selection filtering
-    const componentFilter = document.getElementById('component-filter');
-    if (componentFilter) {
-        componentFilter.addEventListener('input', function() {
-            const filterValue = this.value.toLowerCase();
-            const componentCards = document.querySelectorAll('.component-card');
+    // Component selection interface variables
+    const componentSelectionContainer = document.getElementById('componentSelectionContainer');
+    const componentDropdownBtns = document.querySelectorAll('.component-dropdown-btn');
+    const closeComponentSelectionBtn = document.getElementById('closeComponentSelection');
+    const cancelComponentSelectionBtn = document.getElementById('cancelComponentSelection');
+    const componentSearch = document.getElementById('componentSearch');
+    const sortOptions = document.querySelectorAll('.sort-option');
+    let currentCategory = '';
+
+    // Helper function to load components for a category
+    function loadComponentsForCategory(category) {
+        const componentCardsWrapper = document.getElementById('componentCardsWrapper');
+        const componentLoading = document.getElementById('component-loading');
+        const modalCategoryIcon = document.getElementById('modalCategoryIcon');
+        const componentModalLabel = document.getElementById('componentModalLabel');
+        const modalCategoryDescription = document.getElementById('modalCategoryDescription');
+        
+        // Update modal title and description
+        let categoryName = '';
+        let categoryIcon = '';
+        
+        switch(category) {
+            case 'cpu':
+                categoryName = 'Processor';
+                categoryIcon = '<i class="fas fa-microchip"></i>';
+                break;
+            case 'motherboard':
+                categoryName = 'Motherboard';
+                categoryIcon = '<i class="fas fa-server"></i>';
+                break;
+            case 'ram':
+                categoryName = 'Memory';
+                categoryIcon = '<i class="fas fa-memory"></i>';
+                break;
+            case 'gpu':
+                categoryName = 'Graphics Card';
+                categoryIcon = '<i class="fas fa-tv"></i>';
+                break;
+            case 'storage':
+                categoryName = 'Storage';
+                categoryIcon = '<i class="fas fa-hdd"></i>';
+                break;
+            case 'power_supply':
+                categoryName = 'Power Supply';
+                categoryIcon = '<i class="fas fa-plug"></i>';
+                break;
+            case 'case':
+                categoryName = 'Case';
+                categoryIcon = '<i class="fas fa-desktop"></i>';
+                break;
+            case 'cooling':
+                categoryName = 'Cooling';
+                categoryIcon = '<i class="fas fa-wind"></i>';
+                break;
+            default:
+                categoryName = 'Component';
+                categoryIcon = '<i class="fas fa-puzzle-piece"></i>';
+        }
+        
+        componentModalLabel.textContent = `Select ${categoryName}`;
+        modalCategoryIcon.innerHTML = categoryIcon;
+        modalCategoryDescription.textContent = `Choose a compatible ${categoryName.toLowerCase()} for your build`;
+        
+        // Show loading indicator
+        componentLoading.style.display = 'block';
+        componentCardsWrapper.innerHTML = '';
+        
+        // Fetch components for this category
+        fetch(`/select_component/${category}`)
+            .then(response => response.text())
+            .then(html => {
+                // Hide loading
+                componentLoading.style.display = 'none';
+                
+                // Create a temporary element to parse the HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                
+                // Extract component cards
+                const componentCards = tempDiv.querySelectorAll('.component-card');
+                componentCardsWrapper.innerHTML = '';
+                
+                componentCards.forEach(card => {
+                    componentCardsWrapper.appendChild(card.cloneNode(true));
+                });
+                
+                // Re-attach event listeners to add buttons in the component cards
+                attachAddButtonListeners();
+            })
+            .catch(error => {
+                console.error('Error loading components:', error);
+                componentLoading.style.display = 'none';
+                componentCardsWrapper.innerHTML = '<div class="alert alert-danger">Error loading components. Please try again.</div>';
+            });
+    }
+    
+    // Attach event listeners to add buttons
+    function attachAddButtonListeners() {
+        const addButtons = document.querySelectorAll('#componentCardsWrapper .add-component-btn');
+        addButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const componentId = this.getAttribute('data-component-id');
+                const category = currentCategory;
+                
+                // Submit form to add component
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `/add_component/${category}/${componentId}`;
+                document.body.appendChild(form);
+                form.submit();
+            });
+        });
+    }
+    
+    // Show component selection
+    componentDropdownBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentCategory = this.getAttribute('data-category');
+            componentSelectionContainer.classList.remove('d-none');
+            loadComponentsForCategory(currentCategory);
+        });
+    });
+    
+    // Hide component selection
+    if (closeComponentSelectionBtn) {
+        closeComponentSelectionBtn.addEventListener('click', function() {
+            componentSelectionContainer.classList.add('d-none');
+        });
+    }
+    
+    if (cancelComponentSelectionBtn) {
+        cancelComponentSelectionBtn.addEventListener('click', function() {
+            componentSelectionContainer.classList.add('d-none');
+        });
+    }
+    
+    // Component search functionality
+    if (componentSearch) {
+        componentSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const componentCards = document.querySelectorAll('#componentCardsWrapper .component-card');
             
             componentCards.forEach(card => {
-                const componentName = card.querySelector('.component-name').textContent.toLowerCase();
-                const componentSpecs = card.querySelector('.component-specs').textContent.toLowerCase();
+                const componentName = card.querySelector('.component-name')?.textContent.toLowerCase() || '';
+                const componentDesc = card.querySelector('.component-description')?.textContent.toLowerCase() || '';
+                const componentSpecs = card.querySelector('.component-specs')?.textContent.toLowerCase() || '';
                 
-                if (componentName.includes(filterValue) || componentSpecs.includes(filterValue)) {
+                if (componentName.includes(searchTerm) || componentDesc.includes(searchTerm) || componentSpecs.includes(searchTerm)) {
                     card.style.display = '';
                 } else {
                     card.style.display = 'none';
@@ -24,41 +160,41 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    // Sort component list
-    const sortSelect = document.getElementById('component-sort');
-    if (sortSelect) {
-        sortSelect.addEventListener('change', function() {
-            const sortValue = this.value;
-            const componentContainer = document.querySelector('.component-container');
-            const componentCards = Array.from(document.querySelectorAll('.component-card'));
+    
+    // Component sorting functionality
+    sortOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const sortBy = this.getAttribute('data-sort');
+            const componentCards = Array.from(document.querySelectorAll('#componentCardsWrapper .component-card'));
+            const cardsWrapper = document.getElementById('componentCardsWrapper');
             
             componentCards.sort((a, b) => {
-                if (sortValue === 'price-low') {
-                    const priceA = parseFloat(a.dataset.price || 0);
-                    const priceB = parseFloat(b.dataset.price || 0);
-                    return priceA - priceB;
-                } else if (sortValue === 'price-high') {
-                    const priceA = parseFloat(a.dataset.price || 0);
-                    const priceB = parseFloat(b.dataset.price || 0);
-                    return priceB - priceA;
-                } else if (sortValue === 'name-asc') {
-                    const nameA = a.querySelector('.component-name').textContent;
-                    const nameB = b.querySelector('.component-name').textContent;
+                if (sortBy === 'name') {
+                    const nameA = a.querySelector('.component-name')?.textContent || '';
+                    const nameB = b.querySelector('.component-name')?.textContent || '';
                     return nameA.localeCompare(nameB);
-                } else if (sortValue === 'name-desc') {
-                    const nameA = a.querySelector('.component-name').textContent;
-                    const nameB = b.querySelector('.component-name').textContent;
-                    return nameB.localeCompare(nameA);
+                } else if (sortBy === 'price-asc') {
+                    const priceA = parseFloat(a.getAttribute('data-price') || 0);
+                    const priceB = parseFloat(b.getAttribute('data-price') || 0);
+                    return priceA - priceB;
+                } else if (sortBy === 'price-desc') {
+                    const priceA = parseFloat(a.getAttribute('data-price') || 0);
+                    const priceB = parseFloat(b.getAttribute('data-price') || 0);
+                    return priceB - priceA;
+                } else if (sortBy === 'performance') {
+                    const perfA = parseFloat(a.getAttribute('data-performance') || 0);
+                    const perfB = parseFloat(b.getAttribute('data-performance') || 0);
+                    return perfB - perfA;
                 }
                 return 0;
             });
             
+            // Re-append sorted cards
             componentCards.forEach(card => {
-                componentContainer.appendChild(card);
+                cardsWrapper.appendChild(card);
             });
         });
-    }
+    });
 
     // Real-time compatibility checking
     const componentSelections = document.querySelectorAll('.component-select-form');
