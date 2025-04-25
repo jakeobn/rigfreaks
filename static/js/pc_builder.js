@@ -141,23 +141,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Component search functionality
-    if (componentSearch) {
-        componentSearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const componentCards = document.querySelectorAll('#componentCardsWrapper .component-card');
+    // Component search functionality - for both mobile and desktop
+    const componentSearchDesktop = document.getElementById('componentSearchDesktop');
+    const componentSearchMobile = document.getElementById('componentSearchMobile');
+    
+    // Function to handle search filtering
+    function handleSearch(searchTerm) {
+        searchTerm = searchTerm.toLowerCase();
+        const componentCards = document.querySelectorAll('#componentCardsWrapper .component-card');
+        
+        componentCards.forEach(card => {
+            const componentName = card.querySelector('.component-name')?.textContent.toLowerCase() || '';
+            const componentDesc = card.querySelector('.component-description')?.textContent.toLowerCase() || '';
+            const componentSpecs = card.querySelector('.component-specs')?.textContent.toLowerCase() || '';
             
-            componentCards.forEach(card => {
-                const componentName = card.querySelector('.component-name')?.textContent.toLowerCase() || '';
-                const componentDesc = card.querySelector('.component-description')?.textContent.toLowerCase() || '';
-                const componentSpecs = card.querySelector('.component-specs')?.textContent.toLowerCase() || '';
-                
-                if (componentName.includes(searchTerm) || componentDesc.includes(searchTerm) || componentSpecs.includes(searchTerm)) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            if (componentName.includes(searchTerm) || componentDesc.includes(searchTerm) || componentSpecs.includes(searchTerm)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    // Desktop search
+    if (componentSearchDesktop) {
+        componentSearchDesktop.addEventListener('input', function() {
+            handleSearch(this.value);
+            // Sync mobile search field
+            if (componentSearchMobile) {
+                componentSearchMobile.value = this.value;
+            }
+        });
+    }
+    
+    // Mobile search
+    if (componentSearchMobile) {
+        componentSearchMobile.addEventListener('input', function() {
+            handleSearch(this.value);
+            // Sync desktop search field
+            if (componentSearchDesktop) {
+                componentSearchDesktop.value = this.value;
+            }
         });
     }
     
