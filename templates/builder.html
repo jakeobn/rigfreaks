@@ -481,16 +481,160 @@
         }
     };
     
+    // Function to create component rows for table
+    function createComponentRows(components, category, currentConfig) {
+        const tableBody = document.getElementById('componentTable').querySelector('tbody');
+        tableBody.innerHTML = '';
+        
+        if (!components || components.length === 0) {
+            const emptyRow = document.createElement('tr');
+            const emptyCell = document.createElement('td');
+            emptyCell.setAttribute('colspan', '5');
+            emptyCell.classList.add('text-center', 'py-5');
+            emptyCell.innerHTML = `
+                <div class="empty-state-icon mb-3">
+                    <i class="fas fa-search fa-3x text-muted"></i>
+                </div>
+                <h5>No components found</h5>
+                <p class="text-muted">Try a different search term or category</p>
+            `;
+            emptyRow.appendChild(emptyCell);
+            tableBody.appendChild(emptyRow);
+            return;
+        }
+        
+        components.forEach(component => {
+            const row = document.createElement('tr');
+            
+            // Highlight currently selected component
+            if (currentConfig !== '{}') {
+                const config = typeof currentConfig === 'string' ? JSON.parse(currentConfig) : currentConfig;
+                if (config[category] === component.id) {
+                    row.classList.add('table-primary');
+                }
+            }
+            
+            // Component name and description
+            const nameCell = document.createElement('td');
+            nameCell.innerHTML = `
+                <div class="component-in-table-name">${component.name}</div>
+                <div class="component-in-table-description">${component.description}</div>
+                ${row.classList.contains('table-primary') ? '<span class="selected-chip mt-2"><i class="fas fa-check-circle"></i>Currently Selected</span>' : ''}
+            `;
+            
+            // Component specs with pills
+            const specsCell = document.createElement('td');
+            
+            // Create spec pills based on component type
+            let specPills = '<div class="component-specs-pills">';
+            
+            for (const [key, value] of Object.entries(component)) {
+                if (!['id', 'name', 'description', 'price', 'image_url', 'specs'].includes(key)) {
+                    specPills += `<span class="component-spec-pill">${key.replace(/_/g, ' ')}: ${value}</span>`;
+                }
+            }
+            
+            specPills += '</div>';
+            specsCell.innerHTML = specPills;
+            
+            // Performance metrics
+            const performanceCell = document.createElement('td');
+            
+            // Calculate a performance score based on component specs
+            let performanceScore = 0;
+            if (category === 'cpu') {
+                performanceScore = (component.cores * 5) + (parseFloat(component.base_clock) * 10);
+            } else if (category === 'gpu') {
+                performanceScore = component.vram * 10;
+            } else if (category === 'ram') {
+                performanceScore = component.speed / 40;
+            } else if (category === 'storage') {
+                performanceScore = component.type === 'SSD' ? 80 : 40;
+            } else {
+                // For other components, use a simple calculation
+                performanceScore = Math.min(100, parseInt(component.price) / 5);
+            }
+            
+            // Normalize to 0-100 scale
+            performanceScore = Math.min(100, Math.max(20, performanceScore));
+            
+            performanceCell.innerHTML = `
+                <div class="component-performance-label">
+                    ${categoryInfo[category].performanceMetric}
+                    <span class="component-performance-value">${Math.round(performanceScore)}/100</span>
+                </div>
+                <div class="component-performance-bar">
+                    <div class="component-performance-fill" style="width: ${performanceScore}%"></div>
+                </div>
+            `;
+            
+            // Component price
+            const priceCell = document.createElement('td');
+            priceCell.classList.add('component-price', 'text-end');
+            priceCell.textContent = `$${component.price}`;
+            
+            // Action button
+            const actionCell = document.createElement('td');
+            const form = document.createElement('form');
+            form.setAttribute('action', `/add_component/${category}/${component.id}`);
+            form.setAttribute('method', 'post');
+            
+            const button = document.createElement('button');
+            button.setAttribute('type', 'submit');
+            button.classList.add('btn', 'btn-sm');
+            
+            // If this component is already selected, show a different button
+            if (row.classList.contains('table-primary')) {
+                button.classList.add('btn-success');
+                button.innerHTML = '<i class="fas fa-check me-1"></i>Selected';
+                button.disabled = true;
+            } else {
+                button.classList.add('select-component-btn');
+                button.innerHTML = '<i class="fas fa-plus me-1"></i>Select';
+            }
+            
+            form.appendChild(button);
+            actionCell.appendChild(form);
+            
+            // Add cells to row
+            row.appendChild(nameCell);
+            row.appendChild(specsCell);
+            row.appendChild(performanceCell);
+            row.appendChild(priceCell);
+            row.appendChild(actionCell);
+            
+            // Add click event to select component when row is clicked (except if clicking on a link or button)
+            row.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON' && !e.target.closest('a') && !e.target.closest('button')) {
+                    const selectButton = this.querySelector('button[type="submit"]');
+                    if (selectButton && !selectButton.disabled) {
+                        selectButton.click();
+                    }
+                }
+            });
+            
+            tableBody.appendChild(row);
+        });
+    }
+    
     // When the component dropdown button is clicked
     document.querySelectorAll('.component-dropdown-btn').forEach(button => {
         button.addEventListener('click', function() {
             // Get the category from the data attribute
             currentCategory = this.getAttribute('data-category');
             
-            // Set the modal title
-            document.getElementById('componentModalLabel').textContent = `Select ${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}`;
+            // Set the modal title and icon
+            const categoryTitle = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+            document.getElementById('componentModalLabel').textContent = `Select ${categoryTitle}`;
             
-            // Clear previous component rows
+            // Update modal icon and description
+            const iconContainer = document.getElementById('modalCategoryIcon');
+            iconContainer.innerHTML = `<i class="fas fa-${categoryInfo[currentCategory].icon}"></i>`;
+            
+            // Update subtitle
+            document.getElementById('modalCategoryDescription').textContent = categoryInfo[currentCategory].description;
+            
+            // Clear previous component rows and show loading
             const tableBody = document.getElementById('componentTable').querySelector('tbody');
             tableBody.innerHTML = '';
             
@@ -519,82 +663,78 @@
             
             // Simulate loading delay (remove in production)
             setTimeout(() => {
-                // Clear loading animation
-                tableBody.innerHTML = '';
+                // Store filtered components for searching
+                filteredComponents = componentData[currentCategory] || [];
                 
-                // Add rows for each component in the selected category
-                if (componentData[currentCategory]) {
-                    componentData[currentCategory].forEach(component => {
-                    const row = document.createElement('tr');
-                    
-                    // Highlight currently selected component
-                    if ('{{ current_config|tojson }}' !== '{}') {
-                        const currentConfig = JSON.parse('{{ current_config|tojson }}');
-                        if (currentConfig[currentCategory] === component.id) {
-                            row.classList.add('table-primary');
+                // Use the new createComponentRows function
+                createComponentRows(filteredComponents, currentCategory, '{{ current_config|tojson }}');
+                
+                // Setup search functionality
+                const searchInput = document.getElementById('componentSearch');
+                if (searchInput) {
+                    searchInput.value = '';  // Clear any previous search
+                    searchInput.focus();     // Focus the search input for easy searching
+                }
+            }, 500); // 500ms delay to show the loading animation
+        });
+    });
+    
+    // Filter components when search input changes
+    document.getElementById('componentSearch').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        // Filter the components based on search term
+        const filtered = filteredComponents.filter(component => {
+            return component.name.toLowerCase().includes(searchTerm) || 
+                   component.description.toLowerCase().includes(searchTerm);
+        });
+        
+        // Update the table with filtered components
+        createComponentRows(filtered, currentCategory, '{{ current_config|tojson }}');
+    });
+    
+    // Sort components when a sort option is selected
+    document.querySelectorAll('.sort-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const sortBy = this.getAttribute('data-sort');
+            let sorted = [...filteredComponents];
+            
+            if (sortBy === 'name') {
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'price-asc') {
+                sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            } else if (sortBy === 'price-desc') {
+                sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            } else if (sortBy === 'performance') {
+                // Simple mock-sorting by performance (in a real app this would use actual benchmark data)
+                sorted.sort((a, b) => {
+                    // Create a simple mock score based on component attributes
+                    function getScore(component) {
+                        if (currentCategory === 'cpu') {
+                            return (component.cores * 5) + (parseFloat(component.base_clock) * 10);
+                        } else if (currentCategory === 'gpu') {
+                            return component.vram * 10;
+                        } else if (currentCategory === 'ram') {
+                            return component.speed;
+                        } else if (currentCategory === 'storage') {
+                            return component.type === 'SSD' ? 100 : 50;
+                        } else {
+                            return parseFloat(component.price); // Default to price for other categories
                         }
                     }
                     
-                    // Component name with link to details
-                    const nameCell = document.createElement('td');
-                    nameCell.innerHTML = `<a href="/component/${currentCategory}/${component.id}" class="component-name"><strong>${component.name}</strong></a>`;
-                    row.appendChild(nameCell);
-                    
-                    // Component description
-                    const descCell = document.createElement('td');
-                    descCell.textContent = component.description;
-                    row.appendChild(descCell);
-                    
-                    // Component specs
-                    const specsCell = document.createElement('td');
-                    let specsList = '';
-                    for (const [key, value] of Object.entries(component)) {
-                        if (!['id', 'name', 'description', 'price', 'image_url', 'specs'].includes(key)) {
-                            specsList += `<div><small><strong>${key.replace('_', ' ')}:</strong> ${value}</small></div>`;
-                        }
-                    }
-                    specsCell.innerHTML = specsList;
-                    row.appendChild(specsCell);
-                    
-                    // Component price
-                    const priceCell = document.createElement('td');
-                    priceCell.innerHTML = `<span class="text-success fw-bold">$${component.price}</span>`;
-                    row.appendChild(priceCell);
-                    
-                    // Action buttons
-                    const actionCell = document.createElement('td');
-                    
-                    // Create container for buttons
-                    const btnGroup = document.createElement('div');
-                    btnGroup.setAttribute('class', 'd-flex gap-2');
-                    
-                    // Details button
-                    const detailsLink = document.createElement('a');
-                    detailsLink.setAttribute('href', `/component/${currentCategory}/${component.id}`);
-                    detailsLink.setAttribute('class', 'btn btn-outline-primary btn-sm details-btn');
-                    detailsLink.innerHTML = '<i class="fas fa-info-circle me-1"></i>Details';
-                    btnGroup.appendChild(detailsLink);
-                    
-                    // Select button
-                    const selectForm = document.createElement('form');
-                    selectForm.setAttribute('method', 'post');
-                    selectForm.setAttribute('action', `/add/${currentCategory}/${component.id}`);
-                    
-                    const selectButton = document.createElement('button');
-                    selectButton.setAttribute('type', 'submit');
-                    selectButton.setAttribute('class', 'btn btn-primary btn-sm');
-                    selectButton.innerHTML = '<i class="fas fa-plus-circle me-1"></i>Select';
-                    
-                    selectForm.appendChild(selectButton);
-                    btnGroup.appendChild(selectForm);
-                    
-                    actionCell.appendChild(btnGroup);
-                    row.appendChild(actionCell);
-                    
-                    tableBody.appendChild(row);
+                    return getScore(b) - getScore(a); // Higher score first
                 });
             }
-            }, 800); // 800ms delay to show the loading animation
+            
+            // Update the table with sorted components
+            createComponentRows(sorted, currentCategory, '{{ current_config|tojson }}');
+            
+            // Add animation to indicate sorting happened
+            document.getElementById('componentTable').classList.add('sort-animation');
+            setTimeout(() => {
+                document.getElementById('componentTable').classList.remove('sort-animation');
+            }, 500);
         });
     });
     
@@ -602,7 +742,13 @@
     document.getElementById('componentTable').addEventListener('submit', function(e) {
         if (e.target.tagName === 'FORM') {
             const componentId = e.target.getAttribute('action').split('/').pop();
-            // You could add AJAX for compatibility check here if needed
+            // Add loading animation to the button
+            const button = e.target.querySelector('button');
+            if (button) {
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
+                button.classList.add('btn-loading');
+            }
         }
     });
     
