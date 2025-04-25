@@ -7,13 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 
-    // Component selection interface variables - initialize with error handling
-    const componentSelectionContainer = document.getElementById('componentSelectionContainer');
-    // Safely find component dropdown buttons (if they exist on this page)
-    const componentDropdownBtns = document.querySelectorAll('.component-dropdown-btn') || [];
-    const closeComponentSelectionBtn = document.getElementById('closeComponentSelection');
-    const cancelComponentSelectionBtn = document.getElementById('cancelComponentSelection');
-    // Component search is now split between mobile and desktop versions
+    // Skip component selection initialization since it's handled in builder.html
+    // The script in the HTML already sets up event listeners for:
+    // - componentSelectionContainer
+    // - component-dropdown-btn elements
+    // - closeComponentSelection button
+    // - cancelComponentSelection button
+    
+    // Only initialize these elements if we need them
     const componentSearchDesktop = document.getElementById('componentSearchDesktop');
     const componentSearchMobile = document.getElementById('componentSearchMobile');
     const sortOptions = document.querySelectorAll('.sort-option') || [];
@@ -142,34 +143,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Show component selection - only if we're on the builder page
-    if (window.location.pathname === '/builder' && componentSelectionContainer && componentDropdownBtns.length > 0) {
-        console.log('Setting up component selection buttons');
-        
-        componentDropdownBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                console.log('Component dropdown button clicked:', this.getAttribute('data-category'));
-                currentCategory = this.getAttribute('data-category');
-                componentSelectionContainer.classList.remove('d-none');
-                loadComponentsForCategory(currentCategory);
-            });
-        });
-    } else {
-        console.log('Skipping component dropdown button setup - not on builder page or elements missing');
-    }
-    
-    // Hide component selection
-    if (closeComponentSelectionBtn) {
-        closeComponentSelectionBtn.addEventListener('click', function() {
-            componentSelectionContainer.classList.add('d-none');
-        });
-    }
-    
-    if (cancelComponentSelectionBtn) {
-        cancelComponentSelectionBtn.addEventListener('click', function() {
-            componentSelectionContainer.classList.add('d-none');
-        });
-    }
+    // Component selection is handled by the inline JavaScript in builder.html
+    // No need to set up these event listeners here as they're already defined in the HTML file
+    console.log('Component selection buttons already set up in builder.html');
     
     // Component search functionality - for both mobile and desktop
     // Note: We already defined these variables above, so no need to redefine them here
