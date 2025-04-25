@@ -320,91 +320,93 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Modern Footer -->
-    <footer class="footer-modern mt-5">
-        <div class="footer-top py-5">
+    <!-- Chillblast-inspired Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
             <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-brand mb-4">
-                            <div class="d-flex align-items-center">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                        <div class="footer-brand">
+                            <div class="d-flex align-items-center mb-4">
                                 <div class="footer-logo-icon">
                                     <i class="fas fa-desktop"></i>
                                 </div>
-                                <h3 class="mb-0 ms-2">PC Builder</h3>
+                                <div class="ms-3">
+                                    <h5 class="footer-logo-text mb-0">PC Builder</h5>
+                                    <span class="footer-tagline">Custom Gaming Computers</span>
+                                </div>
+                            </div>
+                            <p class="footer-description">Build your perfect gaming PC with our advanced configuration tool. Expert support, quality components, and performance benchmarks to guide your decisions.</p>
+                            <div class="footer-socials">
+                                <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="footer-social-link"><i class="fab fa-discord"></i></a>
                             </div>
                         </div>
-                        <p class="footer-description">Build your dream PC with our easy-to-use PC configuration tool. Select compatible components and create a custom build that suits your needs and budget.</p>
-                        <div class="social-icons mt-4">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
-                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-6">
-                        <h5 class="footer-heading">Explore</h5>
+                    
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <h5 class="footer-title">PC Builder</h5>
                         <ul class="footer-links">
                             <li><a href="{{ url_for('index') }}">Home</a></li>
                             <li><a href="{{ url_for('builder') }}">PC Builder</a></li>
-                            <li><a href="{{ url_for('builds.list_builds') }}">Browse Builds</a></li>
                             <li><a href="{{ url_for('builds.prebuilt_configs') }}">Pre-built PCs</a></li>
+                            <li><a href="{{ url_for('builds.list_builds') }}">Community Builds</a></li>
                             <li><a href="{{ url_for('benchmarks') }}">Benchmarks</a></li>
                             {% if session.get('pc_config') %}
                             <li><a href="{{ url_for('summary') }}">View Configuration</a></li>
                             {% endif %}
                         </ul>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="footer-heading">Support</h5>
+                    
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <h5 class="footer-title">Support</h5>
                         <ul class="footer-links">
                             <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                             <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
                             <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
-                            <li><a href="{{ url_for('returns') }}">Return Policy</a></li>
+                            <li><a href="{{ url_for('returns') }}">Returns Policy</a></li>
+                            <li><a href="{{ url_for('contact') }}">Help Center</a></li>
                         </ul>
-                        <div class="contact-info mt-4">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>support@pcbuilder.com</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>(555) 123-4567</span>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="footer-heading">Newsletter</h5>
-                        <p class="mb-3">Subscribe to receive updates on new components, builds and special offers.</p>
-                        <div class="newsletter-form">
-                            <div class="input-group">
-                                <input type="email" class="form-control" placeholder="Your email address">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-paper-plane"></i>
-                                </button>
-                            </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="footer-title">Stay Updated</h5>
+                        <p class="footer-newsletter-text">Subscribe to our newsletter for the latest updates on new components, deals, and PC building tips.</p>
+                        <div class="footer-newsletter">
+                            <form class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Your email address" required>
+                                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="payment-methods mt-4">
-                            <span class="payment-icon"><i class="fab fa-cc-visa"></i></span>
-                            <span class="payment-icon"><i class="fab fa-cc-mastercard"></i></span>
-                            <span class="payment-icon"><i class="fab fa-cc-amex"></i></span>
-                            <span class="payment-icon"><i class="fab fa-cc-paypal"></i></span>
-                            <span class="payment-icon"><i class="fab fa-cc-apple-pay"></i></span>
+                        
+                        <div class="footer-badges mt-4">
+                            <div class="footer-badge-title mb-2">Secure Payments</div>
+                            <div class="footer-payment-methods">
+                                <i class="fab fa-cc-visa payment-icon"></i>
+                                <i class="fab fa-cc-mastercard payment-icon"></i>
+                                <i class="fab fa-cc-amex payment-icon"></i>
+                                <i class="fab fa-cc-paypal payment-icon"></i>
+                                <i class="fab fa-cc-apple-pay payment-icon"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom py-3">
+        
+        <div class="footer-bottom">
             <div class="container">
-                <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <p class="copyright mb-0">&copy; 2025 PC Builder. All rights reserved.</p>
-                    <div class="footer-bottom-links">
-                        <a href="{{ url_for('privacy') }}">Privacy</a>
-                        <a href="{{ url_for('terms') }}">Terms</a>
-                        <a href="{{ url_for('contact') }}">Contact</a>
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <div class="footer-copyright mb-3 mb-md-0">
+                        <p class="mb-0">&copy; 2025 PC Builder. All rights reserved.</p>
+                    </div>
+                    <div class="footer-disclaimer">
+                        <p class="mb-0 small">All product names, logos, and brands are property of their respective owners.</p>
                     </div>
                 </div>
             </div>
