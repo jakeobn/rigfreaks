@@ -379,4 +379,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+    
+    // Mobile summary panel functionality
+    const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
+    const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
+    const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
+    const closeMobileSummary = document.getElementById('closeMobileSummary');
+    
+    if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop) {
+        // Open mobile summary panel
+        mobileSummaryBtn.addEventListener('click', function() {
+            mobileSummaryPanel.classList.add('active');
+            mobileSummaryBackdrop.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling behind panel
+        });
+        
+        // Close mobile summary panel
+        function closeMobileSummaryPanel() {
+            mobileSummaryPanel.classList.remove('active');
+            mobileSummaryBackdrop.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable scrolling
+        }
+        
+        closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
+        mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
+        
+        // Handle swipe down to close
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        mobileSummaryPanel.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, false);
+        
+        mobileSummaryPanel.addEventListener('touchmove', function(e) {
+            touchEndY = e.touches[0].clientY;
+        }, false);
+        
+        mobileSummaryPanel.addEventListener('touchend', function() {
+            if (touchEndY - touchStartY > 100) { // Swipe down detected
+                closeMobileSummaryPanel();
+            }
+            touchStartY = 0;
+            touchEndY = 0;
+        }, false);
+    }
 });
