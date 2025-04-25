@@ -6,25 +6,34 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card mb-4 border-success">
-                <div class="card-body text-center p-5">
-                    <div class="mb-4">
-                        <i class="fas fa-check-circle text-success fa-5x"></i>
+            <div class="success-animation-container text-center mb-5">
+                <div class="success-checkmark">
+                    <div class="check-icon">
+                        <span class="icon-line line-tip"></span>
+                        <span class="icon-line line-long"></span>
+                        <div class="icon-circle"></div>
+                        <div class="icon-fix"></div>
                     </div>
-                    <h1 class="mb-3">Payment Successful!</h1>
-                    <p class="lead mb-4">Thank you for your order! Your payment has been processed successfully.</p>
-                    
-                    <div class="alert alert-success mb-4">
-                        <h5 class="alert-heading">Order #{{ order.order_number }}</h5>
-                        <p class="mb-0">A confirmation email has been sent to <strong>{{ order.email }}</strong>.</p>
-                    </div>
-                    
-                    <div class="d-grid gap-2 col-md-8 mx-auto">
-                        <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Homepage</a>
-                        {% if current_user.is_authenticated %}
-                            <a href="#" class="btn btn-outline-secondary">View Your Orders</a>
-                        {% endif %}
-                    </div>
+                </div>
+                <h1 class="display-4 mb-2">Thank You!</h1>
+                <p class="lead">Your order has been placed successfully</p>
+                <div class="order-number-badge">
+                    <span class="badge rounded-pill bg-primary px-4 py-2 fs-6">
+                        <i class="fas fa-receipt me-2"></i>Order #{{ order.order_number }}
+                    </span>
+                </div>
+                <p class="text-muted mt-3">
+                    A confirmation email has been sent to <strong>{{ order.email }}</strong>
+                </p>
+                <div class="d-grid gap-2 col-md-8 mx-auto mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home me-2"></i>Return to Homepage
+                    </a>
+                    {% if current_user.is_authenticated %}
+                        <a href="#" class="btn btn-outline-secondary">
+                            <i class="fas fa-box me-2"></i>View Your Orders
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             

@@ -396,38 +396,67 @@ def payment():
 
 @cart_bp.route('/payment/success')
 def payment_success():
-    """Payment success handler."""
-    payment_intent_id = request.args.get('payment_intent')
-    if not payment_intent_id:
+    """Payment success handler for Stripe Checkout."""
+    session_id = request.args.get('session_id')
+    if not session_id:
         flash("Invalid payment process. Please try again.", "danger")
         return redirect(url_for('cart.view_cart'))
     
-    # Find the order with this payment intent
-    order = Order.query.filter_by(payment_id=payment_intent_id).first()
-    if not order:
-        flash("Order not found. Please contact support.", "danger")
-        return redirect(url_for('index'))
-    
-    # Update order status
-    order.status = OrderStatus.PAID.value
-    db.session.commit()
-    
-    # Clear the cart and session data
-    cart = get_or_create_cart()
-    if cart:
-        cart.build_id = None
-        cart.build_config = None
-        cart.quantity = 0
-        cart.total_price = 0
+    try:
+        # Retrieve the checkout session to verify payment
+        checkout_session = stripe.checkout.Session.retrieve(session_id)
+        
+        # Find the order with this session id
+        order = Order.query.filter_by(payment_id=session_id).first()
+        if not order:
+            # If order is not found by session ID, try looking up by client reference ID
+            if checkout_session.client_reference_id:
+                order = Order.query.get(int(checkout_session.client_reference_id))
+        
+        if not order:
+            flash("Order not found. Please contact support.", "danger")
+            return redirect(url_for('index'))
+        
+        # Update order status
+        order.status = OrderStatus.PAID.value
+        
+        # If we have shipping details from Stripe, update order
+        if hasattr(checkout_session, 'shipping') and checkout_session.shipping:
+            shipping = checkout_session.shipping
+            if shipping.address:
+                order.address_line1 = shipping.address.line1
+                if hasattr(shipping.address, 'line2'):
+                    order.address_line2 = shipping.address.line2
+                order.city = shipping.address.city
+                order.state = shipping.address.state
+                order.postal_code = shipping.address.postal_code
+                order.country = shipping.address.country
+            
+            if shipping.name:
+                order.full_name = shipping.name
+        
         db.session.commit()
+        
+        # Clear the cart and session data
+        cart = get_or_create_cart()
+        if cart:
+            cart.build_id = None
+            cart.build_config = None
+            cart.quantity = 0
+            cart.total_price = 0
+            db.session.commit()
+        
+        if 'current_order_id' in session:
+            del session['current_order_id']
+        
+        if 'pc_config' in session:
+            session['pc_config'] = {}
+        
+        return render_template('cart/payment_success.html', order=order)
     
-    if 'current_order_id' in session:
-        del session['current_order_id']
-    
-    if 'pc_config' in session:
-        session['pc_config'] = {}
-    
-    return render_template('cart/payment_success.html', order=order)
+    except Exception as e:
+        flash(f"Error processing payment confirmation: {str(e)}", "danger")
+        return redirect(url_for('cart.view_cart'))
 
 
 @cart_bp.route('/payment/cancel')
@@ -464,10 +493,59 @@ def stripe_webhook():
             # Invalid signature or other error
             return jsonify({'error': 'Invalid signature'}), 400
     
-    # Handle the event
-    if event['type'] == 'payment_intent.succeeded':
+    # Handle different event types
+    event_type = event['type']
+    
+    # Handle checkout.session.completed event
+    if event_type == 'checkout.session.completed':
+        session = event['data']['object']
+        
+        # Extract order information from session
+        client_ref = session.get('client_reference_id')
+        session_id = session.get('id')
+        
+        if client_ref:
+            try:
+                # Find the order either by client reference or session ID
+                order = Order.query.get(int(client_ref))
+                
+                if not order and session_id:
+                    order = Order.query.filter_by(payment_id=session_id).first()
+                    
+                if order:
+                    # Update order status
+                    order.status = OrderStatus.PAID.value
+                    
+                    # If payment method details are available, record them
+                    if 'payment_intent' in session:
+                        order.payment_id = session['payment_intent']
+                    
+                    # Update shipping information if available
+                    if 'shipping' in session and session['shipping']:
+                        shipping = session['shipping']
+                        if 'address' in shipping:
+                            addr = shipping['address']
+                            order.address_line1 = addr.get('line1', '')
+                            order.address_line2 = addr.get('line2', '')
+                            order.city = addr.get('city', '')
+                            order.state = addr.get('state', '')
+                            order.postal_code = addr.get('postal_code', '')
+                            order.country = addr.get('country', '')
+                            
+                        if 'name' in shipping:
+                            order.full_name = shipping['name']
+                    
+                    db.session.commit()
+                    
+                    # Log order completion
+                    print(f"Order {order.order_number} was paid successfully via webhook")
+            except Exception as e:
+                print(f"Error processing checkout session webhook: {str(e)}")
+    
+    # Also handle the payment_intent.succeeded event for backward compatibility
+    elif event_type == 'payment_intent.succeeded':
         payment_intent = event['data']['object']
-        order_id = payment_intent['metadata'].get('order_id')
+        order_id = payment_intent.get('metadata', {}).get('order_id')
         
         if order_id:
             try:
@@ -475,7 +553,8 @@ def stripe_webhook():
                 if order:
                     order.status = OrderStatus.PAID.value
                     db.session.commit()
+                    print(f"Order {order.order_number} was updated via payment_intent webhook")
             except Exception as e:
-                print(f"Error updating order: {str(e)}")
+                print(f"Error updating order in payment_intent webhook: {str(e)}")
     
     return jsonify({'status': 'success'})
