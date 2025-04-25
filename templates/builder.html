@@ -1190,5 +1190,61 @@
             }
         });
     }
+    
+    // Initialize mobile summary panel functionality
+    const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
+    const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
+    const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
+    const closeMobileSummary = document.getElementById('closeMobileSummary');
+    
+    console.log('Initializing mobile panel in builder.html');
+    
+    if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
+        console.log('All mobile summary elements found in builder.html');
+        
+        // Open panel when the button is clicked
+        mobileSummaryBtn.addEventListener('click', function() {
+            console.log('Mobile summary button clicked');
+            mobileSummaryPanel.classList.add('active');
+            mobileSummaryBackdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Function to close the panel
+        function closeMobileSummaryPanel() {
+            console.log('Closing mobile summary panel');
+            mobileSummaryPanel.classList.remove('active');
+            mobileSummaryBackdrop.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close panel when X button is clicked
+        closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
+        
+        // Close panel when backdrop is clicked
+        mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
+        
+        // Setup swipe to close
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        mobileSummaryPanel.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        mobileSummaryPanel.addEventListener('touchmove', function(e) {
+            touchEndY = e.touches[0].clientY;
+        });
+        
+        mobileSummaryPanel.addEventListener('touchend', function() {
+            if (touchEndY - touchStartY > 100) {
+                closeMobileSummaryPanel();
+            }
+            touchStartY = 0;
+            touchEndY = 0;
+        });
+    } else {
+        console.error('One or more mobile summary elements not found');
+    }
 </script>
 {% endblock %}
