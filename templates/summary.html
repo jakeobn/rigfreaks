@@ -155,18 +155,20 @@
                         
                         <div class="d-grid gap-2 mt-4">
                             {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                            {% set missing_components = [] %}
+                            
+                            {% set missing = namespace(count=0, categories=[]) %}
                             {% for category in required_categories %}
                                 {% if category not in config %}
-                                    {% do missing_components.append(category) %}
+                                    {% set missing.count = missing.count + 1 %}
+                                    {% set _ = missing.categories.append(category.replace('_', ' ').capitalize()) %}
                                 {% endif %}
                             {% endfor %}
                             
-                            {% if missing_components|length > 0 %}
+                            {% if missing.count > 0 %}
                                 <div class="alert alert-warning">
                                     <h6 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Incomplete Configuration</h6>
                                     <p class="mb-0">Please add all required components before adding to cart.</p>
-                                    <p class="mb-0">Missing: {{ missing_components|map('replace', '_', ' ')|map('capitalize')|join(', ') }}</p>
+                                    <p class="mb-0">Missing: {{ missing.categories|join(', ') }}</p>
                                 </div>
                             {% else %}
                                 <form action="{{ url_for('cart.add_to_cart') }}" method="post">
