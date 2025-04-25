@@ -576,7 +576,7 @@
             // Action button
             const actionCell = document.createElement('td');
             const form = document.createElement('form');
-            form.setAttribute('action', `/add_component/${category}/${component.id}`);
+            form.setAttribute('action', `/add/${category}/${component.id}`);
             form.setAttribute('method', 'post');
             
             const button = document.createElement('button');
@@ -743,13 +743,22 @@
     if (componentTable) {
         componentTable.addEventListener('submit', function(e) {
             if (e.target.tagName === 'FORM') {
-                const componentId = e.target.getAttribute('action').split('/').pop();
-                // Add loading animation to the button
-                const button = e.target.querySelector('button');
-                if (button) {
-                    button.disabled = true;
-                    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
-                    button.classList.add('btn-loading');
+                // Extract component ID from URL safely
+                try {
+                    const urlParts = e.target.getAttribute('action').split('/');
+                    // If the URL format is /add/category/componentId, the component ID is the last part
+                    const componentId = urlParts[urlParts.length - 1];
+                    
+                    // Add loading animation to the button
+                    const button = e.target.querySelector('button');
+                    if (button) {
+                        button.disabled = true;
+                        button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
+                        button.classList.add('btn-loading');
+                    }
+                } catch (error) {
+                    console.error('Error processing component selection:', error);
+                    // Allow form submission to continue
                 }
             }
         });
