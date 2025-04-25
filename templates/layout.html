@@ -17,52 +17,76 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Top Notification Bar -->
-    <div class="top-notification-bar">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-none d-md-flex align-items-center">
-                    <span class="me-3"><i class="fas fa-check-circle text-success me-1"></i>Free Shipping</span>
-                    <span class="me-3"><i class="fas fa-shield-alt text-success me-1"></i>3-Year Warranty</span>
-                    <span><i class="fas fa-headset text-success me-1"></i>24/7 Support</span>
+    <!-- Modern Header -->
+    <header class="modern-header">
+        <!-- Top Bar with Announcement -->
+        <div class="announcement-bar">
+            <div class="container-fluid">
+                <div class="announcement-content">
+                    <div class="announcement-slider">
+                        <div class="announcement-item">
+                            <i class="fas fa-bolt text-warning"></i> 
+                            <span>Limited time: Free shipping on all orders</span>
+                        </div>
+                        <div class="announcement-item">
+                            <i class="fas fa-shield-alt text-info"></i> 
+                            <span>Every build includes a 3-year warranty</span>
+                        </div>
+                        <div class="announcement-item">
+                            <i class="fas fa-headset text-success"></i> 
+                            <span>24/7 technical support for all customers</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="top-links">
-                    <a href="{{ url_for('contact') }}" class="me-3"><i class="fas fa-phone-alt me-1"></i>Contact</a>
-                    <a href="{{ url_for('contact') }}"><i class="fas fa-question-circle me-1"></i>Support</a>
+                <div class="announcement-actions">
+                    <a href="{{ url_for('contact') }}" class="announcement-link">
+                        <i class="fas fa-phone-alt"></i>
+                        <span class="d-none d-sm-inline">Contact</span>
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="announcement-link">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="d-none d-sm-inline">Support</span>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Main Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand me-4" href="{{ url_for('index') }}">
-                <div class="d-flex align-items-center">
-                    <div class="brand-logo-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <div class="ms-2">
-                        <span class="brand-name">PC Builder</span>
-                        <span class="brand-tagline">Custom Gaming Computers</span>
-                    </div>
-                </div>
-            </a>
-            
-            <div class="d-flex d-lg-none ms-auto me-2">
-                <a href="{{ url_for('cart.view_cart') }}" class="nav-icon-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
-                    <div class="nav-icon-container">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge rounded-pill bg-primary nav-badge">0</span>
+        <!-- Main Navigation Bar -->
+        <nav class="navbar navbar-expand-lg modern-navbar">
+            <div class="container">
+                <!-- Logo -->
+                <a class="modern-brand" href="{{ url_for('index') }}">
+                    <div class="modern-logo-container">
+                        <div class="modern-logo">
+                            <div class="logo-glow"></div>
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="modern-brand-text">
+                            <span class="modern-brand-name">PC Builder</span>
+                            <span class="modern-brand-tagline">Custom Gaming Computers</span>
+                        </div>
                     </div>
                 </a>
-            </div>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
+                
+                <!-- Mobile Cart Icon -->
+                <div class="d-flex d-lg-none ms-auto me-2">
+                    <a href="{{ url_for('cart.view_cart') }}" class="modern-nav-icon {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                        <div class="icon-bubble">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge rounded-pill bg-primary icon-badge">0</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="modern-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                </button>
+                
+                <!-- Navigation Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto main-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -219,82 +243,151 @@
                     </li>
                 </ul>
                 
-                <div class="nav-utility d-none d-lg-flex">
-                    {% if session.get('pc_config') %}
-                    <div class="nav-utility-item">
-                        <a href="{{ url_for('summary') }}" class="nav-icon-link {% if request.path == url_for('summary') %}active{% endif %}">
-                            <div class="nav-icon-container">
-                                <i class="fas fa-desktop"></i>
+                <div class="modern-nav-actions d-none d-lg-flex">
+                    <!-- Search button -->
+                    <div class="modern-action-item">
+                        <button class="action-button" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
+                            <div class="action-icon">
+                                <i class="fas fa-search"></i>
                             </div>
-                            <span class="nav-icon-text">Your Build</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Current Build button -->
+                    {% if session.get('pc_config') %}
+                    <div class="modern-action-item">
+                        <a href="{{ url_for('summary') }}" class="action-button {% if request.path == url_for('summary') %}active{% endif %}">
+                            <div class="action-icon">
+                                <i class="fas fa-desktop"></i>
+                                <span class="action-indicator"></span>
+                            </div>
+                            <span class="action-label">Your Build</span>
                         </a>
                     </div>
                     {% endif %}
                     
-                    <div class="nav-utility-item">
-                        <a href="{{ url_for('cart.view_cart') }}" class="nav-icon-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
-                            <div class="nav-icon-container">
+                    <!-- Shopping Cart button -->
+                    <div class="modern-action-item">
+                        <a href="{{ url_for('cart.view_cart') }}" class="action-button {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                            <div class="action-icon">
                                 <i class="fas fa-shopping-cart"></i>
-                                <span class="badge rounded-pill bg-primary nav-badge">0</span>
+                                <span class="badge rounded-pill bg-primary action-badge">0</span>
                             </div>
-                            <span class="nav-icon-text">Cart</span>
+                            <span class="action-label">Cart</span>
                         </a>
                     </div>
                     
-                    <div class="nav-utility-item">
+                    <!-- Account button -->
+                    <div class="modern-action-item">
                         {% if 'user_id' in session %}
                         <div class="dropdown">
-                            <a class="nav-icon-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="nav-icon-container">
-                                    <i class="fas fa-user"></i>
+                            <button class="action-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="action-icon">
+                                    <i class="fas fa-user-circle"></i>
                                 </div>
-                                <span class="nav-icon-text">{{ session.get('username', 'Account') }}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}">My Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ url_for('builds.list_builds') }}">My Builds</a></li>
+                                <span class="action-label d-none d-xl-block">{{ session.get('username', 'Account') }}</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end modern-dropdown">
+                                <li class="dropdown-header">Hello, {{ session.get('username', 'User') }}!</li>
+                                <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}"><i class="fas fa-user me-2"></i>My Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('builds.list_builds') }}"><i class="fas fa-save me-2"></i>My Builds</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                                <li><a class="dropdown-item text-danger" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                             </ul>
                         </div>
                         {% else %}
-                        <a href="{{ url_for('auth.login') }}" class="nav-icon-link">
-                            <div class="nav-icon-container">
-                                <i class="fas fa-user"></i>
+                        <a href="{{ url_for('auth.login') }}" class="action-button">
+                            <div class="action-icon">
+                                <i class="fas fa-user-circle"></i>
                             </div>
-                            <span class="nav-icon-text">Login</span>
+                            <span class="action-label">Login</span>
                         </a>
                         {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Search Modal -->
+                <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" method="GET">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-end-0">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                        <input type="text" class="form-control border-start-0" placeholder="Search for components, builds, and more...">
+                                        <button class="btn btn-primary" type="submit">Search</button>
+                                    </div>
+                                </form>
+                                <div class="mt-3">
+                                    <h6 class="fw-bold">Popular searches:</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <a href="#" class="badge rounded-pill bg-secondary text-decoration-none">RTX 4090</a>
+                                        <a href="#" class="badge rounded-pill bg-secondary text-decoration-none">Intel Core i9</a>
+                                        <a href="#" class="badge rounded-pill bg-secondary text-decoration-none">AMD Ryzen 9</a>
+                                        <a href="#" class="badge rounded-pill bg-secondary text-decoration-none">Gaming PC</a>
+                                        <a href="#" class="badge rounded-pill bg-secondary text-decoration-none">Mini ITX</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
     
-    <!-- Mobile Menu Utility Links (shown in collapsed menu) -->
-    <div class="d-lg-none mobile-utility-nav">
-        <div class="container">
-            <div class="d-flex justify-content-between">
+    <!-- Mobile Menu Actions Bar -->
+    <div class="d-lg-none mobile-actions-bar">
+        <div class="container-fluid">
+            <div class="mobile-actions-row">
                 {% if 'user_id' in session %}
-                <a href="{{ url_for('auth.profile') }}" class="mobile-utility-link">
-                    <i class="fas fa-user-circle"></i>
-                    <span>{{ session.get('username', 'Account') }}</span>
+                <a href="{{ url_for('auth.profile') }}" class="mobile-action-btn">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <span class="mobile-action-label">Profile</span>
+                </a>
+                <a href="{{ url_for('auth.logout') }}" class="mobile-action-btn">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <span class="mobile-action-label">Logout</span>
                 </a>
                 {% else %}
-                <a href="{{ url_for('auth.login') }}" class="mobile-utility-link">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <span>Login</span>
+                <a href="{{ url_for('auth.login') }}" class="mobile-action-btn">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <span class="mobile-action-label">Login</span>
                 </a>
-                <a href="{{ url_for('auth.register') }}" class="mobile-utility-link">
-                    <i class="fas fa-user-plus"></i>
-                    <span>Register</span>
+                <a href="{{ url_for('auth.register') }}" class="mobile-action-btn">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <span class="mobile-action-label">Register</span>
                 </a>
                 {% endif %}
                 
+                <button type="button" class="mobile-action-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="mobile-action-label">Search</span>
+                </button>
+                
                 {% if session.get('pc_config') %}
-                <a href="{{ url_for('summary') }}" class="mobile-utility-link">
-                    <i class="fas fa-desktop"></i>
-                    <span>Your Build</span>
+                <a href="{{ url_for('summary') }}" class="mobile-action-btn">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-desktop"></i>
+                        <span class="mobile-action-indicator"></span>
+                    </div>
+                    <span class="mobile-action-label">Your Build</span>
                 </a>
                 {% endif %}
             </div>
@@ -418,6 +511,66 @@
     
     <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='js/pc_builder.js') }}"></script>
+    
+    <!-- Header Scroll Effect Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to handle navbar scrolling effect
+            function handleNavbarScroll() {
+                const navbar = document.querySelector('.modern-navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleNavbarScroll);
+            
+            // Initialize announcement slider
+            const announcementSlider = document.querySelector('.announcement-slider');
+            if (announcementSlider) {
+                setInterval(() => {
+                    const firstItem = announcementSlider.firstElementChild;
+                    announcementSlider.style.transition = 'transform 0.5s ease-in-out';
+                    announcementSlider.style.transform = 'translateX(-33.33%)';
+                    
+                    setTimeout(() => {
+                        announcementSlider.style.transition = 'none';
+                        announcementSlider.appendChild(firstItem);
+                        announcementSlider.style.transform = 'translateX(0)';
+                    }, 500);
+                }, 5000);
+            }
+            
+            // Fix for mobile actions bar spacing
+            const mobileActionsBar = document.querySelector('.mobile-actions-bar');
+            if (mobileActionsBar) {
+                document.body.style.paddingBottom = mobileActionsBar.offsetHeight + 'px';
+            }
+            
+            // Handle mobile toggler animation
+            const modernToggler = document.querySelector('.modern-toggler');
+            if (modernToggler) {
+                modernToggler.addEventListener('click', function() {
+                    // Toggle classes based on aria-expanded state
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    if (!isExpanded) {
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                
+                // Reset aria-expanded when collapsed
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse) {
+                    navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+                        modernToggler.setAttribute('aria-expanded', 'false');
+                    });
+                }
+            }
+        });
+    </script>
     
     {% block extra_js %}{% endblock %}
 </body>
