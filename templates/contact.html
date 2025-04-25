@@ -40,27 +40,27 @@
                 <div class="card-body p-lg-5">
                     <h3 class="card-title mb-4">Send Us a Message</h3>
                     
-                    <form>
+                    <form method="POST" action="{{ url_for('contact') }}">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="name" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                             </div>
                         </div>
                         
                         <div class="mb-3">
                             <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" placeholder="What's this about?">
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="What's this about?">
                         </div>
                         
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
-                            <select class="form-select" id="category">
-                                <option selected>Select a category</option>
+                            <select class="form-select" id="category" name="category">
+                                <option selected value="">Select a category</option>
                                 <option value="technical">Technical Support</option>
                                 <option value="sales">Sales Inquiry</option>
                                 <option value="warranty">Warranty Claim</option>
@@ -71,11 +71,11 @@
                         
                         <div class="mb-4">
                             <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Tell us how we can help..." required></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell us how we can help..." required></textarea>
                         </div>
                         
                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="agreement" required>
+                            <input class="form-check-input" type="checkbox" value="1" id="agreement" name="agreement" required>
                             <label class="form-check-label" for="agreement">
                                 I agree to the <a href="{{ url_for('privacy') }}">Privacy Policy</a> and consent to being contacted regarding my inquiry.
                             </label>

@@ -1,7 +1,7 @@
 import os
 import logging
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
-from models import db, User, Build, PreBuiltConfig
+from models import db, User, Build, PreBuiltConfig, ContactMessage
 from werkzeug.middleware.proxy_fix import ProxyFix
 from utils import load_component_data, load_compatibility_rules, check_compatibility, calculate_total_price
 
@@ -168,8 +168,48 @@ def reset_configuration():
     
     return redirect(url_for('builder'))
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        category = request.form.get('category')
+        message = request.form.get('message')
+        
+        # Validate required fields
+        if not all([name, email, message]):
+            flash('Please fill in all required fields.', 'danger')
+            return render_template('contact.html')
+            
+        try:
+            # Create new contact message
+            contact_message = ContactMessage(
+                name=name,
+                email=email,
+                subject=subject,
+                category=category,
+                message=message,
+                user_id=session.get('user_id')  # Link to user if logged in
+            )
+            
+            # Save to database
+            db.session.add(contact_message)
+            db.session.commit()
+            
+            # Log the contact submission
+            app.logger.info(f'Contact form submission saved: ID {contact_message.id} from {name} ({email})')
+            
+            # Show success message
+            flash('Thank you for contacting us! We will get back to you shortly.', 'success')
+        except Exception as e:
+            # Log the error and show error message
+            app.logger.error(f'Error saving contact form: {str(e)}')
+            db.session.rollback()
+            flash('There was an error processing your request. Please try again later.', 'danger')
+            
+        return redirect(url_for('contact'))
+        
     return render_template('contact.html')
 
 @app.route('/terms')

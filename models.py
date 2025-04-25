@@ -64,3 +64,20 @@ class PreBuiltConfig(db.Model):
     
     def __repr__(self):
         return f'<PreBuiltConfig {self.name}>'
+
+class ContactMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    subject = db.Column(db.String(200), nullable=True)
+    category = db.Column(db.String(50), nullable=True)
+    message = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    
+    # Status tracking
+    is_read = db.Column(db.Boolean, default=False)
+    is_replied = db.Column(db.Boolean, default=False)
+    
+    def __repr__(self):
+        return f'<ContactMessage {self.id} - {self.email}>'
