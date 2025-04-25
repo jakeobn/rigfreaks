@@ -419,6 +419,255 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Benchmark Results -->
+                        <h5 class="border-bottom pb-2 mb-3 mt-4">Benchmark Results</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <span>{{ 'Single-Core Performance' if category == 'cpu' else 'Gaming Performance (1080p)' }}</span>
+                                        <span class="badge bg-primary">Relative Score</span>
+                                    </div>
+                                    <div class="card-body">
+                                        {% if category == 'cpu' %}
+                                            {% set benchmark_score = (component.boost_clock|float|replace(' GHz', '') * 100)|int %}
+                                            {% set benchmark_max = 550 %}
+                                            {% set percentage = ((benchmark_score / benchmark_max) * 100)|round|int %}
+                                        {% else %}
+                                            {% set memory_score = component.memory * 20 %}
+                                            {% set clock_score = component.boost_clock|float|replace(' GHz', '') * 100 %}
+                                            {% set benchmark_score = (memory_score + clock_score)|int %}
+                                            {% set benchmark_max = 600 %}
+                                            {% set percentage = ((benchmark_score / benchmark_max) * 100)|round|int %}
+                                        {% endif %}
+                                        
+                                        <div class="progress mb-3" style="height: 30px;">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ percentage }}%" 
+                                                 aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                                {{ benchmark_score }} points
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between small text-muted">
+                                            <div>Entry Level</div>
+                                            <div>Mid-Range</div>
+                                            <div>High-End</div>
+                                        </div>
+                                        
+                                        <div class="benchmark-details mt-4">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="border-bottom mb-2 pb-1">
+                                                        <strong>{{ 'Geekbench 5' if category == 'cpu' else '3DMark Time Spy' }}</strong>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Score:</span>
+                                                        <span class="fw-bold">{{ benchmark_score }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="border-bottom mb-2 pb-1">
+                                                        <strong>{{ 'Cinebench R23' if category == 'cpu' else 'Unigine Heaven' }}</strong>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Score:</span>
+                                                        <span class="fw-bold">{{ (benchmark_score * 1.2)|int }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <span>{{ 'Multi-Core Performance' if category == 'cpu' else 'Gaming Performance (4K)' }}</span>
+                                        <span class="badge bg-primary">Relative Score</span>
+                                    </div>
+                                    <div class="card-body">
+                                        {% if category == 'cpu' %}
+                                            {% set multi_score = (component.cores * component.threads * component.boost_clock|float|replace(' GHz', '') * 10)|int %}
+                                            {% set multi_max = 25000 %}
+                                            {% set multi_percentage = ((multi_score / multi_max) * 100)|round|int %}
+                                        {% else %}
+                                            {% set memory_score = component.memory * 40 %}
+                                            {% set clock_score = component.boost_clock|float|replace(' GHz', '') * 150 %}
+                                            {% set multi_score = (memory_score + clock_score)|int %}
+                                            {% set multi_max = 1500 %}
+                                            {% set multi_percentage = ((multi_score / multi_max) * 100)|round|int %}
+                                        {% endif %}
+                                        
+                                        <div class="progress mb-3" style="height: 30px;">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ multi_percentage }}%" 
+                                                 aria-valuenow="{{ multi_percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                                {{ multi_score }} points
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between small text-muted">
+                                            <div>Entry Level</div>
+                                            <div>Mid-Range</div>
+                                            <div>High-End</div>
+                                        </div>
+                                        
+                                        <div class="benchmark-details mt-4">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="border-bottom mb-2 pb-1">
+                                                        <strong>{{ 'Geekbench 5 Multi' if category == 'cpu' else '3DMark Fire Strike Ultra' }}</strong>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Score:</span>
+                                                        <span class="fw-bold">{{ multi_score }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="border-bottom mb-2 pb-1">
+                                                        <strong>{{ 'Cinebench R23 Multi' if category == 'cpu' else 'VRMark' }}</strong>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Score:</span>
+                                                        <span class="fw-bold">{{ (multi_score * 0.8)|int }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- In-game FPS Estimates for GPUs -->
+                            {% if category == 'gpu' %}
+                            <div class="col-12 mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0">Estimated Gaming Performance (FPS)</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Game</th>
+                                                        <th class="text-center">1080p</th>
+                                                        <th class="text-center">1440p</th>
+                                                        <th class="text-center">4K</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% set game_titles = ['Cyberpunk 2077', 'Fortnite', 'Call of Duty: Warzone', 'Red Dead Redemption 2', 'Microsoft Flight Simulator'] %}
+                                                    
+                                                    {% for game in game_titles %}
+                                                        <tr>
+                                                            <td>{{ game }}</td>
+                                                            {% if component.memory >= 20 %}
+                                                                <td class="text-center">{{ (160 + loop.index * 5)|int }}</td>
+                                                                <td class="text-center">{{ (120 + loop.index * 3)|int }}</td>
+                                                                <td class="text-center">{{ (70 + loop.index * 2)|int }}</td>
+                                                            {% elif component.memory >= 12 %}
+                                                                <td class="text-center">{{ (130 + loop.index * 4)|int }}</td>
+                                                                <td class="text-center">{{ (90 + loop.index * 2)|int }}</td>
+                                                                <td class="text-center">{{ (45 + loop.index)|int }}</td>
+                                                            {% elif component.memory >= 8 %}
+                                                                <td class="text-center">{{ (100 + loop.index * 3)|int }}</td>
+                                                                <td class="text-center">{{ (65 + loop.index)|int }}</td>
+                                                                <td class="text-center">{{ (30 + loop.index / 2)|int }}</td>
+                                                            {% else %}
+                                                                <td class="text-center">{{ (70 + loop.index * 2)|int }}</td>
+                                                                <td class="text-center">{{ (40 + loop.index)|int }}</td>
+                                                                <td class="text-center">{{ (20 + loop.index / 3)|int }}</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="small text-muted mt-2">
+                                            <i class="fas fa-info-circle me-1"></i>
+                                            Estimated FPS values with High/Ultra settings. Actual performance may vary depending on system configuration.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            <!-- Thermal Performance for CPUs -->
+                            {% if category == 'cpu' %}
+                            <div class="col-12 mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0">Thermal Performance</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6 class="mb-3">Temperature Estimates</h6>
+                                                <table class="table table-sm table-bordered">
+                                                    <thead class="bg-dark">
+                                                        <tr>
+                                                            <th>Cooling Solution</th>
+                                                            <th class="text-center">Idle</th>
+                                                            <th class="text-center">Load</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Stock Cooler</td>
+                                                            <td class="text-center">{{ (30 + (component.tdp / 20))|int }}°C</td>
+                                                            <td class="text-center">{{ (65 + (component.tdp / 10))|int }}°C</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mid-Range Air Cooler</td>
+                                                            <td class="text-center">{{ (28 + (component.tdp / 25))|int }}°C</td>
+                                                            <td class="text-center">{{ (55 + (component.tdp / 15))|int }}°C</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>High-End Air / AIO</td>
+                                                            <td class="text-center">{{ (26 + (component.tdp / 30))|int }}°C</td>
+                                                            <td class="text-center">{{ (45 + (component.tdp / 20))|int }}°C</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="mb-3">Power Consumption</h6>
+                                                <div class="mb-4">
+                                                    <div class="d-flex justify-content-between mb-1">
+                                                        <span>Idle</span>
+                                                        <span>{{ (component.tdp / 10)|int }} Watts</span>
+                                                    </div>
+                                                    <div class="progress" style="height: 15px;">
+                                                        <div class="progress-bar bg-success" style="width: {{ ((component.tdp / 10) / component.tdp * 100)|int }}%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <div class="d-flex justify-content-between mb-1">
+                                                        <span>Average Load</span>
+                                                        <span>{{ (component.tdp * 0.7)|int }} Watts</span>
+                                                    </div>
+                                                    <div class="progress" style="height: 15px;">
+                                                        <div class="progress-bar bg-warning" style="width: {{ ((component.tdp * 0.7) / component.tdp * 100)|int }}%"></div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="d-flex justify-content-between mb-1">
+                                                        <span>Maximum Load</span>
+                                                        <span>{{ component.tdp }} Watts</span>
+                                                    </div>
+                                                    <div class="progress" style="height: 15px;">
+                                                        <div class="progress-bar bg-danger" style="width: 100%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
                     {% endif %}
                     
@@ -430,24 +679,266 @@
                                 {% if category == 'cpu' %}
                                     <p><strong>Socket Compatibility:</strong> This CPU requires a {{ component.socket }} socket motherboard.</p>
                                     <p><strong>Cooling Requirements:</strong> For optimal performance, we recommend a {{ 'high-end' if component.tdp > 150 else 'moderate' if component.tdp > 95 else 'standard' }} CPU cooler.</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Motherboard Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ component.socket }} Socket Motherboards
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>Other Socket Motherboards
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>RAM Considerations</h6>
+                                            <div class="list-group">
+                                                {% if 'Intel' in component.brand %}
+                                                    <div class="list-group-item list-group-item-success">
+                                                        <i class="fas fa-check-circle me-2"></i>DDR4/DDR5 (Depending on Motherboard)
+                                                    </div>
+                                                {% else %}
+                                                    <div class="list-group-item list-group-item-success">
+                                                        <i class="fas fa-check-circle me-2"></i>DDR5 (for AM5 socket)
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 {% elif category == 'motherboard' %}
                                     <p><strong>CPU Compatibility:</strong> This motherboard supports {{ component.socket }} socket processors.</p>
                                     <p><strong>Memory Compatibility:</strong> Compatible with {{ component.ram_type }} memory up to {{ component.max_ram }}GB total.</p>
                                     <p><strong>Form Factor:</strong> Requires a case that supports {{ component.form_factor }} form factor.</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>CPU Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ component.socket }} Socket CPUs
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>Other Socket CPUs
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Case Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ component.form_factor }} Cases or Larger
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>Smaller Form Factor Cases
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 {% elif category == 'ram' %}
                                     <p><strong>Motherboard Compatibility:</strong> This memory is compatible with motherboards supporting {{ component.type }}.</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Motherboard Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ component.type }} Compatible Motherboards
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>{{ 'DDR4' if component.type == 'DDR5' else 'DDR5' }} Motherboards
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>CPU Considerations</h6>
+                                            <div class="list-group">
+                                                {% if component.type == 'DDR5' %}
+                                                    <div class="list-group-item list-group-item-success">
+                                                        <i class="fas fa-check-circle me-2"></i>Intel 12th Gen+ or AMD Ryzen 7000+
+                                                    </div>
+                                                {% else %}
+                                                    <div class="list-group-item list-group-item-success">
+                                                        <i class="fas fa-check-circle me-2"></i>Most Current & Previous Gen CPUs
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 {% elif category == 'gpu' %}
                                     <p><strong>Power Requirements:</strong> Requires a power supply with {{ component.power_connectors }} power connectors and sufficient wattage (minimum {{ component.tdp + 150 }}W recommended).</p>
                                     <p><strong>Size Considerations:</strong> Graphics card length is {{ component.length }}mm, ensure your case has sufficient clearance.</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Power Supply Requirements</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ component.tdp + 150 }}W or higher PSU
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>Less than {{ component.tdp + 150 }}W PSU
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Case Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>Cases with {{ component.length }}mm+ GPU clearance
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>Smaller cases with limited clearance
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 {% elif category == 'storage' %}
                                     <p><strong>Interface Compatibility:</strong> Requires a motherboard with {{ component.interface }} connectivity.</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Motherboard Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>Motherboards with {{ component.interface }} ports
+                                                </div>
+                                                {% if 'PCIe' in component.interface %}
+                                                    <div class="list-group-item list-group-item-warning">
+                                                        <i class="fas fa-exclamation-circle me-2"></i>Older PCIe versions (may run at reduced speeds)
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Form Factor Considerations</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ component.form_factor }} slots
+                                                </div>
+                                                {% if component.form_factor == 'M.2 2280' %}
+                                                    <div class="list-group-item list-group-item-info">
+                                                        <i class="fas fa-info-circle me-2"></i>Most modern motherboards support this size
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 {% elif category == 'power_supply' %}
                                     <p><strong>Connectors Available:</strong> {{ component.specs.get('Connectors', 'Standard connectors') }}</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>System Power Requirements</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-success">
+                                                    <i class="fas fa-check-circle me-2"></i>Systems requiring up to {{ component.wattage * 0.8 }}W
+                                                </div>
+                                                <div class="list-group-item list-group-item-danger">
+                                                    <i class="fas fa-times-circle me-2"></i>Systems requiring more than {{ component.wattage * 0.8 }}W
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Case Compatibility</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-info">
+                                                    <i class="fas fa-info-circle me-2"></i>{{ 'Standard ATX PSU Mount' if component.wattage < 1000 else 'Check case for high-wattage PSU clearance' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 {% elif category == 'case' %}
                                     <p><strong>Motherboard Support:</strong> {{ component.specs.get('Motherboard Support', component.form_factor) }}</p>
                                     <p><strong>Maximum GPU Length:</strong> {{ component.specs.get('Maximum GPU Length', 'Standard length') }}</p>
                                     <p><strong>Maximum CPU Cooler Height:</strong> {{ component.specs.get('Maximum CPU Cooler Height', 'Standard height') }}</p>
+                                    
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Motherboard Compatibility</h6>
+                                            <div class="list-group">
+                                                {% for supported in component.specs.get('Motherboard Support', component.form_factor).split(', ') %}
+                                                    <div class="list-group-item list-group-item-success">
+                                                        <i class="fas fa-check-circle me-2"></i>{{ supported }}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <h6>Component Clearance</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-info">
+                                                    <i class="fas fa-info-circle me-2"></i>GPU Length: Up to {{ component.specs.get('Maximum GPU Length', '300mm') }}
+                                                </div>
+                                                <div class="list-group-item list-group-item-info">
+                                                    <i class="fas fa-info-circle me-2"></i>CPU Cooler: Up to {{ component.specs.get('Maximum CPU Cooler Height', '160mm') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Historical Price Trends (Simulated) -->
+                    <div class="price-history mt-4">
+                        <h5 class="border-bottom pb-2 mb-3">Price History</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-muted mb-3">Price tracking over the past 6 months</p>
+                                
+                                <div class="price-chart">
+                                    <div class="chart-container" style="height: 200px; position: relative;">
+                                        <div class="chart-bars">
+                                            {% set current_price = component.price %}
+                                            {% set months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'] %}
+                                            
+                                            {% set prices = [] %}
+                                            {% if category in ['cpu', 'gpu'] %}
+                                                {% set prices = [current_price * 1.08, current_price * 1.05, current_price * 1.02, current_price * 0.99, current_price * 0.98, current_price, current_price] %}
+                                            {% elif category in ['ram', 'storage'] %}
+                                                {% set prices = [current_price * 0.95, current_price * 0.98, current_price * 1.02, current_price * 1.05, current_price * 1.02, current_price * 1.01, current_price] %}
+                                            {% else %}
+                                                {% set prices = [current_price * 1.02, current_price * 1.01, current_price, current_price * 1.01, current_price * 0.99, current_price * 0.98, current_price] %}
+                                            {% endif %}
+                                            
+                                            <div class="d-flex justify-content-between align-items-end h-100">
+                                                {% for price in prices %}
+                                                    {% set percent = ((price / (current_price * 1.1)) * 100)|round|int %}
+                                                    <div class="chart-bar-container text-center" style="width: 14%;">
+                                                        <div class="chart-label small text-muted">{{ months[loop.index0] }}</div>
+                                                        <div class="chart-bar bg-primary" style="height: {{ percent }}%;"></div>
+                                                        <div class="chart-value small">${{ price|round(2) }}</div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-analysis mt-3">
+                                    {% if component.price == prices[-2] %}
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>Price has remained stable over the past month.
+                                        </div>
+                                    {% elif component.price > prices[-2] %}
+                                        <div class="alert alert-warning">
+                                            <i class="fas fa-arrow-up me-2"></i>Price has increased by ${{ (component.price - prices[-2])|round(2) }} in the past month.
+                                        </div>
+                                    {% else %}
+                                        <div class="alert alert-success">
+                                            <i class="fas fa-arrow-down me-2"></i>Price has decreased by ${{ (prices[-2] - component.price)|round(2) }} in the past month.
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
