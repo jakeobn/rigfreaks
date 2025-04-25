@@ -956,3 +956,79 @@
     </div>
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show loading animation initially
+        const loadingContainer = document.getElementById('detail-loading-container');
+        const contentContainer = document.getElementById('component-detail-content');
+        
+        // Initially hide component details
+        contentContainer.style.opacity = '0';
+        contentContainer.style.visibility = 'hidden';
+        
+        // Show loading animation
+        loadingContainer.style.display = 'block';
+        
+        // Simulate loading delay
+        setTimeout(() => {
+            // Hide loading animation
+            loadingContainer.style.display = 'none';
+            
+            // Show component details with fade-in effect
+            contentContainer.style.transition = 'opacity 0.5s ease';
+            contentContainer.style.visibility = 'visible';
+            contentContainer.style.opacity = '1';
+            
+            // Animate the feature cards with staggered effect
+            const featureCards = document.querySelectorAll('.key-feature');
+            featureCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 70)); // Staggered delay
+            });
+            
+            // Animate spec items with fade-in effect
+            const specItems = document.querySelectorAll('.spec-item');
+            specItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transition = 'opacity 0.3s ease';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                }, 500 + (index * 30)); // Start after feature cards with staggered delay
+            });
+        }, 1000); // 1 second loading animation
+        
+        // Handle select/add button loading animation
+        const selectForm = document.getElementById('detail-select-form');
+        if (selectForm) {
+            selectForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const btn = document.getElementById('detail-select-btn');
+                const btnText = btn.querySelector('.btn-text');
+                const originalText = btnText.textContent;
+                const originalIcon = btn.querySelector('i').className;
+                
+                // Add loading state
+                btn.classList.add('btn-loading');
+                btn.disabled = true;
+                btnText.textContent = 'Processing...';
+                btn.querySelector('i').className = 'fas fa-spinner fa-spin';
+                
+                // Submit the form after a short delay
+                setTimeout(() => {
+                    this.submit();
+                }, 800);
+            });
+        }
+    });
+</script>
+{% endblock %}

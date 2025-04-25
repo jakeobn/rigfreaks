@@ -3,7 +3,15 @@
 {% block title %}Configuration Summary{% endblock %}
 
 {% block content %}
-<div class="container">
+<!-- Loading animation container -->
+<div id="summary-loading-container" class="text-center p-5" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Loading build summary...</p>
+</div>
+
+<div class="container" id="summary-content">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>PC Build Summary</h1>
         <a href="{{ url_for('builder') }}" class="btn btn-outline-secondary">
@@ -231,4 +239,88 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show loading animation initially
+        const loadingContainer = document.getElementById('summary-loading-container');
+        const contentContainer = document.getElementById('summary-content');
+        
+        // Initially hide content
+        contentContainer.style.opacity = '0';
+        contentContainer.style.visibility = 'hidden';
+        
+        // Show loading animation
+        loadingContainer.style.display = 'block';
+        
+        // Simulate loading delay
+        setTimeout(() => {
+            // Hide loading animation
+            loadingContainer.style.display = 'none';
+            
+            // Show content with fade-in effect
+            contentContainer.style.transition = 'opacity 0.5s ease';
+            contentContainer.style.visibility = 'visible';
+            contentContainer.style.opacity = '1';
+            
+            // Animate component sections with staggered effect
+            const sections = document.querySelectorAll('.summary-section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 200 + (index * 150)); // Staggered delay
+            });
+            
+            // Animate performance bars if they exist
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach((bar, index) => {
+                const finalWidth = bar.style.width;
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s ease-out';
+                    bar.style.width = finalWidth;
+                }, 1000 + (index * 200)); // Start after sections with staggered delay
+            });
+            
+            // Add loading animation to form buttons
+            const resetForm = document.querySelector('form[action*="reset_configuration"]');
+            if (resetForm) {
+                resetForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const btn = this.querySelector('button');
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Resetting...';
+                    btn.disabled = true;
+                    btn.classList.add('btn-loading');
+                    
+                    // Submit form after a short delay
+                    setTimeout(() => {
+                        this.submit();
+                    }, 800);
+                });
+            }
+            
+            // Add hover effect to component sections
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
+                });
+                
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '';
+                });
+            });
+        }, 1000); // 1 second loading animation
+    });
+</script>
 {% endblock %}
