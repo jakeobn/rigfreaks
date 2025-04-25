@@ -2,6 +2,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 
+# Initialize SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -11,16 +12,15 @@ class User(db.Model):
     password_hash = db.Column(db.String(256))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     builds = db.relationship('Build', backref='user', lazy='dynamic')
-
+    
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
-
+    
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
+    
     def __repr__(self):
         return f'<User {self.username}>'
-
 
 class Build(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -32,7 +32,7 @@ class Build(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     total_price = db.Column(db.Float, default=0.0)
     
-    # Store the component IDs (references to the JSON data)
+    # Component IDs (foreign keys to components in the JSON data)
     cpu_id = db.Column(db.String(20), nullable=True)
     motherboard_id = db.Column(db.String(20), nullable=True)
     ram_id = db.Column(db.String(20), nullable=True)
@@ -45,7 +45,6 @@ class Build(db.Model):
     def __repr__(self):
         return f'<Build {self.name}>'
 
-
 class PreBuiltConfig(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -53,7 +52,7 @@ class PreBuiltConfig(db.Model):
     category = db.Column(db.String(50), nullable=False)  # e.g., gaming, productivity, budget
     price = db.Column(db.Float, default=0.0)
     
-    # Store the component IDs (references to the JSON data)
+    # Component IDs (foreign keys to components in the JSON data)
     cpu_id = db.Column(db.String(20), nullable=True)
     motherboard_id = db.Column(db.String(20), nullable=True)
     ram_id = db.Column(db.String(20), nullable=True)

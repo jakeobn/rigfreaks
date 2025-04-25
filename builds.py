@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session, jsonify
 from models import db, Build, PreBuiltConfig
-from app import load_component_data, check_compatibility, calculate_total_price
+from utils import load_component_data, check_compatibility, calculate_total_price
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length
