@@ -43,32 +43,21 @@
                     </div>
                 </div>
                 
+                <!-- New simpler component list layout that'll be more reliable for scrolling -->
                 <div class="modal-body p-0">
-                    <div class="table-responsive" style="max-height: calc(100vh - 250px); overflow-y: auto;">
-                        <table class="table table-hover mb-0" id="componentTable">
-                            <thead>
-                                <tr>
-                                    <th width="30%">Name</th>
-                                    <th width="30%">Specifications</th>
-                                    <th width="20%">Performance</th>
-                                    <th width="10%">Price</th>
-                                    <th width="10%">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Component rows will be injected here via JavaScript -->
-                                <tr>
-                                    <td colspan="5" class="text-center py-5">
-                                        <div class="loading-animation">
-                                            <div class="spinner-border text-primary" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                            <p class="mt-3">Loading components...</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div id="componentScrollContainer" style="max-height: 60vh; overflow-y: auto; padding: 0 15px;">
+                        <div id="componentCardContainer" class="py-3">
+                            <!-- Loading placeholder -->
+                            <div class="text-center py-5" id="component-loading">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3">Loading components...</p>
+                            </div>
+                            
+                            <!-- Component cards will be injected here -->
+                            <div id="componentCardsWrapper"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -481,140 +470,116 @@
         }
     };
     
-    // Function to create component rows for table
+    // Function to create component cards instead of table rows
     function createComponentRows(components, category, currentConfig) {
-        const tableBody = document.getElementById('componentTable').querySelector('tbody');
-        tableBody.innerHTML = '';
+        const cardContainer = document.getElementById('componentCardsWrapper');
+        const loadingElement = document.getElementById('component-loading');
         
-        if (!components || components.length === 0) {
-            const emptyRow = document.createElement('tr');
-            const emptyCell = document.createElement('td');
-            emptyCell.setAttribute('colspan', '5');
-            emptyCell.classList.add('text-center', 'py-5');
-            emptyCell.innerHTML = `
-                <div class="empty-state-icon mb-3">
-                    <i class="fas fa-search fa-3x text-muted"></i>
-                </div>
-                <h5>No components found</h5>
-                <p class="text-muted">Try a different search term or category</p>
-            `;
-            emptyRow.appendChild(emptyCell);
-            tableBody.appendChild(emptyRow);
-            return;
-        }
+        // Show loading first
+        loadingElement.style.display = 'block';
+        cardContainer.innerHTML = '';
         
-        components.forEach(component => {
-            const row = document.createElement('tr');
+        // Hide loading after small delay
+        setTimeout(() => {
+            loadingElement.style.display = 'none';
             
-            // Highlight currently selected component
-            if (currentConfig !== '{}') {
-                const config = typeof currentConfig === 'string' ? JSON.parse(currentConfig) : currentConfig;
-                if (config[category] === component.id) {
-                    row.classList.add('table-primary');
-                }
+            if (!components || components.length === 0) {
+                cardContainer.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="mb-3">
+                            <i class="fas fa-search fa-3x text-muted"></i>
+                        </div>
+                        <h5>No components found</h5>
+                        <p class="text-muted">Try a different search term or category</p>
+                    </div>
+                `;
+                return;
             }
             
-            // Component name and description
-            const nameCell = document.createElement('td');
-            nameCell.innerHTML = `
-                <div class="component-in-table-name">${component.name}</div>
-                <div class="component-in-table-description">${component.description}</div>
-                ${row.classList.contains('table-primary') ? '<span class="selected-chip mt-2"><i class="fas fa-check-circle"></i>Currently Selected</span>' : ''}
-            `;
+            // Create row for the cards
+            const row = document.createElement('div');
+            row.className = 'row g-3';
+            cardContainer.appendChild(row);
             
-            // Component specs with pills
-            const specsCell = document.createElement('td');
-            
-            // Create spec pills based on component type
-            let specPills = '<div class="component-specs-pills">';
-            
-            for (const [key, value] of Object.entries(component)) {
-                if (!['id', 'name', 'description', 'price', 'image_url', 'specs'].includes(key)) {
-                    specPills += `<span class="component-spec-pill">${key.replace(/_/g, ' ')}: ${value}</span>`;
-                }
-            }
-            
-            specPills += '</div>';
-            specsCell.innerHTML = specPills;
-            
-            // Performance metrics
-            const performanceCell = document.createElement('td');
-            
-            // Calculate a performance score based on component specs
-            let performanceScore = 0;
-            if (category === 'cpu') {
-                performanceScore = (component.cores * 5) + (parseFloat(component.base_clock) * 10);
-            } else if (category === 'gpu') {
-                performanceScore = component.vram * 10;
-            } else if (category === 'ram') {
-                performanceScore = component.speed / 40;
-            } else if (category === 'storage') {
-                performanceScore = component.type === 'SSD' ? 80 : 40;
-            } else {
-                // For other components, use a simple calculation
-                performanceScore = Math.min(100, parseInt(component.price) / 5);
-            }
-            
-            // Normalize to 0-100 scale
-            performanceScore = Math.min(100, Math.max(20, performanceScore));
-            
-            performanceCell.innerHTML = `
-                <div class="component-performance-label">
-                    ${categoryInfo[category].performanceMetric}
-                    <span class="component-performance-value">${Math.round(performanceScore)}/100</span>
-                </div>
-                <div class="component-performance-bar">
-                    <div class="component-performance-fill" style="width: ${performanceScore}%"></div>
-                </div>
-            `;
-            
-            // Component price
-            const priceCell = document.createElement('td');
-            priceCell.classList.add('component-price', 'text-end');
-            priceCell.textContent = `$${component.price}`;
-            
-            // Action button
-            const actionCell = document.createElement('td');
-            const form = document.createElement('form');
-            form.setAttribute('action', `/add/${category}/${component.id}`);
-            form.setAttribute('method', 'post');
-            
-            const button = document.createElement('button');
-            button.setAttribute('type', 'submit');
-            button.classList.add('btn', 'btn-sm');
-            
-            // If this component is already selected, show a different button
-            if (row.classList.contains('table-primary')) {
-                button.classList.add('btn-success');
-                button.innerHTML = '<i class="fas fa-check me-1"></i>Selected';
-                button.disabled = true;
-            } else {
-                button.classList.add('select-component-btn');
-                button.innerHTML = '<i class="fas fa-plus me-1"></i>Select';
-            }
-            
-            form.appendChild(button);
-            actionCell.appendChild(form);
-            
-            // Add cells to row
-            row.appendChild(nameCell);
-            row.appendChild(specsCell);
-            row.appendChild(performanceCell);
-            row.appendChild(priceCell);
-            row.appendChild(actionCell);
-            
-            // Add click event to select component when row is clicked (except if clicking on a link or button)
-            row.addEventListener('click', function(e) {
-                if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON' && !e.target.closest('a') && !e.target.closest('button')) {
-                    const selectButton = this.querySelector('button[type="submit"]');
-                    if (selectButton && !selectButton.disabled) {
-                        selectButton.click();
+            components.forEach(component => {
+                // Create a column for each component
+                const column = document.createElement('div');
+                column.className = 'col-lg-4 col-md-6 mb-3'; // Bootstrap grid columns
+                
+                // Parse current config
+                let isSelected = false;
+                if (currentConfig !== '{}') {
+                    const config = typeof currentConfig === 'string' ? JSON.parse(currentConfig) : currentConfig;
+                    if (config[category] === component.id) {
+                        isSelected = true;
                     }
                 }
+                
+                // Calculate a performance score based on component specs
+                let performanceScore = 0;
+                if (category === 'cpu') {
+                    performanceScore = (component.cores * 5) + (parseFloat(component.base_clock) * 10);
+                } else if (category === 'gpu') {
+                    performanceScore = component.vram * 10;
+                } else if (category === 'ram') {
+                    performanceScore = component.speed / 40;
+                } else if (category === 'storage') {
+                    performanceScore = component.type === 'SSD' ? 80 : 40;
+                } else {
+                    // For other components, use a simple calculation
+                    performanceScore = Math.min(100, parseInt(component.price) / 5);
+                }
+                
+                // Normalize to 0-100 scale
+                performanceScore = Math.min(100, Math.max(20, performanceScore));
+                
+                // Create specs pills based on component type
+                let specPills = '';
+                for (const [key, value] of Object.entries(component)) {
+                    if (!['id', 'name', 'description', 'price', 'image_url', 'specs'].includes(key)) {
+                        specPills += `<span class="component-spec-pill me-1 mb-1">${key.replace(/_/g, ' ')}: ${value}</span>`;
+                    }
+                }
+                
+                // Build the card HTML
+                column.innerHTML = `
+                    <div class="card h-100 ${isSelected ? 'border-success' : ''}">
+                        <div class="card-header d-flex justify-content-between align-items-center ${isSelected ? 'bg-success bg-opacity-10' : ''}">
+                            <div class="component-name">${component.name}</div>
+                            ${isSelected ? '<span class="badge bg-success">Selected</span>' : ''}
+                        </div>
+                        <div class="card-body">
+                            <p class="component-description text-muted small">${component.description}</p>
+                            <div class="component-specs-pills d-flex flex-wrap my-2">
+                                ${specPills}
+                            </div>
+                            <div class="mt-3">
+                                <div class="component-performance-label d-flex justify-content-between">
+                                    <span>${categoryInfo[category].performanceMetric}</span>
+                                    <span class="component-performance-value">${Math.round(performanceScore)}/100</span>
+                                </div>
+                                <div class="component-performance-bar">
+                                    <div class="component-performance-fill" style="width: ${performanceScore}%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="component-price fs-5 fw-bold text-success">$${component.price}</div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <form action="/add/${category}/${component.id}" method="post" class="w-100">
+                                <button type="submit" class="btn ${isSelected ? 'btn-success' : 'btn-primary'} w-100 select-component-btn" ${isSelected ? 'disabled' : ''}>
+                                    <i class="fas fa-${isSelected ? 'check-circle' : 'plus-circle'} me-1"></i>
+                                    ${isSelected ? 'Selected' : 'Select'}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                
+                row.appendChild(column);
             });
-            
-            tableBody.appendChild(row);
-        });
+        }, 500);
     }
     
     // When the component dropdown button is clicked
@@ -635,27 +600,10 @@
             document.getElementById('modalCategoryDescription').textContent = categoryInfo[currentCategory].description;
             
             // Clear previous component rows and show loading
-            const tableBody = document.getElementById('componentTable').querySelector('tbody');
-            tableBody.innerHTML = '';
-            
-            // Show loading animation
-            const loadingRow = document.createElement('tr');
-            const loadingCell = document.createElement('td');
-            loadingCell.setAttribute('colspan', '5');
-            loadingCell.classList.add('text-center', 'py-5');
-            
-            // Create loading spinner
-            loadingCell.innerHTML = `
-                <div class="loading-animation">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="mt-3">Loading ${currentCategory} components...</p>
-                </div>
-            `;
-            
-            loadingRow.appendChild(loadingCell);
-            tableBody.appendChild(loadingRow);
+            const cardContainer = document.getElementById('componentCardsWrapper');
+            const loadingElement = document.getElementById('component-loading');
+            cardContainer.innerHTML = '';
+            loadingElement.style.display = 'block';
             
             // Show the modal
             const componentModal = new bootstrap.Modal(document.getElementById('componentModal'));
@@ -731,17 +679,20 @@
             createComponentRows(sorted, currentCategory, '{{ current_config|tojson }}');
             
             // Add animation to indicate sorting happened
-            document.getElementById('componentTable').classList.add('sort-animation');
-            setTimeout(() => {
-                document.getElementById('componentTable').classList.remove('sort-animation');
-            }, 500);
+            const componentWrapper = document.getElementById('componentCardsWrapper');
+            if (componentWrapper) {
+                componentWrapper.classList.add('sort-animation');
+                setTimeout(() => {
+                    componentWrapper.classList.remove('sort-animation');
+                }, 500);
+            }
         });
     });
     
     // Check compatibility when component is added
-    const componentTable = document.getElementById('componentTable');
-    if (componentTable) {
-        componentTable.addEventListener('submit', function(e) {
+    const cardContainer = document.getElementById('componentCardsWrapper');
+    if (cardContainer) {
+        cardContainer.addEventListener('submit', function(e) {
             if (e.target.tagName === 'FORM') {
                 // Extract component ID from URL safely
                 try {
@@ -759,6 +710,22 @@
                 } catch (error) {
                     console.error('Error processing component selection:', error);
                     // Allow form submission to continue
+                }
+            }
+        });
+    }
+    
+    // Also add event delegation to modal body to catch all forms
+    const modalBody = document.querySelector('.modal-body');
+    if (modalBody) {
+        modalBody.addEventListener('submit', function(e) {
+            if (e.target.tagName === 'FORM') {
+                // Add loading animation to the button
+                const button = e.target.querySelector('button');
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
+                    button.classList.add('btn-loading');
                 }
             }
         });
