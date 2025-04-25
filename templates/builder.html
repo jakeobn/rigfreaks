@@ -131,15 +131,20 @@
                                                 <span class="text-success">${{ component.price }}</span>
                                             </div>
                                         </div>
-                                        <div class="mt-auto d-flex justify-content-between">
-                                            <button type="button" class="btn btn-outline-secondary btn-sm component-dropdown-btn" data-category="{{ category.id }}">
+                                        <div class="mt-auto">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <a href="{{ url_for('component_detail', category=category.id, component_id=current_config[category.id]) }}" class="btn btn-outline-primary btn-sm details-btn">
+                                                    <i class="fas fa-info-circle me-1"></i>Details
+                                                </a>
+                                                <form action="{{ url_for('remove_component', category=category.id) }}" method="post">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                        <i class="fas fa-trash-alt me-1"></i>Remove
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm w-100 component-dropdown-btn" data-category="{{ category.id }}">
                                                 <i class="fas fa-exchange-alt me-1"></i>Change
                                             </button>
-                                            <form action="{{ url_for('remove_component', category=category.id) }}" method="post">
-                                                <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                    <i class="fas fa-trash-alt me-1"></i>Remove
-                                                </button>
-                                            </form>
                                         </div>
                                     {% else %}
                                         <p class="text-muted small mb-3">No {{ category.name }} selected.</p>
