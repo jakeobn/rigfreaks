@@ -6,6 +6,36 @@
 <div class="container">
     <h1 class="mb-4">PC Builder</h1>
     
+    <!-- Component Selection Modal -->
+    <div class="modal fade" id="componentModal" tabindex="-1" aria-labelledby="componentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="componentModalLabel">Select Component</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="componentTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Specs</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Component rows will be injected here via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Component Selection Progress -->
     <div class="row mb-4 build-progress">
         <div class="col-12">
@@ -102,9 +132,9 @@
                                             </div>
                                         </div>
                                         <div class="mt-auto d-flex justify-content-between">
-                                            <a href="{{ url_for('select_component', category=category.id) }}" class="btn btn-outline-secondary btn-sm">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm component-dropdown-btn" data-category="{{ category.id }}">
                                                 <i class="fas fa-exchange-alt me-1"></i>Change
-                                            </a>
+                                            </button>
                                             <form action="{{ url_for('remove_component', category=category.id) }}" method="post">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">
                                                     <i class="fas fa-trash-alt me-1"></i>Remove
@@ -114,9 +144,9 @@
                                     {% else %}
                                         <p class="text-muted small mb-3">No {{ category.name }} selected.</p>
                                         <div class="mt-auto">
-                                            <a href="{{ url_for('select_component', category=category.id) }}" class="btn btn-primary btn-sm w-100">
+                                            <button type="button" class="btn btn-primary btn-sm w-100 component-dropdown-btn" data-category="{{ category.id }}">
                                                 <i class="fas fa-plus me-1"></i>Add {{ category.name }}
-                                            </a>
+                                            </button>
                                         </div>
                                     {% endif %}
                                 </div>
@@ -178,4 +208,97 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Store component data globally to use in the modal
+    const componentData = {{ components|tojson }};
+    let currentCategory = '';
+    
+    // When the component dropdown button is clicked
+    document.querySelectorAll('.component-dropdown-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the category from the data attribute
+            currentCategory = this.getAttribute('data-category');
+            
+            // Set the modal title
+            document.getElementById('componentModalLabel').textContent = `Select ${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}`;
+            
+            // Clear previous component rows
+            const tableBody = document.getElementById('componentTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+            
+            // Add rows for each component in the selected category
+            if (componentData[currentCategory]) {
+                componentData[currentCategory].forEach(component => {
+                    const row = document.createElement('tr');
+                    
+                    // Highlight currently selected component
+                    if ('{{ current_config|tojson }}' !== '{}') {
+                        const currentConfig = JSON.parse('{{ current_config|tojson }}');
+                        if (currentConfig[currentCategory] === component.id) {
+                            row.classList.add('table-primary');
+                        }
+                    }
+                    
+                    // Component name
+                    const nameCell = document.createElement('td');
+                    nameCell.innerHTML = `<strong>${component.name}</strong>`;
+                    row.appendChild(nameCell);
+                    
+                    // Component description
+                    const descCell = document.createElement('td');
+                    descCell.textContent = component.description;
+                    row.appendChild(descCell);
+                    
+                    // Component specs
+                    const specsCell = document.createElement('td');
+                    let specsList = '';
+                    for (const [key, value] of Object.entries(component)) {
+                        if (!['id', 'name', 'description', 'price', 'image_url', 'specs'].includes(key)) {
+                            specsList += `<div><small><strong>${key.replace('_', ' ')}:</strong> ${value}</small></div>`;
+                        }
+                    }
+                    specsCell.innerHTML = specsList;
+                    row.appendChild(specsCell);
+                    
+                    // Component price
+                    const priceCell = document.createElement('td');
+                    priceCell.innerHTML = `<span class="text-success fw-bold">$${component.price}</span>`;
+                    row.appendChild(priceCell);
+                    
+                    // Action button
+                    const actionCell = document.createElement('td');
+                    const selectForm = document.createElement('form');
+                    selectForm.setAttribute('method', 'post');
+                    selectForm.setAttribute('action', `/add/${currentCategory}/${component.id}`);
+                    
+                    const selectButton = document.createElement('button');
+                    selectButton.setAttribute('type', 'submit');
+                    selectButton.setAttribute('class', 'btn btn-primary btn-sm');
+                    selectButton.innerHTML = '<i class="fas fa-plus-circle me-1"></i>Select';
+                    
+                    selectForm.appendChild(selectButton);
+                    actionCell.appendChild(selectForm);
+                    row.appendChild(actionCell);
+                    
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // Show the modal
+            const componentModal = new bootstrap.Modal(document.getElementById('componentModal'));
+            componentModal.show();
+        });
+    });
+    
+    // Check compatibility when component is added
+    document.getElementById('componentTable').addEventListener('submit', function(e) {
+        if (e.target.tagName === 'FORM') {
+            const componentId = e.target.getAttribute('action').split('/').pop();
+            // You could add AJAX for compatibility check here if needed
+        }
+    });
+</script>
 {% endblock %}
