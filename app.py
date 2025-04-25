@@ -115,7 +115,7 @@ def component_detail(category, component_id):
         is_selected=is_selected
     )
 
-@app.route('/component/<category>/<component_id>/add', methods=['POST'])
+@app.route('/add/<category>/<component_id>', methods=['POST'])
 def add_component(category, component_id):
     app.logger.debug(f"Adding component: {category} - {component_id}")
     # Initialize configuration if it doesn't exist
@@ -136,12 +136,6 @@ def add_component(category, component_id):
         flash(flash_message, "warning")
     
     return redirect(url_for('builder'))
-
-@app.route('/add/<category>/<component_id>', methods=['POST'])
-def add_component_legacy(category, component_id):
-    # This is a backward compatibility route
-    app.logger.debug(f"Legacy route - Adding component: {category} - {component_id}")
-    return redirect(url_for('add_component', category=category, component_id=component_id))
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):

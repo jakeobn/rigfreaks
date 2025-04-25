@@ -128,7 +128,7 @@
                             </a>
                         </div>
                         <div class="col-sm-6">
-                            <form action="/component/{{ category }}/{{ component.id }}/add" method="post">
+                            <form action="/add/{{ category }}/{{ component.id }}" method="post">
                                 <button type="submit" class="btn btn-primary w-100 select-btn" data-component-id="{{ component.id }}">
                                     {% if component.id == current_selection %}
                                         <i class="fas fa-check me-1"></i><span class="btn-text">Selected</span>
