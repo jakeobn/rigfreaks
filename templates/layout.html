@@ -45,10 +45,15 @@
                     {% if session.get('pc_config') %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == url_for('summary') %}active{% endif %}" href="{{ url_for('summary') }}">
-                            <i class="fas fa-shopping-cart me-1"></i>View Configuration
+                            <i class="fas fa-desktop me-1"></i>View Configuration
                         </a>
                     </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}" href="{{ url_for('cart.view_cart') }}">
+                            <i class="fas fa-shopping-cart me-1"></i>Cart
+                        </a>
+                    </li>
                     {% if 'user_id' in session %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
