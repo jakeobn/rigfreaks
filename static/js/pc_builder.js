@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('PC Builder script loaded');
+    
     // Initialize tooltips
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -10,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const componentDropdownBtns = document.querySelectorAll('.component-dropdown-btn');
     const closeComponentSelectionBtn = document.getElementById('closeComponentSelection');
     const cancelComponentSelectionBtn = document.getElementById('cancelComponentSelection');
-    const componentSearch = document.getElementById('componentSearch');
+    // componentSearch is no longer used - we use componentSearchMobile and componentSearchDesktop
     const sortOptions = document.querySelectorAll('.sort-option');
     let currentCategory = '';
 
@@ -380,53 +382,62 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Mobile summary panel functionality
-    const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
-    const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
-    const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
-    const closeMobileSummary = document.getElementById('closeMobileSummary');
+    // Only initialize mobile summary panel on the builder page
+    // Check if we're on the builder page by looking at the URL
+    const isBuilderPage = window.location.pathname === '/builder';
     
-    // Check if we're on the PC builder page with mobile summary elements
-    if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
-        console.log('Mobile summary panel elements found');
+    if (isBuilderPage) {
+        console.log('On builder page, initializing mobile summary panel');
+        // Mobile summary panel functionality
+        const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
+        const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
+        const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
+        const closeMobileSummary = document.getElementById('closeMobileSummary');
         
-        // Open mobile summary panel
-        mobileSummaryBtn.addEventListener('click', function() {
-            mobileSummaryPanel.classList.add('active');
-            mobileSummaryBackdrop.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling behind panel
-        });
-        
-        // Close mobile summary panel
-        function closeMobileSummaryPanel() {
-            mobileSummaryPanel.classList.remove('active');
-            mobileSummaryBackdrop.classList.remove('active');
-            document.body.style.overflow = ''; // Re-enable scrolling
-        }
-        
-        closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
-        mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
-        
-        // Handle swipe down to close
-        let touchStartY = 0;
-        let touchEndY = 0;
-        
-        mobileSummaryPanel.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-        }, false);
-        
-        mobileSummaryPanel.addEventListener('touchmove', function(e) {
-            touchEndY = e.touches[0].clientY;
-        }, false);
-        
-        mobileSummaryPanel.addEventListener('touchend', function() {
-            if (touchEndY - touchStartY > 100) { // Swipe down detected
-                closeMobileSummaryPanel();
+        // Check if we have all the necessary elements
+        if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
+            console.log('Mobile summary panel elements found');
+            
+            // Open mobile summary panel
+            mobileSummaryBtn.addEventListener('click', function() {
+                mobileSummaryPanel.classList.add('active');
+                mobileSummaryBackdrop.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling behind panel
+            });
+            
+            // Close mobile summary panel
+            function closeMobileSummaryPanel() {
+                mobileSummaryPanel.classList.remove('active');
+                mobileSummaryBackdrop.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
             }
-            touchStartY = 0;
-            touchEndY = 0;
-        }, false);
+            
+            closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
+            mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
+            
+            // Handle swipe down to close
+            let touchStartY = 0;
+            let touchEndY = 0;
+            
+            mobileSummaryPanel.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+            }, false);
+            
+            mobileSummaryPanel.addEventListener('touchmove', function(e) {
+                touchEndY = e.touches[0].clientY;
+            }, false);
+            
+            mobileSummaryPanel.addEventListener('touchend', function() {
+                if (touchEndY - touchStartY > 100) { // Swipe down detected
+                    closeMobileSummaryPanel();
+                }
+                touchStartY = 0;
+                touchEndY = 0;
+            }, false);
+        } else {
+            console.error('Mobile summary panel elements not found on builder page');
+        }
     } else {
-        console.log('Mobile summary panel elements not found on this page');
+        console.log('Not on builder page, skipping mobile summary panel initialization');
     }
 });
