@@ -136,9 +136,9 @@
                                                 <a href="{{ url_for('component_detail', category=category.id, component_id=current_config[category.id]) }}" class="btn btn-outline-primary btn-sm details-btn">
                                                     <i class="fas fa-info-circle me-1"></i>Details
                                                 </a>
-                                                <form action="{{ url_for('remove_component', category=category.id) }}" method="post">
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                        <i class="fas fa-trash-alt me-1"></i>Remove
+                                                <form action="{{ url_for('remove_component', category=category.id) }}" method="post" class="remove-form">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm remove-btn">
+                                                        <i class="fas fa-trash-alt me-1"></i><span class="btn-text">Remove</span>
                                                     </button>
                                                 </form>
                                             </div>
@@ -345,5 +345,65 @@
             // You could add AJAX for compatibility check here if needed
         }
     });
+    
+    // Add loading animations to Remove buttons
+    document.querySelectorAll('.remove-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('.remove-btn');
+            const btnText = btn.querySelector('.btn-text');
+            const originalText = btnText.textContent;
+            const originalIcon = btn.querySelector('i').className;
+            
+            // Show loading state
+            btn.classList.add('btn-loading');
+            btn.disabled = true;
+            btnText.textContent = 'Removing...';
+            btn.querySelector('i').className = 'fas fa-spinner fa-spin';
+            
+            // Create a ripple effect around the component card for visual feedback
+            const card = this.closest('.card');
+            card.style.transition = 'all 0.5s ease';
+            card.style.boxShadow = '0 0 0 2px var(--bs-danger)';
+            
+            // Add fading animation to the whole component
+            setTimeout(() => {
+                card.style.opacity = '0.5';
+                
+                // Wait a moment, then submit the form
+                setTimeout(() => {
+                    this.submit();
+                }, 400);
+            }, 400);
+        });
+    });
+    
+    // Add loading animations to Reset Configuration button
+    const resetForm = document.querySelector('form[action*="reset"]');
+    if (resetForm) {
+        resetForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('button');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Resetting...';
+            btn.disabled = true;
+            btn.classList.add('btn-loading');
+            
+            // Add animation to all component cards
+            document.querySelectorAll('.component-card, .selected-component-details').forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.transition = 'all 0.3s ease';
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(-10px)';
+                }, index * 100);
+            });
+            
+            // Submit form after animations
+            setTimeout(() => {
+                this.submit();
+            }, 800);
+        });
+    }
 </script>
 {% endblock %}

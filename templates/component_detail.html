@@ -3,7 +3,15 @@
 {% block title %}{{ component.name }} - Details{% endblock %}
 
 {% block content %}
-<div class="container py-4">
+<!-- Loading animation container -->
+<div id="detail-loading-container" class="text-center p-5" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Loading component details...</p>
+</div>
+
+<div class="container py-4" id="component-detail-content">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
@@ -42,12 +50,12 @@
                         <span class="fs-4 fw-bold text-success">${{ component.price }}</span>
                     </div>
                     
-                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
-                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-2">
+                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post" id="detail-select-form">
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-2" id="detail-select-btn">
                             {% if is_selected %}
-                                <i class="fas fa-check me-1"></i>Selected
+                                <i class="fas fa-check me-1"></i><span class="btn-text">Selected</span>
                             {% else %}
-                                <i class="fas fa-plus me-1"></i>Add to Build
+                                <i class="fas fa-plus me-1"></i><span class="btn-text">Add to Build</span>
                             {% endif %}
                         </button>
                     </form>
