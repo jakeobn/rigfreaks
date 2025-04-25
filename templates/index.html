@@ -5,12 +5,47 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="container text-center">
-        <h1 class="display-3 fw-bold mb-4">Build Your Dream PC</h1>
-        <p class="lead mb-5">Customize your perfect computer with our easy-to-use PC builder tool. Select compatible components and create a system tailored to your needs.</p>
-        <a href="{{ url_for('builder') }}" class="btn btn-primary btn-lg px-5 py-3">
-            <i class="fas fa-tools me-2"></i>Start Building
-        </a>
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 fw-bold mb-4 hero-title">Build Your <span class="text-primary">Ultimate</span> Gaming PC</h1>
+                <p class="lead mb-5 hero-text">Customize your perfect computer with our advanced PC builder tool. Select compatible components, view performance benchmarks, and create a system perfectly tailored to your needs and budget.</p>
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                    <a href="{{ url_for('builder') }}" class="btn btn-primary btn-lg px-4 py-3 hero-btn">
+                        <i class="fas fa-tools me-2"></i>Start Building
+                    </a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-lg px-4 py-3 hero-btn">
+                        <i class="fas fa-box-open me-2"></i>Pre-built PCs
+                    </a>
+                </div>
+                <div class="mt-4 text-white-50 hero-features">
+                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
+                        <i class="fas fa-check-circle me-1"></i>Compatibility Check
+                    </span>
+                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
+                        <i class="fas fa-chart-bar me-1"></i>Performance Benchmarks
+                    </span>
+                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
+                        <i class="fas fa-save me-1"></i>Save Builds
+                    </span>
+                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
+                        <i class="fas fa-truck me-1"></i>Fast Delivery
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-image-container position-relative">
+                    <div class="hero-glow position-absolute"></div>
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" class="img-fluid rounded-4 hero-image" alt="Gaming PC">
+                    <div class="hero-overlay position-absolute start-0 end-0 bottom-0 text-end p-4">
+                        <div class="d-inline-block bg-dark bg-opacity-75 px-3 py-2 rounded-3">
+                            <span class="text-success fw-bold me-2">Now with Performance Benchmarks</span>
+                            <i class="fas fa-chart-line text-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 

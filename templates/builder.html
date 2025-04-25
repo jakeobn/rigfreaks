@@ -113,47 +113,121 @@
                         
                         {% for category in component_categories %}
                         <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body d-flex flex-column">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-primary rounded p-2 me-3">
-                                            <i class="fas fa-{{ category.icon }} text-white"></i>
+                            <div class="component-card-wrapper">
+                                <div class="card component-card h-100 shadow-sm border-0 {% if current_config.get(category.id) %}selected-component-card{% else %}empty-component-card{% endif %}">
+                                    <!-- Component Card Header -->
+                                    <div class="card-header d-flex align-items-center component-card-header">
+                                        <div class="component-icon-circle">
+                                            <i class="fas fa-{{ category.icon }}"></i>
                                         </div>
-                                        <h5 class="mb-0">{{ category.name }}</h5>
+                                        <h5 class="mb-0 ms-3">{{ category.name }}</h5>
+                                        
+                                        {% if current_config.get(category.id) %}
+                                        <span class="ms-auto component-status">
+                                            <span class="badge bg-success p-2">
+                                                <i class="fas fa-check me-1"></i>Selected
+                                            </span>
+                                        </span>
+                                        {% endif %}
                                     </div>
                                     
-                                    {% if current_config.get(category.id) %}
-                                        {% set component = components[category.id] | selectattr('id', 'equalto', current_config[category.id]) | first %}
-                                        <div class="selected-component mb-3">
-                                            <h6>{{ component.name }}</h6>
-                                            <div class="d-flex justify-content-between">
-                                                <span class="text-muted small">{{ component.description }}</span>
-                                                <span class="text-success">${{ component.price }}</span>
+                                    <!-- Component Card Body -->
+                                    <div class="card-body d-flex flex-column component-card-body">
+                                        {% if current_config.get(category.id) %}
+                                            {% set component = components[category.id] | selectattr('id', 'equalto', current_config[category.id]) | first %}
+                                            <!-- Component Image Area -->
+                                            <div class="component-image-area mb-3">
+                                                <div class="component-img-container mb-2">
+                                                    {% if category.id == 'cpu' %}
+                                                        <i class="fas fa-microchip fa-3x"></i>
+                                                    {% elif category.id == 'gpu' %}
+                                                        <i class="fas fa-tv fa-3x"></i>
+                                                    {% elif category.id == 'ram' %}
+                                                        <i class="fas fa-memory fa-3x"></i>
+                                                    {% elif category.id == 'motherboard' %}
+                                                        <i class="fas fa-server fa-3x"></i>
+                                                    {% elif category.id == 'power_supply' %}
+                                                        <i class="fas fa-plug fa-3x"></i>
+                                                    {% elif category.id == 'storage' %}
+                                                        <i class="fas fa-hdd fa-3x"></i>
+                                                    {% elif category.id == 'case' %}
+                                                        <i class="fas fa-desktop fa-3x"></i>
+                                                    {% elif category.id == 'cooling' %}
+                                                        <i class="fas fa-wind fa-3x"></i>
+                                                    {% endif %}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="mt-auto">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <a href="{{ url_for('component_detail', category=category.id, component_id=current_config[category.id]) }}" class="btn btn-outline-primary btn-sm details-btn">
-                                                    <i class="fas fa-info-circle me-1"></i>Details
-                                                </a>
-                                                <form action="{{ url_for('remove_component', category=category.id) }}" method="post" class="remove-form">
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm remove-btn">
-                                                        <i class="fas fa-trash-alt me-1"></i><span class="btn-text">Remove</span>
+                                            
+                                            <!-- Component Info -->
+                                            <div class="component-info mb-3">
+                                                <h6 class="component-title">{{ component.name }}</h6>
+                                                <p class="component-description text-muted small">{{ component.description }}</p>
+                                                
+                                                <!-- Component Specs Badges -->
+                                                <div class="component-specs d-flex flex-wrap mb-2">
+                                                    {% if category.id == 'cpu' %}
+                                                        <span class="specs-badge">{{ component.cores }} Cores</span>
+                                                        <span class="specs-badge">{{ component.threads }} Threads</span>
+                                                        <span class="specs-badge">{{ component.base_clock }}GHz</span>
+                                                    {% elif category.id == 'gpu' %}
+                                                        <span class="specs-badge">{{ component.vram }}GB VRAM</span>
+                                                        <span class="specs-badge">{{ component.memory_type }}</span>
+                                                    {% elif category.id == 'ram' %}
+                                                        <span class="specs-badge">{{ component.capacity }}GB</span>
+                                                        <span class="specs-badge">{{ component.speed }}MHz</span>
+                                                        <span class="specs-badge">{{ component.type }}</span>
+                                                    {% elif category.id == 'storage' %}
+                                                        <span class="specs-badge">{{ component.capacity }}GB</span>
+                                                        <span class="specs-badge">{{ component.type }}</span>
+                                                    {% elif category.id == 'power_supply' %}
+                                                        <span class="specs-badge">{{ component.wattage }}W</span>
+                                                        <span class="specs-badge">{{ component.efficiency }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                
+                                                <!-- Component Price -->
+                                                <div class="component-price">
+                                                    <span class="price-badge">${{ component.price }}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Component Actions -->
+                                            <div class="component-actions mt-auto">
+                                                <div class="d-flex flex-column flex-sm-row gap-2">
+                                                    <a href="{{ url_for('component_detail', category=category.id, component_id=current_config[category.id]) }}" 
+                                                       class="btn btn-sm btn-outline-primary flex-grow-1">
+                                                        <i class="fas fa-info-circle me-2"></i>Details
+                                                    </a>
+                                                    <button type="button" 
+                                                            class="btn btn-sm btn-outline-secondary flex-grow-1 component-dropdown-btn" 
+                                                            data-category="{{ category.id }}">
+                                                        <i class="fas fa-exchange-alt me-2"></i>Change
                                                     </button>
-                                                </form>
+                                                    <form action="{{ url_for('remove_component', category=category.id) }}" 
+                                                          method="post" 
+                                                          class="remove-form flex-grow-1">
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger w-100">
+                                                            <i class="fas fa-trash-alt me-2"></i>Remove
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <button type="button" class="btn btn-outline-secondary btn-sm w-100 component-dropdown-btn" data-category="{{ category.id }}">
-                                                <i class="fas fa-exchange-alt me-1"></i>Change
-                                            </button>
-                                        </div>
-                                    {% else %}
-                                        <p class="text-muted small mb-3">No {{ category.name }} selected.</p>
-                                        <div class="mt-auto">
-                                            <button type="button" class="btn btn-primary btn-sm w-100 component-dropdown-btn add-component-btn" data-category="{{ category.id }}">
-                                                <i class="fas fa-plus me-1"></i><span class="btn-text">Add {{ category.name }}</span>
-                                            </button>
-                                        </div>
-                                    {% endif %}
+                                        {% else %}
+                                            <!-- Empty Component Card -->
+                                            <div class="empty-component-content text-center py-4 my-3">
+                                                <div class="empty-icon mb-3">
+                                                    <i class="fas fa-plus-circle fa-4x"></i>
+                                                </div>
+                                                <h6 class="empty-title">No {{ category.name }} Selected</h6>
+                                                <p class="empty-text text-muted">Add a {{ category.name.lower() }} to your build</p>
+                                                <button type="button" 
+                                                        class="btn btn-primary add-component-btn component-dropdown-btn mt-3 pulse-animation" 
+                                                        data-category="{{ category.id }}">
+                                                    <i class="fas fa-plus-circle me-2"></i>Select {{ category.name }}
+                                                </button>
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -165,31 +239,79 @@
         
         <!-- Build Summary -->
         <div class="col-lg-4">
-            <div class="card mb-4 position-sticky" style="top: 1rem;">
-                <div class="card-header">
-                    <h3 class="mb-0">Build Summary</h3>
+            <div class="card mb-4 position-sticky build-summary-card" style="top: 1rem;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Build Summary</h3>
+                    <span class="badge bg-primary rounded-pill">
+                        {{ current_config|length }}/8 Components
+                    </span>
                 </div>
                 <div class="card-body">
                     {% if current_config %}
-                        {% for category, component_id in current_config.items() %}
-                            {% set component = components[category] | selectattr('id', 'equalto', component_id) | first %}
-                            <div class="selected-component-details mb-3">
-                                <div class="selected-component-name">{{ component.name }}</div>
-                                <div class="selected-component-price">${{ component.price }}</div>
-                            </div>
-                        {% endfor %}
+                        <!-- Components List -->
+                        <div class="build-components-list">
+                            {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
+                                <div class="build-component-item d-flex align-items-center mb-3 p-2 rounded
+                                            {% if category in current_config %}has-component{% else %}missing-component{% endif %}">
+                                    <div class="component-icon-small me-3">
+                                        {% if category == 'cpu' %}
+                                            <i class="fas fa-microchip"></i>
+                                        {% elif category == 'motherboard' %}
+                                            <i class="fas fa-server"></i>
+                                        {% elif category == 'ram' %}
+                                            <i class="fas fa-memory"></i>
+                                        {% elif category == 'gpu' %}
+                                            <i class="fas fa-tv"></i>
+                                        {% elif category == 'storage' %}
+                                            <i class="fas fa-hdd"></i>
+                                        {% elif category == 'power_supply' %}
+                                            <i class="fas fa-plug"></i>
+                                        {% elif category == 'case' %}
+                                            <i class="fas fa-desktop"></i>
+                                        {% elif category == 'cooling' %}
+                                            <i class="fas fa-wind"></i>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {% if category in current_config %}
+                                        {% set component = components[category] | selectattr('id', 'equalto', current_config[category]) | first %}
+                                        <div class="build-component-info flex-grow-1">
+                                            <div class="build-component-name">{{ component.name }}</div>
+                                            <div class="build-component-category text-muted small">{{ category|capitalize }}</div>
+                                        </div>
+                                        <div class="build-component-price text-success fw-bold">${{ component.price }}</div>
+                                    {% else %}
+                                        <div class="build-component-info flex-grow-1">
+                                            <div class="build-component-missing">{{ category|capitalize }} Not Selected</div>
+                                            <div class="build-component-category text-muted small">Required Component</div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill component-dropdown-btn"
+                                                data-category="{{ category }}">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
                         
                         <hr>
                         
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h5 class="mb-0">Total Price:</h5>
-                            <div class="price-total">${{ total_price }}</div>
+                        <!-- Price Summary -->
+                        <div class="price-summary mb-4">
+                            <div class="d-flex justify-content-between fw-bold mb-2">
+                                <span>Components Subtotal:</span>
+                                <span>${{ total_price }}</span>
+                            </div>
+                            <div class="total-price-container p-3 rounded mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Total Price:</h5>
+                                    <div class="price-total">${{ total_price }}</div>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="d-grid gap-2 mt-4">
-                            <a href="{{ url_for('summary') }}" class="btn btn-success">
-                                <i class="fas fa-check-circle me-1"></i>Review Build
-                            </a>
+                        <!-- Action Buttons -->
+                        <div class="build-actions mt-4">
                             {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
                             
                             {% set missing_count = namespace(value=0) %}
@@ -199,33 +321,56 @@
                                 {% endif %}
                             {% endfor %}
                             
-                            {% if missing_count.value == 0 %}
-                                <form action="{{ url_for('cart.add_to_cart') }}" method="post">
-                                    <button type="submit" class="btn btn-primary w-100 mb-2">
-                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                            <div class="d-grid gap-3">
+                                <a href="{{ url_for('summary') }}" class="btn btn-success action-btn">
+                                    <i class="fas fa-clipboard-check me-2"></i>Review Configuration
+                                </a>
+                                
+                                {% if missing_count.value == 0 %}
+                                    <!-- All components selected -->
+                                    <form action="{{ url_for('cart.add_to_cart') }}" method="post">
+                                        <button type="submit" class="btn btn-primary w-100 action-btn">
+                                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <!-- Missing components -->
+                                    <button disabled class="btn btn-secondary w-100 action-btn cart-disabled" 
+                                           title="Complete your build to add to cart">
+                                        <i class="fas fa-lock me-2"></i>Add to Cart
+                                        <span class="badge bg-danger rounded-pill ms-2">{{ missing_count.value }} missing</span>
+                                    </button>
+                                    <div class="alert alert-secondary p-3 mb-3">
+                                        <div class="d-flex">
+                                            <i class="fas fa-info-circle me-2 mt-1 text-primary"></i>
+                                            <div>
+                                                <strong>Build incomplete</strong>
+                                                <p class="mb-0 small">Please select all required components to enable "Add to Cart".</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
+                                <form action="{{ url_for('reset_configuration') }}" method="post">
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-trash-alt me-2"></i>Reset Build
                                     </button>
                                 </form>
-                            {% else %}
-                                <button disabled class="btn btn-secondary w-100 mb-2" title="Complete your build to add to cart">
-                                    <i class="fas fa-lock me-1"></i>Add to Cart
-                                </button>
-                                <div class="alert alert-secondary mt-2 mb-3 py-2">
-                                    <small><i class="fas fa-info-circle me-1"></i>Complete your build with all required components to enable "Add to Cart".</small>
-                                </div>
-                            {% endif %}
-                            <form action="{{ url_for('reset_configuration') }}" method="post">
-                                <button type="submit" class="btn btn-outline-danger w-100">
-                                    <i class="fas fa-trash-alt me-1"></i>Reset Configuration
-                                </button>
-                            </form>
+                            </div>
                         </div>
                     {% else %}
-                        <div class="empty-state">
-                            <div class="empty-state-icon">
-                                <i class="fas fa-desktop"></i>
+                        <!-- Empty Build State -->
+                        <div class="empty-build-state text-center py-5">
+                            <div class="empty-build-icon mb-3">
+                                <i class="fas fa-desktop fa-4x text-secondary"></i>
                             </div>
-                            <h5>No Components Selected</h5>
-                            <p>Your build is empty. Start by adding components from the left.</p>
+                            <h4>Your Build is Empty</h4>
+                            <p class="text-muted mb-4">Start by selecting components from the left panel to build your custom PC.</p>
+                            <div class="empty-build-actions">
+                                <a href="#" class="btn btn-primary component-dropdown-btn" data-category="cpu">
+                                    <i class="fas fa-microchip me-2"></i>Start with a CPU
+                                </a>
+                            </div>
                         </div>
                     {% endif %}
                 </div>

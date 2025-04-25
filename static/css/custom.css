@@ -2,29 +2,255 @@
 
 /* Hero section styling */
 .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1624913503273-5f9c4e980dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+    background: linear-gradient(to right, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 50%, rgba(13, 17, 23, 0.6) 100%), 
+                url('https://images.unsplash.com/photo-1624913503273-5f9c4e980dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 5rem 0;
-    margin-bottom: 2rem;
+    padding: 6rem 0;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(var(--bs-primary-rgb), 0.1) 0%, transparent 70%);
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-text {
+    opacity: 0.9;
+    max-width: 600px;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-btn {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.hero-features {
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-image-container {
+    animation: fadeIn 1.2s ease-out 0.4s both;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-image {
+    transition: transform 0.6s ease-out;
+}
+
+.hero-image-container:hover .hero-image {
+    transform: scale(1.03);
+}
+
+.hero-glow {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(var(--bs-primary-rgb), 0.6), transparent 70%);
+    opacity: 0.6;
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-overlay {
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Component card styling */
 .component-card {
     height: 100%;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 1px solid var(--bs-gray-700);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.1);
+    overflow: hidden;
 }
 
 .component-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.component-card .card-header {
-    font-weight: bold;
+.component-card-header {
+    border-bottom: none;
+    background: linear-gradient(135deg, var(--bs-gray-900) 0%, var(--bs-gray-800) 100%);
+    padding: 1rem;
+}
+
+.component-icon-circle {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: rgba(var(--bs-primary-rgb), 0.2);
+    color: var(--bs-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.component-card:hover .component-icon-circle {
+    transform: scale(1.1);
+    background: var(--bs-primary);
+    color: white;
+}
+
+.selected-component-card {
+    border-color: rgba(var(--bs-success-rgb), 0.3);
+}
+
+.selected-component-card .component-card-header {
+    border-bottom: 3px solid var(--bs-success);
+}
+
+.component-card-body {
+    padding: 1.5rem;
     background-color: var(--bs-gray-800);
+}
+
+.component-img-container {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    color: var(--bs-gray-600);
+    transition: all 0.3s ease;
+}
+
+.selected-component-card:hover .component-img-container {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    color: var(--bs-primary);
+}
+
+.component-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--bs-light);
+}
+
+.specs-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: rgba(var(--bs-dark-rgb), 0.4);
+    color: var(--bs-gray-300);
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.price-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: rgba(var(--bs-success-rgb), 0.2);
+    color: var(--bs-success);
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.empty-component-card {
+    border-color: rgba(var(--bs-secondary-rgb), 0.2);
+    background-color: var(--bs-gray-900);
+}
+
+.empty-component-card .component-card-header {
+    border-bottom: 3px solid rgba(var(--bs-secondary-rgb), 0.3);
+}
+
+.empty-icon {
+    color: var(--bs-gray-700);
+    transition: all 0.3s ease;
+}
+
+.empty-component-card:hover .empty-icon {
+    color: var(--bs-primary);
+    transform: scale(1.1);
+}
+
+.empty-title {
+    color: var(--bs-gray-400);
+    margin-bottom: 0.5rem;
+}
+
+.empty-text {
+    color: var(--bs-gray-600);
+    margin-bottom: 1.5rem;
+}
+
+.pulse-animation {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+    }
+}
+
+.component-actions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(var(--bs-secondary-rgb), 0.1);
 }
 
 .component-card .card-img-top {
