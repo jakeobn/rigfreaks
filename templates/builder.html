@@ -739,49 +739,81 @@
     });
     
     // Check compatibility when component is added
-    document.getElementById('componentTable').addEventListener('submit', function(e) {
-        if (e.target.tagName === 'FORM') {
-            const componentId = e.target.getAttribute('action').split('/').pop();
-            // Add loading animation to the button
-            const button = e.target.querySelector('button');
-            if (button) {
-                button.disabled = true;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
-                button.classList.add('btn-loading');
+    const componentTable = document.getElementById('componentTable');
+    if (componentTable) {
+        componentTable.addEventListener('submit', function(e) {
+            if (e.target.tagName === 'FORM') {
+                const componentId = e.target.getAttribute('action').split('/').pop();
+                // Add loading animation to the button
+                const button = e.target.querySelector('button');
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
+                    button.classList.add('btn-loading');
+                }
             }
-        }
-    });
+        });
+    }
     
     // Add loading animations to Remove buttons
     document.querySelectorAll('.remove-form').forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const btn = this.querySelector('.remove-btn');
-            const btnText = btn.querySelector('.btn-text');
-            const originalText = btnText.textContent;
-            const originalIcon = btn.querySelector('i').className;
-            
-            // Show loading state
-            btn.classList.add('btn-loading');
-            btn.disabled = true;
-            btnText.textContent = 'Removing...';
-            btn.querySelector('i').className = 'fas fa-spinner fa-spin';
-            
-            // Create a ripple effect around the component card for visual feedback
-            const card = this.closest('.card');
-            card.style.transition = 'all 0.5s ease';
-            card.style.boxShadow = '0 0 0 2px var(--bs-danger)';
-            
-            // Add fading animation to the whole component
-            setTimeout(() => {
-                card.style.opacity = '0.5';
-                
-                // Wait a moment, then submit the form
-                setTimeout(() => {
+            try {
+                const btn = this.querySelector('.remove-btn');
+                if (!btn) {
+                    console.error('Remove button not found');
                     this.submit();
-                }, 400);
-            }, 400);
+                    return;
+                }
+                
+                const btnText = btn.querySelector('.btn-text');
+                if (!btnText) {
+                    console.error('Button text element not found');
+                    this.submit();
+                    return;
+                }
+                
+                const originalText = btnText.textContent;
+                const iconElement = btn.querySelector('i');
+                const originalIcon = iconElement ? iconElement.className : '';
+                
+                // Show loading state
+                btn.classList.add('btn-loading');
+                btn.disabled = true;
+                btnText.textContent = 'Removing...';
+                
+                if (iconElement) {
+                    iconElement.className = 'fas fa-spinner fa-spin';
+                }
+                
+                // Create a ripple effect around the component card for visual feedback
+                const card = this.closest('.card');
+                if (card) {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.boxShadow = '0 0 0 2px var(--bs-danger)';
+                    
+                    // Add fading animation to the whole component
+                    setTimeout(() => {
+                        card.style.opacity = '0.5';
+                        
+                        // Wait a moment, then submit the form
+                        setTimeout(() => {
+                            this.submit();
+                        }, 400);
+                    }, 400);
+                } else {
+                    // No card found, just submit the form
+                    setTimeout(() => {
+                        this.submit();
+                    }, 400);
+                }
+            } catch (error) {
+                console.error('Error in remove button handling:', error);
+                // Submit the form anyway if there's an error
+                this.submit();
+            }
         });
     });
     
@@ -791,24 +823,35 @@
         resetForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const btn = this.querySelector('button');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Resetting...';
-            btn.disabled = true;
-            btn.classList.add('btn-loading');
-            
-            // Add animation to all component cards
-            document.querySelectorAll('.component-card, .selected-component-details').forEach((el, index) => {
+            try {
+                const btn = this.querySelector('button');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Resetting...';
+                    btn.disabled = true;
+                    btn.classList.add('btn-loading');
+                }
+                
+                // Add animation to all component cards
+                const componentCards = document.querySelectorAll('.component-card, .selected-component-details');
+                if (componentCards.length > 0) {
+                    componentCards.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.transition = 'all 0.3s ease';
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(-10px)';
+                        }, index * 100);
+                    });
+                }
+                
+                // Submit form after animations
                 setTimeout(() => {
-                    el.style.transition = 'all 0.3s ease';
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(-10px)';
-                }, index * 100);
-            });
-            
-            // Submit form after animations
-            setTimeout(() => {
+                    this.submit();
+                }, 800);
+            } catch (error) {
+                console.error('Error in reset form handling:', error);
+                // Submit the form anyway if there's an error
                 this.submit();
-            }, 800);
+            }
         });
     }
 </script>
