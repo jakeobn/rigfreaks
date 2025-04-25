@@ -1,0 +1,138 @@
+{% extends 'layout.html' %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Shopping Cart</h1>
+    
+    <div class="row">
+        <!-- Cart Items -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Cart Items</h5>
+                </div>
+                <div class="card-body">
+                    {% if cart and cart.total_price > 0 %}
+                        <div class="cart-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-2">
+                                    <div class="text-center">
+                                        <i class="fas fa-desktop fa-3x text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>{{ build_details.name }}</h5>
+                                    <p class="text-muted">{{ build_details.description }}</p>
+                                    
+                                    <div class="component-summary small mt-2">
+                                        {% for category, component in build_details.components.items() %}
+                                            <div><strong>{{ category|capitalize }}:</strong> {{ component.name }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <form action="{{ url_for('cart.update_cart') }}" method="post">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">Qty</span>
+                                            <input type="number" class="form-control" name="quantity" value="{{ cart.quantity }}" min="1" max="10">
+                                            <button type="submit" class="btn btn-outline-secondary">
+                                                <i class="fas fa-sync-alt"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-2 text-end">
+                                    <div class="fw-bold text-success">${{ (cart.total_price) }}</div>
+                                    <form action="{{ url_for('cart.remove_from_cart') }}" method="post" class="mt-2">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash-alt me-1"></i>Remove
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h5>Your Cart is Empty</h5>
+                            <p>You haven't added any PC builds to your cart yet.</p>
+                            <a href="{{ url_for('builder') }}" class="btn btn-primary">Start Building</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    {% if cart and cart.total_price > 0 %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>${{ cart.total_price }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Quantity</span>
+                            <span>{{ cart.quantity }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Taxes</span>
+                            <span>Calculated at checkout</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Total:</h5>
+                            <div class="price-total">${{ cart.total_price * cart.quantity }}</div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{{ url_for('cart.checkout') }}" class="btn btn-primary">
+                                <i class="fas fa-credit-card me-1"></i>Proceed to Checkout
+                            </a>
+                            <a href="{{ url_for('builder') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i>Continue Shopping
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h5>No Items to Calculate</h5>
+                            <p>Add items to your cart to see the order summary.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Need Help?</h5>
+                </div>
+                <div class="card-body">
+                    <p>Have questions about your order?</p>
+                    <div class="d-grid">
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-comment-alt me-1"></i>Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

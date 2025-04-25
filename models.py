@@ -1,6 +1,8 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
+import json
+from enum import Enum
 
 # Initialize SQLAlchemy
 db = SQLAlchemy()
@@ -81,3 +83,95 @@ class ContactMessage(db.Model):
     
     def __repr__(self):
         return f'<ContactMessage {self.id} - {self.email}>'
+
+class OrderStatus(Enum):
+    PENDING = 'pending'
+    PAID = 'paid'
+    PROCESSING = 'processing'
+    SHIPPED = 'shipped'
+    DELIVERED = 'delivered'
+    CANCELED = 'canceled'
+    REFUNDED = 'refunded'
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    user = db.relationship('User', backref=db.backref('orders', lazy='dynamic'))
+    
+    # Order details
+    order_number = db.Column(db.String(20), unique=True, nullable=False)
+    status = db.Column(db.String(20), default=OrderStatus.PENDING.value)
+    total_amount = db.Column(db.Float, nullable=False)
+    
+    # Customer information
+    full_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=True)
+    
+    # Shipping information
+    address_line1 = db.Column(db.String(100), nullable=False)
+    address_line2 = db.Column(db.String(100), nullable=True)
+    city = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.String(50), nullable=False)
+    postal_code = db.Column(db.String(20), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
+    
+    # Payment information
+    payment_method = db.Column(db.String(50), nullable=True)
+    payment_id = db.Column(db.String(100), nullable=True)  # For Stripe payment_intent ID
+    
+    # Timestamps
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Build associated with this order
+    build_id = db.Column(db.Integer, db.ForeignKey('build.id'), nullable=True)
+    build = db.relationship('Build', backref=db.backref('orders', lazy='dynamic'))
+    
+    # Build configuration JSON
+    build_config = db.Column(db.Text, nullable=True)  # Stored as JSON
+    
+    def set_build_config(self, config_dict):
+        self.build_config = json.dumps(config_dict)
+    
+    def get_build_config(self):
+        if self.build_config:
+            return json.loads(self.build_config)
+        return {}
+    
+    def __repr__(self):
+        return f'<Order {self.order_number}>'
+
+class Cart(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    user = db.relationship('User', backref=db.backref('cart', uselist=False))
+    
+    # Session ID for non-authenticated users
+    session_id = db.Column(db.String(100), nullable=True)
+    
+    # Build IDs in the cart
+    build_id = db.Column(db.Integer, db.ForeignKey('build.id'), nullable=True)
+    build = db.relationship('Build', backref=db.backref('in_cart', uselist=False))
+    
+    # Build configuration for custom builds
+    build_config = db.Column(db.Text, nullable=True)  # Stored as JSON
+    
+    # Cart item details
+    quantity = db.Column(db.Integer, default=1)
+    total_price = db.Column(db.Float, default=0.0)
+    
+    # Timestamps
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def set_build_config(self, config_dict):
+        self.build_config = json.dumps(config_dict)
+    
+    def get_build_config(self):
+        if self.build_config:
+            return json.loads(self.build_config)
+        return {}
+    
+    def __repr__(self):
+        return f'<Cart {self.id}>'
