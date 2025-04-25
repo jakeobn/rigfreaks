@@ -3,44 +3,88 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section">
+<!-- Hero Section with Chillblast-inspired design -->
+<section class="chillblast-hero">
     <div class="container">
-        <div class="row align-items-center py-5">
-            <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 fw-bold mb-4 hero-title">Build Your <span class="text-primary">Ultimate</span> Gaming PC</h1>
-                <p class="lead mb-5 hero-text">Customize your perfect computer with our advanced PC builder tool. Select compatible components, view performance benchmarks, and create a system perfectly tailored to your needs and budget.</p>
-                <div class="d-flex flex-column flex-sm-row gap-3">
-                    <a href="{{ url_for('builder') }}" class="btn btn-primary btn-lg px-4 py-3 hero-btn">
-                        <i class="fas fa-tools me-2"></i>Start Building
+        <div class="row align-items-center">
+            <div class="col-lg-5 hero-content">
+                <div class="hero-badges mb-4">
+                    <span class="hero-badge">NEW</span>
+                    <span class="hero-badge primary">Performance Benchmarks</span>
+                </div>
+                <h1 class="hero-title">BUILD YOUR <span class="text-gradient">DREAM</span> GAMING PC</h1>
+                <p class="hero-subtitle">High-Performance Custom Computers</p>
+                <p class="hero-description mb-4">Customize a PC that's uniquely yours with advanced components, real-time compatibility checks, and detailed performance benchmarks.</p>
+                
+                <div class="hero-cta-buttons">
+                    <a href="{{ url_for('builder') }}" class="btn btn-primary btn-hero">
+                        <i class="fas fa-wrench me-2"></i>Build Your PC
                     </a>
-                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-lg px-4 py-3 hero-btn">
-                        <i class="fas fa-box-open me-2"></i>Pre-built PCs
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-hero">
+                        <i class="fas fa-desktop me-2"></i>View Pre-built PCs
                     </a>
                 </div>
-                <div class="mt-4 text-white-50 hero-features">
-                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
-                        <i class="fas fa-check-circle me-1"></i>Compatibility Check
-                    </span>
-                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
-                        <i class="fas fa-chart-bar me-1"></i>Performance Benchmarks
-                    </span>
-                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
-                        <i class="fas fa-save me-1"></i>Save Builds
-                    </span>
-                    <span class="badge bg-secondary bg-opacity-50 p-2 me-2 mb-2">
-                        <i class="fas fa-truck me-1"></i>Fast Delivery
-                    </span>
+                
+                <div class="hero-features mt-5">
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="hero-feature-text">
+                            <span>Real-time Compatibility Check</span>
+                        </div>
+                    </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="hero-feature-text">
+                            <span>Performance Benchmarks</span>
+                        </div>
+                    </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="hero-feature-text">
+                            <span>Free Shipping</span>
+                        </div>
+                    </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="hero-feature-text">
+                            <span>3-Year Warranty</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="hero-image-container position-relative">
-                    <div class="hero-glow position-absolute"></div>
-                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" class="img-fluid rounded-4 hero-image" alt="Gaming PC">
-                    <div class="hero-overlay position-absolute start-0 end-0 bottom-0 text-end p-4">
-                        <div class="d-inline-block bg-dark bg-opacity-75 px-3 py-2 rounded-3">
-                            <span class="text-success fw-bold me-2">Now with Performance Benchmarks</span>
-                            <i class="fas fa-chart-line text-success"></i>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div class="hero-image-wrapper">
+                    <div class="hero-shape shape-1"></div>
+                    <div class="hero-shape shape-2"></div>
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1661577639849-e197faba35a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Custom Gaming PC" class="hero-image">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-image-card">
+                            <div class="hero-image-card-title">Benchmark Score</div>
+                            <div class="hero-image-card-value">9800</div>
+                            <div class="hero-image-card-desc">Ultimate Gaming Performance</div>
+                        </div>
+                        <div class="hero-components">
+                            <div class="hero-component">
+                                <i class="fas fa-microchip"></i>
+                                <span>Intel Core i9</span>
+                            </div>
+                            <div class="hero-component">
+                                <i class="fas fa-tv"></i>
+                                <span>RTX 4090</span>
+                            </div>
+                            <div class="hero-component">
+                                <i class="fas fa-memory"></i>
+                                <span>64GB DDR5</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,67 +128,172 @@
         </div>
     </section>
     
-    <!-- Pre-built Configurations Section -->
-    <section class="my-5">
-        <h2 class="text-center mb-5">Pre-built Gaming Configurations</h2>
+    <!-- Pre-built Gaming PCs Section (Chillblast-inspired) -->
+    <section class="prebuilt-section mb-5 pb-5">
+        <div class="section-header text-center mb-5">
+            <span class="section-subheading">Ready-to-go Options</span>
+            <h2 class="section-title">Pre-built Gaming PCs</h2>
+            <div class="section-description mx-auto">
+                <p>High-performance gaming computers, professionally assembled and tested, ready to ship today.</p>
+            </div>
+        </div>
+        
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-header bg-success text-white">
-                        <h4 class="mb-0">Budget Gaming</h4>
+                <div class="prebuilt-card">
+                    <div class="prebuilt-card-badge">Best Seller</div>
+                    <div class="prebuilt-card-img">
+                        <img src="https://images.unsplash.com/photo-1587202372616-b43abea06c2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Budget Gaming PC">
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Perfect for 1080p gaming with medium settings on modern titles.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-microchip me-2 text-primary"></i>Intel Core i5 or AMD Ryzen 5</li>
-                            <li class="mb-2"><i class="fas fa-tv me-2 text-primary"></i>RX 6700 XT or equivalent</li>
-                            <li class="mb-2"><i class="fas fa-memory me-2 text-primary"></i>16GB DDR4 RAM</li>
-                            <li class="mb-2"><i class="fas fa-hdd me-2 text-primary"></i>1TB NVMe SSD</li>
-                        </ul>
-                        <div class="text-center mt-3">
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View Pre-built PCs</a>
+                    <div class="prebuilt-card-content">
+                        <h3 class="prebuilt-card-title">Starter Gaming PC</h3>
+                        <div class="prebuilt-card-meta">
+                            <div class="prebuilt-card-price">From $899</div>
+                            <div class="prebuilt-card-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(124)</span>
+                            </div>
+                        </div>
+                        <div class="prebuilt-card-specs">
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-microchip"></i>
+                                <span>Intel Core i5 / AMD Ryzen 5</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-tv"></i>
+                                <span>RX 6700 XT</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-memory"></i>
+                                <span>16GB DDR4 RAM</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-hdd"></i>
+                                <span>1TB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <div class="prebuilt-card-footer">
+                            <div class="prebuilt-gaming-perf">
+                                <div class="perf-label">Ideal for: 1080p Gaming</div>
+                                <div class="perf-bar">
+                                    <div class="perf-fill" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary w-100 mt-3">View Options</a>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">High-End Gaming</h4>
+                <div class="prebuilt-card featured">
+                    <div class="prebuilt-card-badge primary">Recommended</div>
+                    <div class="prebuilt-card-img">
+                        <img src="https://images.unsplash.com/photo-1591489378430-ef2f4892ccc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="High-End Gaming PC">
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Designed for smooth 1440p gaming with high framerates and ray tracing.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-microchip me-2 text-primary"></i>Intel Core i7 or AMD Ryzen 7</li>
-                            <li class="mb-2"><i class="fas fa-tv me-2 text-primary"></i>RTX 4070 Ti or equivalent</li>
-                            <li class="mb-2"><i class="fas fa-memory me-2 text-primary"></i>32GB DDR5 RAM</li>
-                            <li class="mb-2"><i class="fas fa-hdd me-2 text-primary"></i>2TB NVMe SSD</li>
-                        </ul>
-                        <div class="text-center mt-3">
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View Pre-built PCs</a>
+                    <div class="prebuilt-card-content">
+                        <h3 class="prebuilt-card-title">Performance Gaming PC</h3>
+                        <div class="prebuilt-card-meta">
+                            <div class="prebuilt-card-price">From $1,599</div>
+                            <div class="prebuilt-card-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(237)</span>
+                            </div>
+                        </div>
+                        <div class="prebuilt-card-specs">
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-microchip"></i>
+                                <span>Intel Core i7 / AMD Ryzen 7</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-tv"></i>
+                                <span>RTX 4070 Ti</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-memory"></i>
+                                <span>32GB DDR5 RAM</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-hdd"></i>
+                                <span>2TB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <div class="prebuilt-card-footer">
+                            <div class="prebuilt-gaming-perf">
+                                <div class="perf-label">Ideal for: 1440p Gaming</div>
+                                <div class="perf-bar">
+                                    <div class="perf-fill primary" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary w-100 mt-3">View Options</a>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-header bg-danger text-white">
-                        <h4 class="mb-0">Ultimate Gaming</h4>
+                <div class="prebuilt-card">
+                    <div class="prebuilt-card-badge accent">Ultimate</div>
+                    <div class="prebuilt-card-img">
+                        <img src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ultimate Gaming PC">
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">The ultimate gaming experience for 4K gaming, streaming, and content creation.</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-microchip me-2 text-primary"></i>Intel Core i9 or AMD Ryzen 9</li>
-                            <li class="mb-2"><i class="fas fa-tv me-2 text-primary"></i>RTX 4090 or equivalent</li>
-                            <li class="mb-2"><i class="fas fa-memory me-2 text-primary"></i>64GB DDR5 RAM</li>
-                            <li class="mb-2"><i class="fas fa-hdd me-2 text-primary"></i>4TB NVMe SSD</li>
-                        </ul>
-                        <div class="text-center mt-3">
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View Pre-built PCs</a>
+                    <div class="prebuilt-card-content">
+                        <h3 class="prebuilt-card-title">Elite Gaming PC</h3>
+                        <div class="prebuilt-card-meta">
+                            <div class="prebuilt-card-price">From $2,899</div>
+                            <div class="prebuilt-card-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(184)</span>
+                            </div>
+                        </div>
+                        <div class="prebuilt-card-specs">
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-microchip"></i>
+                                <span>Intel Core i9 / AMD Ryzen 9</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-tv"></i>
+                                <span>RTX 4090</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-memory"></i>
+                                <span>64GB DDR5 RAM</span>
+                            </div>
+                            <div class="prebuilt-spec">
+                                <i class="fas fa-hdd"></i>
+                                <span>4TB NVMe SSD</span>
+                            </div>
+                        </div>
+                        <div class="prebuilt-card-footer">
+                            <div class="prebuilt-gaming-perf">
+                                <div class="perf-label">Ideal for: 4K Gaming</div>
+                                <div class="perf-bar">
+                                    <div class="perf-fill accent" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary w-100 mt-3">View Options</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-outline-primary">
+                <i class="fas fa-desktop me-2"></i>See All Pre-built PCs
+            </a>
         </div>
     </section>
     

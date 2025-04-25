@@ -17,71 +17,289 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Top Notification Bar -->
+    <div class="top-notification-bar">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <i class="fas fa-desktop me-2"></i>PC Builder
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-none d-md-flex align-items-center">
+                    <span class="me-3"><i class="fas fa-check-circle text-success me-1"></i>Free Shipping</span>
+                    <span class="me-3"><i class="fas fa-shield-alt text-success me-1"></i>3-Year Warranty</span>
+                    <span><i class="fas fa-headset text-success me-1"></i>24/7 Support</span>
+                </div>
+                <div class="top-links">
+                    <a href="{{ url_for('contact') }}" class="me-3"><i class="fas fa-phone-alt me-1"></i>Contact</a>
+                    <a href="{{ url_for('contact') }}"><i class="fas fa-question-circle me-1"></i>Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand me-4" href="{{ url_for('index') }}">
+                <div class="d-flex align-items-center">
+                    <div class="brand-logo-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="ms-2">
+                        <span class="brand-name">PC Builder</span>
+                        <span class="brand-tagline">Custom Gaming Computers</span>
+                    </div>
+                </div>
             </a>
+            
+            <div class="d-flex d-lg-none ms-auto me-2">
+                <a href="{{ url_for('cart.view_cart') }}" class="nav-icon-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                    <div class="nav-icon-container">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge rounded-pill bg-primary nav-badge">0</span>
+                    </div>
+                </a>
+            </div>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('index') %}active{% endif %}" href="{{ url_for('index') }}">Home</a>
+                <ul class="navbar-nav me-auto main-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gaming PCs
+                        </a>
+                        <div class="dropdown-menu mega-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">By Series</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Budget Series</span>
+                                            <span class="dropdown-item-desc">Affordable gaming</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Performance Series</span>
+                                            <span class="dropdown-item-desc">High-end gaming</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Elite Series</span>
+                                            <span class="dropdown-item-desc">Ultimate gaming</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">By Usage</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">1080p Gaming</span>
+                                            <span class="dropdown-item-desc">Smooth full HD gaming</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">1440p Gaming</span>
+                                            <span class="dropdown-item-desc">High resolution gaming</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">4K Gaming</span>
+                                            <span class="dropdown-item-desc">Ultra HD experience</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">Special Builds</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Streaming PCs</span>
+                                            <span class="dropdown-item-desc">For content creators</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Compact PCs</span>
+                                            <span class="dropdown-item-desc">Small form factor</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">eSports PCs</span>
+                                            <span class="dropdown-item-desc">Competitive gaming</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="dropdown-menu-promo">
+                                            <div class="dropdown-menu-promo-img"></div>
+                                            <div class="dropdown-menu-promo-content">
+                                                <h5>Custom PC Builder</h5>
+                                                <p>Build your dream PC with our easy-to-use configuration tool</p>
+                                                <a href="{{ url_for('builder') }}" class="btn btn-primary btn-sm">Start Building</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">PC Builder</a>
+                        <a class="nav-link {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">
+                            PC Builder
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Components
+                        </a>
+                        <div class="dropdown-menu mega-menu components-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Processors & Memory</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-microchip menu-icon"></i>
+                                            <span>CPUs</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-memory menu-icon"></i>
+                                            <span>RAM</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-server menu-icon"></i>
+                                            <span>Motherboards</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Graphics & Storage</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-tv menu-icon"></i>
+                                            <span>Graphics Cards</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-hdd menu-icon"></i>
+                                            <span>Storage Drives</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Power & Cooling</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-plug menu-icon"></i>
+                                            <span>Power Supplies</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-wind menu-icon"></i>
+                                            <span>CPU Coolers</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-fan menu-icon"></i>
+                                            <span>Case Fans</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Cases & Accessories</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-desktop menu-icon"></i>
+                                            <span>PC Cases</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-lightbulb menu-icon"></i>
+                                            <span>RGB Lighting</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-cable-car menu-icon"></i>
+                                            <span>Cables & Adapters</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path.startswith('/builds/builds') %}active{% endif %}" href="{{ url_for('builds.list_builds') }}">Browse Builds</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path.startswith('/builds/prebuilt') %}active{% endif %}" href="{{ url_for('builds.prebuilt_configs') }}">Pre-built PCs</a>
+                        <a class="nav-link {% if request.path.startswith('/builds/builds') %}active{% endif %}" href="{{ url_for('builds.list_builds') }}">
+                            Community Builds
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == url_for('benchmarks') %}active{% endif %}" href="{{ url_for('benchmarks') }}">
-                            <i class="fas fa-chart-line me-1"></i>Benchmarks
+                            Benchmarks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">
+                            Support
                         </a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
+                
+                <div class="nav-utility d-none d-lg-flex">
                     {% if session.get('pc_config') %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('summary') %}active{% endif %}" href="{{ url_for('summary') }}">
-                            <i class="fas fa-desktop me-1"></i>View Configuration
+                    <div class="nav-utility-item">
+                        <a href="{{ url_for('summary') }}" class="nav-icon-link {% if request.path == url_for('summary') %}active{% endif %}">
+                            <div class="nav-icon-container">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <span class="nav-icon-text">Your Build</span>
                         </a>
-                    </li>
+                    </div>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}" href="{{ url_for('cart.view_cart') }}">
-                            <i class="fas fa-shopping-cart me-1"></i>Cart
+                    
+                    <div class="nav-utility-item">
+                        <a href="{{ url_for('cart.view_cart') }}" class="nav-icon-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                            <div class="nav-icon-container">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge rounded-pill bg-primary nav-badge">0</span>
+                            </div>
+                            <span class="nav-icon-text">Cart</span>
                         </a>
-                    </li>
-                    {% if 'user_id' in session %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user me-1"></i>{{ session.get('username', 'Account') }}
+                    </div>
+                    
+                    <div class="nav-utility-item">
+                        {% if 'user_id' in session %}
+                        <div class="dropdown">
+                            <a class="nav-icon-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="nav-icon-container">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="nav-icon-text">{{ session.get('username', 'Account') }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('builds.list_builds') }}">My Builds</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="nav-icon-link">
+                            <div class="nav-icon-container">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="nav-icon-text">Login</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}">My Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
-                    </li>
-                    {% endif %}
-                </ul>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
+    
+    <!-- Mobile Menu Utility Links (shown in collapsed menu) -->
+    <div class="d-lg-none mobile-utility-nav">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                {% if 'user_id' in session %}
+                <a href="{{ url_for('auth.profile') }}" class="mobile-utility-link">
+                    <i class="fas fa-user-circle"></i>
+                    <span>{{ session.get('username', 'Account') }}</span>
+                </a>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="mobile-utility-link">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="{{ url_for('auth.register') }}" class="mobile-utility-link">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register</span>
+                </a>
+                {% endif %}
+                
+                {% if session.get('pc_config') %}
+                <a href="{{ url_for('summary') }}" class="mobile-utility-link">
+                    <i class="fas fa-desktop"></i>
+                    <span>Your Build</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
     <!-- Flash Messages -->
     <div class="container mt-3">
