@@ -42,10 +42,19 @@
         </a>
     </div>
     
+    <!-- Loading Animation (hidden by default) -->
+    <div id="loading-container" class="text-center py-5" style="display: none;">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h4 class="mt-4">Loading {{ category|capitalize }} Components...</h4>
+        <p class="text-muted">Retrieving compatible components for your build</p>
+    </div>
+    
     <!-- Component Cards -->
     <div class="row g-4 component-container">
         {% for component in components %}
-        <div class="col-lg-4 col-md-6" data-price="{{ component.price }}">
+        <div class="col-lg-4 col-md-6 component-card-wrapper" data-price="{{ component.price }}">
             <div class="card h-100 component-card" data-price="{{ component.price }}">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <a href="{{ url_for('component_detail', category=category, component_id=component.id) }}" class="component-name text-decoration-none">{{ component.name }}</a>
@@ -120,11 +129,11 @@
                         </div>
                         <div class="col-sm-6">
                             <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
-                                <button type="submit" class="btn btn-primary w-100">
+                                <button type="submit" class="btn btn-primary w-100 select-btn" data-component-id="{{ component.id }}">
                                     {% if component.id == current_selection %}
-                                        <i class="fas fa-check me-1"></i>Selected
+                                        <i class="fas fa-check me-1"></i><span class="btn-text">Selected</span>
                                     {% else %}
-                                        <i class="fas fa-plus me-1"></i>Select
+                                        <i class="fas fa-plus me-1"></i><span class="btn-text">Select</span>
                                     {% endif %}
                                 </button>
                             </form>
@@ -136,4 +145,165 @@
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Simulate loading state for the component cards
+        const loadingContainer = document.getElementById('loading-container');
+        const componentContainer = document.querySelector('.component-container');
+        
+        // Initially hide component cards
+        componentContainer.style.opacity = '0';
+        componentContainer.style.visibility = 'hidden';
+        
+        // Show loading animation
+        loadingContainer.style.display = 'block';
+        
+        // After a short delay, hide the loading animation and show components
+        setTimeout(() => {
+            // Hide loading animation
+            loadingContainer.style.display = 'none';
+            
+            // Show component cards with fade-in effect
+            componentContainer.style.transition = 'opacity 0.5s ease';
+            componentContainer.style.visibility = 'visible';
+            componentContainer.style.opacity = '1';
+            
+            // Add staggered fade-in animation for each card
+            const cards = document.querySelectorAll('.component-card-wrapper');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 50)); // Staggered delay
+            });
+        }, 1000); // 1 second delay to show loading state
+        
+        // Handle filter functionality
+        const filterInput = document.getElementById('component-filter');
+        filterInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            // Filter components based on search term
+            document.querySelectorAll('.component-card-wrapper').forEach(card => {
+                const componentName = card.querySelector('.component-name').textContent.toLowerCase();
+                const componentDesc = card.querySelector('.component-specs').textContent.toLowerCase();
+                const specsItems = Array.from(card.querySelectorAll('.spec-item')).map(item => item.textContent.toLowerCase());
+                
+                // Check if the search term matches any component information
+                const matches = componentName.includes(searchTerm) || 
+                               componentDesc.includes(searchTerm) || 
+                               specsItems.some(spec => spec.includes(searchTerm));
+                
+                // Show or hide the card based on match
+                if (matches) {
+                    card.style.display = '';
+                    // Add a subtle highlight animation if there's a match
+                    card.querySelector('.component-card').classList.add('search-match');
+                    setTimeout(() => {
+                        card.querySelector('.component-card').classList.remove('search-match');
+                    }, 500);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Handle sort functionality
+        const sortSelect = document.getElementById('component-sort');
+        sortSelect.addEventListener('change', function() {
+            const sortValue = this.value;
+            const container = document.querySelector('.component-container');
+            const cards = Array.from(container.querySelectorAll('.component-card-wrapper'));
+            
+            // Sort cards based on selected option
+            cards.sort((a, b) => {
+                if (sortValue === 'price-low') {
+                    return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+                } else if (sortValue === 'price-high') {
+                    return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+                } else if (sortValue === 'name-asc') {
+                    return a.querySelector('.component-name').textContent.localeCompare(b.querySelector('.component-name').textContent);
+                } else if (sortValue === 'name-desc') {
+                    return b.querySelector('.component-name').textContent.localeCompare(a.querySelector('.component-name').textContent);
+                }
+            });
+            
+            // Reorder DOM elements
+            cards.forEach(card => {
+                container.appendChild(card);
+            });
+            
+            // Add animation to indicate sorting has occurred
+            container.classList.add('sort-animation');
+            setTimeout(() => {
+                container.classList.remove('sort-animation');
+            }, 500);
+        });
+        
+        // Handle select button loading states
+        document.querySelectorAll('.select-btn').forEach(button => {
+            button.closest('form').addEventListener('submit', function(e) {
+                // Prevent instant form submission to show loading state
+                e.preventDefault();
+                
+                // Get the button and change its appearance to loading state
+                const btn = this.querySelector('button');
+                const btnText = btn.querySelector('.btn-text');
+                const originalText = btnText.textContent;
+                const originalIcon = btn.querySelector('i').className;
+                
+                // Add loading state
+                btn.classList.add('btn-loading');
+                btn.disabled = true;
+                btnText.textContent = 'Processing...';
+                btn.querySelector('i').className = 'fas fa-spinner fa-spin';
+                
+                // Submit the form after a short delay
+                setTimeout(() => {
+                    this.submit();
+                }, 800);
+            });
+        });
+        
+        // Handle compare functionality
+        const compareCheckboxes = document.querySelectorAll('.compare-checkbox');
+        compareCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedComponents = Array.from(document.querySelectorAll('.compare-checkbox:checked')).map(cb => cb.value);
+                
+                // Update the compare link to include selected components
+                const compareLink = document.querySelector('a[href*="/compare/"]');
+                const category = compareLink.getAttribute('href').split('/').pop();
+                compareLink.setAttribute('href', `/compare/${category}?components=${selectedComponents.join(',')}`);
+                
+                // Visual feedback
+                if (this.checked) {
+                    this.closest('.component-card').classList.add('border-primary');
+                } else {
+                    this.closest('.component-card').classList.remove('border-primary');
+                }
+                
+                // Disable checkboxes if more than 3 are selected
+                if (selectedComponents.length >= 3) {
+                    document.querySelectorAll('.compare-checkbox:not(:checked)').forEach(cb => {
+                        cb.disabled = true;
+                        cb.parentElement.setAttribute('title', 'You can compare up to 3 components at once');
+                    });
+                } else {
+                    document.querySelectorAll('.compare-checkbox').forEach(cb => {
+                        cb.disabled = false;
+                        cb.parentElement.removeAttribute('title');
+                    });
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
