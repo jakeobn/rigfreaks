@@ -1,0 +1,459 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ component.name }} - Details{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('builder') }}">PC Builder</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('select_component', category=category) }}">{{ category|capitalize }} Selection</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ component.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Component Image/Icon Column -->
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-body p-3 text-center">
+                    <div class="component-image bg-dark p-5 mb-3 rounded">
+                        {% if category == 'cpu' %}
+                            <i class="fas fa-microchip fa-8x text-secondary"></i>
+                        {% elif category == 'motherboard' %}
+                            <i class="fas fa-server fa-8x text-secondary"></i>
+                        {% elif category == 'ram' %}
+                            <i class="fas fa-memory fa-8x text-secondary"></i>
+                        {% elif category == 'gpu' %}
+                            <i class="fas fa-tv fa-8x text-secondary"></i>
+                        {% elif category == 'storage' %}
+                            <i class="fas fa-hdd fa-8x text-secondary"></i>
+                        {% elif category == 'power_supply' %}
+                            <i class="fas fa-plug fa-8x text-secondary"></i>
+                        {% elif category == 'case' %}
+                            <i class="fas fa-desktop fa-8x text-secondary"></i>
+                        {% elif category == 'cooling' %}
+                            <i class="fas fa-wind fa-8x text-secondary"></i>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="price-box mb-3">
+                        <span class="fs-4 fw-bold text-success">${{ component.price }}</span>
+                    </div>
+                    
+                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-2">
+                            {% if is_selected %}
+                                <i class="fas fa-check me-1"></i>Selected
+                            {% else %}
+                                <i class="fas fa-plus me-1"></i>Add to Build
+                            {% endif %}
+                        </button>
+                    </form>
+                    
+                    <a href="{{ url_for('select_component', category=category) }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Back to Selection
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Component Details Column -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h1 class="h3 mb-0">{{ component.name }}</h1>
+                    <span class="badge bg-primary">{{ component.brand }}</span>
+                </div>
+                <div class="card-body">
+                    <p class="lead">{{ component.description }}</p>
+                    
+                    <div class="highlight-features mb-4">
+                        <h5 class="border-bottom pb-2 mb-3">Key Features</h5>
+                        <div class="row g-3">
+                            {% if category == 'cpu' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-microchip"></i></div>
+                                        <div class="feature-value fs-4">{{ component.cores }}</div>
+                                        <div class="feature-label small">Cores</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-stream"></i></div>
+                                        <div class="feature-value fs-4">{{ component.threads }}</div>
+                                        <div class="feature-label small">Threads</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-tachometer-alt"></i></div>
+                                        <div class="feature-value fs-4">{{ component.boost_clock }}</div>
+                                        <div class="feature-label small">Max Speed</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-fire"></i></div>
+                                        <div class="feature-value fs-4">{{ component.tdp }}W</div>
+                                        <div class="feature-label small">TDP</div>
+                                    </div>
+                                </div>
+                            {% elif category == 'gpu' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-memory"></i></div>
+                                        <div class="feature-value fs-4">{{ component.memory }}GB</div>
+                                        <div class="feature-label small">VRAM</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-microchip"></i></div>
+                                        <div class="feature-value fs-4">{{ component.memory_type }}</div>
+                                        <div class="feature-label small">Memory Type</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-tachometer-alt"></i></div>
+                                        <div class="feature-value fs-4">{{ component.boost_clock }}</div>
+                                        <div class="feature-label small">Boost Clock</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-fire"></i></div>
+                                        <div class="feature-value fs-4">{{ component.tdp }}W</div>
+                                        <div class="feature-label small">TDP</div>
+                                    </div>
+                                </div>
+                            {% elif category == 'ram' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-database"></i></div>
+                                        <div class="feature-value fs-4">{{ component.capacity }}GB</div>
+                                        <div class="feature-label small">Capacity</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-microchip"></i></div>
+                                        <div class="feature-value fs-4">{{ component.type }}</div>
+                                        <div class="feature-label small">Type</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-tachometer-alt"></i></div>
+                                        <div class="feature-value fs-4">{{ component.speed }}</div>
+                                        <div class="feature-label small">Speed (MHz)</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-layer-group"></i></div>
+                                        <div class="feature-value fs-4">{{ component.modules }}</div>
+                                        <div class="feature-label small">Modules</div>
+                                    </div>
+                                </div>
+                            {% elif category == 'storage' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-database"></i></div>
+                                        <div class="feature-value fs-4">{{ component.capacity }}GB</div>
+                                        <div class="feature-label small">Capacity</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-microchip"></i></div>
+                                        <div class="feature-value fs-4">{{ component.type }}</div>
+                                        <div class="feature-label small">Type</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-tachometer-alt"></i></div>
+                                        <div class="feature-value fs-4">{{ component.read_speed }}</div>
+                                        <div class="feature-label small">Read (MB/s)</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-upload"></i></div>
+                                        <div class="feature-value fs-4">{{ component.write_speed }}</div>
+                                        <div class="feature-label small">Write (MB/s)</div>
+                                    </div>
+                                </div>
+                            {% elif category == 'motherboard' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-microchip"></i></div>
+                                        <div class="feature-value fs-4">{{ component.socket }}</div>
+                                        <div class="feature-label small">Socket</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-chess-board"></i></div>
+                                        <div class="feature-value fs-4">{{ component.chipset }}</div>
+                                        <div class="feature-label small">Chipset</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-memory"></i></div>
+                                        <div class="feature-value fs-4">{{ component.ram_type }}</div>
+                                        <div class="feature-label small">RAM Type</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-layer-group"></i></div>
+                                        <div class="feature-value fs-4">{{ component.ram_slots }}</div>
+                                        <div class="feature-label small">RAM Slots</div>
+                                    </div>
+                                </div>
+                            {% elif category == 'power_supply' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-bolt"></i></div>
+                                        <div class="feature-value fs-4">{{ component.wattage }}W</div>
+                                        <div class="feature-label small">Power</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-medal"></i></div>
+                                        <div class="feature-value fs-4">{{ component.efficiency }}</div>
+                                        <div class="feature-label small">Efficiency</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-plug"></i></div>
+                                        <div class="feature-value fs-4">{{ component.modular }}</div>
+                                        <div class="feature-label small">Modularity</div>
+                                    </div>
+                                </div>
+                            {% elif category == 'case' %}
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-desktop"></i></div>
+                                        <div class="feature-value fs-4">{{ component.form_factor }}</div>
+                                        <div class="feature-label small">Form Factor</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="key-feature text-center p-3 bg-dark rounded">
+                                        <div class="feature-icon mb-2"><i class="fas fa-weight"></i></div>
+                                        <div class="feature-value fs-4">{{ component.weight }}kg</div>
+                                        <div class="feature-label small">Weight</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Detailed Specifications Table -->
+                    <div class="detailed-specs">
+                        <h5 class="border-bottom pb-2 mb-3">Full Specifications</h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+                                    {% for key, value in component.items() %}
+                                        {% if key not in ['id', 'name', 'description', 'price', 'image_url', 'specs'] %}
+                                            <tr>
+                                                <th style="width: 40%">{{ key|replace('_', ' ')|title }}</th>
+                                                <td>{{ value }}</td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                    <!-- Additional Specifications from specs object -->
+                                    {% if component.specs %}
+                                        <tr class="bg-dark">
+                                            <th colspan="2" class="text-center">Additional Specifications</th>
+                                        </tr>
+                                        {% for key, value in component.specs.items() %}
+                                            <tr>
+                                                <th style="width: 40%">{{ key }}</th>
+                                                <td>{{ value }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Component Performance Analysis -->
+                    {% if category in ['cpu', 'gpu'] %}
+                    <div class="performance-analysis mt-4">
+                        <h5 class="border-bottom pb-2 mb-3">Performance Analysis</h5>
+                        <div class="row">
+                            <!-- Visualize relative performance metrics -->
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header">Performance Rating</div>
+                                    <div class="card-body">
+                                        <div class="performance-meter">
+                                            {% if category == 'cpu' %}
+                                                {% set score = (component.cores * component.threads / 2) %}
+                                                {% if component.cores >= 16 %}
+                                                    {% set rating = 'Excellent for workstation tasks, content creation, and gaming' %}
+                                                    {% set perf_class = 'bg-success' %}
+                                                    {% set perf_width = 95 %}
+                                                {% elif component.cores >= 8 %}
+                                                    {% set rating = 'Great for gaming and multitasking' %}
+                                                    {% set perf_class = 'bg-info' %}
+                                                    {% set perf_width = 75 %}
+                                                {% elif component.cores >= 6 %}
+                                                    {% set rating = 'Good for gaming and general use' %}
+                                                    {% set perf_class = 'bg-primary' %}
+                                                    {% set perf_width = 60 %}
+                                                {% else %}
+                                                    {% set rating = 'Suitable for office tasks and light gaming' %}
+                                                    {% set perf_class = 'bg-secondary' %}
+                                                    {% set perf_width = 40 %}
+                                                {% endif %}
+                                            {% elif category == 'gpu' %}
+                                                {% if component.memory >= 20 %}
+                                                    {% set rating = 'Enthusiast-grade for 4K/8K gaming and professional workloads' %}
+                                                    {% set perf_class = 'bg-success' %}
+                                                    {% set perf_width = 95 %}
+                                                {% elif component.memory >= 12 %}
+                                                    {% set rating = 'High-end performance for 4K gaming and content creation' %}
+                                                    {% set perf_class = 'bg-info' %}
+                                                    {% set perf_width = 75 %}
+                                                {% elif component.memory >= 8 %}
+                                                    {% set rating = 'Great for 1440p gaming and general creative work' %}
+                                                    {% set perf_class = 'bg-primary' %}
+                                                    {% set perf_width = 60 %}
+                                                {% else %}
+                                                    {% set rating = 'Suitable for 1080p gaming and everyday tasks' %}
+                                                    {% set perf_class = 'bg-secondary' %}
+                                                    {% set perf_width = 40 %}
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            <div class="progress mb-3" style="height: 25px;">
+                                                <div class="progress-bar {{ perf_class }}" role="progressbar" style="width: {{ perf_width }}%" 
+                                                     aria-valuenow="{{ perf_width }}" aria-valuemin="0" aria-valuemax="100">
+                                                    {{ perf_width }}%
+                                                </div>
+                                            </div>
+                                            <p>{{ rating }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header">Recommended Use Cases</div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            {% if category == 'cpu' %}
+                                                {% if component.cores >= 16 %}
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Professional 3D Rendering</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Video Editing & Encoding</span>
+                                                    </li>
+                                                {% endif %}
+                                                {% if component.cores >= 8 %}
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Gaming & Streaming</span>
+                                                    </li>
+                                                {% endif %}
+                                                <li class="list-group-item d-flex">
+                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                    <span>General Computing Tasks</span>
+                                                </li>
+                                            {% elif category == 'gpu' %}
+                                                {% if component.memory >= 20 %}
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>AI & Machine Learning</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>8K Gaming</span>
+                                                    </li>
+                                                {% endif %}
+                                                {% if component.memory >= 12 %}
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>4K Gaming</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>3D Rendering & Animation</span>
+                                                    </li>
+                                                {% endif %}
+                                                {% if component.memory >= 8 %}
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>1440p Gaming</span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Video Editing</span>
+                                                    </li>
+                                                {% endif %}
+                                                <li class="list-group-item d-flex">
+                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                    <span>1080p Gaming</span>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Compatibility Information -->
+                    <div class="compatibility-info mt-4">
+                        <h5 class="border-bottom pb-2 mb-3">Compatibility Information</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                {% if category == 'cpu' %}
+                                    <p><strong>Socket Compatibility:</strong> This CPU requires a {{ component.socket }} socket motherboard.</p>
+                                    <p><strong>Cooling Requirements:</strong> For optimal performance, we recommend a {{ 'high-end' if component.tdp > 150 else 'moderate' if component.tdp > 95 else 'standard' }} CPU cooler.</p>
+                                {% elif category == 'motherboard' %}
+                                    <p><strong>CPU Compatibility:</strong> This motherboard supports {{ component.socket }} socket processors.</p>
+                                    <p><strong>Memory Compatibility:</strong> Compatible with {{ component.ram_type }} memory up to {{ component.max_ram }}GB total.</p>
+                                    <p><strong>Form Factor:</strong> Requires a case that supports {{ component.form_factor }} form factor.</p>
+                                {% elif category == 'ram' %}
+                                    <p><strong>Motherboard Compatibility:</strong> This memory is compatible with motherboards supporting {{ component.type }}.</p>
+                                {% elif category == 'gpu' %}
+                                    <p><strong>Power Requirements:</strong> Requires a power supply with {{ component.power_connectors }} power connectors and sufficient wattage (minimum {{ component.tdp + 150 }}W recommended).</p>
+                                    <p><strong>Size Considerations:</strong> Graphics card length is {{ component.length }}mm, ensure your case has sufficient clearance.</p>
+                                {% elif category == 'storage' %}
+                                    <p><strong>Interface Compatibility:</strong> Requires a motherboard with {{ component.interface }} connectivity.</p>
+                                {% elif category == 'power_supply' %}
+                                    <p><strong>Connectors Available:</strong> {{ component.specs.get('Connectors', 'Standard connectors') }}</p>
+                                {% elif category == 'case' %}
+                                    <p><strong>Motherboard Support:</strong> {{ component.specs.get('Motherboard Support', component.form_factor) }}</p>
+                                    <p><strong>Maximum GPU Length:</strong> {{ component.specs.get('Maximum GPU Length', 'Standard length') }}</p>
+                                    <p><strong>Maximum CPU Cooler Height:</strong> {{ component.specs.get('Maximum CPU Cooler Height', 'Standard height') }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

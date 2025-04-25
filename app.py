@@ -76,6 +76,32 @@ def select_component(category):
         components=components[category],
         current_selection=current_config.get(category)
     )
+    
+@app.route('/component/<category>/<component_id>', methods=['GET'])
+def component_detail(category, component_id):
+    components = load_component_data()
+    
+    if category not in components:
+        flash(f"Component category '{category}' not found", "danger")
+        return redirect(url_for('builder'))
+    
+    # Find the specified component
+    component = next((c for c in components[category] if c['id'] == component_id), None)
+    
+    if not component:
+        flash(f"Component with ID '{component_id}' not found in category '{category}'", "danger")
+        return redirect(url_for('select_component', category=category))
+    
+    # Check if this component is currently selected in the build
+    current_config = session.get('pc_config', {})
+    is_selected = current_config.get(category) == component_id
+    
+    return render_template(
+        'component_detail.html',
+        category=category,
+        component=component,
+        is_selected=is_selected
+    )
 
 @app.route('/add/<category>/<component_id>', methods=['POST'])
 def add_component(category, component_id):
