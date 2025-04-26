@@ -1,0 +1,149 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with Dark Tech Theme -->
+  <rect width="800" height="600" fill="#0a0a10"/>
+  
+  <!-- Ambient Background Glow -->
+  <radialGradient id="bgGlow" cx="400" cy="300" r="500" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#6600ff" stop-opacity="0.1">
+      <animate attributeName="stop-color" values="#6600ff;#ff0066;#ff6600;#00ff66;#6600ff" dur="20s" repeatCount="indefinite"/>
+    </stop>
+    <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="800" height="600" fill="url(#bgGlow)"/>
+  
+  <!-- Tech Grid Pattern -->
+  <g stroke="#222" stroke-width="0.5" opacity="0.5">
+    <path d="M0,100 L800,100 M0,200 L800,200 M0,300 L800,300 M0,400 L800,400 M0,500 L800,500"/>
+    <path d="M100,0 L100,600 M200,0 L200,600 M300,0 L300,600 M400,0 L400,600 M500,0 L500,600 M600,0 L600,600 M700,0 L700,600"/>
+  </g>
+  
+  <!-- Gaming PC Case - Premium Tower -->
+  <g>
+    <!-- Main Case Body -->
+    <rect x="300" y="100" width="280" height="400" rx="10" fill="#111" stroke="#222" stroke-width="2"/>
+    
+    <!-- Tempered Glass Side Panel -->
+    <rect x="300" y="120" width="260" height="360" rx="5" fill="#111" stroke="#333" stroke-width="1" opacity="0.9"/>
+    <rect x="320" y="140" width="220" height="320" rx="5" fill="#0a0a12" stroke="#444" stroke-width="1" opacity="0.7"/>
+    
+    <!-- Front Mesh Panel -->
+    <g id="frontMesh">
+      <rect x="300" y="120" width="40" height="340" fill="#111" stroke="#333" stroke-width="1"/>
+      <!-- Mesh Pattern -->
+      <g stroke="#333" stroke-width="0.5">
+        <path d="M305,140 L335,140 M305,150 L335,150 M305,160 L335,160 M305,170 L335,170 M305,180 L335,180 M305,190 L335,190 M305,200 L335,200"/>
+        <path d="M305,210 L335,210 M305,220 L335,220 M305,230 L335,230 M305,240 L335,240 M305,250 L335,250 M305,260 L335,260"/>
+        <path d="M305,270 L335,270 M305,280 L335,280 M305,290 L335,290 M305,300 L335,300 M305,310 L335,310 M305,320 L335,320"/>
+        <path d="M305,330 L335,330 M305,340 L335,340 M305,350 L335,350 M305,360 L335,360 M305,370 L335,370 M305,380 L335,380"/>
+        <path d="M305,390 L335,390 M305,400 L335,400 M305,410 L335,410 M305,420 L335,420 M305,430 L335,430 M305,440 L335,440"/>
+      </g>
+    </g>
+    
+    <!-- Top I/O Ports Panel -->
+    <rect x="340" y="100" width="200" height="20" rx="5" fill="#111" stroke="#333" stroke-width="1"/>
+    <circle cx="370" cy="110" r="5" fill="#222" stroke="#444" stroke-width="1"/>  <!-- Power Button -->
+    <circle cx="390" cy="110" r="3" fill="#222" stroke="#444" stroke-width="1"/>  <!-- Reset Button -->
+    <rect x="410" y="106" width="10" height="8" rx="2" fill="#222" stroke="#444" stroke-width="1"/>  <!-- USB Port -->
+    <rect x="430" y="106" width="10" height="8" rx="2" fill="#222" stroke="#444" stroke-width="1"/>  <!-- USB Port -->
+    <rect x="450" y="106" width="7" height="7" rx="3.5" fill="#222" stroke="#444" stroke-width="1"/>  <!-- Audio Jack -->
+    <rect x="465" y="106" width="7" height="7" rx="3.5" fill="#222" stroke="#444" stroke-width="1"/>  <!-- Mic Jack -->
+    <circle cx="370" cy="110" r="3" fill="#00ff66">
+      <animate attributeName="fill-opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- RGB Fans -->
+    <g id="frontFans">
+      <!-- Top Fan -->
+      <circle cx="320" cy="200" r="25" fill="#0a0a12" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="200" r="20" fill="none" stroke="#ff00cc" stroke-width="2" opacity="0.8">
+        <animate attributeName="stroke" values="#ff00cc;#00ffcc;#cc00ff;#ff00cc" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="320" cy="200" r="15" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="200" r="10" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="200" r="5" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="200" r="2" fill="#333"/>
+      
+      <!-- Middle Fan -->
+      <circle cx="320" cy="280" r="25" fill="#0a0a12" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="280" r="20" fill="none" stroke="#00ffcc" stroke-width="2" opacity="0.8">
+        <animate attributeName="stroke" values="#00ffcc;#cc00ff;#ff00cc;#00ffcc" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="320" cy="280" r="15" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="280" r="10" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="280" r="5" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="280" r="2" fill="#333"/>
+      
+      <!-- Bottom Fan -->
+      <circle cx="320" cy="360" r="25" fill="#0a0a12" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="360" r="20" fill="none" stroke="#cc00ff" stroke-width="2" opacity="0.8">
+        <animate attributeName="stroke" values="#cc00ff;#ff00cc;#00ffcc;#cc00ff" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="320" cy="360" r="15" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="360" r="10" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="360" r="5" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="320" cy="360" r="2" fill="#333"/>
+    </g>
+    
+    <!-- Inside Components Visible Through Glass -->
+    <!-- Motherboard -->
+    <rect x="345" y="160" width="170" height="280" rx="5" fill="#111" stroke="#333" stroke-width="1"/>
+    
+    <!-- CPU Cooler with RGB -->
+    <rect x="380" y="200" width="60" height="60" rx="5" fill="#151520" stroke="#333" stroke-width="1"/>
+    <circle cx="410" cy="230" r="25" fill="#151520" stroke="#333" stroke-width="1"/>
+    <circle cx="410" cy="230" r="20" fill="none" stroke="#00ffcc" stroke-width="2" opacity="0.6">
+      <animate attributeName="stroke" values="#00ffcc;#ff00cc;#cc00ff;#00ffcc" dur="7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="410" cy="230" r="10" fill="none" stroke="#333" stroke-width="1"/>
+    
+    <!-- RGB RAM Sticks -->
+    <g id="ramSticks">
+      <rect x="380" y="170" width="10" height="50" rx="1" fill="#151520" stroke="#333" stroke-width="1"/>
+      <rect x="380" y="170" width="10" height="8" rx="1" fill="none" stroke="#ff00cc" stroke-width="1" opacity="0.8">
+        <animate attributeName="stroke" values="#ff00cc;#cc00ff;#00ffcc;#ff00cc" dur="4s" repeatCount="indefinite"/>
+      </rect>
+      
+      <rect x="395" y="170" width="10" height="50" rx="1" fill="#151520" stroke="#333" stroke-width="1"/>
+      <rect x="395" y="170" width="10" height="8" rx="1" fill="none" stroke="#cc00ff" stroke-width="1" opacity="0.8">
+        <animate attributeName="stroke" values="#cc00ff;#00ffcc;#ff00cc;#cc00ff" dur="4s" repeatCount="indefinite"/>
+      </rect>
+      
+      <rect x="410" y="170" width="10" height="50" rx="1" fill="#151520" stroke="#333" stroke-width="1"/>
+      <rect x="410" y="170" width="10" height="8" rx="1" fill="none" stroke="#00ffcc" stroke-width="1" opacity="0.8">
+        <animate attributeName="stroke" values="#00ffcc;#ff00cc;#cc00ff;#00ffcc" dur="4s" repeatCount="indefinite"/>
+      </rect>
+      
+      <rect x="425" y="170" width="10" height="50" rx="1" fill="#151520" stroke="#333" stroke-width="1"/>
+      <rect x="425" y="170" width="10" height="8" rx="1" fill="none" stroke="#ff00cc" stroke-width="1" opacity="0.8">
+        <animate attributeName="stroke" values="#ff00cc;#cc00ff;#00ffcc;#ff00cc" dur="4s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    
+    <!-- Graphics Card with RGB -->
+    <rect x="370" y="280" width="140" height="40" rx="3" fill="#151520" stroke="#333" stroke-width="1"/>
+    <rect x="370" y="280" width="140" height="7" rx="2" fill="#222" stroke="#444" stroke-width="1"/>
+    <rect x="385" y="290" width="110" height="20" rx="2" fill="#111" stroke="#333" stroke-width="1"/>
+    <rect x="390" y="295" width="100" height="10" rx="1" fill="none" stroke="#00ffcc" stroke-width="1" opacity="0.7">
+      <animate attributeName="stroke" values="#00ffcc;#ff00cc;#cc00ff;#00ffcc" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Power Supply Unit Area at Bottom -->
+    <rect x="345" y="450" width="170" height="30" rx="3" fill="#0a0a12" stroke="#333" stroke-width="1"/>
+    
+    <!-- Cable Management Elements - Subtle cables connecting components -->
+    <path d="M430,260 C450,270 450,275 440,280" stroke="#333" stroke-width="2" fill="none"/>
+    <path d="M410,290 C420,300 430,320 440,320" stroke="#333" stroke-width="2" fill="none"/>
+    
+    <!-- Logo on Front Panel -->
+    <text x="315" cy="450" transform="rotate(-90 315,450)" font-family="Arial" font-weight="bold" font-size="10" fill="#444">LUMMI GAMING</text>
+  </g>
+  
+  <!-- Desk Surface -->
+  <rect x="200" y="500" width="480" height="20" rx="4" fill="#151520" stroke="#333" stroke-width="1"/>
+  <rect x="220" y="520" width="20" height="80" fill="#151520" stroke="#333" stroke-width="1"/>
+  <rect x="640" y="520" width="20" height="80" fill="#151520" stroke="#333" stroke-width="1"/>
+  
+  <!-- Subtle Reflections -->
+  <ellipse cx="440" cy="520" rx="140" ry="10" fill="#cc00ff" opacity="0.05"/>
+  <ellipse cx="440" cy="520" rx="100" ry="7" fill="#00ffcc" opacity="0.05"/>
+</svg>

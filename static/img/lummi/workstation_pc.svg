@@ -1,0 +1,130 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark Tech Background -->
+  <rect width="800" height="600" fill="#0a0a0a"/>
+  
+  <!-- Subtle Grid Pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#111" stroke-width="0.5"/>
+  </pattern>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  
+  <!-- Professional Workstation PC Case -->
+  <g>
+    <!-- Main Case Body - More Professional/Subtle Design -->
+    <rect x="300" y="120" width="250" height="380" rx="8" fill="#151515" stroke="#222" stroke-width="2"/>
+    
+    <!-- Front Panel - Brushed Metal Look -->
+    <rect x="300" y="120" width="250" height="20" rx="3" fill="#1e1e1e" stroke="#222" stroke-width="1"/>
+    
+    <!-- Side Panel -->
+    <rect x="300" y="140" width="40" height="340" fill="#1a1a1a" stroke="#222" stroke-width="1"/>
+    <rect x="340" y="140" width="190" height="340" fill="#1a1a1a" stroke="#222" stroke-width="1"/>
+    
+    <!-- Front I/O Ports -->
+    <g transform="translate(310, 130)">
+      <rect x="0" y="0" width="80" height="10" rx="2" fill="#1a1a1a"/>
+      <circle cx="10" cy="5" r="3" fill="#222"/> <!-- Power Button -->
+      <circle cx="10" cy="5" r="1" fill="#0077cc"/> <!-- Power LED -->
+      <circle cx="25" cy="5" r="2" fill="#222"/> <!-- Reset Button -->
+      <rect x="40" y="2" width="8" height="6" rx="1" fill="#111"/> <!-- USB Port -->
+      <rect x="55" y="2" width="8" height="6" rx="1" fill="#111"/> <!-- USB Port -->
+      <rect x="70" y="3" width="4" height="4" rx="2" fill="#111"/> <!-- Audio Jack -->
+    </g>
+    
+    <!-- Mesh Front Panel -->
+    <g transform="translate(310, 150)">
+      <rect x="0" y="0" width="20" height="300" fill="#111" stroke="#1a1a1a" stroke-width="1"/>
+      <!-- Mesh Pattern -->
+      <g stroke="#1a1a1a" stroke-width="0.5">
+        <path d="M2,10 L18,10 M2,20 L18,20 M2,30 L18,30 M2,40 L18,40 M2,50 L18,50"/>
+        <path d="M2,60 L18,60 M2,70 L18,70 M2,80 L18,80 M2,90 L18,90 M2,100 L18,100"/>
+        <path d="M2,110 L18,110 M2,120 L18,120 M2,130 L18,130 M2,140 L18,140 M2,150 L18,150"/>
+        <path d="M2,160 L18,160 M2,170 L18,170 M2,180 L18,180 M2,190 L18,190 M2,200 L18,200"/>
+        <path d="M2,210 L18,210 M2,220 L18,220 M2,230 L18,230 M2,240 L18,240 M2,250 L18,250"/>
+        <path d="M2,260 L18,260 M2,270 L18,270 M2,280 L18,280 M2,290 L18,290"/>
+      </g>
+    </g>
+    
+    <!-- Front Intake Fans (More Subtle/Professional Look) -->
+    <g>
+      <!-- Top Fan -->
+      <circle cx="320" cy="200" r="20" fill="#111" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="200" r="15" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="200" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="200" r="5" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="200" r="2" fill="#1a1a1a"/>
+      
+      <!-- Middle Fan -->
+      <circle cx="320" cy="280" r="20" fill="#111" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="280" r="15" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="280" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="280" r="5" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="280" r="2" fill="#1a1a1a"/>
+      
+      <!-- Bottom Fan -->
+      <circle cx="320" cy="360" r="20" fill="#111" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="360" r="15" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="360" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="360" r="5" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+      <circle cx="320" cy="360" r="2" fill="#1a1a1a"/>
+    </g>
+    
+    <!-- Side Panel Window - More Professional/Subdued Look -->
+    <rect x="360" y="160" width="150" height="300" rx="5" fill="#111" stroke="#1a1a1a" stroke-width="1" opacity="0.9"/>
+    
+    <!-- Visible Components Through Window -->
+    
+    <!-- Motherboard -->
+    <rect x="375" y="175" width="120" height="270" rx="3" fill="#111" stroke="#1a1a1a" stroke-width="1"/>
+    
+    <!-- CPU Cooler - Professional Design -->
+    <rect x="400" y="210" width="60" height="60" rx="2" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="430" cy="240" r="25" fill="#151515" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="430" cy="240" r="20" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="430" cy="240" r="15" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="430" cy="240" r="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    
+    <!-- RAM Sticks - Standard Professional Look -->
+    <g id="ramSticks">
+      <rect x="390" y="180" width="10" height="40" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+      <rect x="410" y="180" width="10" height="40" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+      <rect x="430" y="180" width="10" height="40" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+      <rect x="450" y="180" width="10" height="40" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+    </g>
+    
+    <!-- Graphics Card - Professional Workstation Card -->
+    <rect x="385" y="290" width="100" height="35" rx="2" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+    <rect x="385" y="290" width="100" height="5" rx="1" fill="#1a1a1a"/>
+    <rect x="395" y="300" width="80" height="15" rx="1" fill="#141414" stroke="#1a1a1a" stroke-width="1"/>
+    
+    <!-- Storage Drives -->
+    <g transform="translate(385, 340)">
+      <rect x="0" y="0" width="100" height="15" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+      <rect x="0" y="20" width="100" height="15" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+      <rect x="0" y="40" width="100" height="15" rx="1" fill="#161616" stroke="#1a1a1a" stroke-width="1"/>
+    </g>
+    
+    <!-- Power Supply Area -->
+    <rect x="375" y="455" width="120" height="25" rx="2" fill="#111" stroke="#1a1a1a" stroke-width="1"/>
+    
+    <!-- Subtle Cable Management -->
+    <path d="M440,275 C450,280 455,285 450,290" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+    <path d="M425,300 C430,310 435,320 440,325" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+    <path d="M430,370 C435,380 440,390 435,400" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+    
+    <!-- Brand/Model on Front -->
+    <text x="310" y="470" transform="rotate(-90 310,470)" font-family="Arial" font-weight="bold" font-size="10" fill="#333">LUMMI PRO</text>
+  </g>
+  
+  <!-- Desk Surface -->
+  <rect x="200" y="500" width="450" height="15" rx="3" fill="#222" stroke="#333" stroke-width="1"/>
+  <rect x="220" y="515" width="20" height="85" fill="#222" stroke="#333" stroke-width="1"/>
+  <rect x="610" y="515" width="20" height="85" fill="#222" stroke="#333" stroke-width="1"/>
+  
+  <!-- Subtle Lighting Effect -->
+  <radialGradient id="softGlow" cx="425" cy="300" r="200" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#0066cc" stop-opacity="0.05"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+  </radialGradient>
+  <rect x="300" y="100" width="250" height="400" fill="url(#softGlow)"/>
+</svg>

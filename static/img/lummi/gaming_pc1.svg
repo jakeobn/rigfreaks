@@ -1,0 +1,106 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gaming PC Case -->
+  <rect x="250" y="100" width="300" height="400" rx="10" fill="#222" stroke="#444" stroke-width="2"/>
+  
+  <!-- Front Panel Accents -->
+  <rect x="250" y="100" width="300" height="20" rx="5" fill="#333" stroke="#444" stroke-width="1"/>
+  <rect x="270" y="130" width="260" height="80" rx="5" fill="#111" stroke="#333" stroke-width="1"/>
+  
+  <!-- Side Window Panel -->
+  <rect x="545" y="130" width="5" height="340" fill="#444"/>
+  <rect x="250" y="130" width="295" height="340" fill="#222" stroke="#444" stroke-width="1"/>
+  <rect x="270" y="150" width="255" height="300" rx="5" fill="#111" opacity="0.7" stroke="#333" stroke-width="1"/>
+  
+  <!-- RGB Fans -->
+  <circle cx="300" cy="200" r="25" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="300" cy="200" r="20" fill="none" stroke="#0066ff" stroke-width="2">
+    <animate attributeName="stroke" values="#0066ff;#ff00ff;#00ff66;#ff6600;#0066ff" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="200" r="10" fill="none" stroke="#333" stroke-width="1"/>
+  
+  <circle cx="300" cy="260" r="25" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="300" cy="260" r="20" fill="none" stroke="#ff00ff" stroke-width="2">
+    <animate attributeName="stroke" values="#ff00ff;#00ff66;#ff6600;#0066ff;#ff00ff" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="260" r="10" fill="none" stroke="#333" stroke-width="1"/>
+  
+  <circle cx="300" cy="320" r="25" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="300" cy="320" r="20" fill="none" stroke="#00ff66" stroke-width="2">
+    <animate attributeName="stroke" values="#00ff66;#ff6600;#0066ff;#ff00ff;#00ff66" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="320" r="10" fill="none" stroke="#333" stroke-width="1"/>
+  
+  <!-- Inside Components Visible Through Window -->
+  <!-- GPU -->
+  <rect x="350" y="250" width="150" height="40" rx="2" fill="#111" stroke="#333" stroke-width="1"/>
+  <rect x="350" y="250" width="150" height="5" rx="1" fill="#222"/>
+  <rect x="360" y="260" width="130" height="20" rx="2" fill="#222" stroke="#333" stroke-width="1"/>
+  <circle cx="490" cy="270" r="7" fill="#111" stroke="#444" stroke-width="1">
+    <animate attributeName="fill" values="#111;#333;#111" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- RGB CPU Cooler -->
+  <rect x="400" y="180" width="60" height="60" rx="2" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="430" cy="210" r="25" fill="#111" stroke="#333" stroke-width="1"/>
+  <path d="M410,210 Q430,170 450,210 Q430,230 410,210 Z" fill="none" stroke="#ff00ff" stroke-width="2">
+    <animate attributeName="stroke" values="#ff00ff;#0066ff;#00ff66;#ff6600;#ff00ff" dur="5s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- RAM Sticks -->
+  <rect x="350" y="150" width="15" height="60" rx="1" fill="#222" stroke="#333" stroke-width="1"/>
+  <rect x="350" y="150" width="15" height="5" fill="none" stroke="#00ff66" stroke-width="2">
+    <animate attributeName="stroke" values="#00ff66;#0066ff;#ff00ff;#ff6600;#00ff66" dur="5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <rect x="375" y="150" width="15" height="60" rx="1" fill="#222" stroke="#333" stroke-width="1"/>
+  <rect x="375" y="150" width="15" height="5" fill="none" stroke="#0066ff" stroke-width="2">
+    <animate attributeName="stroke" values="#0066ff;#ff00ff;#ff6600;#00ff66;#0066ff" dur="5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <rect x="400" y="150" width="15" height="60" rx="1" fill="#222" stroke="#333" stroke-width="1"/>
+  <rect x="400" y="150" width="15" height="5" fill="none" stroke="#ff00ff" stroke-width="2">
+    <animate attributeName="stroke" values="#ff00ff;#ff6600;#00ff66;#0066ff;#ff00ff" dur="5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <rect x="425" y="150" width="15" height="60" rx="1" fill="#222" stroke="#333" stroke-width="1"/>
+  <rect x="425" y="150" width="15" height="5" fill="none" stroke="#ff6600" stroke-width="2">
+    <animate attributeName="stroke" values="#ff6600;#00ff66;#0066ff;#ff00ff;#ff6600" dur="5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Front Panel Ports -->
+  <rect x="280" y="450" width="50" height="10" rx="2" fill="#111"/>
+  <circle cx="290" cy="455" r="3" fill="#333"/>
+  <circle cx="305" cy="455" r="3" fill="#333"/>
+  <circle cx="320" cy="455" r="3" fill="#333"/>
+  
+  <!-- Power Button -->
+  <circle cx="350" cy="455" r="7" fill="#333" stroke="#444" stroke-width="1"/>
+  <circle cx="350" cy="455" r="5" fill="#111">
+    <animate attributeName="fill" values="#111;#00ff66;#111" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Reset Button -->
+  <circle cx="375" cy="455" r="4" fill="#333" stroke="#444" stroke-width="1"/>
+  
+  <!-- Power Supply Unit Vents -->
+  <rect x="270" y="380" width="260" height="50" rx="2" fill="#111" stroke="#333" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Table -->
+  <rect x="150" y="500" width="500" height="20" rx="2" fill="#333" stroke="#444" stroke-width="1"/>
+  <rect x="180" y="520" width="20" height="80" fill="#333" stroke="#444" stroke-width="1"/>
+  <rect x="600" y="520" width="20" height="80" fill="#333" stroke="#444" stroke-width="1"/>
+  
+  <!-- Background Elements - Abstract Tech Pattern -->
+  <rect x="0" y="0" width="800" height="600" fill="#0a0a0a"/>
+  <path d="M0,0 L800,600" stroke="#222" stroke-width="1" opacity="0.5"/>
+  <path d="M0,600 L800,0" stroke="#222" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Background Lighting Effect -->
+  <radialGradient id="bgGlow" cx="400" cy="300" r="400" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#0066ff" stop-opacity="0.1">
+      <animate attributeName="stop-color" values="#0066ff;#ff00ff;#00ff66;#ff6600;#0066ff" dur="10s" repeatCount="indefinite"/>
+    </stop>
+    <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+  </radialGradient>
+  <rect x="0" y="0" width="800" height="600" fill="url(#bgGlow)"/>
+</svg>
