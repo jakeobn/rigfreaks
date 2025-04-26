@@ -38,89 +38,113 @@
 </section>
 {% endif %}
 
-<!-- Hero Section with Chillblast-inspired design -->
-<section class="chillblast-hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5 hero-content">
-                <div class="hero-badges mb-4">
-                    <span class="hero-badge">FEATURED</span>
-                    <span class="hero-badge primary">Made To Order</span>
-                    <span class="hero-badge">Free Shipping</span>
-                </div>
-                <h1 class="hero-title">PREMIUM <span class="text-gradient">CUSTOM</span> DESKTOPS</h1>
-                <p class="hero-subtitle">Expertly Crafted & Built To Your Specifications</p>
-                <p class="hero-description mb-4">Each desktop is meticulously assembled to order with premium components, expert craftsmanship, and a 3-year warranty. Free shipping on all orders.</p>
-                
-                <div class="hero-cta-buttons">
-                    <a href="{{ url_for('builder') }}" class="btn btn-primary btn-hero">
-                        <i class="fas fa-desktop me-2"></i>Shop Now
-                    </a>
-                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-hero">
-                        <i class="fas fa-box-open me-2"></i>Ready-to-Ship PCs
-                    </a>
+<!-- Modern Hero Section with 3D Visual Effects -->
+<section class="modern-hero position-relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="hero-bg-elements">
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <div class="hero-blob blob-3"></div>
+        <div class="hero-grid"></div>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6 hero-content">
+                <!-- Floating tags with glassmorphism -->
+                <div class="hero-tags mb-4">
+                    <div class="hero-tag">PREMIUM BUILDS</div>
+                    <div class="hero-tag primary">CUSTOM DESIGN</div>
+                    <div class="hero-tag accent">3-YEAR WARRANTY</div>
                 </div>
                 
-                <div class="hero-features mt-5">
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="hero-feature-text">
-                            <span>Real-time Compatibility Check</span>
-                        </div>
+                <!-- Modern typography with animation classes -->
+                <h1 class="display-3 fw-bold hero-title-modern" data-aos="fade-up">
+                    NEXT-GEN <span class="text-gradient">CUSTOM</span> DESKTOPS
+                </h1>
+                
+                <p class="lead hero-subtitle fw-light text-gradient-subtle" data-aos="fade-up" data-aos-delay="100">
+                    Crafted for Performance. Designed for You.
+                </p>
+                
+                <p class="hero-description my-4" data-aos="fade-up" data-aos-delay="200">
+                    Experience computing excellence with our meticulously assembled custom desktops. Premium components, 
+                    expert craftsmanship, and dedicated support define every EverCraft machine.
+                </p>
+                
+                <!-- Modern button design with hover effects -->
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                    <a href="{{ url_for('builder') }}" class="btn btn-primary btn-hero-modern">
+                        <span class="btn-text">Design Your PC</span>
+                        <span class="btn-icon"><i class="fas fa-drafting-compass"></i></span>
+                    </a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline btn-hero-modern">
+                        <span class="btn-text">Explore Collections</span>
+                        <span class="btn-icon"><i class="fas fa-th-large"></i></span>
+                    </a>
+                </div>
+                
+                <!-- Feature pills with subtle animation -->
+                <div class="hero-features-modern mt-5" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-pill">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Real-time Compatibility</span>
                     </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="hero-feature-text">
-                            <span>Performance Benchmarks</span>
-                        </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance Metrics</span>
                     </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <div class="hero-feature-text">
-                            <span>Free Shipping</span>
-                        </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Shipping</span>
                     </div>
-                    <div class="hero-feature">
-                        <div class="hero-feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="hero-feature-text">
-                            <span>3-Year Warranty</span>
-                        </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>3-Year Warranty</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 d-none d-lg-block">
-                <div class="hero-image-wrapper">
-                    <div class="hero-shape shape-1"></div>
-                    <div class="hero-shape shape-2"></div>
-                    <div class="hero-image-container">
-                        <img src="https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/3/12/bsuqhjmfrwpbzzlzbcb0/custom-made-gaming-pc-with-rgb-lights" alt="Custom Gaming PC" class="hero-image">
-                        <div class="hero-overlay"></div>
-                        <div class="hero-image-card">
-                            <div class="hero-image-card-title">Benchmark Score</div>
-                            <div class="hero-image-card-value">9800</div>
-                            <div class="hero-image-card-desc">Ultimate Gaming Performance</div>
+            
+            <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+                <!-- 3D card with parallax effect -->
+                <div class="hero-3d-card" data-tilt data-tilt-max="10" data-aos="zoom-in" data-aos-delay="200">
+                    <!-- Modern mesh gradient overlay -->
+                    <div class="mesh-gradient-overlay"></div>
+                    
+                    <img src="https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/3/12/bsuqhjmfrwpbzzlzbcb0/custom-made-gaming-pc-with-rgb-lights" 
+                         alt="Premium Custom PC" class="hero-image-modern">
+                    
+                    <!-- Floating specs cards with glassmorphism -->
+                    <div class="spec-card spec-card-1">
+                        <div class="spec-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="spec-text">
+                            <div class="spec-title">Processor</div>
+                            <div class="spec-value">Intel Core i9 13900K</div>
                         </div>
-                        <div class="hero-components">
-                            <div class="hero-component">
-                                <i class="fas fa-microchip"></i>
-                                <span>Intel Core i9</span>
-                            </div>
-                            <div class="hero-component">
-                                <i class="fas fa-tv"></i>
-                                <span>RTX 4090</span>
-                            </div>
-                            <div class="hero-component">
-                                <i class="fas fa-memory"></i>
-                                <span>64GB DDR5</span>
-                            </div>
+                    </div>
+                    
+                    <div class="spec-card spec-card-2">
+                        <div class="spec-icon"><i class="fas fa-tv"></i></div>
+                        <div class="spec-text">
+                            <div class="spec-title">Graphics</div>
+                            <div class="spec-value">RTX 4090 24GB</div>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-card spec-card-3">
+                        <div class="spec-icon"><i class="fas fa-memory"></i></div>
+                        <div class="spec-text">
+                            <div class="spec-title">Memory</div>
+                            <div class="spec-value">64GB DDR5 6000MHz</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance badge with animation -->
+                    <div class="performance-badge">
+                        <div class="perf-ring"></div>
+                        <div class="perf-content">
+                            <div class="perf-score">9800</div>
+                            <div class="perf-label">BENCHMARK</div>
                         </div>
                     </div>
                 </div>
@@ -130,91 +154,353 @@
 </section>
 
 <div class="container">
-    <!-- Features Section -->
-    <section class="my-5">
-        <h2 class="text-center mb-5">Why Build With Us?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <div class="card-body text-center">
-                        <i class="fas fa-puzzle-piece fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">Component Compatibility</h3>
-                        <p class="card-text">Our system automatically checks compatibility between components, ensuring your build will work seamlessly together.</p>
+    <!-- Modern Features Section with Cards -->
+    <section class="features-modern py-6">
+        <div class="section-header text-center mb-5">
+            <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">WHY CHOOSE US</span>
+            <h2 class="display-5 fw-bold mb-4">Build Your Dream Setup</h2>
+            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                We've simplified the PC building process with smart tools and premium support
+            </p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Feature Card 1 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-puzzle-piece feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Guaranteed Compatibility</h3>
+                        <p class="feature-desc">Our intelligent system checks component compatibility in real-time as you build, eliminating configuration errors.</p>
+                        <span class="feature-number">01</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <div class="card-body text-center">
-                        <i class="fas fa-sliders-h fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">Customization Options</h3>
-                        <p class="card-text">Choose from a wide range of components to create a PC that's perfectly tailored to your needs and budget.</p>
+            
+            <!-- Feature Card 2 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-sliders-h feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Complete Customization</h3>
+                        <p class="feature-desc">Hand-pick every component from our curated selection of premium hardware to create a system uniquely yours.</p>
+                        <span class="feature-number">02</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <div class="card-body text-center">
-                        <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">Performance Insights</h3>
-                        <p class="card-text">Get detailed information about how your components work together and the expected performance of your build.</p>
+            
+            <!-- Feature Card 3 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-chart-line feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Performance Analytics</h3>
+                        <p class="feature-desc">Visualize and compare expected performance metrics across games and applications before you buy.</p>
+                        <span class="feature-number">03</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feature Metrics Bar -->
+        <div class="metrics-bar mt-5" data-aos="fade-up" data-aos-delay="400">
+            <div class="container">
+                <div class="row align-items-center justify-content-between text-center text-md-start">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <div class="metric-item">
+                            <span class="metric-number">100%</span>
+                            <span class="metric-label">Expert Assembly</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <div class="metric-item">
+                            <span class="metric-number">3-Year</span>
+                            <span class="metric-label">Premium Warranty</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-item">
+                            <span class="metric-number">1000+</span>
+                            <span class="metric-label">Configurations</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-item">
+                            <span class="metric-number">24/7</span>
+                            <span class="metric-label">Technical Support</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Featured Build Slider (pcspecialist & chillblast inspired) -->
-    <section class="featured-slider-section mb-5">
-        <div id="featuredBuildCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <!-- Modern Featured Systems Carousel -->
+    <section class="featured-systems-carousel py-6">
+        <div class="section-header text-center mb-5">
+            <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2 mb-3">FEATURED SYSTEMS</span>
+            <h2 class="display-5 fw-bold mb-4">Popular Configurations</h2>
+            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                Our best-selling pre-configured systems, ready to ship
+            </p>
+        </div>
+        
+        <div class="position-relative">
+            <!-- Custom navigation arrows -->
+            <div class="carousel-custom-navigation">
+                <button class="carousel-arrow carousel-prev" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-arrow carousel-next" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="featured-build-slide" style="background-image: url('https://cdn.pixabay.com/photo/2018/02/26/15/38/pc-3183065_1280.jpg')">
-                        <div class="featured-build-content">
-                            <span class="featured-build-badge">MOST POPULAR</span>
-                            <h2 class="featured-build-title">Performance Gaming PC</h2>
-                            <p class="featured-build-desc">Perfect for 1440p gaming with RTX 4070 Ti</p>
-                            <div class="featured-build-price">From $1,599</div>
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-light">View Details</a>
+            
+            <!-- Modern carousel with card design -->
+            <div id="featuredBuildCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="featured-system-card">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-image">
+                                            <div class="image-container">
+                                                <img src="https://cdn.pixabay.com/photo/2018/02/26/15/38/pc-3183065_1280.jpg" alt="Performance Gaming PC" class="img-fluid">
+                                                <div class="image-overlay"></div>
+                                            </div>
+                                            <!-- Floating spec highlights -->
+                                            <div class="spec-highlight spec-cpu">
+                                                <i class="fas fa-microchip"></i>
+                                                <span>RTX 4070 Ti</span>
+                                            </div>
+                                            <div class="spec-highlight spec-gpu">
+                                                <i class="fas fa-tv"></i>
+                                                <span>Intel i7-13700K</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-content">
+                                            <div class="system-badge">MOST POPULAR</div>
+                                            <h3 class="system-title">Performance Gaming PC</h3>
+                                            <p class="system-description">
+                                                Dominate in 1440p gaming with this meticulously balanced build featuring the 
+                                                latest-gen components and premium cooling for sustained performance.
+                                            </p>
+                                            
+                                            <!-- Key specs with modern design -->
+                                            <div class="system-specs">
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Processor</div>
+                                                        <div class="spec-value">Intel Core i7-13700K</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Graphics</div>
+                                                        <div class="spec-value">NVIDIA RTX 4070 Ti 12GB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Memory</div>
+                                                        <div class="spec-value">32GB DDR5-5600</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Storage</div>
+                                                        <div class="spec-value">2TB NVMe SSD</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Performance indicator -->
+                                            <div class="performance-indicator">
+                                                <div class="perf-label">1440p Gaming Performance</div>
+                                                <div class="perf-bar">
+                                                    <div class="perf-fill" style="width: 85%;"></div>
+                                                </div>
+                                                <div class="perf-value">Excellent</div>
+                                            </div>
+                                            
+                                            <div class="system-pricing">
+                                                <div class="price">From $1,599</div>
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary btn-lg">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="featured-system-card">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-image">
+                                            <div class="image-container">
+                                                <img src="https://cdn.pixabay.com/photo/2018/03/27/00/50/child-3264751_1280.jpg" alt="Elite Gaming PC" class="img-fluid">
+                                                <div class="image-overlay"></div>
+                                            </div>
+                                            <!-- Floating spec highlights -->
+                                            <div class="spec-highlight spec-cpu">
+                                                <i class="fas fa-microchip"></i>
+                                                <span>RTX 4090</span>
+                                            </div>
+                                            <div class="spec-highlight spec-gpu">
+                                                <i class="fas fa-tv"></i>
+                                                <span>Intel i9-13900K</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-content">
+                                            <div class="system-badge system-badge-premium">ULTIMATE</div>
+                                            <h3 class="system-title">Elite Gaming PC</h3>
+                                            <p class="system-description">
+                                                Experience uncompromising 4K gaming performance with our flagship build. 
+                                                The ultimate combination of cutting-edge components for enthusiasts.
+                                            </p>
+                                            
+                                            <!-- Key specs with modern design -->
+                                            <div class="system-specs">
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Processor</div>
+                                                        <div class="spec-value">Intel Core i9-13900K</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Graphics</div>
+                                                        <div class="spec-value">NVIDIA RTX 4090 24GB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Memory</div>
+                                                        <div class="spec-value">64GB DDR5-6000</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Storage</div>
+                                                        <div class="spec-value">4TB NVMe SSD</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Performance indicator -->
+                                            <div class="performance-indicator">
+                                                <div class="perf-label">4K Gaming Performance</div>
+                                                <div class="perf-bar">
+                                                    <div class="perf-fill" style="width: 100%;"></div>
+                                                </div>
+                                                <div class="perf-value">Exceptional</div>
+                                            </div>
+                                            
+                                            <div class="system-pricing">
+                                                <div class="price">From $2,899</div>
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary btn-lg">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="featured-system-card">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-image">
+                                            <div class="image-container">
+                                                <img src="https://cdn.pixabay.com/photo/2020/03/21/19/33/gaming-4955322_1280.jpg" alt="Starter Gaming PC" class="img-fluid">
+                                                <div class="image-overlay"></div>
+                                            </div>
+                                            <!-- Floating spec highlights -->
+                                            <div class="spec-highlight spec-cpu">
+                                                <i class="fas fa-microchip"></i>
+                                                <span>RX 6700 XT</span>
+                                            </div>
+                                            <div class="spec-highlight spec-gpu">
+                                                <i class="fas fa-tv"></i>
+                                                <span>Ryzen 5 7600X</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-content">
+                                            <div class="system-badge system-badge-value">BEST VALUE</div>
+                                            <h3 class="system-title">Starter Gaming PC</h3>
+                                            <p class="system-description">
+                                                The perfect entry into PC gaming with impressive 1080p performance.
+                                                High-quality components at an affordable price point.
+                                            </p>
+                                            
+                                            <!-- Key specs with modern design -->
+                                            <div class="system-specs">
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Processor</div>
+                                                        <div class="spec-value">AMD Ryzen 5 7600X</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Graphics</div>
+                                                        <div class="spec-value">AMD RX 6700 XT 12GB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Memory</div>
+                                                        <div class="spec-value">16GB DDR5-5200</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Storage</div>
+                                                        <div class="spec-value">1TB NVMe SSD</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Performance indicator -->
+                                            <div class="performance-indicator">
+                                                <div class="perf-label">1080p Gaming Performance</div>
+                                                <div class="perf-bar">
+                                                    <div class="perf-fill" style="width: 75%;"></div>
+                                                </div>
+                                                <div class="perf-value">Very Good</div>
+                                            </div>
+                                            
+                                            <div class="system-pricing">
+                                                <div class="price">From $899</div>
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary btn-lg">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="featured-build-slide" style="background-image: url('https://cdn.pixabay.com/photo/2018/03/27/00/50/child-3264751_1280.jpg')">
-                        <div class="featured-build-content">
-                            <span class="featured-build-badge">ULTIMATE</span>
-                            <h2 class="featured-build-title">Elite Gaming PC</h2>
-                            <p class="featured-build-desc">Dominate at 4K with the RTX 4090</p>
-                            <div class="featured-build-price">From $2,899</div>
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-light">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="featured-build-slide" style="background-image: url('https://cdn.pixabay.com/photo/2020/03/21/19/33/gaming-4955322_1280.jpg')">
-                        <div class="featured-build-content">
-                            <span class="featured-build-badge">BEST VALUE</span>
-                            <h2 class="featured-build-title">Starter Gaming PC</h2>
-                            <p class="featured-build-desc">Excellent 1080p gaming at an affordable price</p>
-                            <div class="featured-build-price">From $899</div>
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-light">View Details</a>
-                        </div>
-                    </div>
+                
+                <!-- Modern carousel indicators -->
+                <div class="carousel-indicators carousel-indicators-modern">
+                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Performance Gaming PC"></button>
+                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="1" aria-label="Elite Gaming PC"></button>
+                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="2" aria-label="Starter Gaming PC"></button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
 
