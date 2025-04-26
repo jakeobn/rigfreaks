@@ -816,11 +816,13 @@
             }
             // Function to handle navbar scrolling effect
             function handleNavbarScroll() {
-                const navbar = document.querySelector('.navbar-modern');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+                const navbar = document.querySelector('.chillblast-header');
+                if (navbar) {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
                 }
             }
             
@@ -849,22 +851,22 @@
                 document.body.style.paddingBottom = mobileActionsBar.offsetHeight + 'px';
             }
             
-            // Handle mobile toggler animation
-            const modernToggler = document.querySelector('.modern-toggler');
-            if (modernToggler) {
-                modernToggler.addEventListener('click', function() {
-                    // Toggle classes based on aria-expanded state
+            // Handle mobile navbar toggler
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    // Toggle aria-expanded attribute (Bootstrap will handle the rest)
                     const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    if (!isExpanded) {
-                        this.setAttribute('aria-expanded', 'true');
-                    }
+                    this.setAttribute('aria-expanded', !isExpanded);
                 });
                 
                 // Reset aria-expanded when collapsed
                 const navbarCollapse = document.getElementById('navbarNav');
                 if (navbarCollapse) {
                     navbarCollapse.addEventListener('hidden.bs.collapse', function() {
-                        modernToggler.setAttribute('aria-expanded', 'false');
+                        if (navbarToggler) {
+                            navbarToggler.setAttribute('aria-expanded', 'false');
+                        }
                     });
                 }
             }
