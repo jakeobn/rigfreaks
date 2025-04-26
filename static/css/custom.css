@@ -213,7 +213,8 @@ body {
     color: var(--text-muted);
     font-size: 0.85rem;
     white-space: nowrap;
-    padding: 0 1.5rem;
+    padding: 0 0.5rem; /* Reduced horizontal padding */
+    margin: 0 0.25rem; /* Added small margin */
     flex: 0 0 33.33%;
 }
 
