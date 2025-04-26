@@ -1409,37 +1409,67 @@
         </div>
     </section>
     
-    <!-- Newsletter Section -->
-    <section class="newsletter-section py-5 mb-5">
+    <!-- Modern Newsletter Section -->
+    <section class="newsletter-modern">
+        <div class="newsletter-decoration newsletter-decoration-1"></div>
+        <div class="newsletter-decoration newsletter-decoration-2"></div>
+        
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="newsletter-container">
-                        <div class="row align-items-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="newsletter-card" data-aos="fade-up">
+                        <div class="row align-items-center g-4">
                             <div class="col-lg-6">
-                                <div class="newsletter-content">
-                                    <h3 class="newsletter-title">Stay Updated</h3>
-                                    <p class="newsletter-subtitle">Get the latest news on component releases, exclusive deals, and building tips.</p>
-                                    <ul class="newsletter-features">
-                                        <li><i class="fas fa-check-circle text-success me-2"></i>Early access to sales</li>
-                                        <li><i class="fas fa-check-circle text-success me-2"></i>Exclusive building guides</li>
-                                        <li><i class="fas fa-check-circle text-success me-2"></i>New component alerts</li>
+                                <div class="newsletter-content-modern">
+                                    <h3 class="newsletter-title-modern">Stay Ahead with EverCraft Updates</h3>
+                                    <p class="newsletter-subtitle-modern">
+                                        Join our community to receive exclusive content, early access to sales, and the latest hardware news
+                                    </p>
+                                    
+                                    <ul class="newsletter-features-modern">
+                                        <li data-aos="fade-right" data-aos-delay="100">
+                                            <i class="fas fa-bell"></i>
+                                            <span>Product launch notifications</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="200">
+                                            <i class="fas fa-tag"></i>
+                                            <span>Exclusive subscriber discounts</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="300">
+                                            <i class="fas fa-book"></i>
+                                            <span>Expert PC building guides</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="400">
+                                            <i class="fas fa-award"></i>
+                                            <span>Insider hardware reviews</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-6">
-                                <div class="newsletter-form-container">
-                                    <form class="newsletter-form">
-                                        <div class="mb-3">
-                                            <input type="email" class="form-control form-control-lg" placeholder="Your email address" required>
+                                <div class="newsletter-form-modern" data-aos="fade-up" data-aos-delay="300">
+                                    <form>
+                                        <div class="form-floating-modern">
+                                            <input type="text" class="form-control" id="nameInput" placeholder=" ">
+                                            <label for="nameInput">Your Name</label>
                                         </div>
+                                        
+                                        <div class="form-floating-modern">
+                                            <input type="email" class="form-control" id="emailInput" placeholder=" ">
+                                            <label for="emailInput">Email Address</label>
+                                        </div>
+                                        
                                         <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary btn-lg">
-                                                <i class="fas fa-paper-plane me-2"></i>Subscribe
+                                            <button type="submit" class="btn btn-primary btn-newsletter">
+                                                <i class="fas fa-paper-plane"></i>
+                                                <span>Subscribe to Newsletter</span>
                                             </button>
                                         </div>
-                                        <div class="newsletter-privacy mt-2">
-                                            <small class="text-muted">We respect your privacy. Unsubscribe at any time.</small>
+                                        
+                                        <div class="newsletter-privacy-modern">
+                                            <i class="fas fa-shield-alt me-1"></i>
+                                            We respect your privacy and will never share your information
                                         </div>
                                     </form>
                                 </div>
@@ -1451,86 +1481,92 @@
         </div>
     </section>
     
-    <!-- Community Builds Section -->
-    <section class="my-5">
-        <h2 class="text-center mb-5">Community Build Showcase</h2>
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="text-center mb-4">
-                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                            <h3>Browse Community PC Builds</h3>
-                            <p class="lead">Explore PC configurations shared by our community members. Get inspiration for your own build or share yours with others!</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0">
-                                        <i class="fas fa-eye text-primary me-3 fs-4"></i>
-                                    </div>
-                                    <div>
-                                        <h5>Browse Builds</h5>
-                                        <p>Explore builds created by other users filtered by budget, purpose, or component.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0">
-                                        <i class="fas fa-share-alt text-primary me-3 fs-4"></i>
-                                    </div>
-                                    <div>
-                                        <h5>Share Your Builds</h5>
-                                        <p>Make your builds public to showcase your PC building skills to the community.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0">
-                                        <i class="fas fa-copy text-primary me-3 fs-4"></i>
-                                    </div>
-                                    <div>
-                                        <h5>Clone & Customize</h5>
-                                        <p>Use any public build as a starting point for your own custom PC configuration.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0">
-                                        <i class="fas fa-trophy text-primary me-3 fs-4"></i>
-                                    </div>
-                                    <div>
-                                        <h5>Featured Builds</h5>
-                                        <p>Check out our featured builds selected for their creativity and value.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="{{ url_for('builds.list_builds') }}" class="btn btn-primary">Browse Community Builds</a>
-                        </div>
+    <!-- Modern Community Builds Section -->
+    <section class="community-section">
+        <div class="container">
+            <h2 class="community-title" data-aos="fade-up">Community Build Showcase</h2>
+            <p class="community-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Join our thriving community where PC enthusiasts share and discover extraordinary builds. 
+                Get inspired, share your creativity, and connect with fellow builders.
+            </p>
+            
+            <div class="community-grid">
+                <!-- Browse Builds -->
+                <div class="community-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="community-icon">
+                        <i class="fas fa-search"></i>
                     </div>
+                    <h3 class="community-feature-title">Browse Builds</h3>
+                    <p class="community-feature-text">
+                        Discover configurations from our community, filtered by budget, purpose, or specific components to find exactly what you're looking for.
+                    </p>
                 </div>
+                
+                <!-- Share Your Builds -->
+                <div class="community-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="community-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="community-feature-title">Share Your Builds</h3>
+                    <p class="community-feature-text">
+                        Showcase your PC building skills and creativity by making your custom configurations public for the community to appreciate.
+                    </p>
+                </div>
+                
+                <!-- Clone & Customize -->
+                <div class="community-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="community-icon">
+                        <i class="fas fa-clone"></i>
+                    </div>
+                    <h3 class="community-feature-title">Clone & Customize</h3>
+                    <p class="community-feature-text">
+                        Start with any public build as your foundation, then customize it to match your preferences and performance requirements.
+                    </p>
+                </div>
+                
+                <!-- Featured Builds -->
+                <div class="community-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="community-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="community-feature-title">Featured Builds</h3>
+                    <p class="community-feature-text">
+                        Explore our curated selection of exceptional builds, showcasing innovation, optimal performance, and exceptional value.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up" data-aos-delay="350">
+                <a href="{{ url_for('builds.list_builds') }}" class="btn btn-primary btn-lg btn-community mt-5">
+                    <i class="fas fa-users"></i>
+                    <span>Explore Community Builds</span>
+                </a>
             </div>
         </div>
     </section>
     
-    <!-- CTA Section -->
-    <section class="my-5 py-5 text-center bg-primary text-white rounded-3">
-        <h2 class="mb-3">Ready to Build Your Dream PC?</h2>
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <p class="lead mb-4">Create a custom configuration that perfectly matches your needs or start with one of our pre-built templates.</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="{{ url_for('builder') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-tools me-2"></i>Custom Build
-                    </a>
-                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-desktop me-2"></i>Pre-built PCs
-                    </a>
+    <!-- Final CTA Section -->
+    <section class="cta-modern mt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="cta-card text-center" data-aos="fade-up">
+                        <h2 class="cta-title-modern mb-4">Turn Your Dream PC Into Reality Today</h2>
+                        <p class="cta-description">
+                            Whether you're building for gaming, content creation, or productivity, EverCraft has everything you need to create your perfect computer.
+                        </p>
+                        
+                        <div class="cta-buttons-modern mt-4">
+                            <a href="{{ url_for('builder') }}" class="btn btn-lg btn-primary btn-hero-modern">
+                                <span class="btn-text">Start Building</span>
+                                <span class="btn-icon"><i class="fas fa-wrench"></i></span>
+                            </a>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-outline-light btn-hero-modern">
+                                <span class="btn-text">Browse Pre-built PCs</span>
+                                <span class="btn-icon"><i class="fas fa-desktop"></i></span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
