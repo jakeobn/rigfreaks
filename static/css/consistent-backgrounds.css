@@ -141,30 +141,10 @@ body::after {
 }
 
 /* Ensuring consistent backgrounds for sections */
-section:not(.modern-hero):not(.pc-showcase-section) {
+section:not(.modern-hero) {
     background-color: transparent;
     position: relative;
     z-index: 1;
-}
-
-/* Special handling for showcase section */
-.pc-showcase-section {
-    background-color: var(--bg-dark);
-    position: relative;
-    overflow: hidden;
-}
-
-.pc-showcase-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 80% 20%, rgba(var(--bs-primary-rgb), 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(var(--bs-info-rgb), 0.03) 0%, transparent 50%);
-    z-index: 0;
 }
 
 /* Mobile summary panel */
