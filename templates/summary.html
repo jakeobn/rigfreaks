@@ -206,9 +206,10 @@
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="mb-0">Performance Estimate</h3>
+                    <!-- Benchmarks link removed as per updated site map -->
                     {% if performance and 'cpu' in config and 'gpu' in config %}
-                    <a href="{{ url_for('benchmarks') }}" class="btn btn-sm btn-primary">
-                        <i class="fas fa-chart-line me-1"></i>Detailed Benchmarks
+                    <a href="#performance-summary" class="btn btn-sm btn-primary">
+                        <i class="fas fa-chart-line me-1"></i>Performance Summary
                     </a>
                     {% endif %}
                 </div>

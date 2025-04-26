@@ -187,66 +187,7 @@ def summary():
         performance=performance_summary
     )
 
-@app.route('/benchmarks')
-def benchmarks():
-    if 'pc_config' not in session or not session['pc_config']:
-        flash("Please build a PC configuration first", "warning")
-        return redirect(url_for('builder'))
-    
-    # Check if we have the necessary components for benchmarks
-    if 'cpu' not in session['pc_config'] or 'gpu' not in session['pc_config']:
-        flash("CPU and GPU are required for benchmark calculations", "warning")
-        return redirect(url_for('builder'))
-    
-    components = load_component_data()
-    config_details = {}
-    
-    for category, component_id in session['pc_config'].items():
-        category_components = components.get(category, [])
-        component = next((c for c in category_components if c['id'] == component_id), None)
-        if component:
-            config_details[category] = component
-    
-    # Get detailed benchmark data
-    try:
-        from benchmarks import (
-            get_performance_score, 
-            get_comparison_data, 
-            BENCHMARK_CATEGORIES, 
-            GAME_BENCHMARKS, 
-            APP_BENCHMARKS
-        )
-        
-        performance_data = get_performance_score(session['pc_config'])
-        comparison_data = get_comparison_data(session['pc_config'])
-        
-        return render_template(
-            'benchmarks.html',
-            config=config_details,
-            performance=performance_data,
-            comparisons=comparison_data,
-            benchmark_categories=BENCHMARK_CATEGORIES,
-            games=GAME_BENCHMARKS,
-            applications=APP_BENCHMARKS
-        )
-    except Exception as e:
-        app.logger.error(f"Error retrieving benchmark data: {str(e)}")
-        flash("Unable to load benchmark data. Please try again later.", "danger")
-        return redirect(url_for('summary'))
-
-@app.route('/compare/<category>')
-def compare_components(category):
-    components = load_component_data()
-    
-    if category not in components:
-        flash(f"Component category '{category}' not found", "danger")
-        return redirect(url_for('builder'))
-    
-    return render_template(
-        'compare.html',
-        category=category,
-        components=components[category]
-    )
+# Benchmarks and compare routes removed as per updated site map
 
 @app.route('/api/check_compatibility', methods=['POST'])
 def api_check_compatibility():
@@ -317,17 +258,7 @@ def contact():
         
     return render_template('contact.html')
 
-@app.route('/terms')
-def terms():
-    return render_template('legal/terms.html')
-
-@app.route('/privacy')
-def privacy():
-    return render_template('legal/privacy.html')
-
-@app.route('/returns')
-def returns():
-    return render_template('legal/returns.html')
+# Legal routes removed as per updated site map
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
