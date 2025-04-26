@@ -71,8 +71,8 @@
                             <i class="fas fa-desktop"></i>
                         </div>
                         <div class="modern-brand-text">
-                            <span class="modern-brand-name">PC Builder</span>
-                            <span class="modern-brand-tagline d-none d-sm-block">Custom Gaming Computers</span>
+                            <span class="modern-brand-name">EverCraft</span>
+                            <span class="modern-brand-tagline d-none d-sm-block">Premium Custom Desktops</span>
                         </div>
                     </div>
                 </a>
@@ -103,63 +103,63 @@
                 <ul class="navbar-nav me-auto main-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gaming PCs
+                            Shop Desktops
                         </a>
                         <div class="dropdown-menu mega-menu">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h6 class="dropdown-header">By Series</h6>
+                                        <h6 class="dropdown-header">Featured Collections</h6>
                                         <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Budget Series</span>
-                                            <span class="dropdown-item-desc">Affordable gaming</span>
+                                            <span class="dropdown-item-name">Signature Series</span>
+                                            <span class="dropdown-item-desc">Premium craftsmanship</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Performance Series</span>
-                                            <span class="dropdown-item-desc">High-end gaming</span>
+                                            <span class="dropdown-item-name">Limited Edition</span>
+                                            <span class="dropdown-item-desc">Exclusive designs</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Elite Series</span>
-                                            <span class="dropdown-item-desc">Ultimate gaming</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h6 class="dropdown-header">By Usage</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">1080p Gaming</span>
-                                            <span class="dropdown-item-desc">Smooth full HD gaming</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">1440p Gaming</span>
-                                            <span class="dropdown-item-desc">High resolution gaming</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">4K Gaming</span>
-                                            <span class="dropdown-item-desc">Ultra HD experience</span>
+                                            <span class="dropdown-item-name">New Arrivals</span>
+                                            <span class="dropdown-item-desc">Latest releases</span>
                                         </a>
                                     </div>
                                     <div class="col-md-3">
-                                        <h6 class="dropdown-header">Special Builds</h6>
+                                        <h6 class="dropdown-header">By Purpose</h6>
                                         <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Streaming PCs</span>
-                                            <span class="dropdown-item-desc">For content creators</span>
+                                            <span class="dropdown-item-name">Gaming Desktops</span>
+                                            <span class="dropdown-item-desc">Built for performance</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Compact PCs</span>
-                                            <span class="dropdown-item-desc">Small form factor</span>
+                                            <span class="dropdown-item-name">Creator Workstations</span>
+                                            <span class="dropdown-item-desc">For professionals</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">eSports PCs</span>
-                                            <span class="dropdown-item-desc">Competitive gaming</span>
+                                            <span class="dropdown-item-name">Home & Office</span>
+                                            <span class="dropdown-item-desc">Reliable computing</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">Special Offers</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Ready to Ship</span>
+                                            <span class="dropdown-item-desc">Ships in 24 hours</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Clearance Models</span>
+                                            <span class="dropdown-item-desc">Special discounts</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                            <span class="dropdown-item-name">Financing Available</span>
+                                            <span class="dropdown-item-desc">0% interest options</span>
                                         </a>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="dropdown-menu-promo">
                                             <div class="dropdown-menu-promo-img"></div>
                                             <div class="dropdown-menu-promo-content">
-                                                <h5>Custom PC Builder</h5>
-                                                <p>Build your dream PC with our easy-to-use configuration tool</p>
-                                                <a href="{{ url_for('builder') }}" class="btn btn-primary btn-sm">Start Building</a>
+                                                <h5>Design Your Custom PC</h5>
+                                                <p>Build a desktop crafted to your exact specifications</p>
+                                                <a href="{{ url_for('builder') }}" class="btn btn-primary btn-sm">Start Designing</a>
                                             </div>
                                         </div>
                                     </div>
@@ -169,70 +169,70 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">
-                            PC Builder
+                            Custom Design Studio
                         </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Components
+                            Premium Components
                         </a>
                         <div class="dropdown-menu mega-menu components-menu">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Processors & Memory</h6>
+                                        <h6 class="dropdown-header">Performance Parts</h6>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-microchip menu-icon"></i>
-                                            <span>CPUs</span>
+                                            <span>Premium CPUs</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-memory menu-icon"></i>
-                                            <span>RAM</span>
+                                            <span>High-Performance Memory</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-server menu-icon"></i>
-                                            <span>Motherboards</span>
+                                            <span>Professional Motherboards</span>
                                         </a>
                                     </div>
                                     <div class="col-md-6 col-lg-3 mb-3">
                                         <h6 class="dropdown-header">Graphics & Storage</h6>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-tv menu-icon"></i>
-                                            <span>Graphics Cards</span>
+                                            <span>Elite Graphics Cards</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-hdd menu-icon"></i>
-                                            <span>Storage Drives</span>
+                                            <span>Ultra-Fast Storage</span>
                                         </a>
                                     </div>
                                     <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Power & Cooling</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-plug menu-icon"></i>
-                                            <span>Power Supplies</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-wind menu-icon"></i>
-                                            <span>CPU Coolers</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-fan menu-icon"></i>
-                                            <span>Case Fans</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Cases & Accessories</h6>
+                                        <h6 class="dropdown-header">Custom Aesthetics</h6>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-desktop menu-icon"></i>
-                                            <span>PC Cases</span>
+                                            <span>Premium Cases</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
                                             <i class="fas fa-lightbulb menu-icon"></i>
-                                            <span>RGB Lighting</span>
+                                            <span>Lighting Systems</span>
                                         </a>
                                         <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-cable-car menu-icon"></i>
-                                            <span>Cables & Adapters</span>
+                                            <i class="fas fa-paint-brush menu-icon"></i>
+                                            <span>Custom Finishes</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Cooling Solutions</h6>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-wind menu-icon"></i>
+                                            <span>Liquid Cooling</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-fan menu-icon"></i>
+                                            <span>Quiet Cooling</span>
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
+                                            <i class="fas fa-snowflake menu-icon"></i>
+                                            <span>Thermal Solutions</span>
                                         </a>
                                     </div>
                                 </div>
@@ -241,18 +241,36 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path.startswith('/builds/builds') %}active{% endif %}" href="{{ url_for('builds.list_builds') }}">
-                            Community Builds
+                            Showcase Gallery
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == url_for('benchmarks') %}active{% endif %}" href="{{ url_for('benchmarks') }}">
-                            Benchmarks
+                            Performance Center
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">
-                            Support
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Customer Care
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('contact') }}">
+                                <i class="fas fa-headset me-2"></i>
+                                <span>Contact Support</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('contact') }}">
+                                <i class="fas fa-truck me-2"></i>
+                                <span>Track Order</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('returns') }}">
+                                <i class="fas fa-exchange-alt me-2"></i>
+                                <span>Returns & Warranty</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('terms') }}">
+                                <i class="fas fa-shield-alt me-2"></i>
+                                <span>Support Plans</span>
+                            </a>
+                        </div>
                     </li>
                 </ul>
                 
@@ -364,15 +382,15 @@
                     <div class="mobile-action-icon">
                         <i class="fas fa-home"></i>
                     </div>
-                    <span class="mobile-action-label">Home</span>
+                    <span class="mobile-action-label">Shop</span>
                 </a>
                 
-                <!-- PC Builder Link -->
-                <a href="{{ url_for('builder') }}" class="mobile-action-btn {% if request.path == url_for('builder') %}active{% endif %}">
+                <!-- Collections Link -->
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-action-btn {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">
                     <div class="mobile-action-icon">
-                        <i class="fas fa-tools"></i>
+                        <i class="fas fa-th-large"></i>
                     </div>
-                    <span class="mobile-action-label">Builder</span>
+                    <span class="mobile-action-label">Collections</span>
                 </a>
                 
                 <!-- Current Build Link (if exists) -->
@@ -382,15 +400,15 @@
                         <i class="fas fa-desktop"></i>
                         <span class="mobile-action-indicator"></span>
                     </div>
-                    <span class="mobile-action-label">Your Build</span>
+                    <span class="mobile-action-label">Your Design</span>
                 </a>
                 {% else %}
-                <!-- Pre-built PCs -->
-                <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-action-btn {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">
+                <!-- Custom Design Studio -->
+                <a href="{{ url_for('builder') }}" class="mobile-action-btn {% if request.path == url_for('builder') %}active{% endif %}">
                     <div class="mobile-action-icon">
-                        <i class="fas fa-box-open"></i>
+                        <i class="fas fa-drafting-compass"></i>
                     </div>
-                    <span class="mobile-action-label">Pre-built</span>
+                    <span class="mobile-action-label">Design</span>
                 </a>
                 {% endif %}
                 
