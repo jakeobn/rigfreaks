@@ -161,10 +161,11 @@ body {
 /* Announcement Bar */
 .announcement-bar {
     background-color: var(--bg-darker);
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
+    height: 38px; /* Fixed height to ensure consistency */
 }
 
 .announcement-bar::before {
@@ -194,6 +195,8 @@ body {
 
 .announcement-slider {
     display: flex;
+    align-items: center;
+    height: 100%;
     animation: slide 20s linear infinite;
 }
 
