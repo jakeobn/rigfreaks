@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Reset position when mouse leaves the card
         heroCard.addEventListener('mouseleave', function() {
-            heroImage.style.transform = 'translate(0, 0)';
+            heroImage.style.transform = 'translate3d(0, 0, 0)';
         });
     }
 });
