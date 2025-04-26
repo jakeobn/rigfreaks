@@ -1115,195 +1115,248 @@
     
 
     
-    <!-- Popular Components Section (Chillblast-inspired) -->
-    <section class="component-categories-section py-5">
+    <!-- Modern Component Categories Section -->
+    <section class="component-categories-modern py-6">
         <div class="container">
-            <div class="section-header text-center mb-5">
-                <span class="section-subheading">Build Your PC</span>
-                <h2 class="section-title">Top Component Categories</h2>
-                <div class="section-description mx-auto">
-                    <p>Browse our extensive selection of high-quality PC components from top manufacturers</p>
+            <!-- Modern header with badges -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">PREMIUM COMPONENTS</span>
+                <h2 class="display-5 fw-bold mb-4">Build With The Best</h2>
+                <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                    Explore our extensive selection of high-performance PC components from leading manufacturers
+                </p>
+            </div>
+            
+            <!-- Modern component grid with cards -->
+            <div class="component-grid">
+                <!-- Processors -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="100">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Processors</h3>
+                            <div class="component-subtitle">Power your system</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Intel</span>
+                            <span class="brand-tag">AMD</span>
+                        </div>
+                        <p class="mb-0">Latest generation CPUs for gaming, content creation, and productivity workloads</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">15+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphics Cards -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="150">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Graphics Cards</h3>
+                            <div class="component-subtitle">Visual performance</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">NVIDIA</span>
+                            <span class="brand-tag">AMD</span>
+                        </div>
+                        <p class="mb-0">High-performance GPUs for gaming, rendering, and AI workloads</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">12+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="200">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Memory</h3>
+                            <div class="component-subtitle">Speed & multitasking</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Corsair</span>
+                            <span class="brand-tag">G.Skill</span>
+                            <span class="brand-tag">Kingston</span>
+                        </div>
+                        <p class="mb-0">High-speed DDR4 and DDR5 RAM options for seamless multitasking</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">10+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Storage -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="250">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Storage</h3>
+                            <div class="component-subtitle">Fast & spacious</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Samsung</span>
+                            <span class="brand-tag">Western Digital</span>
+                            <span class="brand-tag">Seagate</span>
+                        </div>
+                        <p class="mb-0">Lightning-fast SSDs, NVMe drives, and high-capacity HDDs</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">20+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Motherboards -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="300">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Motherboards</h3>
+                            <div class="component-subtitle">System foundation</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">ASUS</span>
+                            <span class="brand-tag">MSI</span>
+                            <span class="brand-tag">Gigabyte</span>
+                        </div>
+                        <p class="mb-0">Feature-rich motherboards for Intel and AMD processors</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">15+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Power Supplies -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="350">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Power Supplies</h3>
+                            <div class="component-subtitle">Reliable power</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Corsair</span>
+                            <span class="brand-tag">EVGA</span>
+                            <span class="brand-tag">Seasonic</span>
+                        </div>
+                        <p class="mb-0">High-efficiency power supplies with modular cable options</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">8+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cases -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="400">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Cases</h3>
+                            <div class="component-subtitle">Style & airflow</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Lian Li</span>
+                            <span class="brand-tag">Fractal Design</span>
+                            <span class="brand-tag">Corsair</span>
+                        </div>
+                        <p class="mb-0">Premium PC cases with optimal airflow and elegant designs</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">12+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cooling -->
+                <div class="component-card-modern" data-aos="fade-up" data-aos-delay="450">
+                    <a href="{{ url_for('builder') }}" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Cooling</h3>
+                            <div class="component-subtitle">Optimal thermals</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Noctua</span>
+                            <span class="brand-tag">Corsair</span>
+                            <span class="brand-tag">NZXT</span>
+                        </div>
+                        <p class="mb-0">High-performance air and liquid cooling solutions</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">10+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Processors</h3>
-                                <p class="category-card-desc">Intel & AMD CPUs for all needs</p>
-                                <div class="category-card-brands">
-                                    <span>Intel</span>
-                                    <span>AMD</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-tv"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Graphics Cards</h3>
-                                <p class="category-card-desc">High-performance GPUs</p>
-                                <div class="category-card-brands">
-                                    <span>NVIDIA</span>
-                                    <span>AMD</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-memory"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Memory</h3>
-                                <p class="category-card-desc">DDR4 & DDR5 RAM options</p>
-                                <div class="category-card-brands">
-                                    <span>Corsair</span>
-                                    <span>G.Skill</span>
-                                    <span>Kingston</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-hdd"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Storage</h3>
-                                <p class="category-card-desc">SSDs, NVMe & HDDs</p>
-                                <div class="category-card-brands">
-                                    <span>Samsung</span>
-                                    <span>Western Digital</span>
-                                    <span>Seagate</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Motherboards</h3>
-                                <p class="category-card-desc">For Intel & AMD platforms</p>
-                                <div class="category-card-brands">
-                                    <span>ASUS</span>
-                                    <span>MSI</span>
-                                    <span>Gigabyte</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Power Supplies</h3>
-                                <p class="category-card-desc">Reliable PSUs for your build</p>
-                                <div class="category-card-brands">
-                                    <span>Corsair</span>
-                                    <span>EVGA</span>
-                                    <span>Seasonic</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">PC Cases</h3>
-                                <p class="category-card-desc">Stylish & functional cases</p>
-                                <div class="category-card-brands">
-                                    <span>Phanteks</span>
-                                    <span>NZXT</span>
-                                    <span>Corsair</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <a href="{{ url_for('builder') }}" class="category-card-link">
-                        <div class="category-card">
-                            <div class="category-card-icon">
-                                <i class="fas fa-wind"></i>
-                            </div>
-                            <div class="category-card-content">
-                                <h3 class="category-card-title">Cooling</h3>
-                                <p class="category-card-desc">Air & liquid cooling solutions</p>
-                                <div class="category-card-brands">
-                                    <span>Noctua</span>
-                                    <span>Corsair</span>
-                                    <span>NZXT</span>
-                                </div>
-                                <div class="category-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="text-center mt-5">
-                <a href="{{ url_for('builder') }}" class="btn btn-lg btn-outline-primary">
-                    <i class="fas fa-tools me-2"></i>Start Building Your PC
+            <!-- Modern CTA -->
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="500">
+                <a href="{{ url_for('builder') }}" class="btn btn-lg btn-primary btn-hero-modern">
+                    <span class="btn-text">Start Building Your Custom PC</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
                 </a>
             </div>
         </div>
