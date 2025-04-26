@@ -727,8 +727,9 @@
     height: 120%;
     object-fit: contain;
     border-radius: 0;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     margin: -10% 0 0 -10%;
+    will-change: transform;
 }
 
 /* Floating Spec Cards */

@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Apply a slight movement to the image based on mouse position
             // The multiplier determines the strength of the effect
-            const multiplier = 20; // Adjust for more/less movement
-            heroImage.style.transform = `translate(${moveX * multiplier}px, ${moveY * multiplier}px)`;
+            const multiplier = 30; // Adjust for more/less movement
+            heroImage.style.transform = `translate3d(${moveX * multiplier}px, ${moveY * multiplier}px, 0)`;
         });
 
         // Reset position when mouse leaves the card
