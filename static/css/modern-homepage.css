@@ -468,10 +468,11 @@
 /* --- HERO SECTION --- */
 .modern-hero {
     min-height: 80vh;
-    padding: 5rem 0;
+    padding: 0 0 5rem 0; /* Removed top padding, kept bottom padding */
     background-color: var(--bg-darker);
     position: relative;
     z-index: 1;
+    margin-top: 0; /* Ensure no top margin */
 }
 
 /* Background Elements */
