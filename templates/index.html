@@ -512,89 +512,108 @@
                         </div>
                     </div>
                 </div>
-                    
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="featured-system-card">
-                                <div class="row g-0">
-                                    <div class="col-lg-6">
-                                        <div class="featured-system-image">
-                                            <div class="image-container">
-                                                <img src="https://cdn.pixabay.com/photo/2020/03/21/19/33/gaming-4955322_1280.jpg" alt="Starter Gaming PC" class="img-fluid">
-                                                <div class="image-overlay"></div>
+                
+                <!-- Config Card 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="config-card gaming" data-aos="fade-up" data-aos-delay="300">
+                        <div class="config-card-inner">
+                            <!-- System image with overlay -->
+                            <div class="config-image">
+                                <img src="https://cdn.pixabay.com/photo/2020/03/21/19/33/gaming-4955322_1280.jpg" 
+                                     alt="Starter Gaming PC" class="img-fluid">
+                                <div class="config-overlay"></div>
+                                <div class="config-badge value">BEST VALUE</div>
+                                
+                                <!-- Floating component indicators -->
+                                <div class="config-component cpu">
+                                    <div class="component-icon">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                    <div class="component-info">Ryzen 5 7600X</div>
+                                </div>
+                                
+                                <div class="config-component gpu">
+                                    <div class="component-icon">
+                                        <i class="fas fa-tv"></i>
+                                    </div>
+                                    <div class="component-info">RX 6700 XT</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Config content with modern styling -->
+                            <div class="config-content">
+                                <h3 class="config-title">Starter Gaming PC</h3>
+                                <p class="config-desc">Perfect for 1080p gaming at high settings with our budget-friendly option.</p>
+                                
+                                <!-- Specs with advanced layout -->
+                                <div class="config-specs">
+                                    <div class="spec-row">
+                                        <div class="spec-col">
+                                            <div class="spec-icon"><i class="fas fa-microchip"></i></div>
+                                            <div class="spec-detail">
+                                                <div class="spec-name">CPU</div>
+                                                <div class="spec-value">Ryzen 5 7600X</div>
                                             </div>
-                                            <!-- Floating spec highlights -->
-                                            <div class="spec-highlight spec-cpu">
-                                                <i class="fas fa-microchip"></i>
-                                                <span>RX 6700 XT</span>
-                                            </div>
-                                            <div class="spec-highlight spec-gpu">
-                                                <i class="fas fa-tv"></i>
-                                                <span>Ryzen 5 7600X</span>
+                                        </div>
+                                        <div class="spec-col">
+                                            <div class="spec-icon"><i class="fas fa-tv"></i></div>
+                                            <div class="spec-detail">
+                                                <div class="spec-name">GPU</div>
+                                                <div class="spec-value">RX 6700 XT</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="featured-system-content">
-                                            <div class="system-badge system-badge-value">BEST VALUE</div>
-                                            <h3 class="system-title">Starter Gaming PC</h3>
-                                            <p class="system-description">
-                                                The perfect entry into PC gaming with impressive 1080p performance.
-                                                High-quality components at an affordable price point.
-                                            </p>
-                                            
-                                            <!-- Key specs with modern design -->
-                                            <div class="system-specs">
-                                                <div class="spec-group">
-                                                    <div class="spec-item">
-                                                        <div class="spec-name">Processor</div>
-                                                        <div class="spec-value">AMD Ryzen 5 7600X</div>
-                                                    </div>
-                                                    <div class="spec-item">
-                                                        <div class="spec-name">Graphics</div>
-                                                        <div class="spec-value">AMD RX 6700 XT 12GB</div>
-                                                    </div>
-                                                </div>
-                                                <div class="spec-group">
-                                                    <div class="spec-item">
-                                                        <div class="spec-name">Memory</div>
-                                                        <div class="spec-value">16GB DDR5-5200</div>
-                                                    </div>
-                                                    <div class="spec-item">
-                                                        <div class="spec-name">Storage</div>
-                                                        <div class="spec-value">1TB NVMe SSD</div>
-                                                    </div>
-                                                </div>
+                                    <div class="spec-row">
+                                        <div class="spec-col">
+                                            <div class="spec-icon"><i class="fas fa-memory"></i></div>
+                                            <div class="spec-detail">
+                                                <div class="spec-name">RAM</div>
+                                                <div class="spec-value">16GB DDR5</div>
                                             </div>
-                                            
-                                            <!-- Performance indicator -->
-                                            <div class="performance-indicator">
-                                                <div class="perf-label">1080p Gaming Performance</div>
-                                                <div class="perf-bar">
-                                                    <div class="perf-fill" style="width: 75%;"></div>
-                                                </div>
-                                                <div class="perf-value">Very Good</div>
-                                            </div>
-                                            
-                                            <div class="system-pricing">
-                                                <div class="price">From $899</div>
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary btn-lg">View Details</a>
+                                        </div>
+                                        <div class="spec-col">
+                                            <div class="spec-icon"><i class="fas fa-hdd"></i></div>
+                                            <div class="spec-detail">
+                                                <div class="spec-name">Storage</div>
+                                                <div class="spec-value">1TB NVMe</div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                
+                                <!-- Advanced performance gauge -->
+                                <div class="config-performance">
+                                    <div class="perf-header">
+                                        <div class="perf-title">1080p Gaming</div>
+                                        <div class="perf-rating value">Great</div>
+                                    </div>
+                                    <div class="perf-gauge">
+                                        <div class="perf-track"></div>
+                                        <div class="perf-fill value" style="width: 75%"></div>
+                                        <div class="perf-glow value"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Price and action with modern styling -->
+                                <div class="config-footer">
+                                    <div class="config-price">From <span>$949</span></div>
+                                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn-config-view">
+                                        <span class="btn-text">View Details</span>
+                                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Modern carousel indicators -->
-                <div class="carousel-indicators carousel-indicators-modern">
-                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Performance Gaming PC"></button>
-                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="1" aria-label="Elite Gaming PC"></button>
-                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="2" aria-label="Starter Gaming PC"></button>
-                </div>
+            </div>
+            
+            <!-- "See all" button with modern hover effect -->
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn-view-all">
+                    <span class="btn-text">View All Configurations</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                </a>
             </div>
         </div>
     </section>
