@@ -1,21 +1,21 @@
 /* Chillblast-inspired Header Styles */
 
-/* Set dark theme for header to match hero section */
+/* Set light theme for header */
 .chillblast-header {
-    --bs-body-bg: #0f1624;
-    --bs-body-color: #ffffff;
-    --bs-navbar-color: #e0e0e0;
-    --bs-navbar-hover-color: #ffffff;
-    --bs-navbar-active-color: #ffffff;
-    background-color: #0f1624;
-    color: #e0e0e0;
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #333333;
+    --bs-navbar-color: #333333;
+    --bs-navbar-hover-color: #000000;
+    --bs-navbar-active-color: #000000;
+    background-color: #ffffff;
+    color: #333333;
 }
 
 /* Subheader with border */
 .chillblast-subheader {
     height: 64px;
-    border-bottom: 1px solid #1a2035;
-    background-color: #0f1624;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffffff;
 }
 
 /* Logo styling */
@@ -27,7 +27,7 @@
 /* Main navigation styles */
 .chillblast-heading {
     font-size: 14px;
-    color: #e0e0e0;
+    color: #333333;
     text-decoration: none;
     font-weight: 600;
     padding: 1rem 0.75rem;
@@ -35,7 +35,7 @@
 }
 
 .chillblast-heading:hover {
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .user-action-btn {
-    color: #e0e0e0;
+    color: #333333;
     font-size: 14px;
     text-decoration: none;
     display: flex;
@@ -98,7 +98,7 @@
 }
 
 .user-action-btn:hover {
-    color: #ffffff;
+    color: #000000;
 }
 
 .user-action-btn i {
