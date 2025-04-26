@@ -348,6 +348,10 @@ def privacy():
 @app.route('/returns')
 def returns():
     return render_template('legal/returns.html')
+    
+@app.route('/test')
+def test_page():
+    return render_template('test.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
