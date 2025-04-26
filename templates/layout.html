@@ -78,158 +78,68 @@
                     
                     <!-- Main Navigation - Desktop Only -->
                     <div class="d-none d-lg-flex justify-content-center align-items-center h-100">
-                        <!-- RTX Series -->
-                        <div class="dropdown d-none d-lg-inline">
-                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                                RTX Series PCs
-                            </a>
-                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
-                                <div class="container">
-                                    <div class="row row-cols-5">
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Forge RTX 4090 PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Forge RTX 4090 PC</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Elite RTX 4080 PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Elite RTX 4080 PC</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Swift RTX 4070 PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Swift RTX 4070 PC</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Budget RTX 4060 PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Budget RTX 4060 PC</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="View all RTX Series" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">View All RTX Series</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Gaming PCs -->
-                        <div class="dropdown d-none d-lg-inline">
-                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                                Gaming PCs
-                            </a>
-                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
-                                <div class="container">
-                                    <div class="row row-cols-5">
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="High-End Gaming PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">High-End Gaming</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Mid-Range Gaming PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Mid-Range Gaming</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Budget Gaming PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Budget Gaming</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Compact Gaming PC" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Compact Gaming</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="View all Gaming PCs" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">View All Gaming PCs</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Workstations -->
-                        <div class="dropdown d-none d-lg-inline">
-                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                                Workstations
-                            </a>
-                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
-                                <div class="container">
-                                    <div class="row row-cols-5">
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="Content Creator Workstation" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Content Creator</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="3D Animation Workstation" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">3D Animation</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="Video Editing Workstation" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">Video Editing</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="CAD/CAM Workstation" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">CAD/CAM</p>
-                                            </div>
-                                        </div>
-                                        <div class="col py-2">
-                                            <div class="text-center product-card-menu">
-                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
-                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="View all Workstations" loading="lazy">
-                                                <p class="m-0 chillblast-dropdown-heading text-dark">View All Workstations</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Custom Studio -->
-                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('builder') }}">
-                            Custom Studio
+                        <!-- Home -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('index') }}">
+                            Home
                         </a>
                         
-                        <!-- Support -->
+                        <!-- PC Builder -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('builder') }}">
+                            PC Builder
+                        </a>
+                        
+                        <!-- Prebuilt PCs -->
+                        <div class="dropdown d-none d-lg-inline">
+                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                Prebuilt PCs
+                            </a>
+                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
+                                <div class="container">
+                                    <div class="row row-cols-3">
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Gaming PCs" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Gaming PCs</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="Workstations" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Workstations</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="RTX Series PCs" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">RTX Series PCs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Parts Store -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('builds.prebuilt_configs') }}">
+                            Parts Store
+                        </a>
+                        
+                        <!-- Compatibility Help -->
                         <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('contact') }}">
-                            Support
+                            Compatibility Help
+                        </a>
+                        
+                        <!-- About -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('contact') }}">
+                            About
+                        </a>
+                        
+                        <!-- Contact -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('contact') }}">
+                            Contact
                         </a>
                     </div>
                     
@@ -264,124 +174,58 @@
         <!-- Mobile Navigation - Only visible on smaller screens -->
                 <div class="collapse navbar-collapse" id="navbarNav" data-bs-theme="light">
                 <ul class="navbar-nav me-auto" style="background-color: #fff; padding: 1rem;">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            RTX Series PCs
+                    <li class="nav-item">
+                        <a class="nav-link text-dark {% if request.path == url_for('index') %}active{% endif %}" href="{{ url_for('index') }}">
+                            Home
                         </a>
-                        <div class="dropdown-menu mega-menu">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h6 class="dropdown-header">Featured Collections</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Signature Series</span>
-                                            <span class="dropdown-item-desc">Premium craftsmanship</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Limited Edition</span>
-                                            <span class="dropdown-item-desc">Exclusive designs</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">New Arrivals</span>
-                                            <span class="dropdown-item-desc">Latest releases</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h6 class="dropdown-header">By Purpose</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Gaming Desktops</span>
-                                            <span class="dropdown-item-desc">Built for performance</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Creator Workstations</span>
-                                            <span class="dropdown-item-desc">For professionals</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Home & Office</span>
-                                            <span class="dropdown-item-desc">Reliable computing</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h6 class="dropdown-header">Special Offers</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Ready to Ship</span>
-                                            <span class="dropdown-item-desc">Ships in 24 hours</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Clearance Models</span>
-                                            <span class="dropdown-item-desc">Special discounts</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                            <span class="dropdown-item-name">Financing Available</span>
-                                            <span class="dropdown-item-desc">0% interest options</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="dropdown-menu-promo">
-                                            <div class="dropdown-menu-promo-img"></div>
-                                            <div class="dropdown-menu-promo-content">
-                                                <h5>Design Your Custom PC</h5>
-                                                <p>Build a desktop crafted to your exact specifications</p>
-                                                <a href="{{ url_for('builder') }}" class="btn btn-primary btn-sm">Start Designing</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">
+                            PC Builder
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gaming PCs
+                            Prebuilt PCs
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>High-End Gaming</span>
+                                <span>Gaming PCs</span>
                             </a>
                             <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>Mid-Range Gaming</span>
+                                <span>Workstations</span>
                             </a>
                             <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>Budget Gaming</span>
+                                <span>RTX Series PCs</span>
                             </a>
                             <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>Compact Gaming</span>
-                            </a>
-                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>View All Gaming PCs</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Workstations
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>Content Creator</span>
-                            </a>
-                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>3D Animation</span>
-                            </a>
-                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>Video Editing</span>
-                            </a>
-                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>CAD/CAM</span>
-                            </a>
-                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
-                                <span>View All Workstations</span>
+                                <span>View All Prebuilt PCs</span>
                             </a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">
-                            Custom Studio
+                        <a class="nav-link text-dark" href="{{ url_for('builds.prebuilt_configs') }}">
+                            Parts Store
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('contact') }}">
+                            Compatibility Help
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('contact') }}">
+                            About
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">
-                            Support
+                            Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{{ url_for('cart.view_cart') }}">
+                            Cart/Checkout
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -525,43 +369,24 @@
                     <div class="mobile-action-icon">
                         <i class="fas fa-home"></i>
                     </div>
-                    <span class="mobile-action-label">Shop</span>
+                    <span class="mobile-action-label">Home</span>
                 </a>
                 
-                <!-- Collections Link -->
-                <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-action-btn {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-th-large"></i>
-                    </div>
-                    <span class="mobile-action-label">Collections</span>
-                </a>
-                
-                <!-- Search Link (opens modal) -->
-                <button type="button" class="mobile-action-btn" id="mobileSearchButton">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <span class="mobile-action-label">Search</span>
-                </button>
-                
-                <!-- Current Build Link (if exists) -->
-                {% if session.get('pc_config') %}
-                <a href="{{ url_for('summary') }}" class="mobile-action-btn {% if request.path == url_for('summary') %}active{% endif %}">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-desktop"></i>
-                        <span class="mobile-action-indicator"></span>
-                    </div>
-                    <span class="mobile-action-label">Your Design</span>
-                </a>
-                {% else %}
-                <!-- Custom Design Studio -->
+                <!-- PC Builder Link -->
                 <a href="{{ url_for('builder') }}" class="mobile-action-btn {% if request.path == url_for('builder') %}active{% endif %}">
                     <div class="mobile-action-icon">
                         <i class="fas fa-drafting-compass"></i>
                     </div>
-                    <span class="mobile-action-label">Design</span>
+                    <span class="mobile-action-label">PC Builder</span>
                 </a>
-                {% endif %}
+                
+                <!-- Prebuilt PCs Link -->
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-action-btn {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <span class="mobile-action-label">Prebuilt</span>
+                </a>
                 
                 <!-- Cart Link -->
                 <a href="{{ url_for('cart.view_cart') }}" class="mobile-action-btn {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
