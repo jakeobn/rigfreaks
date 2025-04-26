@@ -64,20 +64,9 @@
                             <span class="cart-count">0</span>
                         </a>
                         
-                        {% if request.path == url_for('index_minimalist') %}
-                            <a href="{{ url_for('index') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
-                        {% elif request.path == url_for('builder_minimalist') %}
-                            <a href="{{ url_for('builder') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
-                        {% elif request.path == url_for('summary_minimalist') %}
-                            <a href="{{ url_for('summary') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
-                        {% elif request.path == url_for('benchmarks_minimalist') %}
-                            <a href="{{ url_for('benchmarks') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
-                        {% elif request.path == url_for('contact_minimalist') %}
-                            <a href="{{ url_for('contact') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
-                        {% else %}
-                            <a href="{{ url_for('index') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
-                        {% endif %}
+                        <a href="{{ url_for('index') }}" class="action-button design-toggle-btn" style="background-color: rgba(255,255,255,0.1); padding: 8px; border-radius: 4px;" aria-label="Switch to Standard Design" title="Switch to Standard Design">
                             <i class="fas fa-fill-drip"></i>
+                            <span style="margin-left: 4px; display: inline-block;">Standard</span>
                         </a>
                     </div>
                 </nav>
