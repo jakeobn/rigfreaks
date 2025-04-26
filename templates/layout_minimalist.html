@@ -64,7 +64,19 @@
                             <span class="cart-count">0</span>
                         </a>
                         
-                        <a href="{{ request.path }}?minimalist=false" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% if request.path == url_for('index_minimalist') %}
+                            <a href="{{ url_for('index') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% elif request.path == url_for('builder_minimalist') %}
+                            <a href="{{ url_for('builder') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% elif request.path == url_for('summary_minimalist') %}
+                            <a href="{{ url_for('summary') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% elif request.path == url_for('benchmarks_minimalist') %}
+                            <a href="{{ url_for('benchmarks') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% elif request.path == url_for('contact_minimalist') %}
+                            <a href="{{ url_for('contact') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% else %}
+                            <a href="{{ url_for('index') }}" class="action-button" aria-label="Switch to Standard Design" title="Switch to Standard Design">
+                        {% endif %}
                             <i class="fas fa-fill-drip"></i>
                         </a>
                     </div>
@@ -91,19 +103,19 @@
         
         <ul class="mobile-nav-list">
             <li class="mobile-nav-item">
-                <a href="{{ url_for('index') }}" class="mobile-nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                <a href="{{ url_for('index_minimalist') }}" class="mobile-nav-link {% if request.path == url_for('index_minimalist') %}active{% endif %}">Home</a>
             </li>
             <li class="mobile-nav-item">
                 <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Pre-built PCs</a>
             </li>
             <li class="mobile-nav-item">
-                <a href="{{ url_for('builder') }}" class="mobile-nav-link {% if request.path == url_for('builder') %}active{% endif %}">Custom Design</a>
+                <a href="{{ url_for('builder_minimalist') }}" class="mobile-nav-link {% if request.path == url_for('builder_minimalist') %}active{% endif %}">Custom Design</a>
             </li>
             <li class="mobile-nav-item">
                 <a href="{{ url_for('builds.list_builds') }}" class="mobile-nav-link {% if request.path == url_for('builds.list_builds') %}active{% endif %}">Community Builds</a>
             </li>
             <li class="mobile-nav-item">
-                <a href="{{ url_for('contact') }}" class="mobile-nav-link {% if request.path == url_for('contact') %}active{% endif %}">Support</a>
+                <a href="{{ url_for('contact_minimalist') }}" class="mobile-nav-link {% if request.path == url_for('contact_minimalist') %}active{% endif %}">Support</a>
             </li>
             <li class="mobile-nav-item">
                 {% if current_user.is_authenticated %}
@@ -151,20 +163,20 @@
                     <ul class="footer-nav-list">
                         <li class="footer-nav-item"><a href="{{ url_for('builds.prebuilt_configs') }}" class="footer-nav-link">Gaming PCs</a></li>
                         <li class="footer-nav-item"><a href="{{ url_for('builds.prebuilt_configs') }}" class="footer-nav-link">Workstations</a></li>
-                        <li class="footer-nav-item"><a href="{{ url_for('builder') }}" class="footer-nav-link">Custom Builder</a></li>
+                        <li class="footer-nav-item"><a href="{{ url_for('builder_minimalist') }}" class="footer-nav-link">Custom Builder</a></li>
                         <li class="footer-nav-item"><a href="{{ url_for('builds.list_builds') }}" class="footer-nav-link">Community Builds</a></li>
-                        <li class="footer-nav-item"><a href="{{ url_for('benchmarks') }}" class="footer-nav-link">Performance Center</a></li>
+                        <li class="footer-nav-item"><a href="{{ url_for('benchmarks_minimalist') }}" class="footer-nav-link">Performance Center</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-nav-section">
                     <h4 class="footer-nav-title">Support</h4>
                     <ul class="footer-nav-list">
-                        <li class="footer-nav-item"><a href="{{ url_for('contact') }}" class="footer-nav-link">Contact Us</a></li>
+                        <li class="footer-nav-item"><a href="{{ url_for('contact_minimalist') }}" class="footer-nav-link">Contact Us</a></li>
                         <li class="footer-nav-item"><a href="{{ url_for('returns') }}" class="footer-nav-link">Returns & Warranty</a></li>
-                        <li class="footer-nav-item"><a href="{{ url_for('contact') }}" class="footer-nav-link">Track Your Order</a></li>
-                        <li class="footer-nav-item"><a href="{{ url_for('contact') }}" class="footer-nav-link">Technical Support</a></li>
-                        <li class="footer-nav-item"><a href="{{ url_for('contact') }}" class="footer-nav-link">FAQ</a></li>
+                        <li class="footer-nav-item"><a href="{{ url_for('contact_minimalist') }}" class="footer-nav-link">Track Your Order</a></li>
+                        <li class="footer-nav-item"><a href="{{ url_for('contact_minimalist') }}" class="footer-nav-link">Technical Support</a></li>
+                        <li class="footer-nav-item"><a href="{{ url_for('contact_minimalist') }}" class="footer-nav-link">FAQ</a></li>
                     </ul>
                 </div>
                 

@@ -315,7 +315,19 @@
                     
                     <!-- Minimalist View button -->
                     <div class="modern-action-item">
-                        <a href="{{ request.path }}?minimalist=true" class="action-button" title="Switch to Minimalist Design">
+                        {% if request.path == url_for('index') %}
+                            <a href="{{ url_for('index_minimalist') }}" class="action-button" title="Switch to Minimalist Design">
+                        {% elif request.path == url_for('builder') %}
+                            <a href="{{ url_for('builder_minimalist') }}" class="action-button" title="Switch to Minimalist Design">
+                        {% elif request.path == url_for('summary') %}
+                            <a href="{{ url_for('summary_minimalist') }}" class="action-button" title="Switch to Minimalist Design">
+                        {% elif request.path == url_for('benchmarks') %}
+                            <a href="{{ url_for('benchmarks_minimalist') }}" class="action-button" title="Switch to Minimalist Design">
+                        {% elif request.path == url_for('contact') %}
+                            <a href="{{ url_for('contact_minimalist') }}" class="action-button" title="Switch to Minimalist Design">
+                        {% else %}
+                            <a href="{{ url_for('index_minimalist') }}" class="action-button" title="Switch to Minimalist Design">
+                        {% endif %}
                             <div class="action-icon">
                                 <i class="fas fa-circle-half-stroke"></i>
                             </div>
