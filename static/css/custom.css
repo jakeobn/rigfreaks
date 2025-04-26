@@ -757,7 +757,8 @@ body {
 
 .mobile-actions-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 0.5rem;
 }
 
 .mobile-action-btn {
@@ -769,8 +770,9 @@ body {
     background: transparent;
     border: none;
     padding: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     transition: color 0.2s ease;
+    width: 20%;
 }
 
 .mobile-action-btn:hover,
@@ -781,15 +783,15 @@ body {
 
 .mobile-action-icon {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 0.35rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.2s ease;
 }
 

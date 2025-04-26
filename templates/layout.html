@@ -622,6 +622,19 @@
     <!-- Header Scroll Effect Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all modals
+            var searchModalEl = document.getElementById('searchModal');
+            if (searchModalEl) {
+                var searchModal = new bootstrap.Modal(searchModalEl);
+                
+                // Get all buttons that trigger the search modal
+                var searchButtons = document.querySelectorAll('[data-bs-target="#searchModal"]');
+                searchButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        searchModal.show();
+                    });
+                });
+            }
             // Function to handle navbar scrolling effect
             function handleNavbarScroll() {
                 const navbar = document.querySelector('.modern-navbar');
