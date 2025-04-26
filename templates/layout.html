@@ -394,7 +394,7 @@
                 </a>
                 
                 <!-- Search Link (opens modal) -->
-                <button type="button" class="mobile-action-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <button type="button" class="mobile-action-btn" id="mobileSearchButton">
                     <div class="mobile-action-icon">
                         <i class="fas fa-search"></i>
                     </div>
@@ -458,7 +458,7 @@
                     <div class="list-group mobile-menu-list">
                         <!-- Search option -->
                         <button type="button" class="list-group-item list-group-item-action d-flex align-items-center" 
-                                data-bs-toggle="modal" data-bs-target="#searchModal" data-bs-dismiss="modal">
+                                id="accountMenuSearchButton">
                             <i class="fas fa-search me-3 text-primary"></i>
                             <span>Search Products</span>
                         </button>
@@ -622,18 +622,55 @@
     <!-- Header Scroll Effect Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all modals
+            // Initialize search modal functionality
             var searchModalEl = document.getElementById('searchModal');
             if (searchModalEl) {
                 var searchModal = new bootstrap.Modal(searchModalEl);
+                var mobileAccountModal = null;
                 
-                // Get all buttons that trigger the search modal
-                var searchButtons = document.querySelectorAll('[data-bs-target="#searchModal"]');
-                searchButtons.forEach(function(button) {
-                    button.addEventListener('click', function() {
+                // Check if mobile account modal exists
+                var mobileAccountModalEl = document.getElementById('mobileAccountModal');
+                if (mobileAccountModalEl) {
+                    // Get the instance or create a new one if it doesn't exist yet
+                    mobileAccountModal = bootstrap.Modal.getInstance(mobileAccountModalEl) || new bootstrap.Modal(mobileAccountModalEl);
+                }
+                
+                // Handle direct mobile search button click
+                var mobileSearchBtn = document.getElementById('mobileSearchButton');
+                if (mobileSearchBtn) {
+                    mobileSearchBtn.addEventListener('click', function() {
                         searchModal.show();
                     });
-                });
+                }
+                
+                // Handle account menu search button
+                var accountMenuSearchBtn = document.getElementById('accountMenuSearchButton');
+                if (accountMenuSearchBtn) {
+                    accountMenuSearchBtn.addEventListener('click', function() {
+                        // Hide the account modal if it's open
+                        if (mobileAccountModal) {
+                            mobileAccountModal.hide();
+                        }
+                        // Show the search modal
+                        setTimeout(function() {
+                            searchModal.show();
+                        }, 150); // Small delay to allow the first modal to close properly
+                    });
+                }
+                
+                // Handle desktop search buttons with data attributes
+                var searchAttrButtons = document.querySelectorAll('[data-bs-target="#searchModal"]');
+                if (searchAttrButtons && searchAttrButtons.length > 0) {
+                    searchAttrButtons.forEach(function(button) {
+                        if (button) {
+                            // Override default bootstrap behavior for consistency
+                            button.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                searchModal.show();
+                            });
+                        }
+                    });
+                }
             }
             // Function to handle navbar scrolling effect
             function handleNavbarScroll() {
