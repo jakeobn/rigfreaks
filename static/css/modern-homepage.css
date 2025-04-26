@@ -1413,3 +1413,16 @@
         font-size: 0.8rem;
     }
 }
+
+/* --- UTILITY CLASSES --- */
+.py-6 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(180deg, 
+        var(--bg-dark) 0%, 
+        var(--bg-darker) 100%);
+}
+}
