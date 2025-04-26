@@ -393,6 +393,14 @@
                     <span class="mobile-action-label">Collections</span>
                 </a>
                 
+                <!-- Search Link (opens modal) -->
+                <button type="button" class="mobile-action-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+                    <div class="mobile-action-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="mobile-action-label">Search</span>
+                </button>
+                
                 <!-- Current Build Link (if exists) -->
                 {% if session.get('pc_config') %}
                 <a href="{{ url_for('summary') }}" class="mobile-action-btn {% if request.path == url_for('summary') %}active{% endif %}">
