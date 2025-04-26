@@ -533,7 +533,8 @@ body {
     left: 0;
     right: 0;
     border-top: none;
-    overflow: hidden;
+    overflow: visible;
+    max-height: 90vh;
 }
 
 .dropdown-menu.mega-menu::before {
@@ -717,6 +718,8 @@ body {
     border-radius: 0 0 12px 12px;
     max-height: 75vh;
     overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1050; /* Higher z-index to ensure it's above other elements */
 }
 
 @media (max-width: 991.98px) {
@@ -725,7 +728,7 @@ body {
         top: 100%;
         left: 0;
         right: 0;
-        z-index: 1000;
+        z-index: 1050;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
     
@@ -747,6 +750,7 @@ body {
         border-radius: 8px;
         max-height: 400px;
         overflow-y: auto;
+        overflow-x: hidden;
     }
     
     .mega-menu .row > [class*="col-"] {

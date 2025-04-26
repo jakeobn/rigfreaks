@@ -1,0 +1,245 @@
+<div class="collapse navbar-collapse mobile-nav-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto main-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Shop Desktops
+                        </a>
+                        <div class="dropdown-menu mega-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">Featured Collections</h6>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Signature Series</span>
+                                            <span class="dropdown-item-desc">Premium craftsmanship</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Limited Edition</span>
+                                            <span class="dropdown-item-desc">Exclusive designs</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">New Arrivals</span>
+                                            <span class="dropdown-item-desc">Latest releases</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">By Purpose</h6>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Gaming Desktops</span>
+                                            <span class="dropdown-item-desc">Built for performance</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Creator Workstations</span>
+                                            <span class="dropdown-item-desc">For professionals</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Home &amp; Office</span>
+                                            <span class="dropdown-item-desc">Reliable computing</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="dropdown-header">Special Offers</h6>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Ready to Ship</span>
+                                            <span class="dropdown-item-desc">Ships in 24 hours</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Clearance Models</span>
+                                            <span class="dropdown-item-desc">Special discounts</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builds/prebuilt">
+                                            <span class="dropdown-item-name">Financing Available</span>
+                                            <span class="dropdown-item-desc">0% interest options</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="dropdown-menu-promo">
+                                            <div class="dropdown-menu-promo-img"></div>
+                                            <div class="dropdown-menu-promo-content">
+                                                <h5>Design Your Custom PC</h5>
+                                                <p>Build a desktop crafted to your exact specifications</p>
+                                                <a href="/builder" class="btn btn-primary btn-sm">Start Designing</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/builder">
+                            Custom Design Studio
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Premium Components
+                        </a>
+                        <div class="dropdown-menu mega-menu components-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Performance Parts</h6>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-microchip menu-icon"></i>
+                                            <span>Premium CPUs</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-memory menu-icon"></i>
+                                            <span>High-Performance Memory</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-server menu-icon"></i>
+                                            <span>Professional Motherboards</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Graphics &amp; Storage</h6>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-tv menu-icon"></i>
+                                            <span>Elite Graphics Cards</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-hdd menu-icon"></i>
+                                            <span>Ultra-Fast Storage</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Custom Aesthetics</h6>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-desktop menu-icon"></i>
+                                            <span>Premium Cases</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-lightbulb menu-icon"></i>
+                                            <span>Lighting Systems</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-paint-brush menu-icon"></i>
+                                            <span>Custom Finishes</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 mb-3">
+                                        <h6 class="dropdown-header">Cooling Solutions</h6>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-wind menu-icon"></i>
+                                            <span>Liquid Cooling</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-fan menu-icon"></i>
+                                            <span>Quiet Cooling</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/builder">
+                                            <i class="fas fa-snowflake menu-icon"></i>
+                                            <span>Thermal Solutions</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/builds/builds">
+                            Showcase Gallery
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/benchmarks">
+                            Performance Center
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Customer Care
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/contact">
+                                <i class="fas fa-headset me-2"></i>
+                                <span>Contact Support</span>
+                            </a>
+                            <a class="dropdown-item" href="/contact">
+                                <i class="fas fa-truck me-2"></i>
+                                <span>Track Order</span>
+                            </a>
+                            <a class="dropdown-item" href="/returns">
+                                <i class="fas fa-exchange-alt me-2"></i>
+                                <span>Returns &amp; Warranty</span>
+                            </a>
+                            <a class="dropdown-item" href="/terms">
+                                <i class="fas fa-shield-alt me-2"></i>
+                                <span>Support Plans</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="modern-nav-actions d-none d-lg-flex">
+                    <!-- Search button -->
+                    <div class="modern-action-item">
+                        <button class="action-button" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
+                            <div class="action-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Current Build button -->
+                    
+                    
+                    <!-- Shopping Cart button -->
+                    <div class="modern-action-item">
+                        <a href="/cart" class="action-button ">
+                            <div class="action-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge rounded-pill bg-primary action-badge">0</span>
+                            </div>
+                            <span class="action-label">Cart</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Account button -->
+                    <div class="modern-action-item">
+                        
+                        <a href="/auth/login" class="action-button">
+                            <div class="action-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <span class="action-label">Login</span>
+                        </a>
+                        
+                    </div>
+                </div>
+                
+                <!-- Search Modal -->
+                <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/" method="GET">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-transparent border-end-0">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                        <input type="text" id="siteSearchInput" name="search" class="form-control border-start-0" placeholder="Search for components, builds, and more...">
+                                        <button class="btn btn-primary" type="submit">Search</button>
+                                    </div>
+                                </form>
+                                <div class="mt-3">
+                                    <h6 class="fw-bold">Popular searches:</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <a href="/?search=RTX+4090" class="badge rounded-pill bg-secondary text-decoration-none">RTX 4090</a>
+                                        <a href="/?search=Intel+Core+i9" class="badge rounded-pill bg-secondary text-decoration-none">Intel Core i9</a>
+                                        <a href="/?search=AMD+Ryzen+9" class="badge rounded-pill bg-secondary text-decoration-none">AMD Ryzen 9</a>
+                                        <a href="/?search=Gaming+PC" class="badge rounded-pill bg-secondary text-decoration-none">Gaming PC</a>
+                                        <a href="/?search=Mini+ITX" class="badge rounded-pill bg-secondary text-decoration-none">Mini ITX</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
