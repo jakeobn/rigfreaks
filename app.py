@@ -187,7 +187,41 @@ def summary():
         flash("Please build a PC configuration first", "warning")
         return redirect(url_for('builder'))
     
-    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
+    components = load_component_data()
+    config_details = {}
+    
+    for category, component_id in session['pc_config'].items():
+        category_components = components.get(category, [])
+        component = next((c for c in category_components if c['id'] == component_id), None)
+        if component:
+            config_details[category] = component
+    
+    compatibility_issues = check_compatibility(session['pc_config'])
+    total_price = calculate_total_price(session['pc_config'])
+    
+    # Get performance benchmarks if CPU and GPU are selected
+    performance_summary = None
+    if 'cpu' in session['pc_config'] and 'gpu' in session['pc_config']:
+        try:
+            from benchmarks import get_performance_summary
+            performance_summary = get_performance_summary(session['pc_config'])
+        except Exception as e:
+            app.logger.error(f"Error retrieving performance summary: {str(e)}")
+    
+    return render_template(
+        'summary.html',
+        config=config_details,
+        compatibility_issues=compatibility_issues,
+        total_price=total_price,
+        performance=performance_summary,
+        use_minimalist=False
+    )
+    
+@app.route('/summary/minimalist')
+def summary_minimalist():
+    if 'pc_config' not in session or not session['pc_config']:
+        flash("Please build a PC configuration first", "warning")
+        return redirect(url_for('builder_minimalist'))
     
     components = load_component_data()
     config_details = {}
@@ -210,14 +244,13 @@ def summary():
         except Exception as e:
             app.logger.error(f"Error retrieving performance summary: {str(e)}")
     
-    template = 'summary_minimalist.html' if use_minimalist else 'summary.html'
     return render_template(
-        template,
+        'summary_minimalist.html',
         config=config_details,
         compatibility_issues=compatibility_issues,
         total_price=total_price,
         performance=performance_summary,
-        use_minimalist=use_minimalist
+        use_minimalist=True
     )
 
 @app.route('/benchmarks')
@@ -230,8 +263,6 @@ def benchmarks():
     if 'cpu' not in session['pc_config'] or 'gpu' not in session['pc_config']:
         flash("CPU and GPU are required for benchmark calculations", "warning")
         return redirect(url_for('builder'))
-    
-    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
     
     components = load_component_data()
     config_details = {}
@@ -255,21 +286,68 @@ def benchmarks():
         performance_data = get_performance_score(session['pc_config'])
         comparison_data = get_comparison_data(session['pc_config'])
         
-        template = 'benchmarks_minimalist.html' if use_minimalist else 'benchmarks.html'
         return render_template(
-            template,
+            'benchmarks.html',
             config=config_details,
             performance=performance_data,
             comparisons=comparison_data,
             benchmark_categories=BENCHMARK_CATEGORIES,
             games=GAME_BENCHMARKS,
             applications=APP_BENCHMARKS,
-            use_minimalist=use_minimalist
+            use_minimalist=False
         )
     except Exception as e:
         app.logger.error(f"Error retrieving benchmark data: {str(e)}")
         flash("Unable to load benchmark data. Please try again later.", "danger")
-        return redirect(url_for('summary', minimalist=use_minimalist))
+        return redirect(url_for('summary'))
+
+@app.route('/benchmarks/minimalist')
+def benchmarks_minimalist():
+    if 'pc_config' not in session or not session['pc_config']:
+        flash("Please build a PC configuration first", "warning")
+        return redirect(url_for('builder_minimalist'))
+    
+    # Check if we have the necessary components for benchmarks
+    if 'cpu' not in session['pc_config'] or 'gpu' not in session['pc_config']:
+        flash("CPU and GPU are required for benchmark calculations", "warning")
+        return redirect(url_for('builder_minimalist'))
+    
+    components = load_component_data()
+    config_details = {}
+    
+    for category, component_id in session['pc_config'].items():
+        category_components = components.get(category, [])
+        component = next((c for c in category_components if c['id'] == component_id), None)
+        if component:
+            config_details[category] = component
+    
+    # Get detailed benchmark data
+    try:
+        from benchmarks import (
+            get_performance_score, 
+            get_comparison_data, 
+            BENCHMARK_CATEGORIES, 
+            GAME_BENCHMARKS, 
+            APP_BENCHMARKS
+        )
+        
+        performance_data = get_performance_score(session['pc_config'])
+        comparison_data = get_comparison_data(session['pc_config'])
+        
+        return render_template(
+            'benchmarks_minimalist.html',
+            config=config_details,
+            performance=performance_data,
+            comparisons=comparison_data,
+            benchmark_categories=BENCHMARK_CATEGORIES,
+            games=GAME_BENCHMARKS,
+            applications=APP_BENCHMARKS,
+            use_minimalist=True
+        )
+    except Exception as e:
+        app.logger.error(f"Error retrieving benchmark data: {str(e)}")
+        flash("Unable to load benchmark data. Please try again later.", "danger")
+        return redirect(url_for('summary_minimalist'))
 
 @app.route('/compare/<category>')
 def compare_components(category):
@@ -312,8 +390,6 @@ def reset_configuration():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
-    
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -324,8 +400,7 @@ def contact():
         # Validate required fields
         if not all([name, email, message]):
             flash('Please fill in all required fields.', 'danger')
-            template = 'contact_minimalist.html' if use_minimalist else 'contact.html'
-            return render_template(template, use_minimalist=use_minimalist)
+            return render_template('contact.html', use_minimalist=False)
             
         try:
             # Create new contact message
@@ -353,10 +428,53 @@ def contact():
             db.session.rollback()
             flash('There was an error processing your request. Please try again later.', 'danger')
             
-        return redirect(url_for('contact', minimalist=use_minimalist))
+        return redirect(url_for('contact'))
     
-    template = 'contact_minimalist.html' if use_minimalist else 'contact.html'
-    return render_template(template, use_minimalist=use_minimalist)
+    return render_template('contact.html', use_minimalist=False)
+
+@app.route('/contact/minimalist', methods=['GET', 'POST'])
+def contact_minimalist():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        category = request.form.get('category')
+        message = request.form.get('message')
+        
+        # Validate required fields
+        if not all([name, email, message]):
+            flash('Please fill in all required fields.', 'danger')
+            return render_template('contact_minimalist.html', use_minimalist=True)
+            
+        try:
+            # Create new contact message
+            contact_message = ContactMessage(
+                name=name,
+                email=email,
+                subject=subject,
+                category=category,
+                message=message,
+                user_id=session.get('user_id')  # Link to user if logged in
+            )
+            
+            # Save to database
+            db.session.add(contact_message)
+            db.session.commit()
+            
+            # Log the contact submission
+            app.logger.info(f'Contact form submission saved: ID {contact_message.id} from {name} ({email})')
+            
+            # Show success message
+            flash('Thank you for contacting us! We will get back to you shortly.', 'success')
+        except Exception as e:
+            # Log the error and show error message
+            app.logger.error(f'Error saving contact form: {str(e)}')
+            db.session.rollback()
+            flash('There was an error processing your request. Please try again later.', 'danger')
+            
+        return redirect(url_for('contact_minimalist'))
+    
+    return render_template('contact_minimalist.html', use_minimalist=True)
 
 @app.route('/terms')
 def terms():
