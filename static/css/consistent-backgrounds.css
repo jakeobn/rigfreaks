@@ -1,0 +1,87 @@
+/* 
+ * Consistent Backgrounds CSS 
+ * This file standardizes background colors across the EverCraft website
+ */
+
+/* Set default body background */
+body {
+    background-color: var(--bg-darker);
+}
+
+/* Main content areas */
+.main-content {
+    background-color: var(--bg-darker);
+}
+
+/* Card backgrounds */
+.card {
+    background-color: var(--bg-dark);
+    border-color: var(--border-subtle);
+}
+
+/* Component cards in builder */
+.component-card {
+    background-color: var(--bg-dark);
+}
+
+/* Modal backgrounds */
+.modal-content {
+    background-color: var(--bg-dark);
+    border-color: var(--border-subtle);
+}
+
+/* Dropdown backgrounds */
+.dropdown-menu {
+    background-color: var(--bg-dark);
+    border-color: var(--border-subtle);
+}
+
+/* Form control backgrounds */
+.form-control, .form-select {
+    background-color: var(--bg-darker);
+    border-color: var(--border-light);
+}
+
+/* Table backgrounds */
+.table {
+    --bs-table-bg: var(--bg-dark);
+    --bs-table-striped-bg: var(--bg-darker);
+}
+
+/* Component selection container in builder */
+.component-selection-container {
+    background-color: var(--bg-dark) !important;
+}
+
+/* Component performance bars */
+.component-performance-bar {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensuring consistent backgrounds for sections */
+section:not(.modern-hero):not(.pc-showcase-section) {
+    background-color: var(--bg-darker);
+}
+
+/* Special handling for showcase section */
+.pc-showcase-section {
+    background-color: var(--bg-dark);
+}
+
+/* Handle any inline background styles that need to be overridden */
+[style*="background-color: rgba(0, 0, 0, 0.03)"] {
+    background-color: var(--bg-dark) !important;
+}
+
+[style*="background-color: #fff"] {
+    background-color: var(--bg-dark) !important;
+}
+
+[style*="background-color: #dee2e6"] {
+    background-color: var(--border-light) !important;
+}
+
+/* Drag indicator in mobile view */
+.drag-indicator {
+    background-color: var(--border-light) !important;
+}
