@@ -1,0 +1,33 @@
+<header b-7nw3orrobz="">
+
+			<div b-7nw3orrobz="" class="container-fluid bg-white border-bottom border-light-subtle chillblast-subheader">
+
+				<div b-7nw3orrobz="" class="container" style="height: 64px;">
+
+					<div b-7nw3orrobz="" id="navbar" class="h-100" data-bs-theme="light">
+
+						<div b-7nw3orrobz="" class="d-none d-lg-flex justify-content-around align-items-center h-100">
+
+							<a b-7nw3orrobz="" href="/" class="p-2 px-1 px-md-2 ps-lg-0 ps-xl-2">
+								<img b-7nw3orrobz="" src="/img/chillblast-logo-black.svg" class="chillblast-header-logo chillblast-header-logo-black " alt="Chillblast logo">
+								<img b-7nw3orrobz="" src="/img/chillblast-logo-white.svg" class="chillblast-header-logo chillblast-header-logo-white d-none" alt="Chillblast logo">
+							</a>
+
+
+
+
+
+        <div class="dropdown d-none d-lg-inline">
+            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" style="" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                50 Series PCs
+            </a>
+            <div class="dropdown-menu rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow" data-bs-theme="light">
+                <div class="container">
+                    <div class="row row-cols-5">
+
+                                <div class="col py-2">
+                                            <div class="text-center bg-light py-4 position-relative">
+                                                <a href="/pcs/chillblast-forge-ryzen-7-rtx-5090-gaming-pc" class="text-decoration-none stretched-link" title="Forge 5090 PC"></a>
+                                                <img src="https://static.chillblast.com/images/menu/5090_FORGE_DOWNGRADE_01_MENU_ICON.png?width=200&amp;height=200&amp;scale=canvas" class="img-fluid" alt="Forge 5090 PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Forge 5090 PC</p>
+                                            </div>

@@ -1,0 +1,126 @@
+/* Chillblast-inspired Header Styles */
+
+/* Set light theme for header */
+.chillblast-header {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #333333;
+    --bs-navbar-color: #333333;
+    --bs-navbar-hover-color: #000000;
+    --bs-navbar-active-color: #000000;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Subheader with border */
+.chillblast-subheader {
+    height: 64px;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffffff;
+}
+
+/* Logo styling */
+.chillblast-header-logo {
+    height: 30px;
+    width: auto;
+}
+
+/* Main navigation styles */
+.chillblast-heading {
+    font-size: 14px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 1rem 0.75rem;
+    transition: color 0.2s;
+}
+
+.chillblast-heading:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+/* Dropdown menu styles */
+.chillblast-dropdown {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border: 0;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+}
+
+.chillblast-dropdown-heading {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    color: #333333;
+}
+
+.chillblast-dropdown-item {
+    text-align: center;
+    padding: 1rem;
+    transition: background-color 0.2s;
+}
+
+.chillblast-dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Product cards in dropdown */
+.product-card-menu {
+    background-color: #f8f9fa;
+    transition: transform 0.2s;
+    padding: 1rem;
+    height: 100%;
+}
+
+.product-card-menu:hover {
+    transform: translateY(-5px);
+}
+
+/* Right-side user actions */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-action-btn {
+    color: #333333;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.user-action-btn:hover {
+    color: #000000;
+}
+
+.user-action-btn i {
+    font-size: 16px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 991.98px) {
+    .chillblast-dropdown {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .chillblast-dropdown .row-cols-5 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .chillblast-dropdown .row-cols-5 {
+        grid-template-columns: 1fr;
+    }
+}

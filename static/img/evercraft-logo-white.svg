@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160" height="40" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-text { font-family: 'Arial', sans-serif; font-weight: 700; fill: #ffffff; }
+    .icon { fill: #ffffff; }
+  </style>
+  
+  <!-- Monitor Icon -->
+  <g class="icon" transform="translate(0, 8)">
+    <path d="M23,3H1C0.4,3,0,3.4,0,4v16c0,0.6,0.4,1,1,1h8l-2,3v1h8v-1l-2-3h8c0.6,0,1-0.4,1-1V4C24,3.4,23.6,3,23,3z M22,19H2V5h20V19z"/>
+    <rect x="4" y="7" width="16" height="10" fill="#333333"/>
+  </g>
+  
+  <!-- EverCraft Text -->
+  <text x="30" y="24" class="logo-text" font-size="18">EVERCRAFT</text>
+  
+  <!-- Premium Custom PCs Tagline -->
+  <text x="31" y="35" font-size="8" fill="#cccccc">PREMIUM CUSTOM PCs</text>
+</svg>
