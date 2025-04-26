@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/modern-homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/hero-fixes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-header.css') }}">
     
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -22,7 +23,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Modern Header with Glass Morphism Effect -->
+    <!-- Chillblast-inspired Header -->
     <header>
         <!-- Top Bar with Announcement (hidden on smallest screens) -->
         <div class="announcement-bar d-none d-sm-block">
@@ -65,42 +66,206 @@
             </div>
         </div>
 
-        <!-- Modern Glass Morphism Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-modern">
-            <div class="container">
-                <!-- Modern Brand with Gradient Text -->
-                <a class="navbar-brand-modern" href="{{ url_for('index') }}">
-                    <div class="brand-logo">
-                        <i class="fas fa-desktop fa-lg"></i>
-                    </div>
-                    <div class="brand-text">EverCraft</div>
-                </a>
-                
-                <!-- Mobile Quick Actions (Search & Cart) -->
-                <div class="d-flex d-lg-none ms-auto me-2">
-                    <!-- Search Button -->
-                    <button class="btn btn-sm btn-outline-secondary me-2 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    
-                    <!-- Cart Button -->
-                    <a href="{{ url_for('cart.view_cart') }}" class="btn btn-sm btn-outline-secondary rounded-circle position-relative {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
+        <!-- Chillblast Main Header -->
+        <div class="container-fluid bg-white border-bottom border-light-subtle chillblast-header chillblast-subheader">
+            <div class="container" style="height: 64px;">
+                <div id="navbar" class="h-100 d-flex justify-content-between align-items-center" data-bs-theme="light">
+                    <!-- Logo -->
+                    <a href="{{ url_for('index') }}" class="p-2 px-1 px-md-2 ps-lg-0 ps-xl-2">
+                        <img src="{{ url_for('static', filename='img/evercraft-logo-black.svg') }}" class="chillblast-header-logo" alt="EverCraft logo">
                     </a>
+                    
+                    <!-- Main Navigation - Desktop Only -->
+                    <div class="d-none d-lg-flex justify-content-center align-items-center h-100">
+                        <!-- RTX Series -->
+                        <div class="dropdown d-none d-lg-inline">
+                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                RTX Series PCs
+                            </a>
+                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
+                                <div class="container">
+                                    <div class="row row-cols-5">
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Forge RTX 4090 PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Forge RTX 4090 PC</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Elite RTX 4080 PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Elite RTX 4080 PC</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Swift RTX 4070 PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Swift RTX 4070 PC</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/rtx-series-thumbnail.svg') }}" class="img-fluid" alt="Budget RTX 4060 PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Budget RTX 4060 PC</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="View all RTX Series" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">View All RTX Series</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gaming PCs -->
+                        <div class="dropdown d-none d-lg-inline">
+                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                Gaming PCs
+                            </a>
+                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
+                                <div class="container">
+                                    <div class="row row-cols-5">
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="High-End Gaming PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">High-End Gaming</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Mid-Range Gaming PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Mid-Range Gaming</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Budget Gaming PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Budget Gaming</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="Compact Gaming PC" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Compact Gaming</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/gaming-pc-thumbnail.svg') }}" class="img-fluid" alt="View all Gaming PCs" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">View All Gaming PCs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Workstations -->
+                        <div class="dropdown d-none d-lg-inline">
+                            <a class="chillblast-heading fw-semibold dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                Workstations
+                            </a>
+                            <div class="dropdown-menu chillblast-dropdown rounded-0 border-0 border-bottom border-light-subtle pt-4 shadow">
+                                <div class="container">
+                                    <div class="row row-cols-5">
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="Content Creator Workstation" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Content Creator</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="3D Animation Workstation" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">3D Animation</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="Video Editing Workstation" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">Video Editing</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="CAD/CAM Workstation" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">CAD/CAM</p>
+                                            </div>
+                                        </div>
+                                        <div class="col py-2">
+                                            <div class="text-center product-card-menu">
+                                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="text-decoration-none stretched-link"></a>
+                                                <img src="{{ url_for('static', filename='img/menu/workstation-thumbnail.svg') }}" class="img-fluid" alt="View all Workstations" loading="lazy">
+                                                <p class="m-0 chillblast-dropdown-heading text-dark">View All Workstations</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Studio -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('builder') }}">
+                            Custom Studio
+                        </a>
+                        
+                        <!-- Support -->
+                        <a class="chillblast-heading fw-semibold p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block link-body-emphasis text-nowrap" href="{{ url_for('contact') }}">
+                            Support
+                        </a>
+                    </div>
+                    
+                    <!-- Right Side Actions -->
+                    <div class="user-actions d-none d-lg-flex">
+                        <!-- Search button -->
+                        <a href="#" class="user-action-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        
+                        <!-- Account -->
+                        <a href="{{ url_for('auth.profile') if current_user.is_authenticated else url_for('auth.login') }}" class="user-action-btn">
+                            <i class="fas fa-user"></i>
+                            <span class="d-none d-xl-inline">{{ current_user.username if current_user.is_authenticated else 'Account' }}</span>
+                        </a>
+                        
+                        <!-- Cart button -->
+                        <a href="{{ url_for('cart.view_cart') }}" class="user-action-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="d-none d-xl-inline">Cart</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile Toggle Button -->
+                    <button class="navbar-toggler border-0 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: #333;">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-                
-                <!-- Modern Hamburger Menu -->
-                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <!-- Navigation Menu with Improved Mobile Display -->
-                <div class="collapse navbar-collapse mobile-nav-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto main-nav">
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation - Only visible on smaller screens -->
+                <div class="collapse navbar-collapse" id="navbarNav" data-bs-theme="light">
+                <ul class="navbar-nav me-auto" style="background-color: #fff; padding: 1rem;">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Shop Desktops
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            RTX Series PCs
                         </a>
                         <div class="dropdown-menu mega-menu">
                             <div class="container">
@@ -164,109 +329,89 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">
-                            Custom Design Studio
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gaming PCs
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>High-End Gaming</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>Mid-Range Gaming</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>Budget Gaming</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>Compact Gaming</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>View All Gaming PCs</span>
+                            </a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Premium Components
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Workstations
                         </a>
-                        <div class="dropdown-menu mega-menu components-menu">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Performance Parts</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-microchip menu-icon"></i>
-                                            <span>Premium CPUs</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-memory menu-icon"></i>
-                                            <span>High-Performance Memory</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-server menu-icon"></i>
-                                            <span>Professional Motherboards</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Graphics & Storage</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-tv menu-icon"></i>
-                                            <span>Elite Graphics Cards</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-hdd menu-icon"></i>
-                                            <span>Ultra-Fast Storage</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Custom Aesthetics</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-desktop menu-icon"></i>
-                                            <span>Premium Cases</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-lightbulb menu-icon"></i>
-                                            <span>Lighting Systems</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-paint-brush menu-icon"></i>
-                                            <span>Custom Finishes</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 mb-3">
-                                        <h6 class="dropdown-header">Cooling Solutions</h6>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-wind menu-icon"></i>
-                                            <span>Liquid Cooling</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-fan menu-icon"></i>
-                                            <span>Quiet Cooling</span>
-                                        </a>
-                                        <a class="dropdown-item" href="{{ url_for('builder') }}">
-                                            <i class="fas fa-snowflake menu-icon"></i>
-                                            <span>Thermal Solutions</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>Content Creator</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>3D Animation</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>Video Editing</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>CAD/CAM</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('builds.prebuilt_configs') }}">
+                                <span>View All Workstations</span>
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path.startswith('/builds/builds') %}active{% endif %}" href="{{ url_for('builds.list_builds') }}">
-                            Showcase Gallery
+                        <a class="nav-link text-dark {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">
+                            Custom Studio
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == url_for('benchmarks') %}active{% endif %}" href="{{ url_for('benchmarks') }}">
-                            Performance Center
+                        <a class="nav-link text-dark {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">
+                            Support
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Customer Care
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ url_for('contact') }}">
-                                <i class="fas fa-headset me-2"></i>
-                                <span>Contact Support</span>
+                            {% if current_user.is_authenticated %}
+                            <a class="dropdown-item" href="{{ url_for('auth.profile') }}">
+                                <i class="fas fa-user me-2"></i>
+                                <span>My Profile</span>
                             </a>
-                            <a class="dropdown-item" href="{{ url_for('contact') }}">
-                                <i class="fas fa-truck me-2"></i>
-                                <span>Track Order</span>
+                            <a class="dropdown-item" href="{{ url_for('builds.list_builds') }}">
+                                <i class="fas fa-save me-2"></i>
+                                <span>My Builds</span>
                             </a>
-                            <a class="dropdown-item" href="{{ url_for('returns') }}">
-                                <i class="fas fa-exchange-alt me-2"></i>
-                                <span>Returns & Warranty</span>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="{{ url_for('auth.logout') }}">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                <span>Logout</span>
                             </a>
-                            <a class="dropdown-item" href="{{ url_for('terms') }}">
-                                <i class="fas fa-shield-alt me-2"></i>
-                                <span>Support Plans</span>
+                            {% else %}
+                            <a class="dropdown-item" href="{{ url_for('auth.login') }}">
+                                <i class="fas fa-sign-in-alt me-2"></i>
+                                <span>Sign In</span>
                             </a>
+                            <a class="dropdown-item" href="{{ url_for('auth.register') }}">
+                                <i class="fas fa-user-plus me-2"></i>
+                                <span>Create Account</span>
+                            </a>
+                            {% endif %}
                         </div>
                     </li>
                 </ul>

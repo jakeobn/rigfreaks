@@ -1,0 +1,258 @@
+<section class="featured-systems-carousel py-6">
+        <div class="section-header text-center mb-5">
+            <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2 mb-3">FEATURED SYSTEMS</span>
+            <h2 class="display-5 fw-bold mb-4">Popular Configurations</h2>
+            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                Our best-selling pre-configured systems, ready to ship
+            </p>
+        </div>
+        
+        <div class="position-relative">
+            <!-- Custom navigation arrows -->
+            <div class="carousel-custom-navigation">
+                <button class="carousel-arrow carousel-prev" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-arrow carousel-next" type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Modern carousel with card design -->
+            <div id="featuredBuildCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="featured-system-card">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-image">
+                                            <div class="image-container">
+                                                <img src="/static/img/lummi/gaming_pc1.svg" alt="Performance Gaming PC" class="img-fluid">
+                                                <div class="image-overlay"></div>
+                                            </div>
+                                            <!-- Floating spec highlights -->
+                                            <div class="spec-highlight spec-cpu">
+                                                <i class="fas fa-microchip"></i>
+                                                <span>RTX 4070 Ti</span>
+                                            </div>
+                                            <div class="spec-highlight spec-gpu">
+                                                <i class="fas fa-tv"></i>
+                                                <span>Intel i7-13700K</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-content">
+                                            <div class="system-badge">MOST POPULAR</div>
+                                            <h3 class="system-title">Performance Gaming PC</h3>
+                                            <p class="system-description">
+                                                Dominate in 1440p gaming with this meticulously balanced build featuring the 
+                                                latest-gen components and premium cooling for sustained performance.
+                                            </p>
+                                            
+                                            <!-- Key specs with modern design -->
+                                            <div class="system-specs">
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Processor</div>
+                                                        <div class="spec-value">Intel Core i7-13700K</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Graphics</div>
+                                                        <div class="spec-value">NVIDIA RTX 4070 Ti 12GB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Memory</div>
+                                                        <div class="spec-value">32GB DDR5-5600</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Storage</div>
+                                                        <div class="spec-value">2TB NVMe SSD</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Performance indicator -->
+                                            <div class="performance-indicator">
+                                                <div class="perf-label">1440p Gaming Performance</div>
+                                                <div class="perf-bar">
+                                                    <div class="perf-fill" style="width: 85%;"></div>
+                                                </div>
+                                                <div class="perf-value">Excellent</div>
+                                            </div>
+                                            
+                                            <div class="system-pricing">
+                                                <div class="price">From $1,599</div>
+                                                <a href="/builds/prebuilt" class="btn btn-primary btn-lg">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="featured-system-card">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-image">
+                                            <div class="image-container">
+                                                <img src="/static/img/lummi/workstation_pc.svg" alt="Elite Gaming PC" class="img-fluid">
+                                                <div class="image-overlay"></div>
+                                            </div>
+                                            <!-- Floating spec highlights -->
+                                            <div class="spec-highlight spec-cpu">
+                                                <i class="fas fa-microchip"></i>
+                                                <span>RTX 4090</span>
+                                            </div>
+                                            <div class="spec-highlight spec-gpu">
+                                                <i class="fas fa-tv"></i>
+                                                <span>Intel i9-13900K</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-content">
+                                            <div class="system-badge system-badge-premium">ULTIMATE</div>
+                                            <h3 class="system-title">Elite Gaming PC</h3>
+                                            <p class="system-description">
+                                                Experience uncompromising 4K gaming performance with our flagship build. 
+                                                The ultimate combination of cutting-edge components for enthusiasts.
+                                            </p>
+                                            
+                                            <!-- Key specs with modern design -->
+                                            <div class="system-specs">
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Processor</div>
+                                                        <div class="spec-value">Intel Core i9-13900K</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Graphics</div>
+                                                        <div class="spec-value">NVIDIA RTX 4090 24GB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Memory</div>
+                                                        <div class="spec-value">64GB DDR5-6000</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Storage</div>
+                                                        <div class="spec-value">4TB NVMe SSD</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Performance indicator -->
+                                            <div class="performance-indicator">
+                                                <div class="perf-label">4K Gaming Performance</div>
+                                                <div class="perf-bar">
+                                                    <div class="perf-fill" style="width: 100%;"></div>
+                                                </div>
+                                                <div class="perf-value">Exceptional</div>
+                                            </div>
+                                            
+                                            <div class="system-pricing">
+                                                <div class="price">From $2,899</div>
+                                                <a href="/builds/prebuilt" class="btn btn-primary btn-lg">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="featured-system-card">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-image">
+                                            <div class="image-container">
+                                                <img src="/static/img/lummi/compact_pc.svg" alt="Starter Gaming PC" class="img-fluid">
+                                                <div class="image-overlay"></div>
+                                            </div>
+                                            <!-- Floating spec highlights -->
+                                            <div class="spec-highlight spec-cpu">
+                                                <i class="fas fa-microchip"></i>
+                                                <span>RX 6700 XT</span>
+                                            </div>
+                                            <div class="spec-highlight spec-gpu">
+                                                <i class="fas fa-tv"></i>
+                                                <span>Ryzen 5 7600X</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="featured-system-content">
+                                            <div class="system-badge system-badge-value">BEST VALUE</div>
+                                            <h3 class="system-title">Starter Gaming PC</h3>
+                                            <p class="system-description">
+                                                The perfect entry into PC gaming with impressive 1080p performance.
+                                                High-quality components at an affordable price point.
+                                            </p>
+                                            
+                                            <!-- Key specs with modern design -->
+                                            <div class="system-specs">
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Processor</div>
+                                                        <div class="spec-value">AMD Ryzen 5 7600X</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Graphics</div>
+                                                        <div class="spec-value">AMD RX 6700 XT 12GB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="spec-group">
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Memory</div>
+                                                        <div class="spec-value">16GB DDR5-5200</div>
+                                                    </div>
+                                                    <div class="spec-item">
+                                                        <div class="spec-name">Storage</div>
+                                                        <div class="spec-value">1TB NVMe SSD</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Performance indicator -->
+                                            <div class="performance-indicator">
+                                                <div class="perf-label">1080p Gaming Performance</div>
+                                                <div class="perf-bar">
+                                                    <div class="perf-fill" style="width: 75%;"></div>
+                                                </div>
+                                                <div class="perf-value">Very Good</div>
+                                            </div>
+                                            
+                                            <div class="system-pricing">
+                                                <div class="price">From $899</div>
+                                                <a href="/builds/prebuilt" class="btn btn-primary btn-lg">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modern carousel indicators -->
+                <div class="carousel-indicators carousel-indicators-modern">
+                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="0" class="" aria-label="Performance Gaming PC"></button>
+                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="1" aria-label="Elite Gaming PC" class="active" aria-current="true"></button>
+                    <button type="button" data-bs-target="#featuredBuildCarousel" data-bs-slide-to="2" aria-label="Starter Gaming PC" class=""></button>
+                </div>
+            </div>
+        </div>
+    </section>

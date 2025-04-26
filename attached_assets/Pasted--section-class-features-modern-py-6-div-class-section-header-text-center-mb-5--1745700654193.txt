@@ -1,0 +1,88 @@
+<section class="features-modern py-6">
+        <div class="section-header text-center mb-5">
+            <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">WHY CHOOSE US</span>
+            <h2 class="display-5 fw-bold mb-4">Build Your Dream Setup</h2>
+            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                We've simplified the PC building process with smart tools and premium support
+            </p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Feature Card 1 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-puzzle-piece feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Guaranteed Compatibility</h3>
+                        <p class="feature-desc">Our intelligent system checks component compatibility in real-time as you build, eliminating configuration errors.</p>
+                        <span class="feature-number">01</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature Card 2 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-sliders-h feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Complete Customization</h3>
+                        <p class="feature-desc">Hand-pick every component from our curated selection of premium hardware to create a system uniquely yours.</p>
+                        <span class="feature-number">02</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature Card 3 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-chart-line feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Performance Analytics</h3>
+                        <p class="feature-desc">Visualize and compare expected performance metrics across games and applications before you buy.</p>
+                        <span class="feature-number">03</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feature Metrics Bar -->
+        <div class="metrics-bar mt-5 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+            <div class="container">
+                <div class="row align-items-center justify-content-between text-center text-md-start">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <div class="metric-item">
+                            <span class="metric-number">100%</span>
+                            <span class="metric-label">Expert Assembly</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <div class="metric-item">
+                            <span class="metric-number">3-Year</span>
+                            <span class="metric-label">Premium Warranty</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-item">
+                            <span class="metric-number">1000+</span>
+                            <span class="metric-label">Configurations</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-item">
+                            <span class="metric-number">24/7</span>
+                            <span class="metric-label">Technical Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

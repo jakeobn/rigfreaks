@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="160" height="40" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="40" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- EverCraft Logo - Black Version -->
   <style>
-    .logo-text { font-family: 'Arial', sans-serif; font-weight: 700; fill: #000000; }
-    .icon { fill: #000000; }
+    .logo-text {
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      fill: #111111;
+    }
+    .tagline {
+      font-family: 'Arial', sans-serif;
+      font-size: 9px;
+      fill: #555555;
+    }
   </style>
   
-  <!-- Monitor Icon -->
-  <g class="icon" transform="translate(0, 8)">
-    <path d="M23,3H1C0.4,3,0,3.4,0,4v16c0,0.6,0.4,1,1,1h8l-2,3v1h8v-1l-2-3h8c0.6,0,1-0.4,1-1V4C24,3.4,23.6,3,23,3z M22,19H2V5h20V19z"/>
-    <rect x="4" y="7" width="16" height="10" fill="#1a1a1a"/>
+  <!-- PC Icon -->
+  <g transform="translate(0, 5)">
+    <!-- Monitor -->
+    <rect x="5" y="2" width="28" height="20" rx="2" fill="#111111"/>
+    <rect x="7" y="4" width="24" height="16" rx="1" fill="#FFFFFF"/>
+    
+    <!-- Stand -->
+    <rect x="15" y="22" width="8" height="4" fill="#111111"/>
+    <rect x="12" y="26" width="14" height="2" rx="1" fill="#111111"/>
+    
+    <!-- Motherboard Pattern in Screen -->
+    <path d="M10 7 L28 7 M10 9 L15 9 M20 9 L28 9 M10 11 L28 11 M10 13 L20 13 M25 13 L28 13 M10 15 L28 15 M10 17 L16 17 M21 17 L28 17" stroke="#111111" stroke-width="0.5" fill="none"/>
+    
+    <!-- RGB Accent Line -->
+    <rect x="7" y="19" width="24" height="1" fill="#1565C0"/>
   </g>
   
-  <!-- EverCraft Text -->
-  <text x="30" y="24" class="logo-text" font-size="18">EVERCRAFT</text>
+  <!-- Logo Text -->
+  <text x="40" y="25" class="logo-text">EVERCRAFT</text>
   
-  <!-- Premium Custom PCs Tagline -->
-  <text x="31" y="35" font-size="8" fill="#555555">PREMIUM CUSTOM PCs</text>
+  <!-- Tagline -->
+  <text x="42" y="33" class="tagline">PREMIUM CUSTOM DESKTOPS</text>
 </svg>
