@@ -2134,19 +2134,58 @@
     background-color: var(--primary-color);
 }
 
-/* Responsive Adjustments */
+/* Advanced Responsive Adjustments */
 @media (max-width: 991.98px) {
-    .modern-hero {
+    .hero-futuristic {
         min-height: auto;
-        padding: 4rem 0;
+        padding: 5rem 0 8rem;
     }
     
-    .hero-title-modern {
+    .hero-title-advanced {
         font-size: 2.5rem;
     }
     
-    .hero-3d-card {
-        margin: 3rem auto 0;
+    .hero-content-advanced {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    
+    .tech-badge, .hero-tags-advanced {
+        justify-content: center;
+    }
+    
+    .hero-buttons-advanced {
+        justify-content: center;
+    }
+    
+    .hero-features-advanced {
+        justify-content: center;
+    }
+    
+    .hero-3d-showcase {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+    
+    /* Show the 3D showcase for tablets */
+    .d-none.d-lg-flex {
+        display: flex !important;
+    }
+    
+    /* Adjust component cards for medium screens */
+    .cpu-card {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .gpu-card {
+        top: 100px;
+        right: 20px;
+    }
+    
+    .ram-card {
+        bottom: 30px;
+        left: 30px;
     }
     
     .feature-card {
@@ -2173,22 +2212,97 @@
 }
 
 @media (max-width: 767.98px) {
-    .modern-hero {
-        padding: 3rem 0;
+    .hero-futuristic {
+        padding: 4rem 0 7rem;
     }
     
-    .hero-title-modern {
+    .hero-title-advanced {
         font-size: 2rem;
     }
     
-    .hero-buttons {
-        flex-direction: column;
-        width: 100%;
+    .hero-description-advanced {
+        font-size: 0.95rem;
+        max-width: 100%;
+        padding: 0 1rem;
     }
     
-    .btn-hero-modern {
+    .hero-buttons-advanced {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .btn-advanced {
         width: 100%;
         justify-content: center;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-features-advanced {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 1rem;
+    }
+    
+    .feature-indicator {
+        width: 48%;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Ensure CPU card visibility on small screens */
+    .cpu-card {
+        top: 10px;
+        left: 10px;
+        padding: 0.75rem;
+    }
+    
+    .component-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+    
+    .component-name {
+        font-size: 0.85rem;
+    }
+    
+    .component-detail {
+        font-size: 0.7rem;
+    }
+    
+    /* Position GPU card for better visibility */
+    .gpu-card {
+        top: 85px;
+        right: 10px;
+        padding: 0.75rem;
+    }
+    
+    /* Position RAM card for better visibility */
+    .ram-card {
+        bottom: 50px;
+        left: 10px;
+        padding: 0.75rem;
+    }
+    
+    /* Adjust gauge size */
+    .performance-gauge {
+        width: 90px;
+        height: 90px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .gauge-content {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .gauge-score {
+        font-size: 1.2rem;
+    }
+    
+    .gauge-label {
+        font-size: 0.5rem;
     }
     
     .spec-group {
@@ -2205,6 +2319,99 @@
     
     .metric-label {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-futuristic {
+        padding: 3rem 0 6rem;
+    }
+    
+    .tech-badge {
+        margin-bottom: 1rem;
+    }
+    
+    .hero-tags-advanced {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+    
+    .hero-tag-pill {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+    }
+    
+    .hero-title-advanced {
+        font-size: 1.75rem;
+        letter-spacing: -0.03em;
+    }
+    
+    .text-gradient-animated {
+        font-size: 1.75rem;
+    }
+    
+    .hero-subtitle-advanced {
+        font-size: 1rem;
+    }
+    
+    .hero-description-advanced {
+        font-size: 0.9rem;
+    }
+    
+    /* Show fewer component cards for very small screens */
+    .ram-card {
+        display: none;
+    }
+    
+    /* Optimize component cards even further */
+    .component-card {
+        max-width: 180px;
+    }
+    
+    .cpu-card {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .gpu-card {
+        bottom: 60px;
+        top: auto;
+        right: 10px;
+    }
+    
+    /* Ensure gauge is visible on smallest screens */
+    .performance-gauge {
+        width: 70px;
+        height: 70px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .gauge-content {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .gauge-score {
+        font-size: 1rem;
+    }
+    
+    .gauge-label {
+        font-size: 0.4rem;
+    }
+    
+    .gauge-sublabel {
+        font-size: 0.4rem;
+    }
+    
+    /* Simplify lighting effects */
+    .light-beam {
+        opacity: 0.2;
+    }
+    
+    /* Adjust scroll indicator */
+    .scroll-indicator {
+        bottom: 20px;
     }
 }
 
