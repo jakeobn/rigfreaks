@@ -14,7 +14,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/modern-homepage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/modern-configs.css') }}">
     
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -801,9 +800,6 @@
             });
         });
     </script>
-    
-    <!-- Modern Config Cards -->
-    <script src="{{ url_for('static', filename='js/modern-configs.js') }}"></script>
     
     {% block extra_js %}{% endblock %}
 </body>
