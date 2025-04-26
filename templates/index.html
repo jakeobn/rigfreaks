@@ -1362,21 +1362,46 @@
         </div>
     </section>
     
-    <!-- Call-to-Action Section -->
-    <section class="cta-section">
+    <!-- Modern Call-to-Action Section -->
+    <section class="cta-modern">
+        <div class="cta-decoration decoration-1"></div>
+        <div class="cta-decoration decoration-2"></div>
+        
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="cta-content text-center">
-                        <h2 class="cta-title">Ready to Build Your Dream PC?</h2>
-                        <p class="cta-text">Customize, compare, and create the perfect computer with our easy-to-use PC builder tool.</p>
-                        <div class="cta-buttons">
-                            <a href="{{ url_for('builder') }}" class="btn btn-primary btn-lg me-3">
-                                <i class="fas fa-wrench me-2"></i>Start Building
-                            </a>
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-light btn-lg">
-                                <i class="fas fa-desktop me-2"></i>View Pre-built PCs
-                            </a>
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-card" data-aos="fade-up">
+                        <div class="text-center">
+                            <h2 class="cta-title-modern">Ready to Experience Next-Level Performance?</h2>
+                            <p class="cta-description">
+                                Build a custom PC perfectly matched to your needs or choose from our expertly crafted pre-configured systems
+                            </p>
+                            
+                            <div class="cta-buttons-modern">
+                                <a href="{{ url_for('builder') }}" class="btn btn-lg btn-primary btn-hero-modern">
+                                    <span class="btn-text">Start Building</span>
+                                    <span class="btn-icon"><i class="fas fa-wrench"></i></span>
+                                </a>
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-lg btn-outline-light btn-hero-modern">
+                                    <span class="btn-text">View Pre-built PCs</span>
+                                    <span class="btn-icon"><i class="fas fa-desktop"></i></span>
+                                </a>
+                            </div>
+                            
+                            <div class="mt-4 d-flex justify-content-center gap-4">
+                                <div class="cta-feature">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Free shipping</span>
+                                </div>
+                                <div class="cta-feature">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>3-year warranty</span>
+                                </div>
+                                <div class="cta-feature">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Expert support</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
