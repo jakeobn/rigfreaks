@@ -1728,6 +1728,68 @@ body {
     margin-bottom: 0;
 }
 
+/* PC Showcase Section (Chillblast-inspired) */
+.pc-showcase-section {
+    position: relative;
+    padding: 5rem 0;
+}
+
+.showcase-card {
+    position: relative;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.showcase-card:hover {
+    transform: translateY(-5px);
+}
+
+.showcase-img {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.showcase-img img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.showcase-card:hover .showcase-img img {
+    transform: scale(1.05);
+}
+
+.showcase-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-content {
+    padding: 0.5rem 0.5rem 0;
+}
+
+.showcase-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.showcase-specs {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
 /* Component Categories Section (Chillblast-inspired) */
 .component-categories-section {
     position: relative;
