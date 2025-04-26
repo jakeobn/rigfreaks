@@ -5,19 +5,24 @@
 }
 
 .lead.hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Larger for better visibility */
     margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    color: var(--light);
-    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: #4dabf7 !important; /* Use a bright blue color directly */
+    font-weight: 500 !important; /* Make it bolder */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add text shadow for better contrast */
+    opacity: 1 !important;
+    display: block;
 }
 
-/* Ensure text gradient works in all browsers */
+/* Override any existing styles */
 .text-gradient-subtle {
-    background: linear-gradient(90deg, var(--light), var(--info));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    display: inline-block; /* Ensures the gradient applies correctly */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #4dabf7 !important;
+    background-clip: initial !important;
+    text-fill-color: #4dabf7 !important;
+    color: #4dabf7 !important;
+    opacity: 1 !important;
+    display: inline-block; 
 }
