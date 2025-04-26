@@ -52,10 +52,6 @@ app.register_blueprint(cart_bp)
 @app.route('/')
 def index():
     search_query = request.args.get('search', '')
-    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
-    
-    if use_minimalist:
-        return render_template('test.html')
     
     if search_query:
         # In a real implementation, this would search the database
@@ -63,6 +59,15 @@ def index():
         return render_template('index.html', search_query=search_query)
     
     return render_template('index.html')
+    
+@app.route('/minimalist')
+def index_minimalist():
+    search_query = request.args.get('search', '')
+    
+    if search_query:
+        return render_template('index_minimalist.html', search_query=search_query, use_minimalist=True)
+    
+    return render_template('index_minimalist.html', use_minimalist=True)
 
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
@@ -70,20 +75,36 @@ def builder():
     if 'pc_config' not in session:
         session['pc_config'] = {}
     
-    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
+    components = load_component_data()
+    compatibility_issues = check_compatibility(session['pc_config'])
+    total_price = calculate_total_price(session['pc_config'])
+    
+    return render_template(
+        'builder.html',
+        components=components,
+        current_config=session['pc_config'],
+        compatibility_issues=compatibility_issues,
+        total_price=total_price,
+        use_minimalist=False
+    )
+    
+@app.route('/builder/minimalist', methods=['GET', 'POST'])
+def builder_minimalist():
+    # Initialize session if it doesn't exist
+    if 'pc_config' not in session:
+        session['pc_config'] = {}
     
     components = load_component_data()
     compatibility_issues = check_compatibility(session['pc_config'])
     total_price = calculate_total_price(session['pc_config'])
     
-    template = 'builder_minimalist.html' if use_minimalist else 'builder.html'
     return render_template(
-        template,
+        'builder_minimalist.html',
         components=components,
         current_config=session['pc_config'],
         compatibility_issues=compatibility_issues,
         total_price=total_price,
-        use_minimalist=use_minimalist
+        use_minimalist=True
     )
 
 @app.route('/select/<category>', methods=['GET'])
