@@ -95,18 +95,52 @@
     opacity: 0.8;
 }
 :root {
+    /* Core colors */
     --primary-color: var(--bs-primary);
     --secondary-color: #0dcaf0;
     --accent-color: #f48c06;
     --accent-hover: #e07a00;
+    --success: #12b886;
+    --info: #0dcaf0;
+    --warning: #fd7e14;
+    --danger: #fa5252;
+    --purple: #7950f2;
+    --pink: #e64980;
+    
+    /* Background colors */
     --bg-dark: #0d1117;
     --bg-darker: #08090e;
     --bg-lighter: #1a1d24;
+    --bg-card: #111826;
+    
+    /* Text colors */
     --text-light: #e9ecef;
     --text-muted: #adb5bd;
+    --text-subtle: #6c757d;
+    
+    /* Border and overlay colors */
     --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-primary: rgba(13, 110, 253, 0.25);
+    --overlay-dark: rgba(8, 9, 14, 0.7);
+    --glass-bg: rgba(26, 29, 36, 0.6);
+    
+    /* Menu colors */
     --menu-bg: #111826;
     --menu-hover: #1e293b;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-btn: 0 4px 10px rgba(0, 0, 0, 0.25);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--info));
+    --gradient-success: linear-gradient(135deg, var(--success), var(--secondary-color));
+    --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--warning));
+    --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
 }
 
 body {

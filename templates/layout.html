@@ -733,6 +733,74 @@
         });
     </script>
     
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Vanilla Tilt.js for 3D card effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    
+    <!-- Modern Homepage Effects -->
+    <script>
+        // Initialize AOS animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animation library
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                offset: 100
+            });
+            
+            // Initialize tilt effect on hero card
+            const tiltElements = document.querySelectorAll('[data-tilt]');
+            if (tiltElements.length > 0) {
+                VanillaTilt.init(tiltElements, {
+                    max: 10,
+                    speed: 400,
+                    glare: true,
+                    "max-glare": 0.2,
+                });
+            }
+            
+            // Animate performance bars on scroll
+            const perfBars = document.querySelectorAll('.perf-fill');
+            const animatePerfBars = () => {
+                perfBars.forEach(bar => {
+                    const rect = bar.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+                    
+                    if (isVisible) {
+                        const targetWidth = bar.getAttribute('style').split('width:')[1].split(';')[0].trim();
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                        }, 200);
+                    }
+                });
+            };
+            
+            // Run once on page load
+            if (perfBars.length > 0) {
+                setTimeout(animatePerfBars, 500);
+            }
+            
+            // Parallax effect for hero blobs
+            const heroBlobs = document.querySelectorAll('.hero-blob');
+            window.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                heroBlobs.forEach((blob, index) => {
+                    const speed = (index + 1) * 20;
+                    const offsetX = (mouseX - 0.5) * speed;
+                    const offsetY = (mouseY - 0.5) * speed;
+                    
+                    blob.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                });
+            });
+        });
+    </script>
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html>
