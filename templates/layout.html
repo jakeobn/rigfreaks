@@ -313,6 +313,16 @@
                         </a>
                     </div>
                     
+                    <!-- Minimalist View button -->
+                    <div class="modern-action-item">
+                        <a href="{{ request.path }}?minimalist=true" class="action-button" title="Switch to Minimalist Design">
+                            <div class="action-icon">
+                                <i class="fas fa-circle-half-stroke"></i>
+                            </div>
+                            <span class="action-label">Minimalist</span>
+                        </a>
+                    </div>
+                    
                     <!-- Account button -->
                     <div class="modern-action-item">
                         {% if 'user_id' in session %}

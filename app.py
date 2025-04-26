@@ -69,16 +69,20 @@ def builder():
     if 'pc_config' not in session:
         session['pc_config'] = {}
     
+    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
+    
     components = load_component_data()
     compatibility_issues = check_compatibility(session['pc_config'])
     total_price = calculate_total_price(session['pc_config'])
     
+    template = 'builder_minimalist.html' if use_minimalist else 'builder.html'
     return render_template(
-        'builder.html',
+        template,
         components=components,
         current_config=session['pc_config'],
         compatibility_issues=compatibility_issues,
-        total_price=total_price
+        total_price=total_price,
+        use_minimalist=use_minimalist
     )
 
 @app.route('/select/<category>', methods=['GET'])
