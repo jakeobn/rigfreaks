@@ -54,14 +54,15 @@ def index():
     search_query = request.args.get('search', '')
     use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
     
+    if use_minimalist:
+        return render_template('test.html')
+    
     if search_query:
         # In a real implementation, this would search the database
         # For now, we'll just pass the search query to the template
-        template = 'index_minimalist.html' if use_minimalist else 'index.html'
-        return render_template(template, search_query=search_query, use_minimalist=use_minimalist)
+        return render_template('index.html', search_query=search_query)
     
-    template = 'index_minimalist.html' if use_minimalist else 'index.html'
-    return render_template(template, use_minimalist=use_minimalist)
+    return render_template('index.html')
 
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
