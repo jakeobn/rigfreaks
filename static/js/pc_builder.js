@@ -128,10 +128,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Attach event listeners to add buttons
     function attachAddButtonListeners() {
         const addButtons = document.querySelectorAll('#componentCardsWrapper .add-component-btn');
+        if (!addButtons || addButtons.length === 0) {
+            console.log('No add buttons found to attach listeners to');
+            return;
+        }
+        
         addButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const componentId = this.getAttribute('data-component-id');
+                if (!componentId) {
+                    console.error('No component ID found on button');
+                    return;
+                }
+                
                 const category = currentCategory;
+                if (!category) {
+                    console.error('No category selected');
+                    return;
+                }
                 
                 // Submit form to add component
                 const form = document.createElement('form');
@@ -141,6 +155,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.submit();
             });
         });
+        
+        console.log(`Attached listeners to ${addButtons.length} add buttons`);
     }
     
     // Component selection is handled by the inline JavaScript in builder.html
@@ -191,108 +207,127 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Component sorting functionality
-    sortOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            const sortBy = this.getAttribute('data-sort');
-            const componentCards = Array.from(document.querySelectorAll('#componentCardsWrapper .component-card'));
-            const cardsWrapper = document.getElementById('componentCardsWrapper');
-            
-            componentCards.sort((a, b) => {
-                if (sortBy === 'name') {
-                    const nameA = a.querySelector('.component-name')?.textContent || '';
-                    const nameB = b.querySelector('.component-name')?.textContent || '';
-                    return nameA.localeCompare(nameB);
-                } else if (sortBy === 'price-asc') {
-                    const priceA = parseFloat(a.getAttribute('data-price') || 0);
-                    const priceB = parseFloat(b.getAttribute('data-price') || 0);
-                    return priceA - priceB;
-                } else if (sortBy === 'price-desc') {
-                    const priceA = parseFloat(a.getAttribute('data-price') || 0);
-                    const priceB = parseFloat(b.getAttribute('data-price') || 0);
-                    return priceB - priceA;
-                } else if (sortBy === 'performance') {
-                    const perfA = parseFloat(a.getAttribute('data-performance') || 0);
-                    const perfB = parseFloat(b.getAttribute('data-performance') || 0);
-                    return perfB - perfA;
+    if (sortOptions && sortOptions.length > 0) {
+        sortOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const sortBy = this.getAttribute('data-sort');
+                const componentCards = Array.from(document.querySelectorAll('#componentCardsWrapper .component-card'));
+                const cardsWrapper = document.getElementById('componentCardsWrapper');
+                
+                if (!cardsWrapper) {
+                    console.error('Component cards wrapper not found during sorting');
+                    return;
                 }
-                return 0;
-            });
-            
-            // Re-append sorted cards
-            componentCards.forEach(card => {
-                cardsWrapper.appendChild(card);
+                
+                componentCards.sort((a, b) => {
+                    if (sortBy === 'name') {
+                        const nameA = a.querySelector('.component-name')?.textContent || '';
+                        const nameB = b.querySelector('.component-name')?.textContent || '';
+                        return nameA.localeCompare(nameB);
+                    } else if (sortBy === 'price-asc') {
+                        const priceA = parseFloat(a.getAttribute('data-price') || 0);
+                        const priceB = parseFloat(b.getAttribute('data-price') || 0);
+                        return priceA - priceB;
+                    } else if (sortBy === 'price-desc') {
+                        const priceA = parseFloat(a.getAttribute('data-price') || 0);
+                        const priceB = parseFloat(b.getAttribute('data-price') || 0);
+                        return priceB - priceA;
+                    } else if (sortBy === 'performance') {
+                        const perfA = parseFloat(a.getAttribute('data-performance') || 0);
+                        const perfB = parseFloat(b.getAttribute('data-performance') || 0);
+                        return perfB - perfA;
+                    }
+                    return 0;
+                });
+                
+                // Re-append sorted cards
+                componentCards.forEach(card => {
+                    cardsWrapper.appendChild(card);
+                });
             });
         });
-    });
+    } else {
+        console.log('No sort options found on this page');
+    }
 
     // Real-time compatibility checking
     const componentSelections = document.querySelectorAll('.component-select-form');
     if (componentSelections && componentSelections.length > 0) {
         componentSelections.forEach(form => {
             form.addEventListener('change', function(e) {
-            if (e.target.matches('input[type="radio"]')) {
-                const categoryInputs = form.querySelectorAll('input[type="radio"]:checked');
-                const currentConfig = {};
-                
-                // Build current config from selected inputs
-                categoryInputs.forEach(input => {
-                    currentConfig[input.getAttribute('data-category')] = input.value;
-                });
-                
-                // Send to server for compatibility check
-                fetch('/api/check_compatibility', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({config: currentConfig}),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const compatibilityAlert = document.getElementById('compatibility-alert');
-                    if (!data.compatible && data.issues.length > 0) {
-                        let issuesList = '<ul>';
-                        data.issues.forEach(issue => {
-                            issuesList += `<li>${issue}</li>`;
-                        });
-                        issuesList += '</ul>';
+                if (e.target.matches('input[type="radio"]')) {
+                    const categoryInputs = form.querySelectorAll('input[type="radio"]:checked');
+                    const currentConfig = {};
+                    
+                    // Build current config from selected inputs
+                    categoryInputs.forEach(input => {
+                        const category = input.getAttribute('data-category');
+                        if (category) {
+                            currentConfig[category] = input.value;
+                        }
+                    });
+                    
+                    // Send to server for compatibility check
+                    fetch('/api/check_compatibility', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({config: currentConfig}),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const compatibilityAlert = document.getElementById('compatibility-alert');
+                        if (!compatibilityAlert) {
+                            console.error('Compatibility alert element not found');
+                            return;
+                        }
                         
-                        compatibilityAlert.innerHTML = `
-                            <div class="alert alert-warning">
-                                <strong>Compatibility Issues:</strong>
-                                ${issuesList}
-                            </div>
-                        `;
-                        compatibilityAlert.style.display = 'block';
-                    } else {
-                        compatibilityAlert.style.display = 'none';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error checking compatibility:', error);
-                });
-                
-                // Update price calculation
-                fetch('/api/calculate_price', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({config: currentConfig}),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const priceDisplay = document.getElementById('total-price');
-                    if (priceDisplay) {
-                        priceDisplay.textContent = `$${data.total.toFixed(2)}`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error calculating price:', error);
-                });
-            }
+                        if (!data.compatible && data.issues && data.issues.length > 0) {
+                            let issuesList = '<ul>';
+                            data.issues.forEach(issue => {
+                                issuesList += `<li>${issue}</li>`;
+                            });
+                            issuesList += '</ul>';
+                            
+                            compatibilityAlert.innerHTML = `
+                                <div class="alert alert-warning">
+                                    <strong>Compatibility Issues:</strong>
+                                    ${issuesList}
+                                </div>
+                            `;
+                            compatibilityAlert.style.display = 'block';
+                        } else {
+                            compatibilityAlert.style.display = 'none';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error checking compatibility:', error);
+                    });
+                    
+                    // Update price calculation
+                    fetch('/api/calculate_price', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({config: currentConfig}),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const priceDisplay = document.getElementById('total-price');
+                        if (priceDisplay) {
+                            priceDisplay.textContent = `$${data.total.toFixed(2)}`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error calculating price:', error);
+                    });
+                }
+            });
         });
-        });
+    } else {
+        console.log('No component selection forms found on this page');
     }
 
     // Component comparison functionality
@@ -300,93 +335,125 @@ document.addEventListener('DOMContentLoaded', function() {
     if (compareTable) {
         const compareCheckboxes = document.querySelectorAll('.compare-checkbox');
         if (compareCheckboxes && compareCheckboxes.length > 0) {
-        
-        compareCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                // Limit to 3 selections
+            compareCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Limit to 3 selections
+                    const checkedBoxes = document.querySelectorAll('.compare-checkbox:checked');
+                    if (checkedBoxes.length > 3) {
+                        this.checked = false;
+                        alert('You can compare up to 3 components at a time');
+                        return;
+                    }
+                    
+                    // Update comparison table
+                    updateComparisonTable();
+                });
+            });
+            
+            function updateComparisonTable() {
+                const selectedComponents = [];
                 const checkedBoxes = document.querySelectorAll('.compare-checkbox:checked');
-                if (checkedBoxes.length > 3) {
-                    this.checked = false;
-                    alert('You can compare up to 3 components at a time');
+                
+                checkedBoxes.forEach(checkbox => {
+                    const componentCard = checkbox.closest('.component-card');
+                    if (!componentCard) {
+                        console.error('Component card not found for checkbox');
+                        return;
+                    }
+                    
+                    const componentNameElement = componentCard.querySelector('.component-name');
+                    if (!componentNameElement) {
+                        console.error('Component name element not found');
+                        return;
+                    }
+                    
+                    const componentData = {
+                        name: componentNameElement.textContent,
+                        price: componentCard.dataset.price || 0,
+                        specs: {}
+                    };
+                    
+                    // Extract all specs
+                    const specItems = componentCard.querySelectorAll('.spec-item');
+                    specItems.forEach(item => {
+                        const specLabel = item.querySelector('.spec-label');
+                        const specValue = item.querySelector('.spec-value');
+                        
+                        if (specLabel && specValue) {
+                            const label = specLabel.textContent.trim().replace(':', '');
+                            const value = specValue.textContent.trim();
+                            componentData.specs[label] = value;
+                        }
+                    });
+                    
+                    selectedComponents.push(componentData);
+                });
+                
+                // Build comparison table
+                const tableBody = compareTable.querySelector('tbody');
+                if (!tableBody) {
+                    console.error('Comparison table body not found');
                     return;
                 }
                 
-                // Update comparison table
-                updateComparisonTable();
-            });
-        });
-        
-        function updateComparisonTable() {
-            const selectedComponents = [];
-            const checkedBoxes = document.querySelectorAll('.compare-checkbox:checked');
-            
-            checkedBoxes.forEach(checkbox => {
-                const componentCard = checkbox.closest('.component-card');
-                const componentData = {
-                    name: componentCard.querySelector('.component-name').textContent,
-                    price: componentCard.dataset.price,
-                    specs: {}
-                };
+                tableBody.innerHTML = '';
                 
-                // Extract all specs
-                const specItems = componentCard.querySelectorAll('.spec-item');
-                specItems.forEach(item => {
-                    const label = item.querySelector('.spec-label').textContent.trim().replace(':', '');
-                    const value = item.querySelector('.spec-value').textContent.trim();
-                    componentData.specs[label] = value;
-                });
-                
-                selectedComponents.push(componentData);
-            });
-            
-            // Build comparison table
-            const tableBody = compareTable.querySelector('tbody');
-            tableBody.innerHTML = '';
-            
-            // Add name row
-            const nameRow = document.createElement('tr');
-            nameRow.innerHTML = '<th>Name</th>';
-            selectedComponents.forEach(comp => {
-                nameRow.innerHTML += `<td>${comp.name}</td>`;
-            });
-            tableBody.appendChild(nameRow);
-            
-            // Add price row
-            const priceRow = document.createElement('tr');
-            priceRow.innerHTML = '<th>Price</th>';
-            selectedComponents.forEach(comp => {
-                priceRow.innerHTML += `<td>$${parseFloat(comp.price).toFixed(2)}</td>`;
-            });
-            tableBody.appendChild(priceRow);
-            
-            // Add spec rows (ensure all specs from all components are included)
-            const allSpecs = new Set();
-            selectedComponents.forEach(comp => {
-                Object.keys(comp.specs).forEach(spec => allSpecs.add(spec));
-            });
-            
-            allSpecs.forEach(spec => {
-                const specRow = document.createElement('tr');
-                specRow.innerHTML = `<th>${spec}</th>`;
-                
+                // Add name row
+                const nameRow = document.createElement('tr');
+                nameRow.innerHTML = '<th>Name</th>';
                 selectedComponents.forEach(comp => {
-                    const value = comp.specs[spec] || '-';
-                    specRow.innerHTML += `<td>${value}</td>`;
+                    nameRow.innerHTML += `<td>${comp.name}</td>`;
+                });
+                tableBody.appendChild(nameRow);
+                
+                // Add price row
+                const priceRow = document.createElement('tr');
+                priceRow.innerHTML = '<th>Price</th>';
+                selectedComponents.forEach(comp => {
+                    priceRow.innerHTML += `<td>$${parseFloat(comp.price).toFixed(2)}</td>`;
+                });
+                tableBody.appendChild(priceRow);
+                
+                // Add spec rows (ensure all specs from all components are included)
+                const allSpecs = new Set();
+                selectedComponents.forEach(comp => {
+                    Object.keys(comp.specs).forEach(spec => allSpecs.add(spec));
                 });
                 
-                tableBody.appendChild(specRow);
-            });
-            
-            // Show table if components are selected
-            if (selectedComponents.length > 0) {
-                compareTable.style.display = 'table';
-                document.getElementById('comparison-empty').style.display = 'none';
-            } else {
-                compareTable.style.display = 'none';
-                document.getElementById('comparison-empty').style.display = 'block';
+                allSpecs.forEach(spec => {
+                    const specRow = document.createElement('tr');
+                    specRow.innerHTML = `<th>${spec}</th>`;
+                    
+                    selectedComponents.forEach(comp => {
+                        const value = comp.specs[spec] || '-';
+                        specRow.innerHTML += `<td>${value}</td>`;
+                    });
+                    
+                    tableBody.appendChild(specRow);
+                });
+                
+                // Show table if components are selected
+                if (selectedComponents.length > 0) {
+                    compareTable.style.display = 'table';
+                    const emptyComparisonElement = document.getElementById('comparison-empty');
+                    if (emptyComparisonElement) {
+                        emptyComparisonElement.style.display = 'none';
+                    }
+                } else {
+                    compareTable.style.display = 'none';
+                    const emptyComparisonElement = document.getElementById('comparison-empty');
+                    if (emptyComparisonElement) {
+                        emptyComparisonElement.style.display = 'block';
+                    } else {
+                        console.log('Comparison empty element not found');
+                    }
+                }
             }
+        } else {
+            console.log('No comparison checkboxes found on this page');
         }
-        }
+    } else {
+        console.log('Comparison table not found on this page');
     }
     
     // Mobile Panel Functionality is now handled directly in builder.html
