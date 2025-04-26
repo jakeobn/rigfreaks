@@ -66,20 +66,20 @@
             </div>
         </div>
 
-        <!-- Chillblast-style Header with Light Theme -->
-        <div class="chillblast-header" data-bs-theme="light">
-            <div class="container-fluid bg-white border-bottom border-light-subtle chillblast-subheader">
+        <!-- Chillblast-style Header with Dark Theme -->
+        <div class="chillblast-header" data-bs-theme="dark">
+            <div class="container-fluid border-bottom border-dark-subtle chillblast-subheader">
                 <div class="container" style="height: 64px;">
                     <div id="navbar" class="h-100 d-flex justify-content-between align-items-center">
                         <!-- Logo -->
                         <a href="{{ url_for('index') }}" class="p-2 ps-lg-0 ps-xl-2">
-                            <img src="{{ url_for('static', filename='img/evercraft-logo-black.svg') }}" class="chillblast-header-logo" alt="EverCraft logo">
+                            <img src="{{ url_for('static', filename='img/evercraft-logo-white.svg') }}" class="chillblast-header-logo" alt="EverCraft logo">
                         </a>
                         
                         <!-- Main Navigation (hidden on mobile) -->
                         <div class="d-none d-lg-flex">
                             <div class="dropdown">
-                                <a class="chillblast-heading dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-dark text-nowrap" 
+                                <a class="chillblast-heading dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-nowrap" 
                                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" href="#">
                                     RTX Series PCs
                                 </a>
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <a class="chillblast-heading dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-dark text-nowrap" 
+                                <a class="chillblast-heading dropdown-toggle p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-nowrap" 
                                    data-bs-toggle="dropdown" aria-expanded="false" href="#">
                                     Gaming PCs
                                 </a>
@@ -180,10 +180,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ url_for('builder') }}" class="chillblast-heading p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-dark text-nowrap">
+                            <a href="{{ url_for('builder') }}" class="chillblast-heading p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-nowrap">
                                 Custom Builder
                             </a>
-                            <a href="{{ url_for('benchmarks') }}" class="chillblast-heading p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-dark text-nowrap">
+                            <a href="{{ url_for('benchmarks') }}" class="chillblast-heading p-2 px-lg-1 px-xl-2 rounded-0 d-inline-block text-nowrap">
                                 Performance
                             </a>
                         </div>
