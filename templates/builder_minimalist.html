@@ -1,0 +1,830 @@
+{% extends "layout_minimalist.html" %}
+
+{% block title %}Custom PC Builder{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Builder-specific styles */
+    .builder-wrapper {
+        display: flex;
+        min-height: calc(100vh - 80px);
+        padding-top: 80px;
+    }
+    
+    .component-sidebar {
+        width: 320px;
+        background-color: var(--secondary-bg);
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+    
+    .builder-content {
+        flex: 1;
+        padding: 2rem;
+        background-color: var(--primary-bg);
+    }
+    
+    .component-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .component-item {
+        margin-bottom: 1rem;
+    }
+    
+    .component-button {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius-md);
+        color: var(--secondary-text);
+        cursor: pointer;
+        transition: var(--standard-transition);
+    }
+    
+    .component-button:hover, 
+    .component-button.active {
+        background-color: var(--accent-color-subtle);
+        border-color: rgba(var(--bs-primary-rgb), 0.3);
+        color: var(--primary-text);
+    }
+    
+    .component-button.complete {
+        border-left: 3px solid var(--accent-color);
+    }
+    
+    .component-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        margin-right: 1rem;
+        color: var(--accent-color);
+        flex-shrink: 0;
+    }
+    
+    .component-text {
+        flex: 1;
+    }
+    
+    .component-name {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+    
+    .component-selection {
+        font-size: 0.85rem;
+        color: var(--tertiary-text);
+    }
+    
+    .component-button.complete .component-selection {
+        color: var(--accent-color);
+    }
+    
+    .component-status {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .build-summary {
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius-lg);
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .build-stats {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .stat-item {
+        flex: 1;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+        color: var(--tertiary-text);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-text);
+    }
+    
+    .stat-value.price {
+        color: var(--accent-color);
+    }
+    
+    .build-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .component-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .component-card {
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+        transition: var(--standard-transition);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .component-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+    }
+    
+    .component-card-image {
+        height: 180px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .component-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--standard-transition);
+    }
+    
+    .component-card:hover .component-card-image img {
+        transform: scale(1.05);
+    }
+    
+    .component-card-content {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    
+    .component-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--primary-text);
+    }
+    
+    .component-card-specs {
+        margin-bottom: 1rem;
+    }
+    
+    .component-spec {
+        display: flex;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .spec-key {
+        color: var(--tertiary-text);
+        width: 90px;
+        flex-shrink: 0;
+    }
+    
+    .spec-value {
+        color: var(--secondary-text);
+    }
+    
+    .component-card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .component-price {
+        font-weight: 600;
+        color: var(--accent-color);
+    }
+    
+    .select-button {
+        padding: 0.5rem 1rem;
+        background-color: var(--accent-color-subtle);
+        color: var(--accent-color);
+        border: none;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        transition: var(--standard-transition);
+    }
+    
+    .select-button:hover {
+        background-color: var(--accent-color);
+        color: var(--primary-text);
+    }
+    
+    .component-filter {
+        margin-bottom: 2rem;
+    }
+    
+    .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .filter-actions {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .filter-search {
+        position: relative;
+    }
+    
+    .filter-search input {
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        background-color: var(--secondary-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius-md);
+        color: var(--primary-text);
+        width: 250px;
+    }
+    
+    .filter-search input:focus {
+        outline: none;
+        border-color: rgba(var(--bs-primary-rgb), 0.3);
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--tertiary-text);
+    }
+    
+    .filter-button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background-color: var(--secondary-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius-md);
+        color: var(--secondary-text);
+        cursor: pointer;
+        transition: var(--standard-transition);
+    }
+    
+    .filter-button:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+        color: var(--primary-text);
+    }
+    
+    .sort-button.active {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+        color: var(--primary-text);
+    }
+    
+    .compatibility-alert {
+        padding: 1rem;
+        border-radius: var(--border-radius-md);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .compatibility-alert.warning {
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid rgba(255, 193, 7, 0.2);
+    }
+    
+    .compatibility-alert.error {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid rgba(220, 53, 69, 0.2);
+    }
+    
+    .compatibility-alert.success {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid rgba(40, 167, 69, 0.2);
+    }
+    
+    .alert-icon {
+        color: var(--bs-warning);
+    }
+    
+    .alert-icon.error {
+        color: var(--bs-danger);
+    }
+    
+    .alert-icon.success {
+        color: var(--bs-success);
+    }
+    
+    .alert-content {
+        flex: 1;
+    }
+    
+    .alert-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .alert-message {
+        font-size: 0.9rem;
+        color: var(--secondary-text);
+    }
+    
+    /* Mobile styles */
+    @media (max-width: 991.98px) {
+        .builder-wrapper {
+            flex-direction: column;
+        }
+        
+        .component-sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            top: 0;
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .component-list {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            gap: 1rem;
+        }
+        
+        .component-item {
+            width: 200px;
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+        
+        .build-stats {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="builder-wrapper">
+    <!-- Component Selection Sidebar -->
+    <div class="component-sidebar">
+        <h2 class="mb-4">PC Builder</h2>
+        
+        <ul class="component-list">
+            <li class="component-item">
+                <button class="component-button active complete">
+                    <div class="component-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Processor</span>
+                        <span class="component-selection">Intel Core i7-13700K</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-check text-primary"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Motherboard</span>
+                        <span class="component-selection">Select a motherboard</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Memory</span>
+                        <span class="component-selection">Select memory</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Graphics Card</span>
+                        <span class="component-selection">Select a graphics card</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-hdd"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Storage</span>
+                        <span class="component-selection">Select storage</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Power Supply</span>
+                        <span class="component-selection">Select a power supply</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Case</span>
+                        <span class="component-selection">Select a case</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="component-item">
+                <button class="component-button">
+                    <div class="component-icon">
+                        <i class="fas fa-fan"></i>
+                    </div>
+                    <div class="component-text">
+                        <span class="component-name">Cooling</span>
+                        <span class="component-selection">Select cooling</span>
+                    </div>
+                    <div class="component-status">
+                        <i class="fas fa-chevron-right text-muted"></i>
+                    </div>
+                </button>
+            </li>
+        </ul>
+        
+        <!-- Build Summary -->
+        <div class="build-summary">
+            <h3 class="mb-3">Build Summary</h3>
+            
+            <div class="build-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Total</div>
+                    <div class="stat-value price">$408.99</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">Components</div>
+                    <div class="stat-value">1/8</div>
+                </div>
+            </div>
+            
+            <div class="compatibility-alert warning">
+                <div class="alert-icon">
+                    <i class="fas fa-exclamation-triangle fa-lg"></i>
+                </div>
+                <div class="alert-content">
+                    <div class="alert-title">Incomplete Configuration</div>
+                    <div class="alert-message">Select all required components to complete your build.</div>
+                </div>
+            </div>
+            
+            <div class="build-actions">
+                <button class="minimalist-btn minimalist-btn-secondary w-100" disabled>
+                    <i class="fas fa-save me-2"></i> Save Build
+                </button>
+                <button class="minimalist-btn minimalist-btn-primary w-100" disabled>
+                    <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="builder-content">
+        <h2 class="mb-4">Select a Motherboard</h2>
+        
+        <div class="compatibility-alert success">
+            <div class="alert-icon success">
+                <i class="fas fa-check-circle fa-lg"></i>
+            </div>
+            <div class="alert-content">
+                <div class="alert-title">Showing Compatible Motherboards</div>
+                <div class="alert-message">These motherboards are compatible with your selected Intel Core i7-13700K processor.</div>
+            </div>
+        </div>
+        
+        <div class="component-filter">
+            <div class="filter-header">
+                <div class="filter-search">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search motherboards...">
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="filter-button">
+                        <i class="fas fa-filter"></i>
+                        <span>Filter</span>
+                    </button>
+                    
+                    <button class="filter-button sort-button active">
+                        <i class="fas fa-sort-amount-down"></i>
+                        <span>Price: High to Low</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-grid">
+            <!-- Motherboard Card 1 -->
+            <div class="component-card">
+                <div class="component-card-image">
+                    <img src="https://m.media-amazon.com/images/I/91mhdUk3KJL.jpg" alt="ASUS ROG Maximus Z790 Hero">
+                </div>
+                <div class="component-card-content">
+                    <h3 class="component-card-title">ASUS ROG Maximus Z790 Hero</h3>
+                    
+                    <div class="component-card-specs">
+                        <div class="component-spec">
+                            <div class="spec-key">Form Factor:</div>
+                            <div class="spec-value">ATX</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Socket:</div>
+                            <div class="spec-value">LGA 1700</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Chipset:</div>
+                            <div class="spec-value">Intel Z790</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Memory:</div>
+                            <div class="spec-value">4 x DDR5, up to 7800 MHz</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-card-footer">
+                        <div class="component-price">$629.99</div>
+                        <button class="select-button">Select</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Motherboard Card 2 -->
+            <div class="component-card">
+                <div class="component-card-image">
+                    <img src="https://m.media-amazon.com/images/I/81AhjJXkFtL.jpg" alt="MSI MPG Z790 Carbon WiFi">
+                </div>
+                <div class="component-card-content">
+                    <h3 class="component-card-title">MSI MPG Z790 Carbon WiFi</h3>
+                    
+                    <div class="component-card-specs">
+                        <div class="component-spec">
+                            <div class="spec-key">Form Factor:</div>
+                            <div class="spec-value">ATX</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Socket:</div>
+                            <div class="spec-value">LGA 1700</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Chipset:</div>
+                            <div class="spec-value">Intel Z790</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Memory:</div>
+                            <div class="spec-value">4 x DDR5, up to 7600 MHz</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-card-footer">
+                        <div class="component-price">$479.99</div>
+                        <button class="select-button">Select</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Motherboard Card 3 -->
+            <div class="component-card">
+                <div class="component-card-image">
+                    <img src="https://m.media-amazon.com/images/I/81e-qqIEzkL.jpg" alt="Gigabyte Z790 AORUS Elite AX">
+                </div>
+                <div class="component-card-content">
+                    <h3 class="component-card-title">Gigabyte Z790 AORUS Elite AX</h3>
+                    
+                    <div class="component-card-specs">
+                        <div class="component-spec">
+                            <div class="spec-key">Form Factor:</div>
+                            <div class="spec-value">ATX</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Socket:</div>
+                            <div class="spec-value">LGA 1700</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Chipset:</div>
+                            <div class="spec-value">Intel Z790</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Memory:</div>
+                            <div class="spec-value">4 x DDR5, up to 7400 MHz</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-card-footer">
+                        <div class="component-price">$329.99</div>
+                        <button class="select-button">Select</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Motherboard Card 4 -->
+            <div class="component-card">
+                <div class="component-card-image">
+                    <img src="https://m.media-amazon.com/images/I/71Qe3Vv6OGL.jpg" alt="ASUS TUF Gaming Z790-Plus WiFi">
+                </div>
+                <div class="component-card-content">
+                    <h3 class="component-card-title">ASUS TUF Gaming Z790-Plus WiFi</h3>
+                    
+                    <div class="component-card-specs">
+                        <div class="component-spec">
+                            <div class="spec-key">Form Factor:</div>
+                            <div class="spec-value">ATX</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Socket:</div>
+                            <div class="spec-value">LGA 1700</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Chipset:</div>
+                            <div class="spec-value">Intel Z790</div>
+                        </div>
+                        <div class="component-spec">
+                            <div class="spec-key">Memory:</div>
+                            <div class="spec-value">4 x DDR5, up to 7200 MHz</div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-card-footer">
+                        <div class="component-price">$279.99</div>
+                        <button class="select-button">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Simple interactions for demo purposes
+    document.addEventListener('DOMContentLoaded', function() {
+        const componentButtons = document.querySelectorAll('.component-button');
+        const selectButtons = document.querySelectorAll('.select-button');
+        
+        componentButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                componentButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        selectButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Get parent card
+                const card = this.closest('.component-card');
+                // Get component title
+                const title = card.querySelector('.component-card-title').textContent;
+                // Get component price
+                const price = card.querySelector('.component-price').textContent;
+                
+                // Update the active component button
+                const activeButton = document.querySelector('.component-button.active');
+                if (activeButton) {
+                    activeButton.classList.add('complete');
+                    const selectionText = activeButton.querySelector('.component-selection');
+                    if (selectionText) {
+                        selectionText.textContent = title;
+                    }
+                    const statusIcon = activeButton.querySelector('.component-status i');
+                    if (statusIcon) {
+                        statusIcon.className = 'fas fa-check text-primary';
+                    }
+                    
+                    // Find next component
+                    const nextItem = activeButton.closest('.component-item').nextElementSibling;
+                    if (nextItem) {
+                        const nextButton = nextItem.querySelector('.component-button');
+                        if (nextButton) {
+                            componentButtons.forEach(b => b.classList.remove('active'));
+                            nextButton.classList.add('active');
+                        }
+                    }
+                }
+                
+                // Update total (simple demo)
+                const totalElement = document.querySelector('.stat-value.price');
+                if (totalElement) {
+                    // Get current total
+                    let current = totalElement.textContent.replace('$', '');
+                    current = parseFloat(current) || 0;
+                    
+                    // Add new component price
+                    let newPrice = price.replace('$', '');
+                    newPrice = parseFloat(newPrice) || 0;
+                    
+                    // Update total (simplified)
+                    totalElement.textContent = '$' + (current + newPrice).toFixed(2);
+                }
+                
+                // Update component count
+                const countElement = document.querySelector('.stat-item:nth-child(2) .stat-value');
+                if (countElement) {
+                    const [current, total] = countElement.textContent.split('/');
+                    const newCount = parseInt(current) + 1;
+                    countElement.textContent = newCount + '/' + total;
+                    
+                    // Enable buttons if all components selected
+                    if (newCount === parseInt(total)) {
+                        document.querySelectorAll('.build-actions button').forEach(btn => {
+                            btn.disabled = false;
+                        });
+                        
+                        // Update compatibility alert
+                        const alert = document.querySelector('.build-summary .compatibility-alert');
+                        alert.className = 'compatibility-alert success';
+                        alert.querySelector('.alert-icon').className = 'alert-icon success';
+                        alert.querySelector('.alert-icon i').className = 'fas fa-check-circle fa-lg';
+                        alert.querySelector('.alert-title').textContent = 'Build Complete';
+                        alert.querySelector('.alert-message').textContent = 'Your configuration is ready. You can now add it to cart or save it.';
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,348 @@
+{% extends "layout_minimalist.html" %}
+
+{% block title %}Premium Custom Desktops{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="minimalist-hero">
+    <div class="minimalist-container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="hero-content">
+                    <h1 class="hero-title">Engineered Perfection in Custom Desktops</h1>
+                    <p class="hero-description">
+                        Experience unrivaled performance with our meticulously crafted custom PCs. 
+                        Designed for gamers, creators, and professionals who demand excellence.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="{{ url_for('builder') }}" class="minimalist-btn minimalist-btn-primary">
+                            Design Your PC
+                            <i class="fas fa-drafting-compass minimalist-btn-icon"></i>
+                        </a>
+                        <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimalist-btn minimalist-btn-secondary">
+                            Explore Pre-built Systems
+                            <i class="fas fa-arrow-right minimalist-btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-delay="200">
+                <img src="https://cdn.pixabay.com/photo/2018/02/26/15/38/pc-3183065_1280.jpg" alt="Premium Custom PC" class="img-fluid rounded-4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Systems Section -->
+<section class="minimalist-section" style="background-color: var(--tertiary-bg);">
+    <div class="minimalist-container">
+        <div class="minimalist-section-inner">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="minimalist-label">Featured Builds</span>
+                <h2 class="minimalist-heading">Expertly Crafted Systems</h2>
+                <p class="minimalist-subheading">
+                    Explore our collection of professionally designed PC builds optimized for various use cases.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Gaming PC Card -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="config-card-minimal">
+                        <div class="config-image-minimal">
+                            <img src="https://cdn.pixabay.com/photo/2018/02/26/15/38/pc-3183065_1280.jpg" alt="Performance Gaming PC">
+                            <div class="config-overlay-minimal"></div>
+                            <div class="config-badge-minimal">Popular</div>
+                            <div class="config-components-minimal">
+                                <div class="component-tag-minimal">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>i7-13700K</span>
+                                </div>
+                                <div class="component-tag-minimal">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RTX 4070 Ti</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="config-content-minimal">
+                            <h3 class="config-title-minimal">Performance Gaming PC</h3>
+                            <p class="config-desc-minimal">Dominate in 1440p gaming with this premium balanced build.</p>
+                            
+                            <div class="config-specs-minimal">
+                                <div class="specs-row">
+                                    <div class="spec-col">
+                                        <div class="spec-name">Processor</div>
+                                        <div class="spec-value">Intel i7-13700K</div>
+                                    </div>
+                                    <div class="spec-col">
+                                        <div class="spec-name">Graphics</div>
+                                        <div class="spec-value">RTX 4070 Ti</div>
+                                    </div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="spec-col">
+                                        <div class="spec-name">Memory</div>
+                                        <div class="spec-value">32GB DDR5</div>
+                                    </div>
+                                    <div class="spec-col">
+                                        <div class="spec-name">Storage</div>
+                                        <div class="spec-value">2TB NVMe</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-performance-minimal">
+                                <div class="performance-header">
+                                    <div class="performance-label">1440p Gaming</div>
+                                    <div class="performance-value">Excellent</div>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" data-width="85"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-footer-minimal">
+                                <div class="config-price-minimal">From <span>$1,599</span></div>
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="config-action-minimal">
+                                    View Details <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creator PC Card -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="config-card-minimal">
+                        <div class="config-image-minimal">
+                            <img src="https://cdn.pixabay.com/photo/2018/03/27/00/50/child-3264751_1280.jpg" alt="Elite Creator PC">
+                            <div class="config-overlay-minimal"></div>
+                            <div class="config-badge-minimal premium">Premium</div>
+                            <div class="config-components-minimal">
+                                <div class="component-tag-minimal">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>i9-13900K</span>
+                                </div>
+                                <div class="component-tag-minimal">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RTX 4090</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="config-content-minimal">
+                            <h3 class="config-title-minimal">Elite Creator PC</h3>
+                            <p class="config-desc-minimal">Uncompromising performance for professional content creation.</p>
+                            
+                            <div class="config-specs-minimal">
+                                <div class="specs-row">
+                                    <div class="spec-col">
+                                        <div class="spec-name">Processor</div>
+                                        <div class="spec-value">Intel i9-13900K</div>
+                                    </div>
+                                    <div class="spec-col">
+                                        <div class="spec-name">Graphics</div>
+                                        <div class="spec-value">RTX 4090</div>
+                                    </div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="spec-col">
+                                        <div class="spec-name">Memory</div>
+                                        <div class="spec-value">64GB DDR5</div>
+                                    </div>
+                                    <div class="spec-col">
+                                        <div class="spec-name">Storage</div>
+                                        <div class="spec-value">4TB NVMe</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-performance-minimal">
+                                <div class="performance-header">
+                                    <div class="performance-label">4K Performance</div>
+                                    <div class="performance-value">Ultimate</div>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" data-width="98"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-footer-minimal">
+                                <div class="config-price-minimal">From <span>$2,999</span></div>
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="config-action-minimal">
+                                    View Details <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Value PC Card -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="config-card-minimal">
+                        <div class="config-image-minimal">
+                            <img src="https://cdn.pixabay.com/photo/2020/03/21/19/33/gaming-4955322_1280.jpg" alt="Balanced Gaming PC">
+                            <div class="config-overlay-minimal"></div>
+                            <div class="config-badge-minimal value">Best Value</div>
+                            <div class="config-components-minimal">
+                                <div class="component-tag-minimal">
+                                    <i class="fas fa-microchip"></i>
+                                    <span>Ryzen 5 7600X</span>
+                                </div>
+                                <div class="component-tag-minimal">
+                                    <i class="fas fa-tv"></i>
+                                    <span>RX 6700 XT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="config-content-minimal">
+                            <h3 class="config-title-minimal">Balanced Gaming PC</h3>
+                            <p class="config-desc-minimal">Perfect 1080p gaming performance at an exceptional price.</p>
+                            
+                            <div class="config-specs-minimal">
+                                <div class="specs-row">
+                                    <div class="spec-col">
+                                        <div class="spec-name">Processor</div>
+                                        <div class="spec-value">Ryzen 5 7600X</div>
+                                    </div>
+                                    <div class="spec-col">
+                                        <div class="spec-name">Graphics</div>
+                                        <div class="spec-value">RX 6700 XT</div>
+                                    </div>
+                                </div>
+                                <div class="specs-row">
+                                    <div class="spec-col">
+                                        <div class="spec-name">Memory</div>
+                                        <div class="spec-value">16GB DDR5</div>
+                                    </div>
+                                    <div class="spec-col">
+                                        <div class="spec-name">Storage</div>
+                                        <div class="spec-value">1TB NVMe</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-performance-minimal">
+                                <div class="performance-header">
+                                    <div class="performance-label">1080p Gaming</div>
+                                    <div class="performance-value">Great</div>
+                                </div>
+                                <div class="performance-bar">
+                                    <div class="performance-fill" data-width="75"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-footer-minimal">
+                                <div class="config-price-minimal">From <span>$949</span></div>
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="config-action-minimal">
+                                    View Details <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimalist-btn minimalist-btn-secondary">
+                    View All Systems
+                    <i class="fas fa-arrow-right minimalist-btn-icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="minimalist-section">
+    <div class="minimalist-container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="minimalist-label">Why Choose Us</span>
+            <h2 class="minimalist-heading">Crafted With Precision</h2>
+            <p class="minimalist-subheading">
+                Every EverCraft PC is meticulously built to deliver exceptional performance and reliability.
+            </p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="minimalist-card">
+                    <div class="card-content text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-check-circle fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Guaranteed Compatibility</h3>
+                        <p class="card-description">
+                            Every component is thoroughly tested to ensure perfect compatibility and stability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="minimalist-card">
+                    <div class="card-content text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-tools fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Expert Assembly</h3>
+                        <p class="card-description">
+                            Hand-built by experienced technicians with attention to every detail.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="minimalist-card">
+                    <div class="card-content text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-chart-line fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Benchmark Tested</h3>
+                        <p class="card-description">
+                            Each system undergoes rigorous performance testing before shipping.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="minimalist-card">
+                    <div class="card-content text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">3-Year Warranty</h3>
+                        <p class="card-description">
+                            Comprehensive coverage with dedicated technical support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="minimalist-section" style="background-color: var(--tertiary-bg);">
+    <div class="minimalist-container">
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-right">
+                <span class="minimalist-label">Custom Build</span>
+                <h2 class="minimalist-heading">Design Your Perfect PC</h2>
+                <p class="hero-description mb-4">
+                    Our custom PC builder makes it easy to create a system perfectly tailored to your needs. 
+                    Select premium components with guaranteed compatibility and get real-time performance estimates.
+                </p>
+                <a href="{{ url_for('builder') }}" class="minimalist-btn minimalist-btn-primary">
+                    Start Building
+                    <i class="fas fa-drafting-compass minimalist-btn-icon"></i>
+                </a>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left">
+                <img src="https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/3/12/bsuqhjmfrwpbzzlzbcb0/custom-made-gaming-pc-with-rgb-lights" alt="Custom PC Builder" class="img-fluid rounded-4">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
