@@ -227,8 +227,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Real-time compatibility checking
     const componentSelections = document.querySelectorAll('.component-select-form');
-    componentSelections.forEach(form => {
-        form.addEventListener('change', function(e) {
+    if (componentSelections && componentSelections.length > 0) {
+        componentSelections.forEach(form => {
+            form.addEventListener('change', function(e) {
             if (e.target.matches('input[type="radio"]')) {
                 const categoryInputs = form.querySelectorAll('input[type="radio"]:checked');
                 const currentConfig = {};
@@ -291,12 +292,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    });
+        });
+    }
 
     // Component comparison functionality
     const compareTable = document.getElementById('comparison-table');
     if (compareTable) {
         const compareCheckboxes = document.querySelectorAll('.compare-checkbox');
+        if (compareCheckboxes && compareCheckboxes.length > 0) {
         
         compareCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function() {
@@ -382,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 compareTable.style.display = 'none';
                 document.getElementById('comparison-empty').style.display = 'block';
             }
+        }
         }
     }
     
