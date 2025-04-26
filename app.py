@@ -165,6 +165,8 @@ def summary():
         flash("Please build a PC configuration first", "warning")
         return redirect(url_for('builder'))
     
+    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
+    
     components = load_component_data()
     config_details = {}
     
@@ -186,12 +188,14 @@ def summary():
         except Exception as e:
             app.logger.error(f"Error retrieving performance summary: {str(e)}")
     
+    template = 'summary_minimalist.html' if use_minimalist else 'summary.html'
     return render_template(
-        'summary.html',
+        template,
         config=config_details,
         compatibility_issues=compatibility_issues,
         total_price=total_price,
-        performance=performance_summary
+        performance=performance_summary,
+        use_minimalist=use_minimalist
     )
 
 @app.route('/benchmarks')
@@ -204,6 +208,8 @@ def benchmarks():
     if 'cpu' not in session['pc_config'] or 'gpu' not in session['pc_config']:
         flash("CPU and GPU are required for benchmark calculations", "warning")
         return redirect(url_for('builder'))
+    
+    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
     
     components = load_component_data()
     config_details = {}
@@ -227,19 +233,21 @@ def benchmarks():
         performance_data = get_performance_score(session['pc_config'])
         comparison_data = get_comparison_data(session['pc_config'])
         
+        template = 'benchmarks_minimalist.html' if use_minimalist else 'benchmarks.html'
         return render_template(
-            'benchmarks.html',
+            template,
             config=config_details,
             performance=performance_data,
             comparisons=comparison_data,
             benchmark_categories=BENCHMARK_CATEGORIES,
             games=GAME_BENCHMARKS,
-            applications=APP_BENCHMARKS
+            applications=APP_BENCHMARKS,
+            use_minimalist=use_minimalist
         )
     except Exception as e:
         app.logger.error(f"Error retrieving benchmark data: {str(e)}")
         flash("Unable to load benchmark data. Please try again later.", "danger")
-        return redirect(url_for('summary'))
+        return redirect(url_for('summary', minimalist=use_minimalist))
 
 @app.route('/compare/<category>')
 def compare_components(category):
@@ -282,6 +290,8 @@ def reset_configuration():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    use_minimalist = request.args.get('minimalist', 'false').lower() == 'true'
+    
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
@@ -292,7 +302,8 @@ def contact():
         # Validate required fields
         if not all([name, email, message]):
             flash('Please fill in all required fields.', 'danger')
-            return render_template('contact.html')
+            template = 'contact_minimalist.html' if use_minimalist else 'contact.html'
+            return render_template(template, use_minimalist=use_minimalist)
             
         try:
             # Create new contact message
@@ -320,9 +331,10 @@ def contact():
             db.session.rollback()
             flash('There was an error processing your request. Please try again later.', 'danger')
             
-        return redirect(url_for('contact'))
-        
-    return render_template('contact.html')
+        return redirect(url_for('contact', minimalist=use_minimalist))
+    
+    template = 'contact_minimalist.html' if use_minimalist else 'contact.html'
+    return render_template(template, use_minimalist=use_minimalist)
 
 @app.route('/terms')
 def terms():

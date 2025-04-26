@@ -1,0 +1,497 @@
+{% extends "layout_minimalist.html" %}
+
+{% block title %}Build Summary{% endblock %}
+
+{% block extra_css %}
+<style>
+    .summary-section {
+        padding: 100px 0;
+    }
+    
+    .config-summary {
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+    }
+    
+    .config-header {
+        padding: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .summary-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .summary-subtitle {
+        color: var(--secondary-text);
+        font-size: 1rem;
+    }
+    
+    .compatibility-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 0.8rem;
+        border-radius: var(--border-radius-sm);
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-top: 1rem;
+    }
+    
+    .compatibility-badge.compatible {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+        border: 1px solid rgba(40, 167, 69, 0.2);
+    }
+    
+    .compatibility-badge.incompatible {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+        border: 1px solid rgba(220, 53, 69, 0.2);
+    }
+    
+    .compatibility-badge i {
+        margin-right: 0.5rem;
+    }
+    
+    .config-components {
+        padding: 0 2rem;
+    }
+    
+    .component-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .component-item {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .component-item:last-child {
+        border-bottom: none;
+    }
+    
+    .component-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--accent-color);
+        border-radius: var(--border-radius-md);
+        flex-shrink: 0;
+        font-size: 1.2rem;
+    }
+    
+    .component-details {
+        flex: 1;
+    }
+    
+    .component-name {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        font-size: 1.1rem;
+    }
+    
+    .component-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+    }
+    
+    .component-spec {
+        font-size: 0.85rem;
+        color: var(--secondary-text);
+        padding: 0.25rem 0.5rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: var(--border-radius-sm);
+    }
+    
+    .component-price {
+        font-weight: 600;
+        color: var(--accent-color);
+        font-size: 1.1rem;
+        text-align: right;
+        flex-shrink: 0;
+    }
+    
+    .config-footer {
+        padding: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .total-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary-text);
+    }
+    
+    .price-label {
+        font-size: 0.9rem;
+        color: var(--secondary-text);
+    }
+    
+    .config-actions {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .performance-section {
+        margin-top: 3rem;
+    }
+    
+    .performance-header {
+        margin-bottom: 2rem;
+    }
+    
+    .performance-card {
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius-lg);
+        padding: 1.5rem;
+        height: 100%;
+    }
+    
+    .performance-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .performance-title i {
+        margin-right: 0.75rem;
+        color: var(--accent-color);
+    }
+    
+    .performance-score {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--primary-text);
+    }
+    
+    .score-label {
+        font-size: 0.9rem;
+        color: var(--secondary-text);
+        margin-bottom: 1.5rem;
+    }
+    
+    .performance-meter {
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    .performance-fill {
+        height: 100%;
+        background-image: linear-gradient(90deg, var(--accent-color), var(--bs-info));
+        border-radius: 4px;
+        width: 0;
+        transition: width 1.5s ease-out;
+    }
+    
+    .meter-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--tertiary-text);
+    }
+    
+    .performance-details {
+        margin-top: 2rem;
+    }
+    
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .detail-name {
+        color: var(--secondary-text);
+    }
+    
+    .detail-value {
+        font-weight: 500;
+        color: var(--primary-text);
+    }
+    
+    .benchmark-link {
+        display: block;
+        text-align: center;
+        margin-top: 2rem;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--standard-transition);
+    }
+    
+    .benchmark-link:hover {
+        color: var(--primary-text);
+    }
+    
+    .benchmark-link i {
+        margin-left: 0.5rem;
+        transition: var(--standard-transition);
+    }
+    
+    .benchmark-link:hover i {
+        transform: translateX(4px);
+    }
+    
+    @media (max-width: 767.98px) {
+        .component-item {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .component-price {
+            text-align: left;
+        }
+        
+        .config-footer {
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .config-actions {
+            width: 100%;
+            flex-direction: column;
+        }
+        
+        .config-actions .minimalist-btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="summary-section">
+    <div class="minimalist-container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Configuration Summary -->
+                <div class="config-summary">
+                    <div class="config-header">
+                        <h1 class="summary-title">Your Custom PC Build</h1>
+                        <p class="summary-subtitle">Review your configuration before proceeding</p>
+                        
+                        {% if compatibility_issues %}
+                            <div class="compatibility-badge incompatible">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Compatibility Issues Detected</span>
+                            </div>
+                        {% else %}
+                            <div class="compatibility-badge compatible">
+                                <i class="fas fa-check-circle"></i>
+                                <span>All Components Compatible</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if compatibility_issues %}
+                        <div class="alert alert-warning m-3" role="alert">
+                            <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i> Compatibility Issues</h5>
+                            <ul class="mb-0 ps-3">
+                                {% for issue in compatibility_issues %}
+                                    <li>{{ issue }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="config-components">
+                        <ul class="component-list">
+                            {% for category, component in config.items() %}
+                                <li class="component-item">
+                                    <div class="component-icon">
+                                        {% if category == 'cpu' %}
+                                            <i class="fas fa-microchip"></i>
+                                        {% elif category == 'motherboard' %}
+                                            <i class="fas fa-server"></i>
+                                        {% elif category == 'ram' %}
+                                            <i class="fas fa-memory"></i>
+                                        {% elif category == 'gpu' %}
+                                            <i class="fas fa-tv"></i>
+                                        {% elif category == 'storage' %}
+                                            <i class="fas fa-hdd"></i>
+                                        {% elif category == 'power_supply' %}
+                                            <i class="fas fa-plug"></i>
+                                        {% elif category == 'case' %}
+                                            <i class="fas fa-box-open"></i>
+                                        {% elif category == 'cooling' %}
+                                            <i class="fas fa-fan"></i>
+                                        {% else %}
+                                            <i class="fas fa-cog"></i>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="component-details">
+                                        <h3 class="component-name">{{ component.name }}</h3>
+                                        <p class="mb-0 text-muted">{{ component.description }}</p>
+                                        
+                                        <div class="component-specs">
+                                            {% for spec_name, spec_value in component.specs.items() %}
+                                                <span class="component-spec">{{ spec_name }}: {{ spec_value }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="component-price">${{ component.price }}</div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="config-footer">
+                        <div class="price-info">
+                            <div class="price-label">Total Price</div>
+                            <div class="total-price">${{ total_price }}</div>
+                        </div>
+                        
+                        <div class="config-actions">
+                            <a href="{{ url_for('builder') }}" class="minimalist-btn minimalist-btn-secondary">
+                                <i class="fas fa-pencil-alt me-2"></i>
+                                Edit Configuration
+                            </a>
+                            
+                            <form action="{{ url_for('cart.add_to_cart') }}" method="post">
+                                <button type="submit" class="minimalist-btn minimalist-btn-primary">
+                                    <i class="fas fa-shopping-cart me-2"></i>
+                                    Add to Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Performance Summary -->
+                {% if performance %}
+                    <div class="performance-section">
+                        <div class="performance-header">
+                            <h2 class="summary-title">Performance Summary</h2>
+                            <p class="summary-subtitle">Estimated performance metrics for your build</p>
+                        </div>
+                        
+                        <div class="row g-4">
+                            <!-- Gaming Performance -->
+                            <div class="col-md-6 col-lg-12">
+                                <div class="performance-card">
+                                    <h3 class="performance-title">
+                                        <i class="fas fa-gamepad"></i>
+                                        Gaming Performance
+                                    </h3>
+                                    
+                                    <div class="performance-score">{{ performance.gaming.overall }}</div>
+                                    <div class="score-label">Out of 100</div>
+                                    
+                                    <div class="performance-meter">
+                                        <div class="performance-fill" data-width="{{ performance.gaming.overall }}"></div>
+                                    </div>
+                                    <div class="meter-labels">
+                                        <span>Low</span>
+                                        <span>Average</span>
+                                        <span>Excellent</span>
+                                    </div>
+                                    
+                                    <div class="performance-details">
+                                        <div class="detail-item">
+                                            <div class="detail-name">1080p Gaming</div>
+                                            <div class="detail-value">{{ performance.gaming.fps_1080p }}+ FPS</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-name">1440p Gaming</div>
+                                            <div class="detail-value">{{ performance.gaming.fps_1440p }}+ FPS</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-name">4K Gaming</div>
+                                            <div class="detail-value">{{ performance.gaming.fps_4k }}+ FPS</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Content Creation Performance -->
+                            <div class="col-md-6 col-lg-12">
+                                <div class="performance-card">
+                                    <h3 class="performance-title">
+                                        <i class="fas fa-film"></i>
+                                        Content Creation
+                                    </h3>
+                                    
+                                    <div class="performance-score">{{ performance.content.overall }}</div>
+                                    <div class="score-label">Out of 100</div>
+                                    
+                                    <div class="performance-meter">
+                                        <div class="performance-fill" data-width="{{ performance.content.overall }}"></div>
+                                    </div>
+                                    <div class="meter-labels">
+                                        <span>Low</span>
+                                        <span>Average</span>
+                                        <span>Excellent</span>
+                                    </div>
+                                    
+                                    <div class="performance-details">
+                                        <div class="detail-item">
+                                            <div class="detail-name">Video Editing</div>
+                                            <div class="detail-value">{{ performance.content.video_editing }}</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-name">3D Rendering</div>
+                                            <div class="detail-value">{{ performance.content.rendering }}</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-name">Multitasking</div>
+                                            <div class="detail-value">{{ performance.content.multitasking }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="{{ url_for('benchmarks') }}" class="benchmark-link">
+                            View Detailed Benchmarks <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate performance meters
+        const performanceFills = document.querySelectorAll('.performance-fill');
+        
+        performanceFills.forEach(fill => {
+            const width = fill.getAttribute('data-width');
+            setTimeout(() => {
+                fill.style.width = width + '%';
+            }, 300);
+        });
+    });
+</script>
+{% endblock %}
