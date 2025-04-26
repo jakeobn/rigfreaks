@@ -1,0 +1,623 @@
+/* Ultra-Modern Featured Systems Section */
+.featured-systems-modern {
+    position: relative;
+    padding: 100px 0;
+    background-color: var(--dark);
+}
+
+.featured-systems-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.bg-gradient-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+}
+
+.shape-1 {
+    width: 40vw;
+    height: 40vw;
+    background: linear-gradient(45deg, var(--primary-color), var(--info));
+    top: -20%;
+    right: -10%;
+    animation: float-slow 25s ease-in-out infinite alternate;
+}
+
+.shape-2 {
+    width: 50vw;
+    height: 50vw;
+    background: linear-gradient(135deg, var(--success-color), var(--purple));
+    bottom: -20%;
+    left: -10%;
+    animation: float-slow 20s ease-in-out infinite alternate-reverse;
+}
+
+.bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.5;
+}
+
+/* Advanced Section Header */
+.section-header-advanced {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.section-tag-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-tag {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.2rem;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 30px;
+    position: relative;
+}
+
+.tag-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    margin-right: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.section-tag span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+.section-title-modern {
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--text-light), rgba(255,255,255,0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.section-subtitle-modern {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+}
+
+/* Config Filters */
+.config-filters-wrap {
+    margin-bottom: 3rem;
+}
+
+.config-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    background: rgba(var(--bs-dark-rgb), 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.config-filter {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    background: transparent;
+    border-radius: 30px;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.config-filter:hover {
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+.config-filter.active {
+    background: rgba(var(--bs-primary-rgb), 0.2);
+    color: var(--text-light);
+    box-shadow: 0 5px 15px rgba(var(--bs-primary-rgb), 0.15);
+}
+
+/* Config Cards */
+.config-card {
+    position: relative;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.config-card-inner {
+    position: relative;
+    height: 100%;
+    background: rgba(var(--bs-dark-rgb), 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.config-card:hover .config-card-inner {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    border-color: rgba(var(--bs-primary-rgb), 0.2);
+}
+
+.config-image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.config-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.config-card:hover .config-image img {
+    transform: scale(1.05);
+}
+
+.config-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.6) 80%, 
+        rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.config-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--bs-primary-rgb), 0.9);
+    border-radius: 30px;
+    color: var(--text-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.config-badge.premium {
+    background: linear-gradient(90deg, rgba(255,215,0,0.9), rgba(var(--bs-danger-rgb), 0.9));
+}
+
+.config-badge.value {
+    background: linear-gradient(90deg, rgba(var(--bs-success-rgb), 0.9), rgba(var(--bs-info-rgb), 0.9));
+}
+
+.config-component {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem;
+    background: rgba(15,23,42,0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.config-component:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.config-component.cpu {
+    bottom: 15px;
+    left: 15px;
+}
+
+.config-component.gpu {
+    bottom: 15px;
+    right: 15px;
+}
+
+.component-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: rgba(var(--bs-primary-rgb), 0.2);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.component-info {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.config-content {
+    padding: 1.75rem;
+}
+
+.config-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.config-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    min-height: 2.7rem;
+}
+
+.config-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.spec-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.spec-col {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spec-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.spec-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.spec-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.config-performance {
+    margin-bottom: 1.5rem;
+}
+
+.perf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.perf-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.perf-rating {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.perf-rating.premium {
+    color: var(--bs-danger);
+}
+
+.perf-rating.value {
+    color: var(--bs-success);
+}
+
+.perf-gauge {
+    position: relative;
+    height: 6px;
+    width: 100%;
+}
+
+.perf-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.perf-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(var(--bs-primary-rgb), 0.6), var(--primary-color));
+    border-radius: 10px;
+    transition: width 1.5s ease;
+}
+
+.perf-fill.premium {
+    background: linear-gradient(90deg, rgba(var(--bs-danger-rgb), 0.6), var(--bs-danger));
+}
+
+.perf-fill.value {
+    background: linear-gradient(90deg, rgba(var(--bs-success-rgb), 0.6), var(--bs-success));
+}
+
+.perf-glow {
+    position: absolute;
+    top: -3px;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.perf-glow.premium {
+    background: var(--bs-danger);
+    box-shadow: 0 0 10px var(--bs-danger);
+}
+
+.perf-glow.value {
+    background: var(--bs-success);
+    box-shadow: 0 0 10px var(--bs-success);
+}
+
+.config-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.config-price {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.config-price span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-left: 5px;
+}
+
+.btn-config-view {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 30px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-config-view:hover {
+    background: rgba(var(--bs-primary-rgb), 0.2);
+    transform: translateY(-3px);
+    color: var(--text-light);
+}
+
+.btn-config-view .btn-text {
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.btn-config-view .btn-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-config-view:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+.btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: rgba(var(--bs-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.2);
+    border-radius: 50px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-view-all:hover {
+    background: rgba(var(--bs-primary-rgb), 0.25);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    color: var(--text-light);
+}
+
+.btn-view-all .btn-text {
+    margin-right: 10px;
+}
+
+.btn-view-all .btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn-view-all:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+@keyframes float-slow {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 30px);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991.98px) {
+    .config-card {
+        margin-bottom: 2rem;
+    }
+    
+    .perf-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .config-filters {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .config-filters .config-filter {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .config-component {
+        padding: 0.3rem;
+    }
+    
+    .component-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .component-info {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .featured-systems-modern {
+        padding: 60px 0;
+    }
+    
+    .section-title-modern {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle-modern {
+        font-size: 1rem;
+    }
+    
+    .config-image {
+        height: 200px;
+    }
+    
+    .config-component.cpu, 
+    .config-component.gpu {
+        bottom: 10px;
+    }
+    
+    .config-component.cpu {
+        left: 10px;
+    }
+    
+    .config-component.gpu {
+        right: 10px;
+    }
+    
+    .config-content {
+        padding: 1.25rem;
+    }
+    
+    .config-title {
+        font-size: 1.1rem;
+    }
+    
+    .config-desc {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+    
+    .spec-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .config-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .btn-config-view {
+        width: 100%;
+        justify-content: center;
+    }
+}
