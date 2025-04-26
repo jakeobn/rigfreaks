@@ -21,8 +21,8 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Mobile-Friendly Modern Header -->
-    <header class="modern-header">
+    <!-- Modern Header with Glass Morphism Effect -->
+    <header>
         <!-- Top Bar with Announcement (hidden on smallest screens) -->
         <div class="announcement-bar d-none d-sm-block">
             <div class="container-fluid">
@@ -64,42 +64,34 @@
             </div>
         </div>
 
-        <!-- Main Navigation Bar -->
-        <nav class="navbar mobile-friendly-navbar navbar-expand-lg modern-navbar">
+        <!-- Modern Glass Morphism Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-modern">
             <div class="container">
-                <!-- Logo with improved mobile display -->
-                <a class="modern-brand" href="{{ url_for('index') }}">
-                    <div class="modern-logo-container">
-                        <div class="modern-logo">
-                            <div class="logo-glow"></div>
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <div class="modern-brand-text">
-                            <span class="modern-brand-name">EverCraft</span>
-                            <span class="modern-brand-tagline d-none d-sm-block">Premium Custom Desktops</span>
-                        </div>
+                <!-- Modern Brand with Gradient Text -->
+                <a class="navbar-brand-modern" href="{{ url_for('index') }}">
+                    <div class="brand-logo">
+                        <i class="fas fa-desktop fa-lg"></i>
                     </div>
+                    <div class="brand-text">EverCraft</div>
                 </a>
                 
                 <!-- Mobile Quick Actions (Search & Cart) -->
-                <div class="d-flex d-lg-none ms-auto me-2 mobile-quick-actions">
+                <div class="d-flex d-lg-none ms-auto me-2">
                     <!-- Search Button -->
-                    <button class="mobile-action-button me-2" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
+                    <button class="btn btn-sm btn-outline-secondary me-2 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="fas fa-search"></i>
                     </button>
                     
                     <!-- Cart Button -->
-                    <a href="{{ url_for('cart.view_cart') }}" class="mobile-action-button {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                    <a href="{{ url_for('cart.view_cart') }}" class="btn btn-sm btn-outline-secondary rounded-circle position-relative {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="badge rounded-pill bg-primary mobile-badge">0</span>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
                     </a>
                 </div>
                 
-                <!-- Mobile Menu Toggle (Hamburger) -->
-                <button class="modern-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="toggler-icon"></span>
-                    <span class="toggler-icon"></span>
-                    <span class="toggler-icon"></span>
+                <!-- Modern Hamburger Menu -->
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
                 </button>
                 
                 <!-- Navigation Menu with Improved Mobile Display -->
@@ -678,8 +670,8 @@
             }
             // Function to handle navbar scrolling effect
             function handleNavbarScroll() {
-                const navbar = document.querySelector('.modern-navbar');
-                if (window.scrollY > 100) {
+                const navbar = document.querySelector('.navbar-modern');
+                if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
