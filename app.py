@@ -51,6 +51,13 @@ app.register_blueprint(cart_bp)
 
 @app.route('/')
 def index():
+    search_query = request.args.get('search', '')
+    
+    if search_query:
+        # In a real implementation, this would search the database
+        # For now, we'll just pass the search query to the template
+        return render_template('index.html', search_query=search_query)
+    
     return render_template('index.html')
 
 @app.route('/builder', methods=['GET', 'POST'])

@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only initialize these elements if we need them
     const componentSearchDesktop = document.getElementById('componentSearchDesktop');
     const componentSearchMobile = document.getElementById('componentSearchMobile');
+    const siteSearchInput = document.getElementById('siteSearchInput');
     const sortOptions = document.querySelectorAll('.sort-option') || [];
     let currentCategory = '';
 
@@ -203,6 +204,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (componentSearchDesktop) {
                 componentSearchDesktop.value = this.value;
             }
+        });
+    }
+    
+    // Site-wide search in search modal
+    if (siteSearchInput) {
+        siteSearchInput.addEventListener('input', function() {
+            console.log('Site search input:', this.value);
+            // Site search functionality will be implemented here
         });
     }
     
