@@ -3680,3 +3680,74 @@ body {
     backdrop-filter: blur(5px);
     z-index: 1040;
 }
+
+/* PC Showcase Gallery Styles */
+.pc-showcase-section {
+    background-color: var(--bg-dark);
+    padding: 4rem 0;
+}
+
+.showcase-card {
+    background-color: var(--bg-lighter);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.showcase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-img {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    border-radius: 10px 10px 0 0;
+}
+
+.showcase-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 10px 10px 0 0;
+}
+
+.showcase-card:hover .showcase-img img {
+    transform: scale(1.03);
+}
+
+.showcase-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.showcase-content {
+    padding: 15px;
+}
+
+.showcase-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.showcase-specs {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
