@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Builder - {% block title %}Home{% endblock %}</title>
+    <title>EverCraft - Premium Custom Desktops - {% block title %}Home{% endblock %}</title>
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
@@ -525,11 +525,11 @@
                                     <i class="fas fa-desktop"></i>
                                 </div>
                                 <div class="ms-3">
-                                    <h5 class="footer-logo-text mb-0">PC Builder</h5>
-                                    <span class="footer-tagline">Custom Gaming Computers</span>
+                                    <h5 class="footer-logo-text mb-0">EverCraft</h5>
+                                    <span class="footer-tagline">Premium Custom Desktops</span>
                                 </div>
                             </div>
-                            <p class="footer-description">Build your perfect gaming PC with our advanced configuration tool. Expert support, quality components, and performance benchmarks to guide your decisions.</p>
+                            <p class="footer-description">Expertly crafted custom desktops, built to your exact specifications. Each system is meticulously assembled with premium components, backed by our 3-year warranty and dedicated support team.</p>
                             <div class="footer-socials">
                                 <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
@@ -541,33 +541,32 @@
                     </div>
                     
                     <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                        <h5 class="footer-title">PC Builder</h5>
+                        <h5 class="footer-title">Shop</h5>
                         <ul class="footer-links">
-                            <li><a href="{{ url_for('index') }}">Home</a></li>
-                            <li><a href="{{ url_for('builder') }}">PC Builder</a></li>
-                            <li><a href="{{ url_for('builds.prebuilt_configs') }}">Pre-built PCs</a></li>
-                            <li><a href="{{ url_for('builds.list_builds') }}">Community Builds</a></li>
-                            <li><a href="{{ url_for('benchmarks') }}">Benchmarks</a></li>
-                            {% if session.get('pc_config') %}
-                            <li><a href="{{ url_for('summary') }}">View Configuration</a></li>
-                            {% endif %}
+                            <li><a href="{{ url_for('index') }}">Featured Desktops</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}">Signature Series</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}">Gaming Desktops</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}">Creator Workstations</a></li>
+                            <li><a href="{{ url_for('builder') }}">Custom Design Studio</a></li>
+                            <li><a href="{{ url_for('benchmarks') }}">Performance Center</a></li>
                         </ul>
                     </div>
                     
                     <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                        <h5 class="footer-title">Support</h5>
+                        <h5 class="footer-title">Customer Care</h5>
                         <ul class="footer-links">
-                            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ url_for('contact') }}">Contact Support</a></li>
+                            <li><a href="{{ url_for('returns') }}">Warranty Information</a></li>
+                            <li><a href="{{ url_for('contact') }}">Order Tracking</a></li>
+                            <li><a href="{{ url_for('returns') }}">Returns & Refunds</a></li>
                             <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
                             <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
-                            <li><a href="{{ url_for('returns') }}">Returns Policy</a></li>
-                            <li><a href="{{ url_for('contact') }}">Help Center</a></li>
                         </ul>
                     </div>
                     
                     <div class="col-lg-4 col-md-6">
                         <h5 class="footer-title">Stay Updated</h5>
-                        <p class="footer-newsletter-text">Subscribe to our newsletter for the latest updates on new components, deals, and PC building tips.</p>
+                        <p class="footer-newsletter-text">Subscribe to our newsletter for exclusive offers, new desktop releases, and limited-time promotions.</p>
                         <div class="footer-newsletter">
                             <form class="newsletter-form">
                                 <div class="input-group">
@@ -596,10 +595,10 @@
             <div class="container">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <div class="footer-copyright mb-3 mb-md-0">
-                        <p class="mb-0">&copy; 2025 PC Builder. All rights reserved.</p>
+                        <p class="mb-0">&copy; 2025 EverCraft. All rights reserved.</p>
                     </div>
                     <div class="footer-disclaimer">
-                        <p class="mb-0 small">All product names, logos, and brands are property of their respective owners.</p>
+                        <p class="mb-0 small">All premium custom desktops are built to order in our state-of-the-art facility.</p>
                     </div>
                 </div>
             </div>
