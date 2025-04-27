@@ -35,10 +35,10 @@
         </div>
     </div>
     
-    <!-- Compare Components Link -->
+    <!-- Back to build link -->
     <div class="mb-4">
-        <a href="{{ url_for('compare_components', category=category) }}" class="btn btn-outline-primary">
-            <i class="fas fa-columns me-1"></i>Compare Components
+        <a href="{{ url_for('builder') }}" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-1"></i>Back to Builder
         </a>
     </div>
     
@@ -272,37 +272,11 @@
             });
         });
         
-        // Handle compare functionality
+        // We can remove the compare functionality for now since there's no compare page
         const compareCheckboxes = document.querySelectorAll('.compare-checkbox');
         compareCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const selectedComponents = Array.from(document.querySelectorAll('.compare-checkbox:checked')).map(cb => cb.value);
-                
-                // Update the compare link to include selected components
-                const compareLink = document.querySelector('a[href*="/compare/"]');
-                const category = compareLink.getAttribute('href').split('/').pop();
-                compareLink.setAttribute('href', `/compare/${category}?components=${selectedComponents.join(',')}`);
-                
-                // Visual feedback
-                if (this.checked) {
-                    this.closest('.component-card').classList.add('border-primary');
-                } else {
-                    this.closest('.component-card').classList.remove('border-primary');
-                }
-                
-                // Disable checkboxes if more than 3 are selected
-                if (selectedComponents.length >= 3) {
-                    document.querySelectorAll('.compare-checkbox:not(:checked)').forEach(cb => {
-                        cb.disabled = true;
-                        cb.parentElement.setAttribute('title', 'You can compare up to 3 components at once');
-                    });
-                } else {
-                    document.querySelectorAll('.compare-checkbox').forEach(cb => {
-                        cb.disabled = false;
-                        cb.parentElement.removeAttribute('title');
-                    });
-                }
-            });
+            // Hide the compare checkboxes since we don't have a compare page yet
+            checkbox.parentElement.style.display = 'none';
         });
     });
 </script>
