@@ -1,8 +1,8 @@
 /* Simplified Header with gradient background */
 .simplified-header {
-    background: linear-gradient(135deg, var(--bs-gray-900) 0%, var(--bs-gray-800) 100%);
-    color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background: white;
+    color: var(--bs-gray-800);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1030;
     margin-bottom: -1px; /* Align with the bottom of the header */
@@ -21,7 +21,7 @@
 }
 
 .main-nav .nav-link {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--bs-gray-700);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 0;
@@ -31,7 +31,7 @@
 
 .main-nav .nav-link:hover,
 .main-nav .nav-link.active {
-    color: #fff;
+    color: var(--bs-primary);
 }
 
 .main-nav .nav-link.active:after {
@@ -51,7 +51,7 @@
 }
 
 .action-link {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--bs-gray-700);
     text-decoration: none;
     font-weight: 500;
     display: flex;
@@ -61,14 +61,14 @@
 
 .action-link:hover,
 .action-link.active {
-    color: #fff;
+    color: var(--bs-primary);
 }
 
 /* Mobile menu toggle button */
 .navbar-toggler {
     border: none;
-    background-color: rgba(255, 255, 255, 0.15);
-    color: white;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--bs-gray-700);
     width: 40px;
     height: 40px;
     border-radius: 4px;
@@ -80,17 +80,18 @@
 }
 
 .navbar-toggler:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile navigation menu */
 #mobileNav {
-    background-color: var(--bs-gray-800);
+    background-color: white;
     position: absolute;
     width: 100%;
     left: 0;
     top: 100%;
     z-index: 9999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-container {
@@ -98,15 +99,15 @@
 }
 
 #mobileNav .nav-link {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--bs-gray-700);
     padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     transition: color 0.2s ease;
 }
 
 #mobileNav .nav-link:hover,
 #mobileNav .nav-link.active {
-    color: #fff;
+    color: var(--bs-primary);
 }
 
 #mobileNav .nav-item:last-child .nav-link {
@@ -115,24 +116,25 @@
 
 /* Dropdown menu in header */
 .dropdown-menu {
-    background-color: var(--bs-gray-800);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 4px;
     margin-top: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-item {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--bs-gray-700);
 }
 
 .dropdown-item:hover, 
 .dropdown-item:focus {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--bs-primary);
 }
 
 .dropdown-divider {
-    border-top-color: rgba(255, 255, 255, 0.1);
+    border-top-color: rgba(0, 0, 0, 0.08);
 }
 
 .dropdown-header {
