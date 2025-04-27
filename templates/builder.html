@@ -14,6 +14,8 @@
             <h1 class="builder-title">PC Builder</h1>
             <p class="builder-subtitle">Select high-quality components to create your perfect custom PC. Compatibility is checked automatically.</p>
         </div>
+        
+    <div class="row g-4 mt-3">
     
     <!-- Modern Floating Action Button for Mobile Build Summary -->
     <div class="d-md-none position-fixed bottom-0 end-0 m-3 z-3">
@@ -301,8 +303,6 @@
     </div>
     {% endif %}
     
-    <div class="row">
-        <!-- Component Selection -->
         <div class="col-lg-8 mb-4">
             <div>
                 <h2 class="builder-section-title mb-3">Select Your Components</h2>
@@ -458,8 +458,8 @@
                         </span>
                         Components Selected
                     </p>
-                </div>
-                    {% if current_config %}
+                
+                {% if current_config %}
                         <!-- Components List -->
                         <div class="build-components-list">
                             {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
