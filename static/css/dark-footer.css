@@ -1,29 +1,30 @@
-/* White footer styles */
+/* Dark gradient footer styles */
 .site-footer {
-    background-color: white;
-    color: var(--bs-gray-700);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
 }
 
 .footer-top {
     padding: 4rem 0 3rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-bottom {
     padding: 1.5rem 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-logo-text {
-    color: var(--bs-gray-800);
+    color: white;
 }
 
 .footer-tagline {
-    color: var(--bs-gray-600);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-description {
-    color: var(--bs-gray-700);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-logo-icon {
@@ -39,7 +40,7 @@
 }
 
 .footer-title {
-    color: var(--bs-gray-800);
+    color: white;
     margin-bottom: 1.25rem;
     font-weight: 600;
     font-size: 1.125rem;
@@ -56,7 +57,7 @@
 }
 
 .footer-links a {
-    color: var(--bs-gray-600);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -74,8 +75,8 @@
 .footer-social-link {
     width: 36px;
     height: 36px;
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--bs-gray-600);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,21 +90,21 @@
 }
 
 .footer-newsletter-text {
-    color: var(--bs-gray-700);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 1.25rem;
 }
 
 .footer-badge-title {
-    color: var(--bs-gray-700);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
 
 .payment-icon {
-    color: var(--bs-gray-600);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 1.75rem;
     margin-right: 0.75rem;
 }
 
 .footer-copyright, .footer-disclaimer {
-    color: var(--bs-gray-600);
+    color: rgba(255, 255, 255, 0.7);
 }
