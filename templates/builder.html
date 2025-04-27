@@ -812,12 +812,17 @@
 
 {% block extra_js %}
 <script>
-    // Store component data globally to use in the modal
-    const componentData = {{ components|tojson }};
-    let currentCategory = '';
-    let filteredComponents = [];
+    document.addEventListener('DOMContentLoaded', function() {
+        // Store component data globally to use in the modal
+        const componentData = {{ components|tojson }};
+        let currentCategory = '';
+        let filteredComponents = [];
+        
+        // Create Bootstrap Modal instance
+        const componentSelectionModal = document.getElementById('componentSelectionModal');
+        const bootstrapModal = new bootstrap.Modal(componentSelectionModal);
     
-    // Category information and icons
+        // Category information and icons
     const categoryInfo = {
         'cpu': {
             icon: 'microchip',
@@ -1029,36 +1034,9 @@
             
             cardContainer.innerHTML = '';
             
-            // Show the component selection container and backdrop with animation
-            const componentSelectionContainer = document.getElementById('componentSelectionContainer');
-            const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
-            
-            if (!componentSelectionContainer) {
-                console.error("Component selection container not found");
-                return;
-            }
-            
-            if (!componentSelectionBackdrop) {
-                console.error("Component selection backdrop not found");
-                return;
-            }
-            
-            console.log("Opening component selection container");
-            
-            // Remove d-none class to make elements visible
-            componentSelectionContainer.classList.remove('d-none');
-            componentSelectionBackdrop.classList.remove('d-none');
-            
-            // Force a reflow to ensure the transition works
-            void componentSelectionContainer.offsetWidth;
-            void componentSelectionBackdrop.offsetWidth;
-            
-            // Add the active class to trigger the transition
-            setTimeout(() => {
-                componentSelectionContainer.classList.add('active');
-                componentSelectionBackdrop.classList.add('active');
-                console.log("Added active classes to container and backdrop");
-            }, 10);
+            // Show the Bootstrap modal
+            bootstrapModal.show();
+            console.log("Opened Bootstrap modal for component selection");
             
             // Simulate loading delay (remove in production)
             setTimeout(() => {
@@ -1078,41 +1056,20 @@
         });
     });
     
-    // Function to close the component selection modal with animation
-    function closeComponentSelectionWithAnimation() {
-        const container = document.getElementById('componentSelectionContainer');
-        const backdrop = document.getElementById('componentSelectionBackdrop');
-        
-        if (container) {
-            container.classList.remove('active');
-            setTimeout(() => {
-                container.classList.add('d-none');
-            }, 300); // Match this with the CSS transition duration
-        }
-        
-        if (backdrop) {
-            backdrop.classList.remove('active');
-            setTimeout(() => {
-                backdrop.classList.add('d-none');
-            }, 300); // Match this with the CSS transition duration
-        }
+    // Function to close the component selection modal with Bootstrap
+    function closeComponentSelectionModal() {
+        bootstrapModal.hide();
     }
     
     // Add event listeners for closing the component selection - with element existence check
     const closeComponentSelectionBtn = document.getElementById('closeComponentSelection');
     if (closeComponentSelectionBtn) {
-        closeComponentSelectionBtn.addEventListener('click', closeComponentSelectionWithAnimation);
+        closeComponentSelectionBtn.addEventListener('click', closeComponentSelectionModal);
     }
     
     const cancelComponentSelectionBtn = document.getElementById('cancelComponentSelection');
     if (cancelComponentSelectionBtn) {
-        cancelComponentSelectionBtn.addEventListener('click', closeComponentSelectionWithAnimation);
-    }
-    
-    // Close when clicking on backdrop - with element existence check
-    const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
-    if (componentSelectionBackdrop) {
-        componentSelectionBackdrop.addEventListener('click', closeComponentSelectionWithAnimation);
+        cancelComponentSelectionBtn.addEventListener('click', closeComponentSelectionModal);
     }
     
     // Function to handle component search filtering
