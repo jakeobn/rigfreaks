@@ -50,7 +50,7 @@
                         <span class="fs-4 fw-bold text-success">${{ component.price }}</span>
                     </div>
                     
-                    <form action="/component/{{ category }}/{{ component.id }}/add" method="post" id="detail-select-form">
+                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post" id="detail-select-form">
                         <button type="submit" class="btn btn-primary btn-lg w-100 mb-2" id="detail-select-btn">
                             {% if is_selected %}
                                 <i class="fas fa-check me-1"></i><span class="btn-text">Selected</span>
