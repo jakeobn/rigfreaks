@@ -439,12 +439,12 @@
                                     </div>
                                     <div class="card-body">
                                         {% if category == 'cpu' %}
-                                            {% set benchmark_score = (component.boost_clock|float|replace(' GHz', '') * 100)|int %}
+                                            {% set benchmark_score = (component.boost_clock|string|replace(' GHz', '')|float * 100)|int %}
                                             {% set benchmark_max = 550 %}
                                             {% set percentage = ((benchmark_score / benchmark_max) * 100)|round|int %}
                                         {% else %}
                                             {% set memory_score = component.memory * 20 %}
-                                            {% set clock_score = component.boost_clock|float|replace(' GHz', '') * 100 %}
+                                            {% set clock_score = component.boost_clock|string|replace(' GHz', '')|float * 100 %}
                                             {% set benchmark_score = (memory_score + clock_score)|int %}
                                             {% set benchmark_max = 600 %}
                                             {% set percentage = ((benchmark_score / benchmark_max) * 100)|round|int %}
@@ -497,12 +497,12 @@
                                     </div>
                                     <div class="card-body">
                                         {% if category == 'cpu' %}
-                                            {% set multi_score = (component.cores * component.threads * component.boost_clock|float|replace(' GHz', '') * 10)|int %}
+                                            {% set multi_score = (component.cores * component.threads * component.boost_clock|string|replace(' GHz', '')|float * 10)|int %}
                                             {% set multi_max = 25000 %}
                                             {% set multi_percentage = ((multi_score / multi_max) * 100)|round|int %}
                                         {% else %}
                                             {% set memory_score = component.memory * 40 %}
-                                            {% set clock_score = component.boost_clock|float|replace(' GHz', '') * 150 %}
+                                            {% set clock_score = component.boost_clock|string|replace(' GHz', '')|float * 150 %}
                                             {% set multi_score = (memory_score + clock_score)|int %}
                                             {% set multi_max = 1500 %}
                                             {% set multi_percentage = ((multi_score / multi_max) * 100)|round|int %}
