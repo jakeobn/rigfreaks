@@ -4,14 +4,14 @@
 
 {% block content %}
 <!-- Loading animation container -->
-<div id="detail-loading-container" class="text-center p-5" style="display: none;">
+<div id="detail-loading-container" class="text-center p-5 mt-5 pt-5" style="display: none;">
     <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
     <p class="mt-3">Loading component details...</p>
 </div>
 
-<div class="container py-4" id="component-detail-content">
+<div class="container py-4 mt-5 pt-3" id="component-detail-content">
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
