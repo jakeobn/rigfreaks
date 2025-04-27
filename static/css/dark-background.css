@@ -1,11 +1,15 @@
 /* Dark gradient background for entire website - matching hero section */
 body {
-    background-color: var(--bg-darker);
+    background-color: var(--bg-darker); /* Same as hero background */
     color: rgba(255, 255, 255, 0.85);
     position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* Adding blob gradients similar to hero section for entire site */
+/* Create blobs that match the hero section exactly */
 body::before {
     content: "";
     position: fixed;
@@ -14,12 +18,30 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: 
-        radial-gradient(circle at 80% 20%, rgba(var(--bs-primary-rgb), 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(var(--bs-info-rgb), 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    opacity: 0.15;
+    background: 
+        /* Match blob-1 from hero */
+        radial-gradient(circle at 90% 10%, 
+            rgba(var(--bs-primary-rgb), 0.5), 
+            transparent 50%) top right no-repeat,
+        /* Match blob-2 from hero */
+        radial-gradient(circle at 10% 90%, 
+            rgba(var(--bs-success-rgb), 0.5),
+            rgba(var(--bs-primary-rgb), 0.5), 
+            transparent 50%) bottom left no-repeat,
+        /* Match blob-3 from hero */
+        radial-gradient(circle at 40% 40%, 
+            rgba(var(--bs-info-rgb), 0.5),
+            rgba(var(--bs-purple-rgb), 0.5), 
+            transparent 50%) center left no-repeat;
+    background-size: 
+        45vw 45vw,  /* blob-1 size */
+        30vw 30vw,  /* blob-2 size */
+        25vw 25vw;  /* blob-3 size */
 }
 
-/* Fixed position blobs in background - similar to hero section */
+/* Subtle grid pattern overlay like hero section */
 body::after {
     content: "";
     position: fixed;
@@ -28,11 +50,13 @@ body::after {
     width: 100%;
     height: 100%;
     z-index: -2;
-    opacity: 0.15;
-    background: 
-        radial-gradient(circle at 90% 10%, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(var(--bs-info-rgb), 0.5), transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(var(--bs-success-rgb), 0.3), transparent 60%);
+    pointer-events: none;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.7;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
 }
 
 /* Adjust cards and other elements to work with dark background */
@@ -100,7 +124,35 @@ label {
 
 /* Fix hero section to work with dark background */
 .modern-hero {
-    background: none;
+    background: none !important;
+}
+
+/* Make the hero section's blobs match our body blobs */
+.hero-blob.blob-1 {
+    width: 45vw;
+    height: 45vw;
+    background: linear-gradient(125deg, var(--primary-color), var(--info));
+    top: -20%;
+    right: -15%;
+    opacity: 0.15;
+}
+
+.hero-blob.blob-2 {
+    width: 30vw;
+    height: 30vw;
+    background: linear-gradient(220deg, var(--success), var(--primary-color));
+    bottom: -10%;
+    left: -10%;
+    opacity: 0.15;
+}
+
+.hero-blob.blob-3 {
+    width: 25vw;
+    height: 25vw;
+    background: linear-gradient(45deg, var(--info), var(--purple));
+    top: 30%;
+    left: 10%;
+    opacity: 0.15;
 }
 
 /* Adjust feature-card for dark background */

@@ -1,0 +1,40 @@
+/* Seamless Blending Between Hero and Content */
+
+/* Remove any margin/padding between hero and content sections */
+.modern-hero {
+    margin-bottom: 0 !important;
+    padding-bottom: 7rem !important; /* Increased padding to allow for better blend */
+}
+
+/* Create a smooth gradient fade transition at the hero bottom */
+.modern-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Height of the fade effect */
+    background: linear-gradient(to bottom, 
+                 transparent, 
+                 var(--bg-darker));
+    z-index: 0;
+}
+
+/* Make sure the container after hero has no top padding/margin */
+.modern-hero + .container,
+.modern-hero + section {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure content sections match background positioning */
+.features-modern, 
+.testimonials-modern,
+.featured-systems-carousel,
+.process-steps-modern {
+    background: transparent !important;
+    position: relative;
+    z-index: 2;
+}
