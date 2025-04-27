@@ -1,7 +1,7 @@
-/* Light background for entire website */
+/* Dark gradient background for entire website - matching hero section */
 body {
-    background-color: var(--bs-white);
-    color: var(--bs-dark);
+    background-color: var(--bg-darker); /* Same as hero background */
+    color: rgba(255, 255, 255, 0.85);
     position: relative;
     margin: 0;
     padding: 0;
@@ -9,85 +9,153 @@ body {
     overflow-x: hidden;
 }
 
-/* Removed gradient blobs */
+/* Create blobs that match the hero section exactly */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.15;
+    background: 
+        /* Match blob-1 from hero */
+        radial-gradient(circle at 90% 10%, 
+            rgba(var(--bs-primary-rgb), 0.5), 
+            transparent 50%) top right no-repeat,
+        /* Match blob-2 from hero */
+        radial-gradient(circle at 10% 90%, 
+            rgba(var(--bs-success-rgb), 0.5),
+            rgba(var(--bs-primary-rgb), 0.5), 
+            transparent 50%) bottom left no-repeat,
+        /* Match blob-3 from hero */
+        radial-gradient(circle at 40% 40%, 
+            rgba(var(--bs-info-rgb), 0.5),
+            rgba(var(--bs-purple-rgb), 0.5), 
+            transparent 50%) center left no-repeat;
+    background-size: 
+        45vw 45vw,  /* blob-1 size */
+        30vw 30vw,  /* blob-2 size */
+        25vw 25vw;  /* blob-3 size */
+}
 
-/* Removed grid pattern */
+/* Subtle grid pattern overlay like hero section */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.7;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+}
 
-/* Adjust cards and other elements to work with light background */
+/* Adjust cards and other elements to work with dark background */
 .card, .component-card {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.125);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .modal-content {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.125);
+    background-color: var(--bs-gray-900);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .modal-header, .modal-footer {
-    border-color: rgba(0, 0, 0, 0.125);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Restore default text colors */
+/* Make sure text is readable on dark background */
 .text-dark {
-    color: var(--bs-dark) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .text-muted {
-    color: var(--bs-secondary) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Adjust alert styles for light background */
+/* Adjust alert styles for dark background */
 .alert {
-    background-color: var(--bs-light);
-    border-color: rgba(0, 0, 0, 0.125);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Style form elements for light background */
+/* Style form elements for dark background */
 .form-control, .form-select {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.125);
-    color: var(--bs-dark);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .form-control:focus, .form-select:focus {
-    background-color: var(--bs-white);
+    background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--bs-primary);
-    color: var(--bs-dark);
+    color: white;
 }
 
-/* Style tables for light background */
+/* Style tables for dark background */
 .table {
-    color: var(--bs-dark);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--bs-dark);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .table-hover > tbody > tr:hover > * {
-    background-color: rgba(0, 0, 0, 0.075);
-    color: var(--bs-dark);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
-/* Style form labels */
+/* Style form labels for better visibility */
 label {
-    color: var(--bs-dark);
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* Make hero section compatible with light background */
+/* Fix hero section to work with dark background */
 .modern-hero {
-    background: var(--bs-white) !important;
+    background: none !important;
 }
 
-/* Remove hero blobs */
-.hero-blob {
-    display: none;
+/* Make the hero section's blobs match our body blobs */
+.hero-blob.blob-1 {
+    width: 45vw;
+    height: 45vw;
+    background: linear-gradient(125deg, var(--primary-color), var(--info));
+    top: -20%;
+    right: -15%;
+    opacity: 0.15;
 }
 
-/* Adjust feature-card for light background */
+.hero-blob.blob-2 {
+    width: 30vw;
+    height: 30vw;
+    background: linear-gradient(220deg, var(--success), var(--primary-color));
+    bottom: -10%;
+    left: -10%;
+    opacity: 0.15;
+}
+
+.hero-blob.blob-3 {
+    width: 25vw;
+    height: 25vw;
+    background: linear-gradient(45deg, var(--info), var(--purple));
+    top: 30%;
+    left: 10%;
+    opacity: 0.15;
+}
+
+/* Adjust feature-card for dark background */
 .feature-card-inner {
-    background-color: var(--bs-white);
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: rgba(255, 255, 255, 0.05);
 }

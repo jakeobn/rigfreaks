@@ -4,13 +4,42 @@
  * matching the hero section aesthetic
  */
 
-/* Set default body background - simplified with no gradient */
+/* Set default body background */
 body {
-    background-color: var(--bs-light);
+    background-color: var(--bg-darker);
     position: relative;
 }
 
-/* Removed background blobs */
+/* Create site-wide background blobs similar to hero */
+body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    right: -15%;
+    width: 45vw;
+    height: 45vw;
+    background: linear-gradient(125deg, var(--primary-color), var(--info));
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.05;
+    z-index: -1;
+    animation: float 12s ease-in-out infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    bottom: -10%;
+    left: -10%;
+    width: 30vw;
+    height: 30vw;
+    background: linear-gradient(220deg, var(--success), var(--primary-color));
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.05;
+    z-index: -1;
+    animation: float 15s ease-in-out infinite alternate-reverse;
+}
 
 @keyframes float {
     0% { transform: translate(0, 0) rotate(0deg); }
@@ -24,17 +53,43 @@ body {
     z-index: 1;
 }
 
-/* Background grid removed */
+/* Background grid similar to hero */
+.main-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+    z-index: -1;
+    pointer-events: none;
+}
 
 /* Card backgrounds */
 .card {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.125);
+    background-color: var(--bg-dark);
+    border-color: var(--border-subtle);
     position: relative;
     overflow: hidden;
 }
 
-/* Removed glass effect */
+/* Add subtle glass effect to cards */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+    z-index: 0;
+    pointer-events: none;
+}
 
 /* Make card content appear above the background */
 .card-body, .card-header, .card-footer {
@@ -44,73 +99,75 @@ body {
 
 /* Component cards in builder */
 .component-card {
-    background-color: var(--bs-white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: var(--bg-dark);
+    backdrop-filter: blur(5px);
 }
 
 /* Modal backgrounds */
 .modal-content {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.125);
+    background-color: var(--bg-dark);
+    border-color: var(--border-subtle);
+    backdrop-filter: blur(10px);
 }
 
 /* Dropdown backgrounds */
 .dropdown-menu {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.125);
+    background-color: var(--bg-dark);
+    border-color: var(--border-subtle);
+    backdrop-filter: blur(10px);
 }
 
 /* Form control backgrounds */
 .form-control, .form-select {
-    background-color: var(--bs-white);
-    border-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-darker);
+    border-color: var(--border-light);
 }
 
 /* Table backgrounds */
 .table {
-    --bs-table-bg: var(--bs-white);
-    --bs-table-striped-bg: var(--bs-light);
+    --bs-table-bg: var(--bg-dark);
+    --bs-table-striped-bg: var(--bg-darker);
 }
 
 /* Component selection container in builder */
 .component-selection-container {
-    background-color: var(--bs-white) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    background-color: var(--bg-dark) !important;
+    backdrop-filter: blur(10px) !important;
 }
 
 /* Component performance bars */
 .component-performance-bar {
-    background-color: rgba(0, 0, 0, 0.05) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Ensuring consistent backgrounds for sections */
 section:not(.modern-hero) {
-    background-color: var(--bs-white);
+    background-color: transparent;
     position: relative;
     z-index: 1;
 }
 
 /* Mobile summary panel */
 .mobile-summary-panel {
-    background-color: var(--bs-white) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: var(--bg-dark) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border-subtle);
 }
 
 /* Handle any inline background styles that need to be overridden */
 [style*="background-color: rgba(0, 0, 0, 0.03)"] {
-    background-color: var(--bs-white) !important;
+    background-color: var(--bg-dark) !important;
 }
 
 [style*="background-color: #fff"] {
-    background-color: var(--bs-white) !important;
+    background-color: var(--bg-dark) !important;
 }
 
 [style*="background-color: #dee2e6"] {
-    background-color: var(--bs-light) !important;
+    background-color: var(--border-light) !important;
 }
 
 /* Drag indicator in mobile view */
 .drag-indicator {
-    background-color: rgba(0, 0, 0, 0.2) !important;
+    background-color: var(--border-light) !important;
 }
