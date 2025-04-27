@@ -16,9 +16,8 @@
         max-width: 1000px;
         max-height: 90vh;
         margin: 0 auto;
-        overflow-y: auto;
         opacity: 0;
-        visibility: hidden;
+        pointer-events: none;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
         background-color: white;
@@ -27,7 +26,7 @@
     
     .component-selection-container.active {
         opacity: 1;
-        visibility: visible;
+        pointer-events: auto;
         transform: translate(-50%, -50%) scale(1);
     }
     
@@ -40,13 +39,20 @@
         background-color: rgba(0, 0, 0, 0.7);
         z-index: 1040;
         opacity: 0;
-        visibility: hidden;
+        pointer-events: none;
         transition: opacity 0.3s ease;
     }
     
     .component-selection-backdrop.active {
         opacity: 1;
-        visibility: visible;
+        pointer-events: auto;
+    }
+    
+    /* Make card body scrollable instead of entire container */
+    .component-scroll-container {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: calc(90vh - 200px);
     }
     
     @media (min-width: 768px) {
