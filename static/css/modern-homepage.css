@@ -915,17 +915,9 @@
     overflow: hidden;
 }
 
+/* Background removed from features-modern section per user request */
 .features-modern::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 35%, rgba(var(--bs-primary-rgb), 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 75% 65%, rgba(var(--bs-info-rgb), 0.03) 0%, transparent 50%);
-    z-index: 0;
+    display: none;
 }
 
 /* Feature Cards */
@@ -941,7 +933,7 @@
 .feature-card-inner {
     height: 100%;
     padding: 2rem;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     position: relative;
@@ -1021,7 +1013,7 @@
 
 /* Metrics Bar */
 .metrics-bar {
-    background: linear-gradient(90deg, rgba(var(--bs-primary-rgb), 0.08), rgba(var(--bs-info-rgb), 0.08));
+    background: transparent;
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
