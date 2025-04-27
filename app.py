@@ -1,6 +1,6 @@
 import os
 import logging
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash, make_response
 from models import db, User, Build, PreBuiltConfig, ContactMessage
 from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_login import LoginManager
@@ -14,13 +14,16 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev-key-for-testing")
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)  # needed for url_for to generate with https
 
-# Configure the database
+# Configure the database with optimized connection settings
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
-    "pool_recycle": 300,
-    "pool_pre_ping": True,
+    "pool_recycle": 300,  # Recycle connections every 5 minutes
+    "pool_pre_ping": True,  # Verify connections before using them
+    "pool_size": 10,  # Set pool size for better resource management
+    "max_overflow": 15,  # Allow up to 15 additional connections when pool is full
+    "pool_timeout": 30,  # Wait up to 30 seconds for a connection from the pool
 }
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # Disable event system for better performance
 
 # Initialize the database
 db.init_app(app)
@@ -104,8 +107,9 @@ def component_detail(category, component_id):
         flash(f"Component category '{category}' not found", "danger")
         return redirect(url_for('builder'))
     
-    # Find the specified component
-    component = next((c for c in components[category] if c['id'] == component_id), None)
+    # Use the helper function for more efficient lookup
+    from utils import get_component_by_id
+    component = get_component_by_id(components, category, component_id)
     
     if not component:
         flash(f"Component with ID '{component_id}' not found in category '{category}'", "danger")
@@ -115,12 +119,15 @@ def component_detail(category, component_id):
     current_config = session.get('pc_config', {})
     is_selected = current_config.get(category) == component_id
     
-    return render_template(
+    # Add cache control headers for better client-side caching
+    response = make_response(render_template(
         'component_detail.html',
         category=category,
         component=component,
         is_selected=is_selected
-    )
+    ))
+    response.headers['Cache-Control'] = 'private, max-age=60'  # Cache for 60 seconds
+    return response
 
 @app.route('/add/<category>/<component_id>', methods=['POST'])
 def add_component(category, component_id):
@@ -161,9 +168,10 @@ def summary():
     components = load_component_data()
     config_details = {}
     
+    # More efficient component lookup using the helper function
     for category, component_id in session['pc_config'].items():
-        category_components = components.get(category, [])
-        component = next((c for c in category_components if c['id'] == component_id), None)
+        from utils import get_component_by_id
+        component = get_component_by_id(components, category, component_id)
         if component:
             config_details[category] = component
     
@@ -174,18 +182,22 @@ def summary():
     performance_summary = None
     if 'cpu' in session['pc_config'] and 'gpu' in session['pc_config']:
         try:
+            # Lazy import for better performance
             from benchmarks import get_performance_summary
             performance_summary = get_performance_summary(session['pc_config'])
         except Exception as e:
             app.logger.error(f"Error retrieving performance summary: {str(e)}")
     
-    return render_template(
+    # Cache control headers for better browser caching
+    response = make_response(render_template(
         'summary.html',
         config=config_details,
         compatibility_issues=compatibility_issues,
         total_price=total_price,
         performance=performance_summary
-    )
+    ))
+    response.headers['Cache-Control'] = 'private, max-age=10'  # Cache for 10 seconds
+    return response
 
 # Benchmarks and compare routes removed as per updated site map
 
