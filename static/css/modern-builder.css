@@ -55,13 +55,21 @@
 }
 
 /* Progress Indicators */
+.progress-indicator-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+
 .build-progress {
     display: flex;
     justify-content: center;
-    overflow-x: auto;
     padding: 1.5rem 0;
     margin: 0 auto 2rem;
     max-width: 900px;
+    flex-wrap: nowrap;
 }
 
 .build-progress-item {
