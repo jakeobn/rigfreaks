@@ -998,36 +998,57 @@
         });
     });
     
-    // Add event listeners for closing the component selection
-    document.getElementById('closeComponentSelection').addEventListener('click', function() {
-        document.getElementById('componentSelectionContainer').classList.add('d-none');
-        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
-    });
-    
-    document.getElementById('cancelComponentSelection').addEventListener('click', function() {
-        document.getElementById('componentSelectionContainer').classList.add('d-none');
-        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
-    });
-    
-    // Close when clicking on backdrop
-    document.getElementById('componentSelectionBackdrop').addEventListener('click', function() {
-        document.getElementById('componentSelectionContainer').classList.add('d-none');
-        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
-    });
-    
-    // Filter components when search input changes
-    document.getElementById('componentSearch').addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        
-        // Filter the components based on search term
-        const filtered = filteredComponents.filter(component => {
-            return component.name.toLowerCase().includes(searchTerm) || 
-                   component.description.toLowerCase().includes(searchTerm);
+    // Add event listeners for closing the component selection - with element existence check
+    const closeComponentSelectionBtn = document.getElementById('closeComponentSelection');
+    if (closeComponentSelectionBtn) {
+        closeComponentSelectionBtn.addEventListener('click', function() {
+            const container = document.getElementById('componentSelectionContainer');
+            const backdrop = document.getElementById('componentSelectionBackdrop');
+            
+            if (container) container.classList.add('d-none');
+            if (backdrop) backdrop.classList.add('d-none');
         });
-        
-        // Update the table with filtered components
-        createComponentRows(filtered, currentCategory, '{{ current_config|tojson }}');
-    });
+    }
+    
+    const cancelComponentSelectionBtn = document.getElementById('cancelComponentSelection');
+    if (cancelComponentSelectionBtn) {
+        cancelComponentSelectionBtn.addEventListener('click', function() {
+            const container = document.getElementById('componentSelectionContainer');
+            const backdrop = document.getElementById('componentSelectionBackdrop');
+            
+            if (container) container.classList.add('d-none');
+            if (backdrop) backdrop.classList.add('d-none');
+        });
+    }
+    
+    // Close when clicking on backdrop - with element existence check
+    const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
+    if (componentSelectionBackdrop) {
+        componentSelectionBackdrop.addEventListener('click', function() {
+            const container = document.getElementById('componentSelectionContainer');
+            const backdrop = document.getElementById('componentSelectionBackdrop');
+            
+            if (container) container.classList.add('d-none');
+            if (backdrop) backdrop.classList.add('d-none');
+        });
+    }
+    
+    // Filter components when search input changes - with element existence check
+    const componentSearchInput = document.getElementById('componentSearch');
+    if (componentSearchInput) {
+        componentSearchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            // Filter the components based on search term
+            const filtered = filteredComponents.filter(component => {
+                return component.name.toLowerCase().includes(searchTerm) || 
+                       component.description.toLowerCase().includes(searchTerm);
+            });
+            
+            // Update the table with filtered components
+            createComponentRows(filtered, currentCategory, '{{ current_config|tojson }}');
+        });
+    }
     
     // Sort components when a sort option is selected
     document.querySelectorAll('.sort-option').forEach(option => {
