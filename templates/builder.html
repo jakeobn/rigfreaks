@@ -5,6 +5,7 @@
 {% block head %}
 {{ super() }}
 <style>
+    /* Component Selection Modal */
     .component-selection-container {
         position: fixed;
         top: 0;
@@ -13,20 +14,52 @@
         bottom: 0;
         z-index: 1050;
         margin-bottom: 0;
-        /* Using consistent backgrounds via CSS */
-        padding: 10px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        padding: 0;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         overflow-y: auto;
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .component-selection-container.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    
+    .component-selection-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(18, 21, 31, 0.7);
+        backdrop-filter: blur(10px);
+        z-index: 1040;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .component-selection-backdrop.active {
+        opacity: 1;
     }
     
     @media (min-width: 768px) {
         .component-selection-container {
-            position: absolute;
+            top: 10%;
+            left: 50%;
+            right: auto;
             bottom: auto;
-            padding: 15px;
-            border-radius: 8px;
-            max-height: 90vh;
-            overflow-y: hidden;
+            width: 90%;
+            max-width: 900px;
+            max-height: 80vh;
+            transform: translate(-50%, -10px) scale(0.98);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .component-selection-container.active {
+            transform: translate(-50%, 0) scale(1);
         }
     }
     
