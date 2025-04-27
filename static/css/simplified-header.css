@@ -2,10 +2,19 @@
 .simplified-header {
     background: transparent;
     color: rgba(255, 255, 255, 0.85);
-    position: relative;
-    z-index: 1030;
-    margin-bottom: -1px; /* Align with the bottom of the header */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050; /* Higher than hero::before (z-index: 5) */
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+/* Add padding to container for better spacing */
+.simplified-header .container {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
 }
 
 /* Logo styling */

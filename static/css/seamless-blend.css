@@ -3,6 +3,7 @@
 /* Remove any margin/padding between hero and content sections */
 .modern-hero {
     margin-bottom: 0 !important;
+    padding-top: 5rem !important; /* Add padding to accommodate the header */
     padding-bottom: 7rem !important; /* Increased padding to allow for better blend */
 }
 
@@ -18,6 +19,21 @@
                  transparent, 
                  var(--bg-darker));
     z-index: 0;
+}
+
+/* Add gradient at the top for header blend */
+.modern-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; /* Height of the top fade effect */
+    background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.6), 
+                transparent);
+    z-index: 5; /* Above the content but below the header */
+    pointer-events: none;
 }
 
 /* Make sure the container after hero has no top padding/margin */
