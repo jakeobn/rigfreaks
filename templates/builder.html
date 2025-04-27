@@ -433,16 +433,28 @@
                 <!-- Improved component display area with better aesthetics -->
                 <div class="card-body p-0 bg-light bg-opacity-50">
                     <div id="componentScrollContainer" class="component-scroll-container">
-                        <!-- Modern loading animation -->
+                        <!-- Enhanced modern loading animation with multiple elements -->
                         <div class="text-center py-5" id="component-loading">
-                            <div class="spinner-grow text-primary" role="status" style="width: 3rem; height: 3rem;">
+                            <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+                                <div class="spinner-grow spinner-grow-sm text-primary" style="animation-delay: 0s;" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow spinner-grow-sm text-success" style="animation-delay: 0.15s;" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow spinner-grow-sm text-info" style="animation-delay: 0.3s;" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
-                            <p class="mt-3 text-muted">Finding the best components for your build...</p>
+                            <h5 class="fw-bold">Loading Components</h5>
+                            <p class="text-muted mb-0">Finding the best options for your build...</p>
                         </div>
                         
-                        <!-- Component cards with shadow and improved spacing -->
-                        <div id="componentCardsWrapper" class="p-3"></div>
+                        <!-- Component cards with improved grid layout -->
+                        <div id="componentCardsWrapper" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 p-3"></div>
                     </div>
                 </div>
                 
@@ -875,26 +887,30 @@
             
             if (!components || components.length === 0) {
                 cardContainer.innerHTML = `
-                    <div class="text-center py-5">
-                        <div class="mb-3">
-                            <i class="fas fa-search fa-3x text-muted"></i>
+                    <div class="col-12">
+                        <div class="alert alert-info d-flex align-items-center p-4 shadow-sm">
+                            <div class="me-4">
+                                <i class="fas fa-search fa-3x text-info"></i>
+                            </div>
+                            <div>
+                                <h5 class="alert-heading">No components found</h5>
+                                <p class="mb-0">Try adjusting your search criteria or filters.</p>
+                            </div>
                         </div>
-                        <h5>No components found</h5>
-                        <p class="text-muted">Try a different search term or category</p>
                     </div>
                 `;
                 return;
             }
             
-            // Create row for the cards
-            const row = document.createElement('div');
-            row.className = 'row g-3';
-            cardContainer.appendChild(row);
+            // Row is already a grid via 'row row-cols-x' classes in the HTML
+            // Just add component cards directly to the existing container
             
-            components.forEach(component => {
+            components.forEach((component, index) => {
                 // Create a column for each component
                 const column = document.createElement('div');
-                column.className = 'col-lg-4 col-md-6 mb-3'; // Bootstrap grid columns
+                column.className = 'col'; // Use auto-sizing from row-cols classes
+                column.style.opacity = '0';
+                column.style.animation = `fadeIn 0.3s ease-out forwards ${index * 0.05}s`; // Staggered animation
                 
                 // Parse current config
                 let isSelected = false;
