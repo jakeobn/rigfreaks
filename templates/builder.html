@@ -4,295 +4,273 @@
 
 {% block head %}
 {{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/modern-builder.css') }}">
+<style>
+    .component-selection-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1050;
+        margin-bottom: 0;
+        /* Using consistent backgrounds via CSS */
+        padding: 10px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        overflow-y: auto;
+    }
+    
+    @media (min-width: 768px) {
+        .component-selection-container {
+            position: absolute;
+            bottom: auto;
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: hidden;
+        }
+    }
+    
+    .component-spec-pill {
+        display: inline-block;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-primary);
+        padding: 0.2rem 0.5rem;
+        border-radius: 50rem;
+        font-size: 0.75rem;
+        margin-right: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .component-performance-bar {
+        height: 10px;
+        /* Using consistent backgrounds via CSS */
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 5px;
+    }
+    
+    .component-performance-fill {
+        height: 100%;
+        background-color: var(--bs-success);
+        border-radius: 10px;
+        transition: width 0.5s ease-in-out;
+    }
+    
+    /* Animation for component cards */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    #componentCardsWrapper .card {
+        animation: fadeIn 0.3s ease-out forwards;
+    }
+    
+    /* Component scroll container with responsive behavior */
+    .component-scroll-container {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: calc(100vh - 250px);
+    }
+    
+    /* Mobile floating action button */
+    .mobile-summary-btn {
+        width: 56px;
+        height: 56px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1040;
+    }
+    
+    .mobile-summary-btn:active {
+        transform: scale(0.95);
+    }
+    
+    /* Mobile summary panel */
+    .mobile-summary-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        /* Using consistent backgrounds via CSS */
+        padding: 1rem;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+        z-index: 1039;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-in-out;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .mobile-summary-panel.active {
+        transform: translateY(0);
+    }
+    
+    .mobile-summary-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1038;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+    }
+    
+    .mobile-summary-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Mobile-specific styles */
+    @media (max-width: 767.98px) {
+        .component-scroll-container {
+            max-height: calc(100vh - 200px);
+            padding: 10px;
+        }
+        
+        #componentCardsWrapper .card {
+            margin-bottom: 12px;
+        }
+        
+        /* Optimize card layout for mobile */
+        .component-icon-circle {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Make buttons bigger for touch targets */
+        .component-dropdown-btn,
+        .add-component-btn,
+        #closeComponentSelection,
+        #cancelComponentSelection {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        
+        /* Optimize header for mobile */
+        .card-header {
+            padding: 12px 15px;
+        }
+        
+        /* Improve build progress indicator on small screens */
+        .build-progress-item {
+            padding: 8px 4px;
+        }
+        
+        .build-progress-icon {
+            margin-bottom: 6px;
+        }
+        
+        .build-progress-text {
+            font-size: 12px;
+        }
+        
+        /* Hide the regular build summary on mobile and show in panel instead */
+        .build-summary-card {
+            display: none;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="builder-container py-4">
-    <div class="container">
-        <!-- Header Area -->
-        <header class="text-center mb-5">
-            <h1 class="text-white fw-bold builder-title mb-3">PC Builder</h1>
-            <p class="text-white-50 fs-5 mb-4 mx-auto" style="max-width: 800px;">Build your dream PC by selecting high-quality components. We'll check compatibility automatically.</p>
-        </header>
-        
-        <!-- Component Progress -->
-        <div class="progress-tracker mb-5">
-            <div class="progress-inner">
-                {% set component_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                {% for category in component_categories %}
-                    <div class="progress-item {% if category in current_config %}complete{% elif loop.index0 == 0 and 'cpu' not in current_config %}active{% endif %}">
-                        <div class="progress-icon">
-                            <i class="fas fa-{% if category == 'cpu' %}microchip{% elif category == 'motherboard' %}server{% elif category == 'ram' %}memory{% elif category == 'gpu' %}tv{% elif category == 'storage' %}hdd{% elif category == 'power_supply' %}plug{% elif category == 'case' %}desktop{% elif category == 'cooling' %}wind{% endif %}"></i>
-                        </div>
-                        <div class="progress-label">{{ category|capitalize }}</div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        
-        <!-- Main Content Area -->
-        <div class="row">
-            <!-- Components Selection -->
-            <div class="col-lg-8 pe-lg-4">
-                <div class="components-section">
-                    <h2 class="section-title mb-4">Select Components</h2>
-                    
-                    <div class="row g-4">
-                        {% set component_categories = [
-                            {'id': 'cpu', 'name': 'Processor', 'icon': 'microchip', 'desc': 'The brain of your PC'},
-                            {'id': 'motherboard', 'name': 'Motherboard', 'icon': 'server', 'desc': 'Connects all components'},
-                            {'id': 'ram', 'name': 'Memory', 'icon': 'memory', 'desc': 'Temporary storage for active tasks'},
-                            {'id': 'gpu', 'name': 'Graphics Card', 'icon': 'tv', 'desc': 'Powers visuals and rendering'},
-                            {'id': 'storage', 'name': 'Storage', 'icon': 'hdd', 'desc': 'Long-term data storage'},
-                            {'id': 'power_supply', 'name': 'Power Supply', 'icon': 'plug', 'desc': 'Powers all components'},
-                            {'id': 'case', 'name': 'Case', 'icon': 'desktop', 'desc': 'Houses all components'},
-                            {'id': 'cooling', 'name': 'Cooling', 'icon': 'wind', 'desc': 'Keeps components cool'}
-                        ] %}
-                        
-                        {% for category in component_categories %}
-                        <div class="col-md-6 mb-4">
-                            <div class="component-card {% if current_config.get(category.id) %}selected{% endif %}">
-                                <div class="component-header">
-                                    <div class="component-icon">
-                                        <i class="fas fa-{{ category.icon }}"></i>
-                                    </div>
-                                    <div class="component-title">
-                                        <h3>{{ category.name }}</h3>
-                                        <p>{{ category.desc }}</p>
-                                    </div>
-                                </div>
-                                
-                                {% if current_config.get(category.id) %}
-                                    {% set component = components[category.id] | selectattr('id', 'equalto', current_config[category.id]) | first %}
-                                    <div class="component-body">
-                                        <div class="selected-component">
-                                            <h4 class="component-name">{{ component.name }}</h4>
-                                            <p class="component-desc">{{ component.description }}</p>
-                                            
-                                            <div class="component-specs">
-                                                {% if category.id == 'cpu' %}
-                                                    <span class="spec-pill">{{ component.cores }} Cores</span>
-                                                    <span class="spec-pill">{{ component.threads }} Threads</span>
-                                                    <span class="spec-pill">{{ component.base_clock }}GHz</span>
-                                                {% elif category.id == 'gpu' %}
-                                                    <span class="spec-pill">{{ component.vram }}GB VRAM</span>
-                                                    <span class="spec-pill">{{ component.memory_type }}</span>
-                                                {% elif category.id == 'ram' %}
-                                                    <span class="spec-pill">{{ component.capacity }}GB</span>
-                                                    <span class="spec-pill">{{ component.speed }}MHz</span>
-                                                    <span class="spec-pill">{{ component.type }}</span>
-                                                {% elif category.id == 'storage' %}
-                                                    <span class="spec-pill">{{ component.capacity }}GB</span>
-                                                    <span class="spec-pill">{{ component.type }}</span>
-                                                {% elif category.id == 'power_supply' %}
-                                                    <span class="spec-pill">{{ component.wattage }}W</span>
-                                                    <span class="spec-pill">{{ component.efficiency }}</span>
-                                                {% endif %}
-                                            </div>
-                                            
-                                            <div class="component-price">${{ component.price }}</div>
-                                            
-                                            <div class="component-actions">
-                                                <a href="{{ url_for('component_detail', category=category.id, component_id=current_config[category.id]) }}" class="btn-details">
-                                                    <i class="fas fa-info-circle"></i> Details
-                                                </a>
-                                                <button type="button" class="btn-change component-select-btn" data-category="{{ category.id }}">
-                                                    <i class="fas fa-exchange-alt"></i> Change
-                                                </button>
-                                                <form action="{{ url_for('remove_component', category=category.id) }}" method="post" class="d-inline">
-                                                    <button type="submit" class="btn-remove">
-                                                        <i class="fas fa-trash-alt"></i> Remove
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% else %}
-                                    <div class="component-body empty">
-                                        <div class="empty-state">
-                                            <div class="empty-icon">
-                                                <i class="fas fa-plus-circle"></i>
-                                            </div>
-                                            <h4>No {{ category.name }} Selected</h4>
-                                            <p>Select a {{ category.name.lower() }} to complete your build</p>
-                                            <button type="button" class="btn-add component-select-btn" data-category="{{ category.id }}">
-                                                <i class="fas fa-plus-circle"></i> Select {{ category.name }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Build Summary -->
-            <div class="col-lg-4">
-                <div class="build-summary">
-                    <h2 class="summary-title"><i class="fas fa-clipboard-list me-2"></i> Build Summary</h2>
-                    <div class="completion-status">
-                        <div class="progress">
-                            {% set completion = (current_config|length / 8 * 100)|int %}
-                            <div class="progress-bar" role="progressbar" style="width: {{ completion }}%;" aria-valuenow="{{ completion }}" aria-valuemin="0" aria-valuemax="100">{{ completion }}%</div>
-                        </div>
-                        <div class="status-text">
-                            <span class="badge bg-primary">{{ current_config|length }}/8</span>
-                            Components Selected
-                        </div>
-                    </div>
-                    
-                    {% if current_config %}
-                        <div class="components-list">
-                            {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                                <div class="summary-item {% if category in current_config %}selected{% else %}missing{% endif %}">
-                                    <div class="item-icon">
-                                        <i class="fas fa-{% if category == 'cpu' %}microchip{% elif category == 'motherboard' %}server{% elif category == 'ram' %}memory{% elif category == 'gpu' %}tv{% elif category == 'storage' %}hdd{% elif category == 'power_supply' %}plug{% elif category == 'case' %}desktop{% elif category == 'cooling' %}wind{% endif %}"></i>
-                                    </div>
-                                    
-                                    {% if category in current_config %}
-                                        {% set component = components[category] | selectattr('id', 'equalto', current_config[category]) | first %}
-                                        <div class="item-details">
-                                            <h4>{{ component.name }}</h4>
-                                            <p>{{ category|capitalize }}</p>
-                                        </div>
-                                        <div class="item-price">${{ component.price }}</div>
-                                    {% else %}
-                                        <div class="item-details missing">
-                                            <h4>No {{ category|capitalize }}</h4>
-                                            <p>Required component</p>
-                                        </div>
-                                        <button type="button" class="btn-select component-select-btn" data-category="{{ category }}">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                        
-                        <div class="price-summary">
-                            <div class="subtotal">
-                                <span>Components Subtotal:</span>
-                                <span>${{ total_price }}</span>
-                            </div>
-                            <div class="total">
-                                <span>Total Price:</span>
-                                <span>${{ total_price }}</span>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-actions">
-                            {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                            
-                            {% set missing_count = namespace(value=0) %}
-                            {% for category in required_categories %}
-                                {% if category not in current_config %}
-                                    {% set missing_count.value = missing_count.value + 1 %}
-                                {% endif %}
-                            {% endfor %}
-                            
-                            <a href="{{ url_for('summary') }}" class="btn-review">
-                                <i class="fas fa-clipboard-check"></i> Review Configuration
-                            </a>
-                            
-                            {% if missing_count.value == 0 %}
-                                <form action="{{ url_for('cart.add_to_cart') }}" method="post">
-                                    <button type="submit" class="btn-cart">
-                                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                                    </button>
-                                </form>
-                            {% else %}
-                                <button disabled class="btn-cart disabled">
-                                    <i class="fas fa-lock"></i> Add to Cart
-                                    <span class="cart-badge">{{ missing_count.value }} missing</span>
-                                </button>
-                                <div class="cart-note">
-                                    <i class="fas fa-info-circle"></i>
-                                    <div>
-                                        <strong>Build incomplete</strong>
-                                        <p>All required components must be selected</p>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            
-                            <form action="{{ url_for('reset_configuration') }}" method="post">
-                                <button type="submit" class="btn-reset">
-                                    <i class="fas fa-trash-alt"></i> Reset Build
-                                </button>
-                            </form>
-                        </div>
-                    {% else %}
-                        <div class="empty-summary">
-                            <div class="empty-illustration">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <h3>Your Build is Empty</h3>
-                            <p>Start by selecting components to build your custom PC</p>
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <!-- Mobile Summary Button -->
-                <div class="d-md-none d-block mobile-fab">
-                    <button type="button" id="mobileSummaryBtn" class="btn-fab">
-                        <i class="fas fa-clipboard-list"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <h1 class="mb-4">PC Builder</h1>
+    
+    <!-- Modern Floating Action Button for Mobile Build Summary -->
+    <div class="d-md-none position-fixed bottom-0 end-0 m-3 z-3">
+        <button class="btn btn-primary rounded-circle shadow-lg mobile-summary-btn p-3 d-flex align-items-center justify-content-center" 
+                style="width: 60px; height: 60px; transition: all 0.3s ease;" id="mobileSummaryBtn">
+            <i class="fas fa-clipboard-list fa-lg"></i>
+        </button>
     </div>
     
-    <!-- Mobile Summary Panel -->
-    <div id="mobileSummaryPanel" class="mobile-summary">
-        <div class="drag-handle"></div>
-        <div class="mobile-summary-header">
-            <h3><i class="fas fa-clipboard-list me-2"></i> Build Summary</h3>
-            <button type="button" id="closeMobileSummary" class="btn-close"></button>
+    <!-- Modern Mobile Summary Panel with Improved Design -->
+    <div class="mobile-summary-panel d-md-none rounded-top-4" id="mobileSummaryPanel">
+        <!-- Elegant header with drag indicator -->
+        <div class="text-center mb-1 pt-2">
+            <div class="drag-indicator mx-auto mb-1" style="width: 40px; height: 5px; border-radius: 3px;"></div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-3 px-3 pt-1">
+            <h4 class="mb-0 fw-bold"><i class="fas fa-clipboard-list me-2 text-primary"></i>Build Summary</h4>
+            <button type="button" class="btn-close" id="closeMobileSummary" aria-label="Close"></button>
         </div>
         
         <div class="mobile-summary-content">
             {% if current_config %}
-                <div class="components-list">
+                <!-- Components List -->
+                <div class="build-components-list">
                     {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                        <div class="summary-item {% if category in current_config %}selected{% else %}missing{% endif %}">
-                            <div class="item-icon">
-                                <i class="fas fa-{% if category == 'cpu' %}microchip{% elif category == 'motherboard' %}server{% elif category == 'ram' %}memory{% elif category == 'gpu' %}tv{% elif category == 'storage' %}hdd{% elif category == 'power_supply' %}plug{% elif category == 'case' %}desktop{% elif category == 'cooling' %}wind{% endif %}"></i>
+                        <div class="build-component-item d-flex align-items-center mb-3 p-2 rounded
+                                    {% if category in current_config %}has-component{% else %}missing-component{% endif %}">
+                            <div class="component-icon-small me-3">
+                                {% if category == 'cpu' %}
+                                    <i class="fas fa-microchip"></i>
+                                {% elif category == 'motherboard' %}
+                                    <i class="fas fa-server"></i>
+                                {% elif category == 'ram' %}
+                                    <i class="fas fa-memory"></i>
+                                {% elif category == 'gpu' %}
+                                    <i class="fas fa-tv"></i>
+                                {% elif category == 'storage' %}
+                                    <i class="fas fa-hdd"></i>
+                                {% elif category == 'power_supply' %}
+                                    <i class="fas fa-plug"></i>
+                                {% elif category == 'case' %}
+                                    <i class="fas fa-desktop"></i>
+                                {% elif category == 'cooling' %}
+                                    <i class="fas fa-wind"></i>
+                                {% endif %}
                             </div>
                             
                             {% if category in current_config %}
                                 {% set component = components[category] | selectattr('id', 'equalto', current_config[category]) | first %}
-                                <div class="item-details">
-                                    <h4>{{ component.name }}</h4>
-                                    <p>{{ category|capitalize }}</p>
+                                <div class="build-component-info flex-grow-1">
+                                    <div class="build-component-name">{{ component.name }}</div>
+                                    <div class="build-component-category text-muted small">{{ category|capitalize }}</div>
                                 </div>
-                                <div class="item-price">${{ component.price }}</div>
+                                <div class="build-component-price text-success fw-bold">${{ component.price }}</div>
                             {% else %}
-                                <div class="item-details missing">
-                                    <h4>No {{ category|capitalize }}</h4>
-                                    <p>Required component</p>
+                                <div class="build-component-info flex-grow-1">
+                                    <div class="build-component-missing">{{ category|capitalize }} Not Selected</div>
+                                    <div class="build-component-category text-muted small">Required Component</div>
                                 </div>
-                                <button type="button" class="btn-select component-select-btn" data-category="{{ category }}">
-                                    <i class="fas fa-plus"></i>
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill component-dropdown-btn"
+                                        data-category="{{ category }}">
+                                    <i class="fas fa-plus-circle"></i>
                                 </button>
                             {% endif %}
                         </div>
                     {% endfor %}
                 </div>
                 
-                <div class="price-summary">
-                    <div class="subtotal">
+                <hr>
+                
+                <!-- Price Summary -->
+                <div class="price-summary mb-4">
+                    <div class="d-flex justify-content-between fw-bold mb-2">
                         <span>Components Subtotal:</span>
                         <span>${{ total_price }}</span>
                     </div>
-                    <div class="total">
-                        <span>Total Price:</span>
-                        <span>${{ total_price }}</span>
+                    <div class="total-price-container p-3 rounded mt-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Total Price:</h5>
+                            <div class="price-total">${{ total_price }}</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="summary-actions">
+                <!-- Action Buttons -->
+                <div class="build-actions mt-4">
                     {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
                     
                     {% set missing_count = namespace(value=0) %}
@@ -302,113 +280,497 @@
                         {% endif %}
                     {% endfor %}
                     
-                    <a href="{{ url_for('summary') }}" class="btn-review">
-                        <i class="fas fa-clipboard-check"></i> Review Configuration
-                    </a>
-                    
-                    {% if missing_count.value == 0 %}
-                        <form action="{{ url_for('cart.add_to_cart') }}" method="post">
-                            <button type="submit" class="btn-cart">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                    <div class="d-grid gap-3">
+                        <a href="{{ url_for('summary') }}" class="btn btn-success action-btn">
+                            <i class="fas fa-clipboard-check me-2"></i>Review Configuration
+                        </a>
+                        
+                        {% if missing_count.value == 0 %}
+                            <!-- All components selected -->
+                            <form action="{{ url_for('cart.add_to_cart') }}" method="post">
+                                <button type="submit" class="btn btn-primary w-100 action-btn">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </form>
+                        {% else %}
+                            <!-- Missing components -->
+                            <button disabled class="btn btn-secondary w-100 action-btn cart-disabled" 
+                                   title="Complete your build to add to cart">
+                                <i class="fas fa-lock me-2"></i>Add to Cart
+                                <span class="badge bg-danger rounded-pill ms-2">{{ missing_count.value }} missing</span>
+                            </button>
+                            <div class="alert alert-secondary p-3 mb-3">
+                                <div class="d-flex">
+                                    <i class="fas fa-info-circle me-2 mt-1 text-primary"></i>
+                                    <div>
+                                        <strong>Build incomplete</strong>
+                                        <p class="mb-0 small">Please select all required components to enable "Add to Cart".</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        <form action="{{ url_for('reset_configuration') }}" method="post">
+                            <button type="submit" class="btn btn-outline-danger w-100">
+                                <i class="fas fa-trash-alt me-2"></i>Reset Build
                             </button>
                         </form>
-                    {% else %}
-                        <button disabled class="btn-cart disabled">
-                            <i class="fas fa-lock"></i> Add to Cart
-                            <span class="cart-badge">{{ missing_count.value }} missing</span>
-                        </button>
-                        <div class="cart-note">
-                            <i class="fas fa-info-circle"></i>
-                            <div>
-                                <strong>Build incomplete</strong>
-                                <p>All required components must be selected</p>
-                            </div>
-                        </div>
-                    {% endif %}
-                    
-                    <form action="{{ url_for('reset_configuration') }}" method="post">
-                        <button type="submit" class="btn-reset">
-                            <i class="fas fa-trash-alt"></i> Reset Build
-                        </button>
-                    </form>
+                    </div>
                 </div>
             {% else %}
-                <div class="empty-summary">
-                    <div class="empty-illustration">
-                        <i class="fas fa-desktop"></i>
+                <!-- Empty Build State -->
+                <div class="empty-build-state text-center py-4">
+                    <div class="empty-build-icon mb-3">
+                        <i class="fas fa-desktop fa-3x text-secondary"></i>
                     </div>
-                    <h3>Your Build is Empty</h3>
-                    <p>Start by selecting components to build your custom PC</p>
+                    <h4>Your Build is Empty</h4>
+                    <p class="text-muted mb-4">Start by selecting components to build your custom PC.</p>
                 </div>
             {% endif %}
         </div>
     </div>
-    <div id="mobileSummaryBackdrop" class="mobile-backdrop"></div>
     
-    <!-- Component Selection Modal -->
-    <div id="componentSelectionBackdrop" class="component-modal-backdrop d-none"></div>
-    <div id="componentSelectionContainer" class="component-modal-container d-none">
-        <div class="component-modal">
-            <div class="modal-header">
-                <div class="d-flex align-items-center">
-                    <div class="modal-category-icon" id="modalCategoryIcon">
-                        <i class="fas fa-puzzle-piece"></i>
+    <!-- Mobile Summary Panel Backdrop -->
+    <div class="mobile-summary-backdrop d-md-none" id="mobileSummaryBackdrop"></div>
+    
+    <!-- Component Selection Area - Fixed at the top with backdrop -->
+    <div class="component-selection-backdrop d-none" id="componentSelectionBackdrop"></div>
+    <div class="container position-relative">
+        <div class="component-selection-container d-none" id="componentSelectionContainer">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <!-- Modern header with gradient background and improved visual design -->
+                <div class="card-header d-flex align-items-center justify-content-between bg-primary bg-gradient text-white p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="modal-icon-container me-3 bg-white bg-opacity-25 rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;" id="modalCategoryIcon">
+                            <i class="fas fa-puzzle-piece fa-lg"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 fw-bold" id="componentModalLabel">Select Component</h5>
+                            <div class="small opacity-75" id="modalCategoryDescription">
+                                Choose from compatible components
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 id="componentModalLabel">Select Component</h3>
-                        <p id="modalCategoryDescription">Choose from compatible components</p>
+                    <button type="button" class="btn-close btn-close-white p-3" id="closeComponentSelection" aria-label="Close"></button>
+                </div>
+                
+                <!-- Improved search and filter section with modern aesthetic -->
+                <div class="card-header bg-light p-3 border-0 shadow-sm">
+                    <!-- Desktop view - combined search and sort -->
+                    <div class="input-group d-none d-md-flex shadow-sm rounded-3 overflow-hidden">
+                        <span class="input-group-text bg-white border-end-0 text-primary">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control border-start-0 py-2" id="componentSearchDesktop" placeholder="Search components...">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-sort me-1"></i>Sort
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><button class="dropdown-item sort-option" data-sort="name"><i class="fas fa-font me-2 text-secondary"></i>Name</button></li>
+                            <li><button class="dropdown-item sort-option" data-sort="price-asc"><i class="fas fa-arrow-up me-2 text-success"></i>Price (Low to High)</button></li>
+                            <li><button class="dropdown-item sort-option" data-sort="price-desc"><i class="fas fa-arrow-down me-2 text-danger"></i>Price (High to Low)</button></li>
+                            <li><button class="dropdown-item sort-option" data-sort="performance"><i class="fas fa-tachometer-alt me-2 text-primary"></i>Performance</button></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Modern mobile view - improved search and sort for better usability -->
+                    <div class="d-md-none">
+                        <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden">
+                            <span class="input-group-text bg-white border-end-0 text-primary">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0" id="componentSearchMobile" placeholder="Search components...">
+                        </div>
+                        <div class="d-flex">
+                            <div class="btn-group flex-grow-1">
+                                <button class="btn btn-sm btn-outline-primary rounded-pill dropdown-toggle w-100 py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-sort me-1"></i>Sort Components
+                                </button>
+                                <ul class="dropdown-menu w-100 shadow-sm border-0">
+                                    <li><button class="dropdown-item sort-option" data-sort="name"><i class="fas fa-font me-2 text-secondary"></i>Name (A-Z)</button></li>
+                                    <li><button class="dropdown-item sort-option" data-sort="price-asc"><i class="fas fa-arrow-up me-2 text-success"></i>Price (Low to High)</button></li>
+                                    <li><button class="dropdown-item sort-option" data-sort="price-desc"><i class="fas fa-arrow-down me-2 text-danger"></i>Price (High to Low)</button></li>
+                                    <li><button class="dropdown-item sort-option" data-sort="performance"><i class="fas fa-tachometer-alt me-2 text-primary"></i>Performance</button></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button type="button" id="closeComponentSelection" class="btn-close"></button>
-            </div>
-            
-            <div class="modal-search">
-                <div class="search-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="componentSearch" placeholder="Search components...">
-                    <div class="filter-controls">
-                        <div class="filter-pills">
-                            <span class="filter-label">Filters:</span>
-                            <div class="filter-pill active" data-filter="all">All</div>
-                            <div class="filter-pill" data-filter="recommended">Recommended</div>
-                            <div class="filter-pill" data-filter="premium">Premium</div>
-                            <div class="filter-pill" data-filter="budget">Budget</div>
+                
+                <!-- Improved component display area with better aesthetics -->
+                <div class="card-body p-0 bg-light bg-opacity-50">
+                    <div id="componentScrollContainer" class="component-scroll-container">
+                        <!-- Modern loading animation -->
+                        <div class="text-center py-5" id="component-loading">
+                            <div class="spinner-grow text-primary" role="status" style="width: 3rem; height: 3rem;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-3 text-muted">Finding the best components for your build...</p>
                         </div>
                         
-                        <div class="sort-dropdown">
-                            <button class="btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-sort"></i> <span>Sort</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><button class="dropdown-item sort-option" data-sort="name"><i class="fas fa-font text-light me-2"></i>Name</button></li>
-                                <li><button class="dropdown-item sort-option" data-sort="price-asc"><i class="fas fa-arrow-up text-success me-2"></i>Price (Low to High)</button></li>
-                                <li><button class="dropdown-item sort-option" data-sort="price-desc"><i class="fas fa-arrow-down text-danger me-2"></i>Price (High to Low)</button></li>
-                                <li><button class="dropdown-item sort-option" data-sort="performance"><i class="fas fa-tachometer-alt text-primary me-2"></i>Performance</button></li>
-                            </ul>
-                        </div>
+                        <!-- Component cards with shadow and improved spacing -->
+                        <div id="componentCardsWrapper" class="p-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Modern footer with improved button styling -->
+                <div class="card-footer d-flex justify-content-between align-items-center p-3 bg-white border-0">
+                    <div class="compatibility-note">
+                        <span class="badge bg-primary bg-opacity-10 text-primary p-2 rounded-pill">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Only compatible components shown
+                        </span>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary rounded-pill px-4" id="cancelComponentSelection">
+                        <i class="fas fa-times me-2"></i>Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Component Selection Progress -->
+    <div class="row mb-4 build-progress">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        {% set component_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
+                        {% for category in component_categories %}
+                            <div class="col build-progress-item {% if category in current_config %}completed{% endif %}">
+                                <div class="build-progress-icon">
+                                    {% if category == 'cpu' %}
+                                        <i class="fas fa-microchip"></i>
+                                    {% elif category == 'motherboard' %}
+                                        <i class="fas fa-server"></i>
+                                    {% elif category == 'ram' %}
+                                        <i class="fas fa-memory"></i>
+                                    {% elif category == 'gpu' %}
+                                        <i class="fas fa-tv"></i>
+                                    {% elif category == 'storage' %}
+                                        <i class="fas fa-hdd"></i>
+                                    {% elif category == 'power_supply' %}
+                                        <i class="fas fa-plug"></i>
+                                    {% elif category == 'case' %}
+                                        <i class="fas fa-desktop"></i>
+                                    {% elif category == 'cooling' %}
+                                        <i class="fas fa-wind"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="build-progress-text">
+                                    {{ category|capitalize }}
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            
-            <div class="modal-body">
-                <div id="component-loading" class="loading-state">
-                    <div class="spinner-border text-primary" role="status"></div>
-                    <p>Finding the best components for your build...</p>
+        </div>
+    </div>
+    
+    <!-- Compatibility Issues Alert -->
+    {% if compatibility_issues %}
+    <div class="alert alert-warning">
+        <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Compatibility Issues</h4>
+        <p>The following issues were detected with your current configuration:</p>
+        <ul>
+            {% for issue in compatibility_issues %}
+            <li>{{ issue }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <div class="row">
+        <!-- Component Selection -->
+        <div class="col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Select Components</h3>
                 </div>
-                
-                <div id="componentCardsWrapper" class="component-grid"></div>
+                <div class="card-body">
+                    <p class="card-text">Choose components for your PC build. Make sure to select compatible parts for the best performance.</p>
+                    
+                    <!-- Component Categories -->
+                    <div class="row g-4">
+                        {% set component_categories = [
+                            {'id': 'cpu', 'name': 'Processor', 'icon': 'microchip'},
+                            {'id': 'motherboard', 'name': 'Motherboard', 'icon': 'server'},
+                            {'id': 'ram', 'name': 'Memory', 'icon': 'memory'},
+                            {'id': 'gpu', 'name': 'Graphics Card', 'icon': 'tv'},
+                            {'id': 'storage', 'name': 'Storage', 'icon': 'hdd'},
+                            {'id': 'power_supply', 'name': 'Power Supply', 'icon': 'plug'},
+                            {'id': 'case', 'name': 'Case', 'icon': 'desktop'},
+                            {'id': 'cooling', 'name': 'Cooling', 'icon': 'wind'}
+                        ] %}
+                        
+                        {% for category in component_categories %}
+                        <div class="col-md-6">
+                            <div class="component-card-wrapper">
+                                <div class="card component-card h-100 shadow-sm border-0 {% if current_config.get(category.id) %}selected-component-card{% else %}empty-component-card{% endif %}">
+                                    <!-- Component Card Header -->
+                                    <div class="card-header d-flex align-items-center component-card-header">
+                                        <div class="component-icon-circle">
+                                            <i class="fas fa-{{ category.icon }}"></i>
+                                        </div>
+                                        <h5 class="mb-0 ms-3">{{ category.name }}</h5>
+                                        
+                                        {% if current_config.get(category.id) %}
+                                        <span class="ms-auto component-status">
+                                            <span class="badge bg-success p-2">
+                                                <i class="fas fa-check me-1"></i>Selected
+                                            </span>
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <!-- Component Card Body -->
+                                    <div class="card-body d-flex flex-column component-card-body">
+                                        {% if current_config.get(category.id) %}
+                                            {% set component = components[category.id] | selectattr('id', 'equalto', current_config[category.id]) | first %}
+                                            <!-- Component Image Area -->
+                                            <div class="component-image-area mb-3">
+                                                <div class="component-img-container mb-2">
+                                                    {% if category.id == 'cpu' %}
+                                                        <i class="fas fa-microchip fa-3x"></i>
+                                                    {% elif category.id == 'gpu' %}
+                                                        <i class="fas fa-tv fa-3x"></i>
+                                                    {% elif category.id == 'ram' %}
+                                                        <i class="fas fa-memory fa-3x"></i>
+                                                    {% elif category.id == 'motherboard' %}
+                                                        <i class="fas fa-server fa-3x"></i>
+                                                    {% elif category.id == 'power_supply' %}
+                                                        <i class="fas fa-plug fa-3x"></i>
+                                                    {% elif category.id == 'storage' %}
+                                                        <i class="fas fa-hdd fa-3x"></i>
+                                                    {% elif category.id == 'case' %}
+                                                        <i class="fas fa-desktop fa-3x"></i>
+                                                    {% elif category.id == 'cooling' %}
+                                                        <i class="fas fa-wind fa-3x"></i>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Component Info -->
+                                            <div class="component-info mb-3">
+                                                <h6 class="component-title">{{ component.name }}</h6>
+                                                <p class="component-description text-muted small">{{ component.description }}</p>
+                                                
+                                                <!-- Component Specs Badges -->
+                                                <div class="component-specs d-flex flex-wrap mb-2">
+                                                    {% if category.id == 'cpu' %}
+                                                        <span class="specs-badge">{{ component.cores }} Cores</span>
+                                                        <span class="specs-badge">{{ component.threads }} Threads</span>
+                                                        <span class="specs-badge">{{ component.base_clock }}GHz</span>
+                                                    {% elif category.id == 'gpu' %}
+                                                        <span class="specs-badge">{{ component.vram }}GB VRAM</span>
+                                                        <span class="specs-badge">{{ component.memory_type }}</span>
+                                                    {% elif category.id == 'ram' %}
+                                                        <span class="specs-badge">{{ component.capacity }}GB</span>
+                                                        <span class="specs-badge">{{ component.speed }}MHz</span>
+                                                        <span class="specs-badge">{{ component.type }}</span>
+                                                    {% elif category.id == 'storage' %}
+                                                        <span class="specs-badge">{{ component.capacity }}GB</span>
+                                                        <span class="specs-badge">{{ component.type }}</span>
+                                                    {% elif category.id == 'power_supply' %}
+                                                        <span class="specs-badge">{{ component.wattage }}W</span>
+                                                        <span class="specs-badge">{{ component.efficiency }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                
+                                                <!-- Component Price -->
+                                                <div class="component-price">
+                                                    <span class="price-badge">${{ component.price }}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Component Actions -->
+                                            <div class="component-actions mt-auto">
+                                                <div class="d-flex flex-column flex-sm-row gap-2">
+                                                    <a href="{{ url_for('component_detail', category=category.id, component_id=current_config[category.id]) }}" 
+                                                       class="btn btn-sm btn-outline-primary flex-grow-1">
+                                                        <i class="fas fa-info-circle me-1 d-md-none"></i><i class="fas fa-info-circle me-2 d-none d-md-inline-block"></i><span class="d-none d-md-inline-block">Details</span><span class="d-md-none">Info</span>
+                                                    </a>
+                                                    <button type="button" 
+                                                            class="btn btn-sm btn-outline-secondary flex-grow-1 component-dropdown-btn" 
+                                                            data-category="{{ category.id }}">
+                                                        <i class="fas fa-exchange-alt me-1 d-md-none"></i><i class="fas fa-exchange-alt me-2 d-none d-md-inline-block"></i>Change
+                                                    </button>
+                                                    <form action="{{ url_for('remove_component', category=category.id) }}" 
+                                                          method="post" 
+                                                          class="remove-form flex-grow-1">
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger w-100">
+                                                            <i class="fas fa-trash-alt me-1 d-md-none"></i><i class="fas fa-trash-alt me-2 d-none d-md-inline-block"></i><span class="d-none d-md-inline-block">Remove</span><span class="d-md-none">Del</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <!-- Empty Component Card -->
+                                            <div class="empty-component-content text-center py-4 my-3">
+                                                <div class="empty-icon mb-3">
+                                                    <i class="fas fa-plus-circle fa-4x"></i>
+                                                </div>
+                                                <h6 class="empty-title">No {{ category.name }} Selected</h6>
+                                                <p class="empty-text text-muted">Add a {{ category.name.lower() }} to your build</p>
+                                                <button type="button" 
+                                                        class="btn btn-primary add-component-btn component-dropdown-btn mt-3 pulse-animation" 
+                                                        data-category="{{ category.id }}">
+                                                    <i class="fas fa-plus-circle me-2"></i>Select {{ category.name }}
+                                                </button>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Build Summary -->
+        <div class="col-lg-4">
+            <div class="card mb-4 position-sticky build-summary-card" style="top: 1rem;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Build Summary</h3>
+                    <span class="badge bg-primary rounded-pill">
+                        {{ current_config|length }}/8 Components
+                    </span>
+                </div>
+                <div class="card-body">
+                    {% if current_config %}
+                        <!-- Components List -->
+                        <div class="build-components-list">
+                            {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
+                                <div class="build-component-item d-flex align-items-center mb-3 p-2 rounded
+                                            {% if category in current_config %}has-component{% else %}missing-component{% endif %}">
+                                    <div class="component-icon-small me-3">
+                                        {% if category == 'cpu' %}
+                                            <i class="fas fa-microchip"></i>
+                                        {% elif category == 'motherboard' %}
+                                            <i class="fas fa-server"></i>
+                                        {% elif category == 'ram' %}
+                                            <i class="fas fa-memory"></i>
+                                        {% elif category == 'gpu' %}
+                                            <i class="fas fa-tv"></i>
+                                        {% elif category == 'storage' %}
+                                            <i class="fas fa-hdd"></i>
+                                        {% elif category == 'power_supply' %}
+                                            <i class="fas fa-plug"></i>
+                                        {% elif category == 'case' %}
+                                            <i class="fas fa-desktop"></i>
+                                        {% elif category == 'cooling' %}
+                                            <i class="fas fa-wind"></i>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {% if category in current_config %}
+                                        {% set component = components[category] | selectattr('id', 'equalto', current_config[category]) | first %}
+                                        <div class="build-component-info flex-grow-1">
+                                            <div class="build-component-name">{{ component.name }}</div>
+                                            <div class="build-component-category text-muted small">{{ category|capitalize }}</div>
+                                        </div>
+                                        <div class="build-component-price text-success fw-bold">${{ component.price }}</div>
+                                    {% else %}
+                                        <div class="build-component-info flex-grow-1">
+                                            <div class="build-component-missing">{{ category|capitalize }} Not Selected</div>
+                                            <div class="build-component-category text-muted small">Required Component</div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill component-dropdown-btn"
+                                                data-category="{{ category }}">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <hr>
+                        
+                        <!-- Price Summary -->
+                        <div class="price-summary mb-4">
+                            <div class="d-flex justify-content-between fw-bold mb-2">
+                                <span>Components Subtotal:</span>
+                                <span>${{ total_price }}</span>
+                            </div>
+                            <div class="total-price-container p-3 rounded mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Total Price:</h5>
+                                    <div class="price-total">${{ total_price }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="build-actions mt-4">
+                            {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
+                            
+                            {% set missing_count = namespace(value=0) %}
+                            {% for category in required_categories %}
+                                {% if category not in current_config %}
+                                    {% set missing_count.value = missing_count.value + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            <div class="d-grid gap-3">
+                                <a href="{{ url_for('summary') }}" class="btn btn-success action-btn">
+                                    <i class="fas fa-clipboard-check me-2"></i>Review Configuration
+                                </a>
+                                
+                                {% if missing_count.value == 0 %}
+                                    <!-- All components selected -->
+                                    <form action="{{ url_for('cart.add_to_cart') }}" method="post">
+                                        <button type="submit" class="btn btn-primary w-100 action-btn">
+                                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <!-- Missing components -->
+                                    <button disabled class="btn btn-secondary w-100 action-btn cart-disabled" 
+                                           title="Complete your build to add to cart">
+                                        <i class="fas fa-lock me-2"></i>Add to Cart
+                                        <span class="badge bg-danger rounded-pill ms-2">{{ missing_count.value }} missing</span>
+                                    </button>
+                                    <div class="alert alert-secondary p-3 mb-3">
+                                        <div class="d-flex">
+                                            <i class="fas fa-info-circle me-2 mt-1 text-primary"></i>
+                                            <div>
+                                                <strong>Build incomplete</strong>
+                                                <p class="mb-0 small">Please select all required components to enable "Add to Cart".</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
+                                <form action="{{ url_for('reset_configuration') }}" method="post">
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-trash-alt me-2"></i>Reset Build
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <!-- Empty Build State -->
+                        <div class="empty-build-state text-center py-5">
+                            <div class="empty-build-icon mb-3">
+                                <i class="fas fa-desktop fa-4x text-secondary"></i>
+                            </div>
+                            <h4>Your Build is Empty</h4>
+                            <p class="text-muted mb-4">Start by selecting components from the left panel to build your custom PC.</p>
+                            <div class="empty-build-actions">
+                                <a href="#" class="btn btn-primary component-dropdown-btn" data-category="cpu">
+                                    <i class="fas fa-microchip me-2"></i>Start with a CPU
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
             
-            <div class="modal-footer">
-                <div class="compatibility-note">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Only compatible components shown</span>
-                </div>
-                
-                <button type="button" id="cancelComponentSelection" class="btn-cancel">
-                    <i class="fas fa-times"></i> Close
-                </button>
-            </div>
+            <!-- Compatibility Check -->
+            <div id="compatibility-alert" class="mt-3" style="display: none;"></div>
         </div>
     </div>
 </div>
@@ -465,312 +827,452 @@
         }
     };
     
-    // Function to create component cards
+    // Function to create component cards instead of table rows
     function createComponentRows(components, category, currentConfig) {
         const cardContainer = document.getElementById('componentCardsWrapper');
         const loadingElement = document.getElementById('component-loading');
         
         // Show loading first
-        if (loadingElement) loadingElement.style.display = 'flex';
-        if (cardContainer) cardContainer.innerHTML = '';
+        loadingElement.style.display = 'block';
+        cardContainer.innerHTML = '';
         
         // Hide loading after small delay
         setTimeout(() => {
-            if (loadingElement) loadingElement.style.display = 'none';
+            loadingElement.style.display = 'none';
             
-            if (!cardContainer || !components || components.length === 0) {
-                if (cardContainer) {
-                    cardContainer.innerHTML = `
-                        <div class="empty-results">
-                            <i class="fas fa-search"></i>
-                            <h3>No components found</h3>
-                            <p>Try a different search term or category</p>
+            if (!components || components.length === 0) {
+                cardContainer.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="mb-3">
+                            <i class="fas fa-search fa-3x text-muted"></i>
                         </div>
-                    `;
-                }
+                        <h5>No components found</h5>
+                        <p class="text-muted">Try a different search term or category</p>
+                    </div>
+                `;
                 return;
             }
             
+            // Create row for the cards
+            const row = document.createElement('div');
+            row.className = 'row g-3';
+            cardContainer.appendChild(row);
+            
             components.forEach(component => {
+                // Create a column for each component
+                const column = document.createElement('div');
+                column.className = 'col-lg-4 col-md-6 mb-3'; // Bootstrap grid columns
+                
                 // Parse current config
-                const isSelected = currentConfig && currentConfig[category] === component.id;
+                let isSelected = false;
+                if (currentConfig !== '{}') {
+                    const config = typeof currentConfig === 'string' ? JSON.parse(currentConfig) : currentConfig;
+                    if (config[category] === component.id) {
+                        isSelected = true;
+                    }
+                }
                 
-                // Create the component card
-                const componentCard = document.createElement('div');
-                componentCard.className = `component-card ${isSelected ? 'selected' : ''}`;
+                // Calculate a performance score based on component specs
+                let performanceScore = 0;
+                if (category === 'cpu') {
+                    performanceScore = (component.cores * 5) + (parseFloat(component.base_clock) * 10);
+                } else if (category === 'gpu') {
+                    performanceScore = component.vram * 10;
+                } else if (category === 'ram') {
+                    performanceScore = component.speed / 40;
+                } else if (category === 'storage') {
+                    performanceScore = component.type === 'SSD' ? 80 : 40;
+                } else {
+                    // For other components, use a simple calculation
+                    performanceScore = Math.min(100, parseInt(component.price) / 5);
+                }
                 
-                componentCard.innerHTML = `
-                    <div class="component-header">
-                        <div class="component-title">
-                            <h3>${component.name}</h3>
-                            <p>${component.brand || ''}</p>
+                // Normalize to 0-100 scale
+                performanceScore = Math.min(100, Math.max(20, performanceScore));
+                
+                // Create specs pills based on component type
+                let specPills = '';
+                for (const [key, value] of Object.entries(component)) {
+                    if (!['id', 'name', 'description', 'price', 'image_url', 'specs'].includes(key)) {
+                        specPills += `<span class="component-spec-pill me-1 mb-1">${key.replace(/_/g, ' ')}: ${value}</span>`;
+                    }
+                }
+                
+                // Build the card HTML
+                column.innerHTML = `
+                    <div class="card h-100 ${isSelected ? 'border-success' : ''}">
+                        <div class="card-header d-flex justify-content-between align-items-center ${isSelected ? 'bg-success bg-opacity-10' : ''}">
+                            <div class="component-name">${component.name}</div>
+                            ${isSelected ? '<span class="badge bg-success">Selected</span>' : ''}
                         </div>
-                        ${isSelected ? '<div class="selected-badge"><i class="fas fa-check"></i> Selected</div>' : ''}
-                    </div>
-                    
-                    <div class="component-body">
-                        <p class="component-desc">${component.description || 'No description available'}</p>
-                        
-                        <div class="component-specs">
-                            ${category === 'cpu' 
-                                ? `<span class="spec-pill">${component.cores} Cores</span>
-                                   <span class="spec-pill">${component.threads} Threads</span>
-                                   <span class="spec-pill">${component.base_clock}GHz</span>`
-                                : ''}
-                            ${category === 'gpu' 
-                                ? `<span class="spec-pill">${component.vram}GB VRAM</span>
-                                   <span class="spec-pill">${component.memory_type}</span>` 
-                                : ''}
-                            ${category === 'ram' 
-                                ? `<span class="spec-pill">${component.capacity}GB</span>
-                                   <span class="spec-pill">${component.speed}MHz</span>`
-                                : ''}
-                            ${category === 'storage' 
-                                ? `<span class="spec-pill">${component.capacity}GB</span>
-                                   <span class="spec-pill">${component.type}</span>`
-                                : ''}
-                            ${category === 'power_supply' 
-                                ? `<span class="spec-pill">${component.wattage}W</span>
-                                   <span class="spec-pill">${component.efficiency}</span>`
-                                : ''}
+                        <div class="card-body">
+                            <p class="component-description text-muted small">${component.description}</p>
+                            <div class="component-specs-pills d-flex flex-wrap my-2">
+                                ${specPills}
+                            </div>
+                            <div class="mt-3">
+                                <div class="component-performance-label d-flex justify-content-between">
+                                    <span>${categoryInfo[category].performanceMetric}</span>
+                                    <span class="component-performance-value">${Math.round(performanceScore)}/100</span>
+                                </div>
+                                <div class="component-performance-bar">
+                                    <div class="component-performance-fill" style="width: ${performanceScore}%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="component-price fs-5 fw-bold text-success">$${component.price}</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="component-footer">
-                        <div class="component-price">$${component.price}</div>
-                        <form action="${isSelected 
-                            ? '/builder/remove_component/${category}' 
-                            : '/builder/add_component/${category}/${component.id}'}" 
-                              method="POST">
-                            <button type="submit" class="${isSelected ? 'btn-remove' : 'btn-add'}">
-                                ${isSelected 
-                                    ? '<i class="fas fa-times"></i> Remove' 
-                                    : '<i class="fas fa-plus"></i> Select'}
-                            </button>
-                        </form>
+                        <div class="card-footer">
+                            <form action="/add/${category}/${component.id}" method="post" class="w-100">
+                                <button type="submit" class="btn ${isSelected ? 'btn-success' : 'btn-primary'} w-100 select-component-btn" ${isSelected ? 'disabled' : ''}>
+                                    <i class="fas fa-${isSelected ? 'check-circle' : 'plus-circle'} me-1"></i>
+                                    ${isSelected ? 'Selected' : 'Select'}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 `;
                 
-                cardContainer.appendChild(componentCard);
+                row.appendChild(column);
             });
-        }, 300);
+        }, 500);
     }
     
-    // Document ready
-    document.addEventListener('DOMContentLoaded', function() {
-        // Set up component selection triggers
-        const selectButtons = document.querySelectorAll('.component-select-btn');
-        selectButtons.forEach(button => {
-            if (button) {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    if (!category) return;
-                    
-                    currentCategory = category;
-                    
-                    // Update modal
-                    const backdrop = document.getElementById('componentSelectionBackdrop');
-                    const container = document.getElementById('componentSelectionContainer');
-                    const modalLabel = document.getElementById('componentModalLabel');
-                    const modalDescription = document.getElementById('modalCategoryDescription');
-                    const modalIcon = document.getElementById('modalCategoryIcon').querySelector('i');
-                    
-                    if (backdrop) backdrop.classList.remove('d-none');
-                    if (container) container.classList.remove('d-none');
-                    
-                    if (modalLabel) modalLabel.textContent = `Select ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-                    if (modalDescription && categoryInfo[category]) {
-                        modalDescription.textContent = categoryInfo[category].description;
-                    }
-                    if (modalIcon && categoryInfo[category]) {
-                        modalIcon.className = `fas fa-${categoryInfo[category].icon}`;
-                    }
-                    
-                    // Load components
-                    filterAndSortComponents();
-                });
-            }
-        });
-        
-        // Set up component search
-        const componentSearchInput = document.getElementById('componentSearch');
-        if (componentSearchInput) {
-            componentSearchInput.addEventListener('input', function() {
-                filterAndSortComponents();
-            });
-        }
-        
-        // Set up filter pills
-        const filterPills = document.querySelectorAll('.filter-pill');
-        filterPills.forEach(pill => {
-            if (pill) {
-                pill.addEventListener('click', function() {
-                    // Remove active class from all pills
-                    filterPills.forEach(p => p.classList.remove('active'));
-                    
-                    // Add active class to clicked pill
-                    this.classList.add('active');
-                    
-                    // Apply filtering
-                    filterAndSortComponents();
-                });
-            }
-        });
-        
-        // Function to combine all the search and filter logic
-        function filterAndSortComponents() {
-            const searchTerm = componentSearchInput ? componentSearchInput.value.toLowerCase() : '';
+    // When the component dropdown button is clicked
+    document.querySelectorAll('.component-dropdown-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the category from the data attribute
+            currentCategory = this.getAttribute('data-category');
             
-            // Filter components by search term
-            let filtered = componentData[currentCategory] || [];
+            // Set the title and icon
+            const categoryTitle = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+            document.getElementById('componentModalLabel').textContent = `Select ${categoryTitle}`;
             
-            // Get the active filter
-            const activeFilter = document.querySelector('.filter-pill.active');
-            const filterType = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+            // Update icon and description
+            const iconContainer = document.getElementById('modalCategoryIcon');
+            iconContainer.innerHTML = `<i class="fas fa-${categoryInfo[currentCategory].icon}"></i>`;
             
-            // Apply text search
-            if (searchTerm) {
-                filtered = filtered.filter(component => {
-                    return component.name.toLowerCase().includes(searchTerm) ||
-                           (component.description && component.description.toLowerCase().includes(searchTerm)) ||
-                           (component.brand && component.brand.toLowerCase().includes(searchTerm));
-                });
-            }
+            // Update subtitle
+            document.getElementById('modalCategoryDescription').textContent = categoryInfo[currentCategory].description;
             
-            // Apply category filter (if not 'all')
-            if (filterType && filterType !== 'all') {
-                if (filterType === 'recommended') {
-                    // Filter for mid-range components (middle 50% by price)
-                    const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
-                    const quarterIndex = Math.floor(sortedByPrice.length / 4);
-                    const lowerIndex = quarterIndex;
-                    const upperIndex = sortedByPrice.length - quarterIndex;
-                    
-                    filtered = sortedByPrice.slice(lowerIndex, upperIndex);
-                } else if (filterType === 'premium') {
-                    // Filter for high-end components (top 33% by price)
-                    const sortedByPrice = [...filtered].sort((a, b) => b.price - a.price);
-                    const thirdIndex = Math.ceil(sortedByPrice.length / 3);
-                    
-                    filtered = sortedByPrice.slice(0, thirdIndex);
-                } else if (filterType === 'budget') {
-                    // Filter for budget components (bottom 33% by price)
-                    const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
-                    const thirdIndex = Math.ceil(sortedByPrice.length / 3);
-                    
-                    filtered = sortedByPrice.slice(0, thirdIndex);
+            // Clear previous component rows and show loading
+            const cardContainer = document.getElementById('componentCardsWrapper');
+            const loadingElement = document.getElementById('component-loading');
+            cardContainer.innerHTML = '';
+            loadingElement.style.display = 'block';
+            
+            // Show the component selection container and backdrop
+            const componentSelectionContainer = document.getElementById('componentSelectionContainer');
+            const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
+            componentSelectionContainer.classList.remove('d-none');
+            componentSelectionBackdrop.classList.remove('d-none');
+            
+            // Position the component selection container at the top of the page
+            componentSelectionContainer.style.position = 'fixed';
+            componentSelectionContainer.style.top = '10px';
+            componentSelectionContainer.style.left = '50%'; 
+            componentSelectionContainer.style.transform = 'translateX(-50%)';
+            componentSelectionContainer.style.zIndex = '1050';
+            componentSelectionContainer.style.width = '90%';
+            componentSelectionContainer.style.maxWidth = '900px';
+            componentSelectionContainer.style.maxHeight = '85vh';
+            componentSelectionContainer.style.display = 'flex';
+            componentSelectionContainer.style.flexDirection = 'column';
+            
+            // Simulate loading delay (remove in production)
+            setTimeout(() => {
+                // Store filtered components for searching
+                filteredComponents = componentData[currentCategory] || [];
+                
+                // Use the component card creation function
+                createComponentRows(filteredComponents, currentCategory, '{{ current_config|tojson }}');
+                
+                // Setup search functionality
+                const searchInput = document.getElementById('componentSearch');
+                if (searchInput) {
+                    searchInput.value = '';  // Clear any previous search
+                    searchInput.focus();     // Focus the search input for easy searching
                 }
-            }
-            
-            filteredComponents = filtered;
-            
-            // Create component rows with the filtered data
-            if (currentCategory) {
-                createComponentRows(filteredComponents, currentCategory, {{ current_config|tojson }});
-            }
-        }
-        
-        // Close component selection modal
-        const closeComponentSelection = document.getElementById('closeComponentSelection');
-        const cancelComponentSelection = document.getElementById('cancelComponentSelection');
-        const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
-        
-        function closeComponentModal() {
-            const backdrop = document.getElementById('componentSelectionBackdrop');
-            const container = document.getElementById('componentSelectionContainer');
-            
-            if (backdrop) backdrop.classList.add('d-none');
-            if (container) container.classList.add('d-none');
-        }
-        
-        if (closeComponentSelection) {
-            closeComponentSelection.addEventListener('click', closeComponentModal);
-        }
-        
-        if (cancelComponentSelection) {
-            cancelComponentSelection.addEventListener('click', closeComponentModal);
-        }
-        
-        if (componentSelectionBackdrop) {
-            componentSelectionBackdrop.addEventListener('click', closeComponentModal);
-        }
-        
-        // Sort options
-        const sortOptions = document.querySelectorAll('.sort-option');
-        sortOptions.forEach(option => {
-            if (option) {
-                option.addEventListener('click', function() {
-                    const sortBy = this.getAttribute('data-sort');
-                    
-                    if (filteredComponents.length > 0) {
-                        if (sortBy === 'name') {
-                            filteredComponents.sort((a, b) => a.name.localeCompare(b.name));
-                        } else if (sortBy === 'price-asc') {
-                            filteredComponents.sort((a, b) => a.price - b.price);
-                        } else if (sortBy === 'price-desc') {
-                            filteredComponents.sort((a, b) => b.price - a.price);
-                        } else if (sortBy === 'performance') {
-                            // Sort by performance score if available
-                            filteredComponents.sort((a, b) => (b.performance_score || 0) - (a.performance_score || 0));
-                        }
-                        
-                        createComponentRows(filteredComponents, currentCategory, {{ current_config|tojson }});
-                    }
-                });
-            }
+            }, 500); // 500ms delay to show the loading animation
         });
-        
-        // Mobile Summary Panel
-        const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
-        const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
-        const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
-        const closeMobileSummary = document.getElementById('closeMobileSummary');
-        
-        // Function to close the mobile summary panel
-        function closeMobileSummaryPanel() {
-            if (mobileSummaryPanel) mobileSummaryPanel.classList.remove('active');
-            if (mobileSummaryBackdrop) mobileSummaryBackdrop.classList.remove('active');
-            document.body.classList.remove('modal-open');
-        }
-        
-        // Mobile button click
-        if (mobileSummaryBtn && mobileSummaryPanel) {
-            mobileSummaryBtn.addEventListener('click', function() {
-                mobileSummaryPanel.classList.add('active');
-                if (mobileSummaryBackdrop) mobileSummaryBackdrop.classList.add('active');
-                document.body.classList.add('modal-open');
-            });
-        }
-        
-        // Close button click
-        if (closeMobileSummary) {
-            closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
-        }
-        
-        // Backdrop click
-        if (mobileSummaryBackdrop) {
-            mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
-        }
-        
-        // Swipe to close
-        if (mobileSummaryPanel) {
-            let touchStartY = 0;
-            let touchEndY = 0;
-            
-            mobileSummaryPanel.addEventListener('touchstart', function(e) {
-                touchStartY = e.touches[0].clientY;
-            });
-            
-            mobileSummaryPanel.addEventListener('touchmove', function(e) {
-                touchEndY = e.touches[0].clientY;
-            });
-            
-            mobileSummaryPanel.addEventListener('touchend', function() {
-                if (touchEndY - touchStartY > 70) { // Swipe down threshold
-                    closeMobileSummaryPanel();
-                }
-            });
-        }
     });
+    
+    // Add event listeners for closing the component selection
+    document.getElementById('closeComponentSelection').addEventListener('click', function() {
+        document.getElementById('componentSelectionContainer').classList.add('d-none');
+        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
+    });
+    
+    document.getElementById('cancelComponentSelection').addEventListener('click', function() {
+        document.getElementById('componentSelectionContainer').classList.add('d-none');
+        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
+    });
+    
+    // Close when clicking on backdrop
+    document.getElementById('componentSelectionBackdrop').addEventListener('click', function() {
+        document.getElementById('componentSelectionContainer').classList.add('d-none');
+        document.getElementById('componentSelectionBackdrop').classList.add('d-none');
+    });
+    
+    // Filter components when search input changes
+    document.getElementById('componentSearch').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        // Filter the components based on search term
+        const filtered = filteredComponents.filter(component => {
+            return component.name.toLowerCase().includes(searchTerm) || 
+                   component.description.toLowerCase().includes(searchTerm);
+        });
+        
+        // Update the table with filtered components
+        createComponentRows(filtered, currentCategory, '{{ current_config|tojson }}');
+    });
+    
+    // Sort components when a sort option is selected
+    document.querySelectorAll('.sort-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const sortBy = this.getAttribute('data-sort');
+            let sorted = [...filteredComponents];
+            
+            if (sortBy === 'name') {
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'price-asc') {
+                sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            } else if (sortBy === 'price-desc') {
+                sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            } else if (sortBy === 'performance') {
+                // Simple mock-sorting by performance (in a real app this would use actual benchmark data)
+                sorted.sort((a, b) => {
+                    // Create a simple mock score based on component attributes
+                    function getScore(component) {
+                        if (currentCategory === 'cpu') {
+                            return (component.cores * 5) + (parseFloat(component.base_clock) * 10);
+                        } else if (currentCategory === 'gpu') {
+                            return component.vram * 10;
+                        } else if (currentCategory === 'ram') {
+                            return component.speed;
+                        } else if (currentCategory === 'storage') {
+                            return component.type === 'SSD' ? 100 : 50;
+                        } else {
+                            return parseFloat(component.price); // Default to price for other categories
+                        }
+                    }
+                    
+                    return getScore(b) - getScore(a); // Higher score first
+                });
+            }
+            
+            // Update the table with sorted components
+            createComponentRows(sorted, currentCategory, '{{ current_config|tojson }}');
+            
+            // Add animation to indicate sorting happened
+            const componentWrapper = document.getElementById('componentCardsWrapper');
+            if (componentWrapper) {
+                componentWrapper.classList.add('sort-animation');
+                setTimeout(() => {
+                    componentWrapper.classList.remove('sort-animation');
+                }, 500);
+            }
+        });
+    });
+    
+    // Check compatibility when component is added
+    const cardContainer = document.getElementById('componentCardsWrapper');
+    if (cardContainer) {
+        cardContainer.addEventListener('submit', function(e) {
+            if (e.target.tagName === 'FORM') {
+                // Extract component ID from URL safely
+                try {
+                    const urlParts = e.target.getAttribute('action').split('/');
+                    // If the URL format is /add/category/componentId, the component ID is the last part
+                    const componentId = urlParts[urlParts.length - 1];
+                    
+                    // Add loading animation to the button
+                    const button = e.target.querySelector('button');
+                    if (button) {
+                        button.disabled = true;
+                        button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
+                        button.classList.add('btn-loading');
+                    }
+                } catch (error) {
+                    console.error('Error processing component selection:', error);
+                    // Allow form submission to continue
+                }
+            }
+        });
+    }
+    
+    // Also add event delegation to modal body to catch all forms
+    const modalBody = document.querySelector('.modal-body');
+    if (modalBody) {
+        modalBody.addEventListener('submit', function(e) {
+            if (e.target.tagName === 'FORM') {
+                // Add loading animation to the button
+                const button = e.target.querySelector('button');
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Selecting...';
+                    button.classList.add('btn-loading');
+                }
+            }
+        });
+    }
+    
+    // Add loading animations to Remove buttons
+    document.querySelectorAll('.remove-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            try {
+                const btn = this.querySelector('.remove-btn');
+                if (!btn) {
+                    console.error('Remove button not found');
+                    this.submit();
+                    return;
+                }
+                
+                const btnText = btn.querySelector('.btn-text');
+                if (!btnText) {
+                    console.error('Button text element not found');
+                    this.submit();
+                    return;
+                }
+                
+                const originalText = btnText.textContent;
+                const iconElement = btn.querySelector('i');
+                const originalIcon = iconElement ? iconElement.className : '';
+                
+                // Show loading state
+                btn.classList.add('btn-loading');
+                btn.disabled = true;
+                btnText.textContent = 'Removing...';
+                
+                if (iconElement) {
+                    iconElement.className = 'fas fa-spinner fa-spin';
+                }
+                
+                // Create a ripple effect around the component card for visual feedback
+                const card = this.closest('.card');
+                if (card) {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.boxShadow = '0 0 0 2px var(--bs-danger)';
+                    
+                    // Add fading animation to the whole component
+                    setTimeout(() => {
+                        card.style.opacity = '0.5';
+                        
+                        // Wait a moment, then submit the form
+                        setTimeout(() => {
+                            this.submit();
+                        }, 400);
+                    }, 400);
+                } else {
+                    // No card found, just submit the form
+                    setTimeout(() => {
+                        this.submit();
+                    }, 400);
+                }
+            } catch (error) {
+                console.error('Error in remove button handling:', error);
+                // Submit the form anyway if there's an error
+                this.submit();
+            }
+        });
+    });
+    
+    // Add loading animations to Reset Configuration button
+    const resetForm = document.querySelector('form[action*="reset"]');
+    if (resetForm) {
+        resetForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            try {
+                const btn = this.querySelector('button');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Resetting...';
+                    btn.disabled = true;
+                    btn.classList.add('btn-loading');
+                }
+                
+                // Add animation to all component cards
+                const componentCards = document.querySelectorAll('.component-card, .selected-component-details');
+                if (componentCards.length > 0) {
+                    componentCards.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.transition = 'all 0.3s ease';
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(-10px)';
+                        }, index * 100);
+                    });
+                }
+                
+                // Submit form after animations
+                setTimeout(() => {
+                    this.submit();
+                }, 800);
+            } catch (error) {
+                console.error('Error in reset form handling:', error);
+                // Submit the form anyway if there's an error
+                this.submit();
+            }
+        });
+    }
+    
+    // Initialize mobile summary panel functionality
+    const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
+    const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
+    const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
+    const closeMobileSummary = document.getElementById('closeMobileSummary');
+    
+    console.log('Initializing mobile panel in builder.html');
+    
+    if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
+        console.log('All mobile summary elements found in builder.html');
+        
+        // Open panel when the button is clicked
+        mobileSummaryBtn.addEventListener('click', function() {
+            console.log('Mobile summary button clicked');
+            mobileSummaryPanel.classList.add('active');
+            mobileSummaryBackdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Function to close the panel
+        function closeMobileSummaryPanel() {
+            console.log('Closing mobile summary panel');
+            mobileSummaryPanel.classList.remove('active');
+            mobileSummaryBackdrop.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close panel when X button is clicked
+        closeMobileSummary.addEventListener('click', closeMobileSummaryPanel);
+        
+        // Close panel when backdrop is clicked
+        mobileSummaryBackdrop.addEventListener('click', closeMobileSummaryPanel);
+        
+        // Setup swipe to close
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        mobileSummaryPanel.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        mobileSummaryPanel.addEventListener('touchmove', function(e) {
+            touchEndY = e.touches[0].clientY;
+        });
+        
+        mobileSummaryPanel.addEventListener('touchend', function() {
+            if (touchEndY - touchStartY > 100) {
+                closeMobileSummaryPanel();
+            }
+            touchStartY = 0;
+            touchEndY = 0;
+        });
+    } else {
+        console.error('One or more mobile summary elements not found');
+    }
 </script>
 {% endblock %}
