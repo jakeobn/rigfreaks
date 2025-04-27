@@ -6,6 +6,7 @@
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
     min-height: 100vh;
     color: var(--bs-light);
+    overflow-x: hidden;
 }
 
 /* Header Styling */
@@ -138,6 +139,11 @@
 }
 
 /* Component Cards */
+.component-card-wrapper {
+    height: 100%;
+    margin-bottom: 1.5rem;
+}
+
 .component-card {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 1rem;
@@ -260,9 +266,11 @@
     border-radius: 1rem;
     padding: 1.5rem;
     position: sticky;
-    top: 1rem;
+    top: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
 }
 
 .build-summary-header {
@@ -522,12 +530,17 @@
         font-size: 1rem;
     }
     
+    .progress-indicator-container {
+        padding: 0 0.5rem;
+    }
+    
     .build-progress {
-        justify-content: center;
+        justify-content: flex-start;
         padding-bottom: 1rem;
         margin: 0 auto 1.5rem;
         width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .build-progress-item {

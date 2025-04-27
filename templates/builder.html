@@ -322,9 +322,9 @@
                         ] %}
                         
                         {% for category in component_categories %}
-                        <div class="col-md-6">
+                        <div class="col-xl-6 col-lg-6 col-md-6 mb-4">
                             <div class="component-card-wrapper">
-                                <div class="component-card h-100 shadow-sm {% if current_config.get(category.id) %}selected-component{% else %}{% endif %}">
+                                <div class="component-card shadow-sm {% if current_config.get(category.id) %}selected-component{% else %}{% endif %}">
                                     <!-- Component Card Header -->
                                     <div class="component-card-header">
                                         <div class="component-icon-circle">
