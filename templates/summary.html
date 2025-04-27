@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Configuration Summary{% endblock %}
+{% block title %}System Summary{% endblock %}
 
 {% block content %}
 <!-- Loading animation container -->
@@ -23,7 +23,7 @@
     {% if compatibility_issues %}
     <div class="alert alert-warning mb-4">
         <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Compatibility Issues</h4>
-        <p>The following issues were detected with your configuration:</p>
+        <p>The following issues were detected with your system:</p>
         <ul>
             {% for issue in compatibility_issues %}
             <li>{{ issue }}</li>
@@ -34,7 +34,7 @@
     {% else %}
     <div class="alert alert-success mb-4">
         <h4 class="alert-heading"><i class="fas fa-check-circle me-2"></i>Compatible Build</h4>
-        <p class="mb-0">All components in your configuration are compatible with each other.</p>
+        <p class="mb-0">All components in your system are compatible with each other.</p>
     </div>
     {% endif %}
     
@@ -166,7 +166,7 @@
                             
                             {% if missing.count > 0 %}
                                 <div class="alert alert-warning">
-                                    <h6 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Incomplete Configuration</h6>
+                                    <h6 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Incomplete System</h6>
                                     <p class="mb-0">Please add all required components before adding to cart.</p>
                                     <p class="mb-0">Missing: {{ missing.categories|join(', ') }}</p>
                                 </div>
@@ -178,10 +178,10 @@
                                 </form>
                             {% endif %}
                             <a href="{{ url_for('builds.save_build') }}" class="btn btn-primary">
-                                <i class="fas fa-save me-1"></i>Save Configuration
+                                <i class="fas fa-save me-1"></i>Save System
                             </a>
                             <a href="{{ url_for('builder') }}" class="btn btn-outline-primary">
-                                <i class="fas fa-edit me-1"></i>Edit Configuration
+                                <i class="fas fa-edit me-1"></i>Edit System
                             </a>
                             <form action="{{ url_for('reset_configuration') }}" method="post">
                                 <button type="submit" class="btn btn-outline-danger w-100">
