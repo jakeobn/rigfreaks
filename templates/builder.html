@@ -266,6 +266,8 @@
             <div class="drag-indicator mx-auto mb-1" style="width: 40px; height: 5px; border-radius: 3px;"></div>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-3 px-3 pt-1">
+            <h5 class="m-0">Build Summary</h5>
+            <button type="button" class="btn-close" id="closeMobileSummary" aria-label="Close"></button>
         </div>
         
         <div class="mobile-summary-content">
@@ -394,6 +396,13 @@
     
     <!-- Mobile Summary Panel Backdrop -->
     <div class="mobile-summary-backdrop d-md-none" id="mobileSummaryBackdrop"></div>
+    
+    <!-- Mobile Summary Button -->
+    <div class="d-md-none position-fixed bottom-0 end-0 m-4">
+        <button type="button" class="btn btn-primary rounded-circle shadow mobile-summary-btn" id="mobileSummaryBtn">
+            <i class="fas fa-shopping-basket"></i>
+        </button>
+    </div>
     
     <!-- Component Selection Modal using Bootstrap Modal for better interaction -->
     <div class="modal fade" id="componentSelectionModal" tabindex="-1" aria-labelledby="componentSelectionModalLabel" aria-hidden="true">
@@ -1338,7 +1347,7 @@
         });
     }
     
-    // Initialize mobile summary panel functionality
+    // Initialize mobile summary panel functionality with error handling
     const mobileSummaryBtn = document.getElementById('mobileSummaryBtn');
     const mobileSummaryPanel = document.getElementById('mobileSummaryPanel');
     const mobileSummaryBackdrop = document.getElementById('mobileSummaryBackdrop');
@@ -1346,6 +1355,13 @@
     
     console.log('Initializing mobile panel in builder.html');
     
+    // Check if all elements exist
+    if (!mobileSummaryBtn) console.warn('Mobile summary button not found');
+    if (!mobileSummaryPanel) console.warn('Mobile summary panel not found');
+    if (!mobileSummaryBackdrop) console.warn('Mobile summary backdrop not found');
+    if (!closeMobileSummary) console.warn('Close mobile summary button not found');
+    
+    // Only initialize if all elements exist
     if (mobileSummaryBtn && mobileSummaryPanel && mobileSummaryBackdrop && closeMobileSummary) {
         console.log('All mobile summary elements found in builder.html');
         
