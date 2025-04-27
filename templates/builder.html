@@ -5,73 +5,15 @@
 {% block head %}
 {{ super() }}
 <style>
-    /* Component Selection Modal */
-    .component-selection-container {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.9);
-        z-index: 1050;
-        width: 95%;
-        max-width: 1000px;
-        max-height: 90vh;
-        margin: 0 auto;
-        opacity: 0;
-        pointer-events: none;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s ease;
-        background-color: white;
-        border-radius: 8px;
-    }
-    
-    .component-selection-container.active {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    
-    .component-selection-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1040;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-    
-    .component-selection-backdrop.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    
-    /* Make card body scrollable instead of entire container */
-    .component-scroll-container {
-        padding: 15px;
+    /* Component Selection Modal styling */
+    .modal-dialog-scrollable .modal-body {
         overflow-y: auto;
         max-height: calc(90vh - 200px);
     }
     
-    @media (min-width: 768px) {
-        .component-selection-container {
-            top: 10%;
-            left: 50%;
-            right: auto;
-            bottom: auto;
-            width: 90%;
-            max-width: 900px;
-            max-height: 80vh;
-            transform: translate(-50%, -10px) scale(0.98);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .component-selection-container.active {
-            transform: translate(-50%, 0) scale(1);
-        }
+    /* We're using Bootstrap's built-in modal functionality now */
+    .component-scroll-container {
+        padding: 15px;
     }
     
     .component-spec-pill {
@@ -424,30 +366,30 @@
     <!-- Mobile Summary Panel Backdrop -->
     <div class="mobile-summary-backdrop d-md-none" id="mobileSummaryBackdrop"></div>
     
-    <!-- Component Selection Area - Fixed popup modal -->
-    <div class="component-selection-backdrop d-none" id="componentSelectionBackdrop"></div>
-    <div class="component-selection-container d-none" id="componentSelectionContainer">
-        <div class="card shadow-lg border-0 rounded-4 overflow-hidden w-100 h-100">
-                <!-- Modern header with gradient background and improved visual design -->
-                <div class="card-header d-flex align-items-center justify-content-between bg-primary bg-gradient text-white p-3">
+    <!-- Component Selection Modal using Bootstrap Modal for better interaction -->
+    <div class="modal fade" id="componentSelectionModal" tabindex="-1" aria-labelledby="componentSelectionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <!-- Modern header with gradient background -->
+                <div class="modal-header bg-primary bg-gradient text-white p-3">
                     <div class="d-flex align-items-center">
                         <div class="modal-icon-container me-3 bg-white bg-opacity-25 rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;" id="modalCategoryIcon">
                             <i class="fas fa-puzzle-piece fa-lg"></i>
                         </div>
                         <div>
-                            <h5 class="mb-0 fw-bold" id="componentModalLabel">Select Component</h5>
+                            <h5 class="modal-title mb-0 fw-bold" id="componentModalLabel">Select Component</h5>
                             <div class="small opacity-75" id="modalCategoryDescription">
                                 Choose from compatible components
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn-close btn-close-white p-3" id="closeComponentSelection" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 
-                <!-- Improved search and filter section with modern aesthetic -->
-                <div class="card-header bg-light p-3 border-0 shadow-sm">
+                <!-- Improved search and filter section -->
+                <div class="modal-header bg-light p-3 border-0 shadow-sm">
                     <!-- Desktop view - combined search and sort -->
-                    <div class="input-group d-none d-md-flex shadow-sm rounded-3 overflow-hidden">
+                    <div class="input-group d-none d-md-flex shadow-sm rounded-3 overflow-hidden w-75">
                         <span class="input-group-text bg-white border-end-0 text-primary">
                             <i class="fas fa-search"></i>
                         </span>
@@ -463,8 +405,8 @@
                         </ul>
                     </div>
                     
-                    <!-- Modern mobile view - improved search and sort for better usability -->
-                    <div class="d-md-none">
+                    <!-- Mobile view - search and sort -->
+                    <div class="d-md-none w-100">
                         <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden">
                             <span class="input-group-text bg-white border-end-0 text-primary">
                                 <i class="fas fa-search"></i>
@@ -487,48 +429,39 @@
                     </div>
                 </div>
                 
-                <!-- Improved component display area with better aesthetics -->
-                <div class="card-body p-0 bg-light bg-opacity-50">
-                    <div id="componentScrollContainer" class="component-scroll-container">
-                        <!-- Enhanced modern loading animation with multiple elements -->
-                        <div class="text-center py-5" id="component-loading">
-                            <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
-                                <div class="spinner-grow spinner-grow-sm text-primary" style="animation-delay: 0s;" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <div class="spinner-grow spinner-grow-sm text-success" style="animation-delay: 0.15s;" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <div class="spinner-grow spinner-grow-sm text-info" style="animation-delay: 0.3s;" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </div>
-                            <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <h5 class="fw-bold">Loading Components</h5>
-                            <p class="text-muted mb-0">Finding the best options for your build...</p>
+                <!-- Component display area -->
+                <div class="modal-body p-0 bg-light bg-opacity-50">
+                    <!-- Loading animation -->
+                    <div class="text-center py-5" id="component-loading">
+                        <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+                            <div class="spinner-grow spinner-grow-sm text-primary" style="animation-delay: 0s;" role="status"></div>
+                            <div class="spinner-grow spinner-grow-sm text-success" style="animation-delay: 0.15s;" role="status"></div>
+                            <div class="spinner-grow spinner-grow-sm text-info" style="animation-delay: 0.3s;" role="status"></div>
                         </div>
-                        
-                        <!-- Component cards with improved grid layout -->
-                        <div id="componentCardsWrapper" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 p-3"></div>
+                        <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;"></div>
+                        <h5 class="fw-bold">Loading Components</h5>
+                        <p class="text-muted mb-0">Finding the best options for your build...</p>
                     </div>
+                    
+                    <!-- Component cards -->
+                    <div id="componentCardsWrapper" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 p-3"></div>
                 </div>
                 
-                <!-- Modern footer with improved button styling -->
-                <div class="card-footer d-flex justify-content-between align-items-center p-3 bg-white border-0">
-                    <div class="compatibility-note">
+                <!-- Modal footer -->
+                <div class="modal-footer bg-white border-0 py-3">
+                    <div class="compatibility-note me-auto">
                         <span class="badge bg-primary bg-opacity-10 text-primary p-2 rounded-pill">
                             <i class="fas fa-info-circle me-1"></i>
                             Only compatible components shown
                         </span>
                     </div>
-                    <button type="button" class="btn btn-outline-primary rounded-pill px-4" id="cancelComponentSelection">
+                    <button type="button" class="btn btn-outline-primary rounded-pill px-4" data-bs-dismiss="modal">
                         <i class="fas fa-times me-2"></i>Close
                     </button>
                 </div>
             </div>
         </div>
+    </div>
     
     <!-- Component Selection Progress -->
     <div class="row mb-4 build-progress">
