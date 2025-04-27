@@ -776,14 +776,14 @@ body {
 .search-wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .search-icon {
     position: absolute;
     left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0.75rem;
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -800,18 +800,62 @@ body {
     color: rgba(255, 255, 255, 0.5);
 }
 
+.filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.filter-pills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    margin-right: 0.25rem;
+}
+
+.filter-pill {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.filter-pill.active {
+    background: var(--bs-primary);
+    color: white;
+    border-color: var(--bs-primary);
+}
+
 .sort-dropdown {
-    margin-left: 1rem;
+    margin-left: auto;
 }
 
 .btn-sort {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.7);
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
+    font-size: 0.85rem;
 }
 
 .modal-body {
@@ -830,7 +874,7 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.loading-state .spinner-grow {
+.loading-state .spinner-border {
     width: 3rem;
     height: 3rem;
     margin-bottom: 1rem;
@@ -839,7 +883,124 @@ body {
 .component-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+    gap: 1.25rem;
+}
+
+/* Modal Component Cards */
+.modal-body .component-card {
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body .component-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body .component-card.selected {
+    background: rgba(40, 167, 69, 0.1);
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
+.modal-body .component-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-body .component-title {
+    flex: 1;
+}
+
+.modal-body .component-title h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #fff;
+}
+
+.modal-body .component-title p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0;
+}
+
+.modal-body .component-body {
+    padding: 1rem;
+    flex: 1;
+}
+
+.modal-body .component-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.modal-body .component-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-body .component-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: auto;
+}
+
+.modal-body .component-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bs-light);
+}
+
+.modal-body .btn-add {
+    background: var(--bs-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 0;
+}
+
+.modal-body .btn-add:hover {
+    background: #0d6efd;
+    transform: translateY(-2px);
+}
+
+.modal-body .btn-remove {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--bs-danger);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.modal-body .btn-remove:hover {
+    background: rgba(220, 53, 69, 0.2);
 }
 
 .modal-footer {

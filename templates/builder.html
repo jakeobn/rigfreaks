@@ -366,23 +366,33 @@
                 <div class="search-wrapper">
                     <i class="fas fa-search search-icon"></i>
                     <input type="text" id="componentSearch" placeholder="Search components...">
-                    <div class="sort-dropdown">
-                        <button class="btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-sort"></i> <span>Sort</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><button class="dropdown-item sort-option" data-sort="name"><i class="fas fa-font text-secondary me-2"></i>Name</button></li>
-                            <li><button class="dropdown-item sort-option" data-sort="price-asc"><i class="fas fa-arrow-up text-success me-2"></i>Price (Low to High)</button></li>
-                            <li><button class="dropdown-item sort-option" data-sort="price-desc"><i class="fas fa-arrow-down text-danger me-2"></i>Price (High to Low)</button></li>
-                            <li><button class="dropdown-item sort-option" data-sort="performance"><i class="fas fa-tachometer-alt text-primary me-2"></i>Performance</button></li>
-                        </ul>
+                    <div class="filter-controls">
+                        <div class="filter-pills">
+                            <span class="filter-label">Filters:</span>
+                            <div class="filter-pill active" data-filter="all">All</div>
+                            <div class="filter-pill" data-filter="recommended">Recommended</div>
+                            <div class="filter-pill" data-filter="premium">Premium</div>
+                            <div class="filter-pill" data-filter="budget">Budget</div>
+                        </div>
+                        
+                        <div class="sort-dropdown">
+                            <button class="btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-sort"></i> <span>Sort</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><button class="dropdown-item sort-option" data-sort="name"><i class="fas fa-font text-light me-2"></i>Name</button></li>
+                                <li><button class="dropdown-item sort-option" data-sort="price-asc"><i class="fas fa-arrow-up text-success me-2"></i>Price (Low to High)</button></li>
+                                <li><button class="dropdown-item sort-option" data-sort="price-desc"><i class="fas fa-arrow-down text-danger me-2"></i>Price (High to Low)</button></li>
+                                <li><button class="dropdown-item sort-option" data-sort="performance"><i class="fas fa-tachometer-alt text-primary me-2"></i>Performance</button></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div class="modal-body">
                 <div id="component-loading" class="loading-state">
-                    <div class="spinner-grow text-primary" role="status"></div>
+                    <div class="spinner-border text-primary" role="status"></div>
                     <p>Finding the best components for your build...</p>
                 </div>
                 
@@ -597,12 +607,42 @@
             // Filter components by search term
             let filtered = componentData[currentCategory] || [];
             
+            // Get the active filter
+            const activeFilter = document.querySelector('.filter-pill.active');
+            const filterType = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+            
+            // Apply text search
             if (searchTerm) {
                 filtered = filtered.filter(component => {
                     return component.name.toLowerCase().includes(searchTerm) ||
                            (component.description && component.description.toLowerCase().includes(searchTerm)) ||
                            (component.brand && component.brand.toLowerCase().includes(searchTerm));
                 });
+            }
+            
+            // Apply category filter (if not 'all')
+            if (filterType && filterType !== 'all') {
+                if (filterType === 'recommended') {
+                    // Filter for mid-range components (middle 50% by price)
+                    const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
+                    const quarterIndex = Math.floor(sortedByPrice.length / 4);
+                    const lowerIndex = quarterIndex;
+                    const upperIndex = sortedByPrice.length - quarterIndex;
+                    
+                    filtered = sortedByPrice.slice(lowerIndex, upperIndex);
+                } else if (filterType === 'premium') {
+                    // Filter for high-end components (top 33% by price)
+                    const sortedByPrice = [...filtered].sort((a, b) => b.price - a.price);
+                    const thirdIndex = Math.ceil(sortedByPrice.length / 3);
+                    
+                    filtered = sortedByPrice.slice(0, thirdIndex);
+                } else if (filterType === 'budget') {
+                    // Filter for budget components (bottom 33% by price)
+                    const sortedByPrice = [...filtered].sort((a, b) => a.price - b.price);
+                    const thirdIndex = Math.ceil(sortedByPrice.length / 3);
+                    
+                    filtered = sortedByPrice.slice(0, thirdIndex);
+                }
             }
             
             filteredComponents = filtered;
