@@ -1,0 +1,52 @@
+<!-- Simple Bootstrap Modal with Fixed Height and Scrolling -->
+<div class="modal fade" id="componentSelectionModal" tabindex="-1" aria-labelledby="componentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Simple header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="componentModalLabel">Select Component</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <!-- Category info and search -->
+            <div class="modal-header bg-light border-top border-bottom">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary rounded-circle p-2 text-white d-flex align-items-center justify-content-center me-3" id="modalCategoryIcon" style="width: 40px; height: 40px;">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div>
+                        <div class="mb-0" id="modalCategoryDescription">Choose a component</div>
+                    </div>
+                </div>
+                <div class="input-group" style="max-width: 300px;">
+                    <input type="text" class="form-control" id="componentSearchDesktop" placeholder="Search...">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Sort
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item sort-option" data-sort="name">Name (A-Z)</button></li>
+                        <li><button class="dropdown-item sort-option" data-sort="price-asc">Price (Low to High)</button></li>
+                        <li><button class="dropdown-item sort-option" data-sort="price-desc">Price (High to Low)</button></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Simple scrollable body with fixed height -->
+            <div class="modal-body" style="height: 60vh; overflow-y: auto;">
+                <!-- Loading indicator -->
+                <div class="text-center my-5" id="component-loading">
+                    <div class="spinner-border mb-3"></div>
+                    <p>Loading components...</p>
+                </div>
+                
+                <!-- Component cards container -->
+                <div id="componentCardsWrapper" class="row g-3"></div>
+            </div>
+            
+            <!-- Simple footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
