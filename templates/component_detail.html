@@ -896,60 +896,7 @@
                         </div>
                     </div>
                     
-                    <!-- Historical Price Trends (Simulated) -->
-                    <div class="price-history mt-4">
-                        <h5 class="border-bottom pb-2 mb-3">Price History</h5>
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="text-muted mb-3">Price tracking over the past 6 months</p>
-                                
-                                <div class="price-chart">
-                                    <div class="chart-container" style="height: 200px; position: relative;">
-                                        <div class="chart-bars">
-                                            {% set current_price = component.price %}
-                                            {% set months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'] %}
-                                            
-                                            {% set prices = [] %}
-                                            {% if category in ['cpu', 'gpu'] %}
-                                                {% set prices = [current_price * 1.08, current_price * 1.05, current_price * 1.02, current_price * 0.99, current_price * 0.98, current_price, current_price] %}
-                                            {% elif category in ['ram', 'storage'] %}
-                                                {% set prices = [current_price * 0.95, current_price * 0.98, current_price * 1.02, current_price * 1.05, current_price * 1.02, current_price * 1.01, current_price] %}
-                                            {% else %}
-                                                {% set prices = [current_price * 1.02, current_price * 1.01, current_price, current_price * 1.01, current_price * 0.99, current_price * 0.98, current_price] %}
-                                            {% endif %}
-                                            
-                                            <div class="d-flex justify-content-between align-items-end h-100">
-                                                {% for price in prices %}
-                                                    {% set percent = ((price / (current_price * 1.1)) * 100)|round|int %}
-                                                    <div class="chart-bar-container text-center" style="width: 14%;">
-                                                        <div class="chart-label small text-muted">{{ months[loop.index0] }}</div>
-                                                        <div class="chart-bar bg-primary" style="height: {{ percent }}%;"></div>
-                                                        <div class="chart-value small">${{ price|round(2) }}</div>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="price-analysis mt-3">
-                                    {% if component.price == prices[-2] %}
-                                        <div class="alert alert-info">
-                                            <i class="fas fa-info-circle me-2"></i>Price has remained stable over the past month.
-                                        </div>
-                                    {% elif component.price > prices[-2] %}
-                                        <div class="alert alert-warning">
-                                            <i class="fas fa-arrow-up me-2"></i>Price has increased by ${{ (component.price - prices[-2])|round(2) }} in the past month.
-                                        </div>
-                                    {% else %}
-                                        <div class="alert alert-success">
-                                            <i class="fas fa-arrow-down me-2"></i>Price has decreased by ${{ (prices[-2] - component.price)|round(2) }} in the past month.
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
