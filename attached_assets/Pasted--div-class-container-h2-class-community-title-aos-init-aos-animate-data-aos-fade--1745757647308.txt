@@ -1,0 +1,60 @@
+<div class="container">
+            <h2 class="community-title aos-init aos-animate" data-aos="fade-up">Community Build Showcase</h2>
+            <p class="community-subtitle aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                Join our thriving community where PC enthusiasts share and discover extraordinary builds. 
+                Get inspired, share your creativity, and connect with fellow builders.
+            </p>
+            
+            <div class="community-grid">
+                <!-- Browse Builds -->
+                <div class="community-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">
+                    <div class="community-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="community-feature-title">Browse Builds</h3>
+                    <p class="community-feature-text">
+                        Discover configurations from our community, filtered by budget, purpose, or specific components to find exactly what you're looking for.
+                    </p>
+                </div>
+                
+                <!-- Share Your Builds -->
+                <div class="community-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    <div class="community-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="community-feature-title">Share Your Builds</h3>
+                    <p class="community-feature-text">
+                        Showcase your PC building skills and creativity by making your custom configurations public for the community to appreciate.
+                    </p>
+                </div>
+                
+                <!-- Clone & Customize -->
+                <div class="community-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="250">
+                    <div class="community-icon">
+                        <i class="fas fa-clone"></i>
+                    </div>
+                    <h3 class="community-feature-title">Clone &amp; Customize</h3>
+                    <p class="community-feature-text">
+                        Start with any public build as your foundation, then customize it to match your preferences and performance requirements.
+                    </p>
+                </div>
+                
+                <!-- Featured Builds -->
+                <div class="community-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                    <div class="community-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="community-feature-title">Featured Builds</h3>
+                    <p class="community-feature-text">
+                        Explore our curated selection of exceptional builds, showcasing innovation, optimal performance, and exceptional value.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="350">
+                <a href="/builds/builds" class="btn btn-primary btn-lg btn-community mt-5">
+                    <i class="fas fa-users"></i>
+                    <span>Explore Community Builds</span>
+                </a>
+            </div>
+        </div>
