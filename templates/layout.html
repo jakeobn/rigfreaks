@@ -358,115 +358,7 @@
         </div>
     </nav>
     
-    <!-- Mobile Bottom Navigation Bar -->
-    <div class="d-lg-none mobile-actions-bar">
-        <div class="container-fluid px-0">
-            <div class="mobile-actions-row">
-                <!-- Home Link -->
-                <a href="{{ url_for('index') }}" class="mobile-action-btn {% if request.path == url_for('index') %}active{% endif %}">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <span class="mobile-action-label">Home</span>
-                </a>
-                
-                <!-- PC Builder Link -->
-                <a href="{{ url_for('builder') }}" class="mobile-action-btn {% if request.path == url_for('builder') %}active{% endif %}">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-drafting-compass"></i>
-                    </div>
-                    <span class="mobile-action-label">PC Builder</span>
-                </a>
-                
-                <!-- Prebuilt PCs Link -->
-                <a href="{{ url_for('builds.prebuilt_configs') }}" class="mobile-action-btn {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <span class="mobile-action-label">Prebuilt</span>
-                </a>
-                
-                <!-- Cart Link -->
-                <a href="{{ url_for('cart.view_cart') }}" class="mobile-action-btn {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge rounded-pill bg-primary mobile-action-badge">0</span>
-                    </div>
-                    <span class="mobile-action-label">Cart</span>
-                </a>
-                
-                <!-- Account Link (opens menu) -->
-                <button type="button" class="mobile-action-btn" data-bs-toggle="modal" data-bs-target="#mobileAccountModal">
-                    <div class="mobile-action-icon">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <span class="mobile-action-label">Account</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Mobile Account Modal -->
-    <div class="modal fade" id="mobileAccountModal" tabindex="-1" aria-labelledby="mobileAccountModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="mobileAccountModalLabel">
-                        {% if 'user_id' in session %}
-                            Hello, {{ session.get('username', 'User') }}!
-                        {% else %}
-                            Account
-                        {% endif %}
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="list-group mobile-menu-list">
-                        <!-- Search option -->
-                        <button type="button" class="list-group-item list-group-item-action d-flex align-items-center" 
-                                id="accountMenuSearchButton">
-                            <i class="fas fa-search me-3 text-primary"></i>
-                            <span>Search Products</span>
-                        </button>
-                        
-                        {% if 'user_id' in session %}
-                            <!-- Logged in user options -->
-                            <a href="{{ url_for('auth.profile') }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <i class="fas fa-user me-3 text-primary"></i>
-                                <span>My Profile</span>
-                            </a>
-                            <a href="{{ url_for('builds.list_builds') }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <i class="fas fa-save me-3 text-primary"></i>
-                                <span>My Saved Builds</span>
-                            </a>
-                            <a href="{{ url_for('contact') }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <i class="fas fa-headset me-3 text-primary"></i>
-                                <span>Support</span>
-                            </a>
-                            <a href="{{ url_for('auth.logout') }}" class="list-group-item list-group-item-action d-flex align-items-center text-danger">
-                                <i class="fas fa-sign-out-alt me-3"></i>
-                                <span>Logout</span>
-                            </a>
-                        {% else %}
-                            <!-- Guest options -->
-                            <a href="{{ url_for('auth.login') }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <i class="fas fa-sign-in-alt me-3 text-primary"></i>
-                                <span>Login</span>
-                            </a>
-                            <a href="{{ url_for('auth.register') }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <i class="fas fa-user-plus me-3 text-primary"></i>
-                                <span>Register</span>
-                            </a>
-                            <a href="{{ url_for('contact') }}" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <i class="fas fa-question-circle me-3 text-primary"></i>
-                                <span>Help & Support</span>
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Mobile Account Modal Removed -->
 
     <!-- Flash Messages -->
     <div class="container mt-3">
@@ -665,11 +557,7 @@
                 }, 5000);
             }
             
-            // Fix for mobile actions bar spacing
-            const mobileActionsBar = document.querySelector('.mobile-actions-bar');
-            if (mobileActionsBar) {
-                document.body.style.paddingBottom = mobileActionsBar.offsetHeight + 'px';
-            }
+            // Mobile actions bar removed
             
             // Handle mobile navbar toggler
             const navbarToggler = document.querySelector('.navbar-toggler');

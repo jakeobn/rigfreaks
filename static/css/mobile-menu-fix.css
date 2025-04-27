@@ -17,11 +17,9 @@
     background-color: #fff;
 }
 
-/* Add padding to prevent content from being hidden under mobile bar */
+/* Mobile menu fixes */
 @media (max-width: 991.98px) {
-    body {
-        padding-bottom: 60px;
-    }
+    /* Bottom padding removed since we removed the bottom bar */
     
     .site-footer {
         position: relative;
