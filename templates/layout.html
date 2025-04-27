@@ -15,9 +15,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/modern-homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/hero-fixes.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/consistent-backgrounds.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-menu-fix.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/simplified-header.css') }}">
     
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -25,7 +24,104 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Header has been removed -->
+    <!-- Simplified Gradient Header -->
+    <header class="simplified-header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <!-- Logo -->
+                <a href="{{ url_for('index') }}" class="header-logo">
+                    <img src="{{ url_for('static', filename='img/evercraft-logo-white.svg') }}" alt="EverCraft logo">
+                </a>
+                
+                <!-- Main Navigation Links (Desktop) -->
+                <nav class="d-none d-lg-flex main-nav">
+                    <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                    <a href="{{ url_for('builder') }}" class="nav-link {% if request.path == url_for('builder') %}active{% endif %}">PC Builder</a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link">Parts Store</a>
+                    <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
+                </nav>
+                
+                <!-- Right Side Actions (Desktop) -->
+                <div class="d-none d-lg-flex header-actions">
+                    <a href="{{ url_for('cart.view_cart') }}" class="action-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="ms-2">Cart</span>
+                    </a>
+                    {% if current_user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" class="action-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span class="ms-2">{{ current_user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}"><i class="fas fa-user me-2"></i> My Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('builds.list_builds') }}"><i class="fas fa-save me-2"></i> My Builds</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="action-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="ms-2">Login</span>
+                    </a>
+                    {% endif %}
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="collapse navbar-collapse" id="mobileNav">
+            <div class="container">
+                <div class="mobile-nav-container">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('index') %}active{% endif %}" href="{{ url_for('index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('builder') %}active{% endif %}" href="{{ url_for('builder') }}">PC Builder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}" href="{{ url_for('builds.prebuilt_configs') }}">Prebuilt PCs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('builds.prebuilt_configs') }}">Parts Store</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}" href="{{ url_for('cart.view_cart') }}">Cart</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.profile') }}">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('builds.list_builds') }}">My Builds</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
     
     <!-- Mobile Account Modal Removed -->
 
