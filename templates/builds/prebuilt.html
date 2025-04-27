@@ -1,16 +1,16 @@
 {% extends 'layout.html' %}
 
-{% block title %}Pre-built Systems{% endblock %}
+{% block title %}Pre-built Configurations{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1 class="mb-4">Pre-built Systems</h1>
+    <h1 class="mb-4">Pre-built PC Configurations</h1>
     
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <p class="lead">Choose from our hand-picked systems designed for different use cases and budgets. Each build has been tested for compatibility and performance.</p>
+                    <p class="lead">Choose from our hand-picked PC configurations designed for different use cases and budgets. Each build has been tested for compatibility and performance.</p>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="empty-state-icon">
             <i class="fas fa-desktop"></i>
         </div>
-        <h3>No Pre-built Systems Available</h3>
+        <h3>No Pre-built Configurations Available</h3>
         <p>Our team is working on creating optimized builds. Check back soon!</p>
         <a href="{{ url_for('builder') }}" class="btn btn-primary">Build Your Own PC</a>
     </div>
