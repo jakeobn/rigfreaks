@@ -1,0 +1,805 @@
+<main class="py-4 main-content">
+        
+
+
+<!-- Modern Hero Section with 3D Visual Effects -->
+<section class="modern-hero position-relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="hero-bg-elements">
+        <div class="hero-blob blob-1" style="transform: translate(-0.349206px, 3.50935px);"></div>
+        <div class="hero-blob blob-2" style="transform: translate(-0.698413px, 7.0187px);"></div>
+        <div class="hero-blob blob-3" style="transform: translate(-1.04762px, 10.5281px);"></div>
+        <div class="hero-grid"></div>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6 hero-content">
+                <!-- Floating tags with glassmorphism -->
+                <div class="hero-tags mb-4">
+                    <div class="hero-tag">PREMIUM BUILDS</div>
+                    <div class="hero-tag primary">CUSTOM DESIGN</div>
+                    <div class="hero-tag accent">3-YEAR WARRANTY</div>
+                </div>
+                
+                <!-- Modern typography with animation classes -->
+                <h1 class="display-3 fw-bold hero-title-modern aos-init aos-animate" data-aos="fade-up">
+                    NEXT-GEN <span class="text-gradient">CUSTOM</span> DESKTOPS
+                </h1>
+                
+                <p class="lead hero-subtitle aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    Crafted for Performance. Designed for You.
+                </p>
+                
+                <p class="hero-description my-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    Experience computing excellence with our meticulously assembled custom desktops. Premium components, 
+                    expert craftsmanship, and dedicated support define every EverCraft machine.
+                </p>
+                
+                <!-- Modern button design with hover effects -->
+                <div class="hero-buttons aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                    <a href="/builder" class="btn btn-primary btn-hero-modern">
+                        <span class="btn-text">Design Your PC</span>
+                        <span class="btn-icon"><i class="fas fa-drafting-compass"></i></span>
+                    </a>
+                    <a href="/builds/prebuilt" class="btn btn-outline btn-hero-modern">
+                        <span class="btn-text">Explore Collections</span>
+                        <span class="btn-icon"><i class="fas fa-th-large"></i></span>
+                    </a>
+                </div>
+                
+                <!-- Feature pills with subtle animation -->
+                <div class="hero-features-modern mt-5 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-pill">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Real-time Compatibility</span>
+                    </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance Metrics</span>
+                    </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Premium Support</span>
+                    </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-certificate"></i>
+                        <span>3-Year Warranty</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+                <!-- 3D card with parallax effect -->
+                <div class="hero-3d-card aos-init aos-animate" data-tilt="" data-tilt-max="10" data-aos="zoom-in" data-aos-delay="200" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
+                    <!-- Modern mesh gradient overlay -->
+                    <div class="mesh-gradient-overlay"></div>
+                    
+                    <img src="/static/img/custom/rtx-4090-hero.png" alt="Premium Custom PC" class="hero-image-modern" style="transform: translate3d(0px, 0px, 0px);">
+                    
+                    <!-- Floating specs cards with glassmorphism -->
+                    <div class="spec-card spec-card-1">
+                        <div class="spec-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="spec-text">
+                            <div class="spec-title">Processor</div>
+                            <div class="spec-value">Intel Core i9 13900K</div>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-card spec-card-2">
+                        <div class="spec-icon"><i class="fas fa-tv"></i></div>
+                        <div class="spec-text">
+                            <div class="spec-title">Graphics</div>
+                            <div class="spec-value">RTX 4090 24GB</div>
+                        </div>
+                    </div>
+                    
+                    <div class="spec-card spec-card-3">
+                        <div class="spec-icon"><i class="fas fa-memory"></i></div>
+                        <div class="spec-text">
+                            <div class="spec-title">Memory</div>
+                            <div class="spec-value">64GB DDR5 6000MHz</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance badge with animation -->
+                    <div class="performance-badge">
+                        <div class="perf-ring"></div>
+                        <div class="perf-content">
+                            <div class="perf-score">9800</div>
+                            <div class="perf-label">BENCHMARK</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Modern Features Section with Cards -->
+    <section class="features-modern py-6">
+        <div class="section-header text-center mb-5">
+            <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">WHY CHOOSE US</span>
+            <h2 class="display-5 fw-bold mb-4">Build Your Dream Setup</h2>
+            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                We've simplified the PC building process with smart tools and premium support
+            </p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Feature Card 1 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card aos-init" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-puzzle-piece feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Guaranteed Compatibility</h3>
+                        <p class="feature-desc">Our intelligent system checks component compatibility in real-time as you build, eliminating configuration errors.</p>
+                        <span class="feature-number">01</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature Card 2 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card aos-init" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-sliders-h feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Complete Customization</h3>
+                        <p class="feature-desc">Hand-pick every component from our curated selection of premium hardware to create a system uniquely yours.</p>
+                        <span class="feature-number">02</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature Card 3 -->
+            <div class="col-md-4 col-lg-4">
+                <div class="feature-card aos-init" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card-inner">
+                        <div class="feature-icon-wrap">
+                            <div class="feature-icon-bg"></div>
+                            <i class="fas fa-chart-line feature-icon"></i>
+                        </div>
+                        <h3 class="feature-title">Performance Analytics</h3>
+                        <p class="feature-desc">Visualize and compare expected performance metrics across games and applications before you buy.</p>
+                        <span class="feature-number">03</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Feature Metrics Bar -->
+        <div class="metrics-bar mt-5 aos-init" data-aos="fade-up" data-aos-delay="400">
+            <div class="container">
+                <div class="row align-items-center justify-content-between text-center text-md-start">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <div class="metric-item">
+                            <span class="metric-number">100%</span>
+                            <span class="metric-label">Expert Assembly</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <div class="metric-item">
+                            <span class="metric-number">3-Year</span>
+                            <span class="metric-label">Premium Warranty</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-item">
+                            <span class="metric-number">1000+</span>
+                            <span class="metric-label">Configurations</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-item">
+                            <span class="metric-number">24/7</span>
+                            <span class="metric-label">Technical Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials-modern py-6">
+        <div class="container">
+            <!-- Modern header with outline badge -->
+            <div class="testimonials-modern-header text-center aos-init" data-aos="fade-up">
+                <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">CUSTOMER STORIES</span>
+                <h2 class="display-5 fw-bold mb-4">What People Are Saying</h2>
+                <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                    Join thousands of satisfied customers who have trusted us to build their dream PC
+                </p>
+            </div>
+            
+            <!-- Modern testimonial cards with grid layout -->
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card-modern aos-init" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-rating-modern">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content-modern">
+                        <p>"The PC builder tool made it incredibly easy to customize my dream gaming rig. The compatibility checker saved me from making some costly mistakes, and the benchmarks gave me confidence in my choices."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-author-modern">
+                            <div class="testimonial-name">Sarah K.</div>
+                            <div class="testimonial-role">Gaming Enthusiast</div>
+                        </div>
+                        <div class="testimonial-verified">
+                            <i class="fas fa-check-circle"></i> Verified Purchase
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 (Featured) -->
+                <div class="testimonial-card-modern testimonial-featured aos-init" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-rating-modern">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content-modern">
+                        <p>"As a content creator, I needed a PC that could handle video editing and gaming. The performance benchmarks helped me balance my budget while getting exactly what I needed. My new PC is blazing fast!"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-author-modern">
+                            <div class="testimonial-name">Michael T.</div>
+                            <div class="testimonial-role">YouTuber &amp; Streamer</div>
+                        </div>
+                        <div class="testimonial-verified">
+                            <i class="fas fa-check-circle"></i> Verified Purchase
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card-modern aos-init" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-rating-modern">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content-modern">
+                        <p>"The customer service was exceptional. When I had questions about which components would be best for my needs, the team was knowledgeable and helped me make the right choices. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="testimonial-author-modern">
+                            <div class="testimonial-name">David R.</div>
+                            <div class="testimonial-role">Competitive Gamer</div>
+                        </div>
+                        <div class="testimonial-verified">
+                            <i class="fas fa-check-circle"></i> Verified Purchase
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust badges -->
+            <div class="trust-badges row mt-5 pt-4 text-center aos-init" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="trust-badge">
+                        <i class="fas fa-award mb-3 fs-2 text-primary"></i>
+                        <div class="trust-badge-title">Quality Assured</div>
+                        <div class="trust-badge-text">Premium components</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="trust-badge">
+                        <i class="fas fa-shipping-fast mb-3 fs-2 text-primary"></i>
+                        <div class="trust-badge-title">Fast Shipping</div>
+                        <div class="trust-badge-text">3-5 business days</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="trust-badge">
+                        <i class="fas fa-headset mb-3 fs-2 text-primary"></i>
+                        <div class="trust-badge-title">24/7 Support</div>
+                        <div class="trust-badge-text">Expert assistance</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt mb-3 fs-2 text-primary"></i>
+                        <div class="trust-badge-title">3-Year Warranty</div>
+                        <div class="trust-badge-text">Peace of mind</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    
+    <!-- Modern Component Categories Section -->
+    <section class="component-categories-modern py-6">
+        <div class="container">
+            <!-- Modern header with badges -->
+            <div class="text-center mb-5 aos-init" data-aos="fade-up">
+                <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">PREMIUM COMPONENTS</span>
+                <h2 class="display-5 fw-bold mb-4">Build With The Best</h2>
+                <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+                    Explore our extensive selection of high-performance PC components from leading manufacturers
+                </p>
+            </div>
+            
+            <!-- Modern component grid with cards -->
+            <div class="component-grid">
+                <!-- Processors -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="100">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Processors</h3>
+                            <div class="component-subtitle">Power your system</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Intel</span>
+                            <span class="brand-tag">AMD</span>
+                        </div>
+                        <p class="mb-0">Latest generation CPUs for gaming, content creation, and productivity workloads</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">15+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphics Cards -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="150">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Graphics Cards</h3>
+                            <div class="component-subtitle">Visual performance</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">NVIDIA</span>
+                            <span class="brand-tag">AMD</span>
+                        </div>
+                        <p class="mb-0">High-performance GPUs for gaming, rendering, and AI workloads</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">12+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="200">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Memory</h3>
+                            <div class="component-subtitle">Speed &amp; multitasking</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Corsair</span>
+                            <span class="brand-tag">G.Skill</span>
+                            <span class="brand-tag">Kingston</span>
+                        </div>
+                        <p class="mb-0">High-speed DDR4 and DDR5 RAM options for seamless multitasking</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">10+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Storage -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="250">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Storage</h3>
+                            <div class="component-subtitle">Fast &amp; spacious</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Samsung</span>
+                            <span class="brand-tag">Western Digital</span>
+                            <span class="brand-tag">Seagate</span>
+                        </div>
+                        <p class="mb-0">Lightning-fast SSDs, NVMe drives, and high-capacity HDDs</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">20+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Motherboards -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="300">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Motherboards</h3>
+                            <div class="component-subtitle">System foundation</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">ASUS</span>
+                            <span class="brand-tag">MSI</span>
+                            <span class="brand-tag">Gigabyte</span>
+                        </div>
+                        <p class="mb-0">Feature-rich motherboards for Intel and AMD processors</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">15+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Power Supplies -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="350">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Power Supplies</h3>
+                            <div class="component-subtitle">Reliable power</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Corsair</span>
+                            <span class="brand-tag">EVGA</span>
+                            <span class="brand-tag">Seasonic</span>
+                        </div>
+                        <p class="mb-0">High-efficiency power supplies with modular cable options</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">8+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cases -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="400">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Cases</h3>
+                            <div class="component-subtitle">Style &amp; airflow</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Lian Li</span>
+                            <span class="brand-tag">Fractal Design</span>
+                            <span class="brand-tag">Corsair</span>
+                        </div>
+                        <p class="mb-0">Premium PC cases with optimal airflow and elegant designs</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">12+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cooling -->
+                <div class="component-card-modern aos-init" data-aos="fade-up" data-aos-delay="450">
+                    <a href="/builder" class="card-link"></a>
+                    <div class="component-card-header">
+                        <div class="component-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div>
+                            <h3 class="component-title">Cooling</h3>
+                            <div class="component-subtitle">Optimal thermals</div>
+                        </div>
+                    </div>
+                    <div class="component-card-body">
+                        <div class="component-brands">
+                            <span class="brand-tag">Noctua</span>
+                            <span class="brand-tag">Corsair</span>
+                            <span class="brand-tag">NZXT</span>
+                        </div>
+                        <p class="mb-0">High-performance air and liquid cooling solutions</p>
+                    </div>
+                    <div class="component-card-footer">
+                        <div class="component-count">10+ options</div>
+                        <div class="component-action">
+                            View Components <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modern CTA -->
+            <div class="text-center mt-5 aos-init" data-aos="fade-up" data-aos-delay="500">
+                <a href="/builder" class="btn btn-lg btn-primary btn-hero-modern">
+                    <span class="btn-text">Start Building Your Custom PC</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modern Call-to-Action Section -->
+    <section class="cta-modern">
+        <div class="cta-decoration decoration-1"></div>
+        <div class="cta-decoration decoration-2"></div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-card aos-init" data-aos="fade-up">
+                        <div class="text-center">
+                            <h2 class="cta-title-modern">Ready to Experience Next-Level Performance?</h2>
+                            <p class="cta-description">
+                                Build a custom PC perfectly matched to your needs or choose from our expertly crafted pre-configured systems
+                            </p>
+                            
+                            <div class="cta-buttons-modern">
+                                <a href="/builder" class="btn btn-lg btn-primary btn-hero-modern">
+                                    <span class="btn-text">Start Building</span>
+                                    <span class="btn-icon"><i class="fas fa-wrench"></i></span>
+                                </a>
+                                <a href="/builds/prebuilt" class="btn btn-lg btn-outline-light btn-hero-modern">
+                                    <span class="btn-text">View Pre-built PCs</span>
+                                    <span class="btn-icon"><i class="fas fa-desktop"></i></span>
+                                </a>
+                            </div>
+                            
+                            <div class="mt-4 d-flex justify-content-center gap-4">
+                                <div class="cta-feature">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Premium assembly</span>
+                                </div>
+                                <div class="cta-feature">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>3-year warranty</span>
+                                </div>
+                                <div class="cta-feature">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Expert support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modern Newsletter Section -->
+    <section class="newsletter-modern">
+        <div class="newsletter-decoration newsletter-decoration-1"></div>
+        <div class="newsletter-decoration newsletter-decoration-2"></div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="newsletter-card aos-init" data-aos="fade-up">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-6">
+                                <div class="newsletter-content-modern">
+                                    <h3 class="newsletter-title-modern">Stay Ahead with EverCraft Updates</h3>
+                                    <p class="newsletter-subtitle-modern">
+                                        Join our community to receive exclusive content, early access to sales, and the latest hardware news
+                                    </p>
+                                    
+                                    <ul class="newsletter-features-modern">
+                                        <li data-aos="fade-right" data-aos-delay="100" class="aos-init">
+                                            <i class="fas fa-bell"></i>
+                                            <span>Product launch notifications</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="200" class="aos-init">
+                                            <i class="fas fa-tag"></i>
+                                            <span>Exclusive subscriber discounts</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="300" class="aos-init">
+                                            <i class="fas fa-book"></i>
+                                            <span>Expert PC building guides</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="400" class="aos-init">
+                                            <i class="fas fa-award"></i>
+                                            <span>Insider hardware reviews</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="newsletter-form-modern aos-init" data-aos="fade-up" data-aos-delay="300">
+                                    <form>
+                                        <div class="form-floating-modern">
+                                            <input type="text" class="form-control" id="nameInput" placeholder=" ">
+                                            <label for="nameInput">Your Name</label>
+                                        <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+                                        
+                                        <div class="form-floating-modern">
+                                            <input type="email" class="form-control" id="emailInput" placeholder=" ">
+                                            <label for="emailInput">Email Address</label>
+                                        </div>
+                                        
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary btn-newsletter">
+                                                <i class="fas fa-paper-plane"></i>
+                                                <span>Subscribe to Newsletter</span>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="newsletter-privacy-modern">
+                                            <i class="fas fa-shield-alt me-1"></i>
+                                            We respect your privacy and will never share your information
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modern Community Builds Section -->
+    <section class="community-section">
+        <div class="container">
+            <h2 class="community-title aos-init" data-aos="fade-up">Community Build Showcase</h2>
+            <p class="community-subtitle aos-init" data-aos="fade-up" data-aos-delay="100">
+                Join our thriving community where PC enthusiasts share and discover extraordinary builds. 
+                Get inspired, share your creativity, and connect with fellow builders.
+            </p>
+            
+            <div class="community-grid">
+                <!-- Browse Builds -->
+                <div class="community-card aos-init" data-aos="fade-up" data-aos-delay="150">
+                    <div class="community-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="community-feature-title">Browse Builds</h3>
+                    <p class="community-feature-text">
+                        Discover configurations from our community, filtered by budget, purpose, or specific components to find exactly what you're looking for.
+                    </p>
+                </div>
+                
+                <!-- Share Your Builds -->
+                <div class="community-card aos-init" data-aos="fade-up" data-aos-delay="200">
+                    <div class="community-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="community-feature-title">Share Your Builds</h3>
+                    <p class="community-feature-text">
+                        Showcase your PC building skills and creativity by making your custom configurations public for the community to appreciate.
+                    </p>
+                </div>
+                
+                <!-- Clone & Customize -->
+                <div class="community-card aos-init" data-aos="fade-up" data-aos-delay="250">
+                    <div class="community-icon">
+                        <i class="fas fa-clone"></i>
+                    </div>
+                    <h3 class="community-feature-title">Clone &amp; Customize</h3>
+                    <p class="community-feature-text">
+                        Start with any public build as your foundation, then customize it to match your preferences and performance requirements.
+                    </p>
+                </div>
+                
+                <!-- Featured Builds -->
+                <div class="community-card aos-init" data-aos="fade-up" data-aos-delay="300">
+                    <div class="community-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="community-feature-title">Featured Builds</h3>
+                    <p class="community-feature-text">
+                        Explore our curated selection of exceptional builds, showcasing innovation, optimal performance, and exceptional value.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center aos-init" data-aos="fade-up" data-aos-delay="350">
+                <a href="/builds/builds" class="btn btn-primary btn-lg btn-community mt-5">
+                    <i class="fas fa-users"></i>
+                    <span>Explore Community Builds</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA Section -->
+    <section class="cta-modern mt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="cta-card text-center aos-init" data-aos="fade-up">
+                        <h2 class="cta-title-modern mb-4">Turn Your Dream PC Into Reality Today</h2>
+                        <p class="cta-description">
+                            Whether you're building for gaming, content creation, or productivity, EverCraft has everything you need to create your perfect computer.
+                        </p>
+                        
+                        <div class="cta-buttons-modern mt-4">
+                            <a href="/builder" class="btn btn-lg btn-primary btn-hero-modern">
+                                <span class="btn-text">Start Building</span>
+                                <span class="btn-icon"><i class="fas fa-wrench"></i></span>
+                            </a>
+                            <a href="/builds/prebuilt" class="btn btn-lg btn-outline-light btn-hero-modern">
+                                <span class="btn-text">Browse Pre-built PCs</span>
+                                <span class="btn-icon"><i class="fas fa-desktop"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    </main>
