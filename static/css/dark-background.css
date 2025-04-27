@@ -1,7 +1,38 @@
-/* Dark gradient background for entire website */
+/* Dark gradient background for entire website - matching hero section */
 body {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
+    background-color: var(--bg-darker);
     color: rgba(255, 255, 255, 0.85);
+    position: relative;
+}
+
+/* Adding blob gradients similar to hero section for entire site */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: 
+        radial-gradient(circle at 80% 20%, rgba(var(--bs-primary-rgb), 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(var(--bs-info-rgb), 0.03) 0%, transparent 50%);
+}
+
+/* Fixed position blobs in background - similar to hero section */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.15;
+    background: 
+        radial-gradient(circle at 90% 10%, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(var(--bs-info-rgb), 0.5), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(var(--bs-success-rgb), 0.3), transparent 60%);
 }
 
 /* Adjust cards and other elements to work with dark background */
