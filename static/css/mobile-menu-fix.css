@@ -1,0 +1,32 @@
+/* Mobile menu fix to ensure menu appears above all content */
+#navbarNav {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1050;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+}
+
+/* Ensure menu has proper padding */
+#navbarNav .navbar-nav {
+    padding: 1rem !important;
+    background-color: #fff;
+}
+
+/* Add padding to prevent content from being hidden under mobile bar */
+@media (max-width: 991.98px) {
+    body {
+        padding-bottom: 60px;
+    }
+}
+
+/* Make sure dropdown menus in mobile navigation stay above other elements */
+@media (max-width: 991.98px) {
+    .dropdown-menu {
+        z-index: 1060;
+    }
+}
