@@ -9,21 +9,8 @@ body {
     overflow-x: hidden;
 }
 
-/* The main dark background with the exact gradient overlay */
-.body-overlay {
-    content: '';
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
-    z-index: -3;
-    pointer-events: none;
-}
-
 /* Create blobs that match the hero section exactly */
-.blob-overlay {
+body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -55,7 +42,7 @@ body {
 }
 
 /* Subtle grid pattern overlay like hero section */
-.grid-overlay {
+body::after {
     content: "";
     position: fixed;
     top: 0;
