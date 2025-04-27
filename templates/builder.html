@@ -697,11 +697,11 @@
             </div>
         </div>
         
-        <!-- Build Summary -->
+        <!-- System Summary -->
         <div class="col-lg-4">
-            <div class="card mb-4 position-sticky build-summary-card" style="top: 1rem;">
+            <div class="card mb-4 position-sticky system-summary-card" style="top: 1rem;">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Build Summary</h3>
+                    <h3 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>System Summary</h3>
                     <span class="badge bg-primary rounded-pill">
                         {{ current_config|length }}/8 Components
                     </span>
@@ -709,9 +709,9 @@
                 <div class="card-body">
                     {% if current_config %}
                         <!-- Components List -->
-                        <div class="build-components-list">
+                        <div class="system-components-list">
                             {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                                <div class="build-component-item d-flex align-items-center mb-3 p-2 rounded
+                                <div class="system-component-item d-flex align-items-center mb-3 p-2 rounded
                                             {% if category in current_config %}has-component{% else %}missing-component{% endif %}">
                                     <div class="component-icon-small me-3">
                                         {% if category == 'cpu' %}
@@ -735,15 +735,15 @@
                                     
                                     {% if category in current_config %}
                                         {% set component = components[category] | selectattr('id', 'equalto', current_config[category]) | first %}
-                                        <div class="build-component-info flex-grow-1">
-                                            <div class="build-component-name">{{ component.name }}</div>
-                                            <div class="build-component-category text-muted small">{{ category|capitalize }}</div>
+                                        <div class="system-component-info flex-grow-1">
+                                            <div class="system-component-name">{{ component.name }}</div>
+                                            <div class="system-component-category text-muted small">{{ category|capitalize }}</div>
                                         </div>
-                                        <div class="build-component-price text-success fw-bold">${{ component.price }}</div>
+                                        <div class="system-component-price text-success fw-bold">${{ component.price }}</div>
                                     {% else %}
-                                        <div class="build-component-info flex-grow-1">
-                                            <div class="build-component-missing">{{ category|capitalize }} Not Selected</div>
-                                            <div class="build-component-category text-muted small">Required Component</div>
+                                        <div class="system-component-info flex-grow-1">
+                                            <div class="system-component-missing">{{ category|capitalize }} Not Selected</div>
+                                            <div class="system-component-category text-muted small">Required Component</div>
                                         </div>
                                         <a href="{{ url_for('select_component', category=category) }}" class="btn btn-sm btn-outline-primary rounded-pill">
                                             <i class="fas fa-plus-circle"></i>
@@ -770,7 +770,7 @@
                         </div>
                         
                         <!-- Action Buttons -->
-                        <div class="build-actions mt-4">
+                        <div class="system-actions mt-4">
                             {% set required_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
                             
                             {% set missing_count = namespace(value=0) %}
@@ -782,7 +782,7 @@
                             
                             <div class="d-grid gap-3">
                                 <a href="{{ url_for('summary') }}" class="btn btn-success action-btn">
-                                    <i class="fas fa-clipboard-check me-2"></i>Review Configuration
+                                    <i class="fas fa-clipboard-check me-2"></i>Review System
                                 </a>
                                 
                                 {% if missing_count.value == 0 %}
@@ -803,7 +803,7 @@
                                         <div class="d-flex">
                                             <i class="fas fa-info-circle me-2 mt-1 text-primary"></i>
                                             <div>
-                                                <strong>Build incomplete</strong>
+                                                <strong>System incomplete</strong>
                                                 <p class="mb-0 small">Please select all required components to enable "Add to Cart".</p>
                                             </div>
                                         </div>
@@ -819,13 +819,13 @@
                         </div>
                     {% else %}
                         <!-- Empty System State -->
-                        <div class="empty-build-state text-center py-5">
-                            <div class="empty-build-icon mb-3">
+                        <div class="empty-system-state text-center py-5">
+                            <div class="empty-system-icon mb-3">
                                 <i class="fas fa-desktop fa-4x text-secondary"></i>
                             </div>
                             <h4>Your System is Empty</h4>
                             <p class="text-muted mb-4">Start by selecting components from the left panel to build your custom system.</p>
-                            <div class="empty-build-actions">
+                            <div class="empty-system-actions">
                                 <a href="{{ url_for('select_component', category='cpu') }}" class="btn btn-primary">
                                     <i class="fas fa-microchip me-2"></i>Start with a CPU
                                 </a>
