@@ -1,0 +1,78 @@
+/* Dark gradient background for entire website */
+body {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Adjust cards and other elements to work with dark background */
+.card, .component-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-content {
+    background-color: var(--bs-gray-900);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-header, .modal-footer {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Make sure text is readable on dark background */
+.text-dark {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Adjust alert styles for dark background */
+.alert {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Style form elements for dark background */
+.form-control, .form-select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--bs-primary);
+    color: white;
+}
+
+/* Style tables for dark background */
+.table {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Style form labels for better visibility */
+label {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Fix hero section to work with dark background */
+.modern-hero {
+    background: none;
+}
+
+/* Adjust feature-card for dark background */
+.feature-card-inner {
+    background-color: rgba(255, 255, 255, 0.05);
+}
