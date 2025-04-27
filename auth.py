@@ -38,7 +38,7 @@ class RegisterForm(FlaskForm):
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     # If user is already logged in, redirect to home page
-    if 'user_id' in session:
+    if current_user.is_authenticated:
         return redirect(url_for('index'))
     
     form = LoginForm()
@@ -48,11 +48,13 @@ def login():
         
         # Check if user exists and password is correct
         if user and user.check_password(form.password.data):
-            session['user_id'] = user.id
-            session['username'] = user.username
+            login_user(user, remember=form.remember.data)
+            
+            # Get next page from request args, or default to index
+            next_page = request.args.get('next')
             
             flash('Logged in successfully!', 'success')
-            return redirect(url_for('index'))
+            return redirect(next_page or url_for('index'))
         else:
             flash('Login failed. Please check your email and password.', 'danger')
     
@@ -61,7 +63,7 @@ def login():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     # If user is already logged in, redirect to home page
-    if 'user_id' in session:
+    if current_user.is_authenticated:
         return redirect(url_for('index'))
     
     form = RegisterForm()
@@ -84,29 +86,16 @@ def register():
     return render_template('auth/register.html', form=form)
 
 @auth_bp.route('/logout')
+@login_required
 def logout():
-    # Clear session data
-    session.pop('user_id', None)
-    session.pop('username', None)
-    
+    logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('index'))
 
 @auth_bp.route('/profile')
+@login_required
 def profile():
-    # Check if user is logged in
-    if 'user_id' not in session:
-        flash('Please login to view your profile.', 'warning')
-        return redirect(url_for('auth.login'))
+    # Get user's builds - current_user is provided by Flask-Login
+    user_builds = current_user.builds.all()
     
-    # Get user from database
-    user = User.query.get(session['user_id'])
-    
-    if not user:
-        flash('User not found.', 'danger')
-        return redirect(url_for('index'))
-    
-    # Get user's builds
-    user_builds = user.builds.all()
-    
-    return render_template('auth/profile.html', user=user, builds=user_builds)
+    return render_template('auth/profile.html', user=current_user, builds=user_builds)
