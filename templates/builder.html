@@ -600,6 +600,23 @@
             });
         }
         
+        // Set up filter pills
+        const filterPills = document.querySelectorAll('.filter-pill');
+        filterPills.forEach(pill => {
+            if (pill) {
+                pill.addEventListener('click', function() {
+                    // Remove active class from all pills
+                    filterPills.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked pill
+                    this.classList.add('active');
+                    
+                    // Apply filtering
+                    filterAndSortComponents();
+                });
+            }
+        });
+        
         // Function to combine all the search and filter logic
         function filterAndSortComponents() {
             const searchTerm = componentSearchInput ? componentSearchInput.value.toLowerCase() : '';
