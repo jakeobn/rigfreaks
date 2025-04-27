@@ -162,7 +162,7 @@ def remove_component(category):
 @app.route('/summary')
 def summary():
     if 'pc_config' not in session or not session['pc_config']:
-        flash("Please build a PC configuration first", "warning")
+        flash("Please build a PC system first", "warning")
         return redirect(url_for('builder'))
     
     components = load_component_data()

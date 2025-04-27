@@ -8,12 +8,12 @@
     <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
-    <p class="mt-3">Loading build summary...</p>
+    <p class="mt-3">Loading system summary...</p>
 </div>
 
 <div class="container" id="summary-content">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>PC Build Summary</h1>
+        <h1>PC System Summary</h1>
         <a href="{{ url_for('builder') }}" class="btn btn-outline-secondary">
             <i class="fas fa-arrow-left me-1"></i>Back to Builder
         </a>
@@ -33,7 +33,7 @@
     </div>
     {% else %}
     <div class="alert alert-success mb-4">
-        <h4 class="alert-heading"><i class="fas fa-check-circle me-2"></i>Compatible Build</h4>
+        <h4 class="alert-heading"><i class="fas fa-check-circle me-2"></i>Compatible System</h4>
         <p class="mb-0">All components in your system are compatible with each other.</p>
     </div>
     {% endif %}
@@ -125,7 +125,7 @@
                         <i class="fas fa-desktop"></i>
                     </div>
                     <h5>No Components Selected</h5>
-                    <p>Your build is empty. Return to the PC Builder to add components.</p>
+                    <p>Your system is empty. Return to the PC Builder to add components.</p>
                     <a href="{{ url_for('builder') }}" class="btn btn-primary">Go to PC Builder</a>
                 </div>
             {% endif %}
