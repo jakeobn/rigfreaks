@@ -6,6 +6,18 @@
     padding-bottom: 7rem !important; /* Increased padding to allow for better blend */
 }
 
+/* Apply exact same gradient overlay to the hero section */
+.modern-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1;
+}
+
 /* Create a smooth gradient fade transition at the hero bottom */
 .modern-hero::after {
     content: '';
@@ -17,7 +29,7 @@
     background: linear-gradient(to bottom, 
                  transparent, 
                  var(--bg-darker));
-    z-index: 0;
+    z-index: 1;
 }
 
 /* Make sure the container after hero has no top padding/margin */
@@ -27,6 +39,21 @@
     margin-top: 0 !important;
     position: relative;
     z-index: 2;
+}
+
+/* Ensure hero content stays above the gradient overlay */
+.hero-content, 
+.hero-3d-card, 
+.spec-card,
+.hero-blob,
+.hero-tags,
+.hero-title-modern,
+.hero-subtitle,
+.hero-description,
+.hero-buttons,
+.hero-features-modern {
+    position: relative;
+    z-index: 2 !important;
 }
 
 /* Ensure content sections match background positioning */
