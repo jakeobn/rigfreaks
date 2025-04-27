@@ -68,49 +68,49 @@ body {
 
 /* Table backgrounds */
 .table {
-    --bs-table-bg: var(--bg-dark);
-    --bs-table-striped-bg: var(--bg-darker);
+    --bs-table-bg: var(--bs-white);
+    --bs-table-striped-bg: var(--bs-light);
 }
 
 /* Component selection container in builder */
 .component-selection-container {
-    background-color: var(--bg-dark) !important;
-    backdrop-filter: blur(10px) !important;
+    background-color: var(--bs-white) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Component performance bars */
 .component-performance-bar {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
 /* Ensuring consistent backgrounds for sections */
 section:not(.modern-hero) {
-    background-color: transparent;
+    background-color: var(--bs-white);
     position: relative;
     z-index: 1;
 }
 
 /* Mobile summary panel */
 .mobile-summary-panel {
-    background-color: var(--bg-dark) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid var(--border-subtle);
+    background-color: var(--bs-white) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 /* Handle any inline background styles that need to be overridden */
 [style*="background-color: rgba(0, 0, 0, 0.03)"] {
-    background-color: var(--bg-dark) !important;
+    background-color: var(--bs-white) !important;
 }
 
 [style*="background-color: #fff"] {
-    background-color: var(--bg-dark) !important;
+    background-color: var(--bs-white) !important;
 }
 
 [style*="background-color: #dee2e6"] {
-    background-color: var(--border-light) !important;
+    background-color: var(--bs-light) !important;
 }
 
 /* Drag indicator in mobile view */
 .drag-indicator {
-    background-color: var(--border-light) !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
 }
