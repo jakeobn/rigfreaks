@@ -7,8 +7,21 @@
 <style>
     /* Component Selection Modal styling */
     .modal-dialog-scrollable .modal-body {
-        overflow-y: auto;
-        max-height: calc(90vh - 200px);
+        overflow-y: auto !important;
+        max-height: 60vh !important;
+        padding-right: 0 !important; /* Prevents double scrollbar */
+    }
+    
+    /* Ensure the modal is tall enough but not too tall */
+    #componentSelectionModal .modal-dialog {
+        max-height: 90vh;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+    
+    /* Important: make the component wrapper take all available space */
+    #componentCardsWrapper {
+        min-height: 200px;
     }
     
     /* We're using Bootstrap's built-in modal functionality now */
@@ -430,7 +443,7 @@
                 </div>
                 
                 <!-- Component display area -->
-                <div class="modal-body p-0 bg-light bg-opacity-50">
+                <div class="modal-body p-0 bg-light bg-opacity-50 overflow-auto">
                     <!-- Loading animation -->
                     <div class="text-center py-5" id="component-loading">
                         <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
@@ -444,7 +457,7 @@
                     </div>
                     
                     <!-- Component cards -->
-                    <div id="componentCardsWrapper" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 p-3"></div>
+                    <div id="componentCardsWrapper" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 p-3" style="min-height: 400px;"></div>
                 </div>
                 
                 <!-- Modal footer -->
