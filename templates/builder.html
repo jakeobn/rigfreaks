@@ -382,13 +382,13 @@
                     </div>
                 </div>
             {% else %}
-                <!-- Empty Build State -->
+                <!-- Empty System State -->
                 <div class="empty-build-state text-center py-4">
                     <div class="empty-build-icon mb-3">
                         <i class="fas fa-desktop fa-3x text-secondary"></i>
                     </div>
-                    <h4>Your Build is Empty</h4>
-                    <p class="text-muted mb-4">Start by selecting components to build your custom PC.</p>
+                    <h4>Your System is Empty</h4>
+                    <p class="text-muted mb-4">Start by selecting components to build your custom system.</p>
                 </div>
             {% endif %}
         </div>
@@ -497,15 +497,15 @@
     </div>
     
     <!-- Component Selection Progress -->
-    <div class="row mb-4 build-progress">
+    <div class="row mb-4 system-progress">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="row text-center">
                         {% set component_categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
                         {% for category in component_categories %}
-                            <div class="col build-progress-item {% if category in current_config %}completed{% endif %}">
-                                <div class="build-progress-icon">
+                            <div class="col system-progress-item {% if category in current_config %}completed{% endif %}">
+                                <div class="system-progress-icon">
                                     {% if category == 'cpu' %}
                                         <i class="fas fa-microchip"></i>
                                     {% elif category == 'motherboard' %}
@@ -524,7 +524,7 @@
                                         <i class="fas fa-wind"></i>
                                     {% endif %}
                                 </div>
-                                <div class="build-progress-text">
+                                <div class="system-progress-text">
                                     {{ category|capitalize }}
                                 </div>
                             </div>
@@ -824,7 +824,7 @@
                                 <i class="fas fa-desktop fa-4x text-secondary"></i>
                             </div>
                             <h4>Your System is Empty</h4>
-                            <p class="text-muted mb-4">Start by selecting components from the left panel to build your custom PC.</p>
+                            <p class="text-muted mb-4">Start by selecting components from the left panel to build your custom system.</p>
                             <div class="empty-build-actions">
                                 <a href="{{ url_for('select_component', category='cpu') }}" class="btn btn-primary">
                                     <i class="fas fa-microchip me-2"></i>Start with a CPU
