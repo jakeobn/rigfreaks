@@ -8,23 +8,27 @@
     /* Component Selection Modal */
     .component-selection-container {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
         z-index: 1050;
-        margin-bottom: 0;
-        padding: 0;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        width: 95%;
+        max-width: 1000px;
+        max-height: 90vh;
+        margin: 0 auto;
         overflow-y: auto;
         opacity: 0;
-        transform: translateY(20px) scale(0.98);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        visibility: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        background-color: white;
+        border-radius: 8px;
     }
     
     .component-selection-container.active {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
     }
     
     .component-selection-backdrop {
@@ -33,15 +37,16 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(18, 21, 31, 0.85);
-        /* Removed backdrop-filter that was causing blurriness */
+        background-color: rgba(0, 0, 0, 0.7);
         z-index: 1040;
         opacity: 0;
+        visibility: hidden;
         transition: opacity 0.3s ease;
     }
     
     .component-selection-backdrop.active {
         opacity: 1;
+        visibility: visible;
     }
     
     @media (min-width: 768px) {
@@ -1039,29 +1044,69 @@
     // When the component dropdown button is clicked
     document.querySelectorAll('.component-dropdown-btn').forEach(button => {
         button.addEventListener('click', function() {
+            console.log("Component dropdown button clicked");
+            
             // Get the category from the data attribute
             currentCategory = this.getAttribute('data-category');
+            console.log("Category selected:", currentCategory);
             
             // Set the title and icon
             const categoryTitle = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
-            document.getElementById('componentModalLabel').textContent = `Select ${categoryTitle}`;
+            const titleElement = document.getElementById('componentModalLabel');
+            if (titleElement) {
+                titleElement.textContent = `Select ${categoryTitle}`;
+            } else {
+                console.error("Component modal label element not found");
+            }
             
             // Update icon and description
             const iconContainer = document.getElementById('modalCategoryIcon');
-            iconContainer.innerHTML = `<i class="fas fa-${categoryInfo[currentCategory].icon}"></i>`;
+            if (iconContainer && categoryInfo[currentCategory]) {
+                iconContainer.innerHTML = `<i class="fas fa-${categoryInfo[currentCategory].icon}"></i>`;
+            } else {
+                console.error("Icon container or category info missing", iconContainer, categoryInfo[currentCategory]);
+            }
             
             // Update subtitle
-            document.getElementById('modalCategoryDescription').textContent = categoryInfo[currentCategory].description;
+            const descElement = document.getElementById('modalCategoryDescription');
+            if (descElement && categoryInfo[currentCategory]) {
+                descElement.textContent = categoryInfo[currentCategory].description;
+            } else {
+                console.error("Description element or category info missing");
+            }
             
             // Clear previous component rows and show loading
             const cardContainer = document.getElementById('componentCardsWrapper');
             const loadingElement = document.getElementById('component-loading');
+            
+            if (!cardContainer) {
+                console.error("Component cards wrapper not found");
+                return;
+            }
+            
+            if (!loadingElement) {
+                console.error("Loading element not found");
+            } else {
+                loadingElement.style.display = 'block';
+            }
+            
             cardContainer.innerHTML = '';
-            loadingElement.style.display = 'block';
             
             // Show the component selection container and backdrop with animation
             const componentSelectionContainer = document.getElementById('componentSelectionContainer');
             const componentSelectionBackdrop = document.getElementById('componentSelectionBackdrop');
+            
+            if (!componentSelectionContainer) {
+                console.error("Component selection container not found");
+                return;
+            }
+            
+            if (!componentSelectionBackdrop) {
+                console.error("Component selection backdrop not found");
+                return;
+            }
+            
+            console.log("Opening component selection container");
             
             // Remove d-none class to make elements visible
             componentSelectionContainer.classList.remove('d-none');
@@ -1075,6 +1120,7 @@
             setTimeout(() => {
                 componentSelectionContainer.classList.add('active');
                 componentSelectionBackdrop.classList.add('active');
+                console.log("Added active classes to container and backdrop");
             }, 10);
             
             // Simulate loading delay (remove in production)
