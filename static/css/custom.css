@@ -1,5 +1,34 @@
 /* Additional custom styles to complement Bootstrap */
 
+/* Flash Messages Styling */
+.alert {
+    border-left: 4px solid;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1025; /* Ensure messages appear above most content but below the header */
+}
+
+.alert-success {
+    border-left-color: var(--success);
+}
+
+.alert-info {
+    border-left-color: var(--info);
+}
+
+.alert-warning {
+    border-left-color: var(--warning);
+}
+
+.alert-danger {
+    border-left-color: var(--danger);
+}
+
+/* Container for flash messages with fixed positioning */
+.flash-messages-container {
+    z-index: 1025;
+    position: relative;
+}
+
 /* PCSpecialist & Chillblast-inspired styling - Building on the Replit bootstrap dark theme */
 
 /* Featured Build Slider Section (PCSpecialist & Chillblast inspired) */
