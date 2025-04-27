@@ -4,42 +4,13 @@
  * matching the hero section aesthetic
  */
 
-/* Set default body background */
+/* Set default body background - simplified with no gradient */
 body {
-    background-color: var(--bg-darker);
+    background-color: var(--bs-light);
     position: relative;
 }
 
-/* Create site-wide background blobs similar to hero */
-body::before {
-    content: "";
-    position: fixed;
-    top: -20%;
-    right: -15%;
-    width: 45vw;
-    height: 45vw;
-    background: linear-gradient(125deg, var(--primary-color), var(--info));
-    border-radius: 50%;
-    filter: blur(50px);
-    opacity: 0.05;
-    z-index: -1;
-    animation: float 12s ease-in-out infinite alternate;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    bottom: -10%;
-    left: -10%;
-    width: 30vw;
-    height: 30vw;
-    background: linear-gradient(220deg, var(--success), var(--primary-color));
-    border-radius: 50%;
-    filter: blur(50px);
-    opacity: 0.05;
-    z-index: -1;
-    animation: float 15s ease-in-out infinite alternate-reverse;
-}
+/* Removed background blobs */
 
 @keyframes float {
     0% { transform: translate(0, 0) rotate(0deg); }
@@ -53,43 +24,17 @@ body::after {
     z-index: 1;
 }
 
-/* Background grid similar to hero */
-.main-content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
-    z-index: -1;
-    pointer-events: none;
-}
+/* Background grid removed */
 
 /* Card backgrounds */
 .card {
-    background-color: var(--bg-dark);
-    border-color: var(--border-subtle);
+    background-color: var(--bs-white);
+    border-color: rgba(0, 0, 0, 0.125);
     position: relative;
     overflow: hidden;
 }
 
-/* Add subtle glass effect to cards */
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
-    z-index: 0;
-    pointer-events: none;
-}
+/* Removed glass effect */
 
 /* Make card content appear above the background */
 .card-body, .card-header, .card-footer {
@@ -99,28 +44,26 @@ body::after {
 
 /* Component cards in builder */
 .component-card {
-    background-color: var(--bg-dark);
-    backdrop-filter: blur(5px);
+    background-color: var(--bs-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Modal backgrounds */
 .modal-content {
-    background-color: var(--bg-dark);
-    border-color: var(--border-subtle);
-    backdrop-filter: blur(10px);
+    background-color: var(--bs-white);
+    border-color: rgba(0, 0, 0, 0.125);
 }
 
 /* Dropdown backgrounds */
 .dropdown-menu {
-    background-color: var(--bg-dark);
-    border-color: var(--border-subtle);
-    backdrop-filter: blur(10px);
+    background-color: var(--bs-white);
+    border-color: rgba(0, 0, 0, 0.125);
 }
 
 /* Form control backgrounds */
 .form-control, .form-select {
-    background-color: var(--bg-darker);
-    border-color: var(--border-light);
+    background-color: var(--bs-white);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Table backgrounds */

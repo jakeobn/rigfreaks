@@ -1,0 +1,70 @@
+<section class="newsletter-modern">
+        <div class="newsletter-decoration newsletter-decoration-1"></div>
+        <div class="newsletter-decoration newsletter-decoration-2"></div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="newsletter-card aos-init aos-animate" data-aos="fade-up">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-6">
+                                <div class="newsletter-content-modern">
+                                    <h3 class="newsletter-title-modern">Stay Ahead with EverCraft Updates</h3>
+                                    <p class="newsletter-subtitle-modern">
+                                        Join our community to receive exclusive content, early access to sales, and the latest hardware news
+                                    </p>
+                                    
+                                    <ul class="newsletter-features-modern">
+                                        <li data-aos="fade-right" data-aos-delay="100" class="aos-init aos-animate">
+                                            <i class="fas fa-bell"></i>
+                                            <span>Product launch notifications</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="200" class="aos-init aos-animate">
+                                            <i class="fas fa-tag"></i>
+                                            <span>Exclusive subscriber discounts</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="300" class="aos-init aos-animate">
+                                            <i class="fas fa-book"></i>
+                                            <span>Expert PC building guides</span>
+                                        </li>
+                                        <li data-aos="fade-right" data-aos-delay="400" class="aos-init aos-animate">
+                                            <i class="fas fa-award"></i>
+                                            <span>Insider hardware reviews</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="newsletter-form-modern aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                                    <form>
+                                        <div class="form-floating-modern">
+                                            <input type="text" class="form-control" id="nameInput" placeholder=" ">
+                                            <label for="nameInput">Your Name</label>
+                                        <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+                                        
+                                        <div class="form-floating-modern">
+                                            <input type="email" class="form-control" id="emailInput" placeholder=" ">
+                                            <label for="emailInput">Email Address</label>
+                                        </div>
+                                        
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary btn-newsletter">
+                                                <i class="fas fa-paper-plane"></i>
+                                                <span>Subscribe to Newsletter</span>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="newsletter-privacy-modern">
+                                            <i class="fas fa-shield-alt me-1"></i>
+                                            We respect your privacy and will never share your information
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
