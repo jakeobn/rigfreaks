@@ -1,12 +1,12 @@
 /* Mobile menu fix to ensure menu appears above all content */
 #navbarNav {
-    position: absolute;
+    position: fixed !important;
     width: 100%;
-    top: 100%;
+    top: 100px; /* Position below header */
     left: 0;
-    max-height: 80vh;
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
-    z-index: 1050;
+    z-index: 9999 !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     background-color: #fff;
 }
@@ -22,11 +22,32 @@
     body {
         padding-bottom: 60px;
     }
+    
+    .site-footer {
+        position: relative;
+        z-index: 1 !important; /* Lower z-index than menu */
+    }
+    
+    .navbar-toggler {
+        z-index: 9999;
+    }
+    
+    header {
+        position: relative;
+        z-index: 9998;
+    }
 }
 
 /* Make sure dropdown menus in mobile navigation stay above other elements */
 @media (max-width: 991.98px) {
     .dropdown-menu {
-        z-index: 1060;
+        z-index: 10000 !important;
+        position: relative;
     }
+}
+
+/* Fix for body content */
+.main-content {
+    position: relative;
+    z-index: 1;
 }
