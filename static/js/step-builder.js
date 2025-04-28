@@ -484,8 +484,10 @@ class StepBuilder {
             overlay.className = 'component-details-overlay';
             document.body.appendChild(overlay);
             
-            // We're not adding a click handler to the overlay anymore
-            // since we want users to be able to click through it
+            // Add click event to close when clicking outside
+            overlay.addEventListener('click', () => {
+                this.closeComponentDetails();
+            });
             
             // Add keyboard event for Escape key
             document.addEventListener('keydown', (e) => {
