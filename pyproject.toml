@@ -17,4 +17,5 @@ dependencies = [
     "wtforms>=3.2.1",
     "beautifulsoup4>=4.13.4",
     "requests>=2.32.3",
+    "pandas>=2.2.3",
 ]
