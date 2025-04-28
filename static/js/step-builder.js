@@ -456,14 +456,28 @@ class StepBuilder {
     
     // Show component details panel
     showComponentDetails(componentId) {
-        if (!this.detailsPanel) return;
-        
         // Find component data
         const componentCard = document.querySelector(`[data-component-id="${componentId}"]`);
         if (!componentCard) {
             console.error('Component not found:', componentId);
             return;
         }
+        
+        // Get the current category from the step panel
+        const currentPanel = document.querySelector('.step-panel.active');
+        const category = currentPanel.getAttribute('data-category');
+        
+        if (!category) {
+            console.error('Could not determine component category');
+            return;
+        }
+        
+        // Navigate to the component details page
+        window.location.href = `/component/${category}/${componentId}`;
+        
+        // The code below is kept for backward compatibility with the popup approach
+        // but we're now using a full page approach instead
+        if (!this.detailsPanel) return;
         
         // Set flag to prevent immediate closing
         this.isOpeningDetails = true;
