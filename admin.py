@@ -8,7 +8,7 @@ import json
 import threading
 from datetime import datetime
 import time
-from pcpartpicker_scraper import PCPartPickerScraper
+from pcpartpicker_scraper import PCPartPickerProvider
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -230,18 +230,18 @@ def run_scraper():
             global scraper_running
             try:
                 scraper_running = True
-                scraper = PCPartPickerScraper()
+                provider = PCPartPickerProvider()
                 
                 if category == 'all':
-                    # Scrape all categories
-                    results = scraper.scrape_categories(limit_per_category=limit, get_details=get_details)
-                    scraper.save_results(results)
+                    # Fetch all categories
+                    filters = {}
+                    results = provider.fetch_product_data(categories=None, filters=filters, count_per_category=limit)
+                    provider.save_results(results)
                 else:
-                    # Scrape specific category
-                    results = {}
-                    products = scraper.scrape_category(category, limit=limit, get_details=get_details)
-                    results[category] = products
-                    scraper.save_results(results)
+                    # Fetch specific category
+                    filters = {}
+                    results = provider.fetch_product_data(categories=[category], filters=filters, count_per_category=limit)
+                    provider.save_results(results)
                     
             except Exception as e:
                 logging.error(f"Error running scraper: {str(e)}")
@@ -261,11 +261,11 @@ def run_scraper():
         global scraper_running
         try:
             scraper_running = True
-            # Just scrape the most common categories with minimal details
+            # Just fetch the most common categories with minimal details
             common_categories = ['cpu', 'gpu', 'memory', 'storage', 'motherboard']
-            scraper = PCPartPickerScraper()
-            results = scraper.scrape_categories(categories=common_categories, limit_per_category=3, get_details=False)
-            scraper.save_results(results)
+            provider = PCPartPickerProvider()
+            results = provider.fetch_product_data(categories=common_categories, count_per_category=3)
+            provider.save_results(results)
         except Exception as e:
             logging.error(f"Error running scraper: {str(e)}")
         finally:
