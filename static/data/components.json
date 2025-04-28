@@ -179,6 +179,24 @@
         "Cache": "64MB L3 Cache",
         "Integrated Graphics": "Radeon Graphics"
       }
+    },
+    {
+      "id": "cpu11",
+      "name": "Intel Core i5-14400F",
+      "description": "Mid-range Intel processor with 10 cores (6P+4E) and 16 threads",
+      "price": 146.60,
+      "brand": "Intel",
+      "socket": "LGA1700",
+      "cores": 10,
+      "threads": 16,
+      "base_clock": "2.5 GHz",
+      "boost_clock": "4.7 GHz",
+      "tdp": 65,
+      "image_url": "https://cdn.example.com/cpu11.webp",
+      "specs": {
+        "Cache": "20MB L3 Cache, 9.5MB L2 Cache",
+        "Integrated Graphics": "None"
+      }
     }
   ],
   "motherboard": [
