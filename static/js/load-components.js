@@ -11,29 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Get the current step from URL path or data attribute
-    const stepElement = document.querySelector('[data-step]');
-    if (!stepElement) {
-        console.log('No step element found, skipping component loading');
+    // Get the current step by finding the active step panel
+    const activeStepPanel = document.querySelector('.step-panel.active');
+    if (!activeStepPanel) {
+        console.log('No active step panel found, skipping component loading');
         return;
     }
 
-    const currentStep = parseInt(stepElement.dataset.step, 10);
-    let componentType = 'case'; // Default to case step
+    // Get component type from the active panel's data-category attribute
+    const componentType = activeStepPanel.getAttribute('data-category') || 'case';
+    console.log(`Found active step panel with category: ${componentType}`);
 
-    // Determine which component type to load based on step number
-    switch (currentStep) {
-        case 1: componentType = 'case'; break;
-        case 2: componentType = 'cpu'; break;
-        case 3: componentType = 'motherboard'; break;
-        case 4: componentType = 'ram'; break;
-        case 5: componentType = 'gpu'; break;
-        case 6: componentType = 'power_supply'; break;
-        case 7: componentType = 'storage'; break;
-        default: console.log('Unknown or review step:', currentStep); return;
-    }
-
-    console.log(`Current step: ${currentStep}, loading ${componentType} components...`);
+    // We already have the component type from the active panel
+    console.log(`Loading ${componentType} components...`);
 
     // Load component data from JSON file
     fetch('/static/data/components.json')
@@ -203,19 +193,9 @@ function setupComponentCardEvents() {
                 e.stopPropagation(); // Prevent triggering card click
                 
                 const componentId = card.dataset.componentId;
-                const currentStep = document.querySelector('[data-step]')?.dataset.step;
-                let componentType = 'case';
-                
-                // Map step number to component type
-                switch (parseInt(currentStep, 10)) {
-                    case 1: componentType = 'case'; break;
-                    case 2: componentType = 'cpu'; break;
-                    case 3: componentType = 'motherboard'; break;
-                    case 4: componentType = 'ram'; break;
-                    case 5: componentType = 'gpu'; break;
-                    case 6: componentType = 'power_supply'; break;
-                    case 7: componentType = 'storage'; break;
-                }
+                // Get the active step panel to determine the component type
+                const activePanel = document.querySelector('.step-panel.active');
+                const componentType = activePanel ? activePanel.getAttribute('data-category') : 'case';
                 
                 // Navigate to component detail page
                 window.location.href = `/component/${componentType}/${componentId}`;
