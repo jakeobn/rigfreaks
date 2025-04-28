@@ -10,7 +10,6 @@ import random
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
-import trafilatura
 
 
 class PCPartPickerProvider:
@@ -451,7 +450,7 @@ class PCPartPickerProvider:
         return {category: info for category, info in self.CATEGORIES.items()}
     
     def fetch_product_data(self, categories=None, filters=None, count_per_category=10):
-        """Fetch product data with optional filters"""
+        """Fetch product data from PCPartPicker UK with optional filters"""
         results = {}
         
         # If no categories specified, use all categories
@@ -463,16 +462,150 @@ class PCPartPickerProvider:
             categories = [categories]
         
         for category in categories:
+            if category not in self.CATEGORIES:
+                self.logger.warning(f"Skipping invalid category: {category}")
+                continue
+                
             self.logger.info(f"Fetching data for category: {category}")
             
             # Get filters for this category if provided
             category_filters = filters.get(category, {}) if filters else None
             
-            # Get sample data
-            products = self.get_sample_data(category, count=count_per_category, filters=category_filters)
+            # Scrape real data from PCPartPicker UK
+            products = self._scrape_category_products(category, count_per_category, category_filters)
             results[category] = products
+            
+            # Add a short delay to avoid hitting the site too quickly
+            time.sleep(1 + random.random())
         
         return results
+        
+    def _scrape_category_products(self, category, limit=10, filters=None):
+        """Scrape products from a specific category on PCPartPicker UK"""
+        if category not in self.CATEGORIES:
+            self.logger.error(f"Invalid category: {category}")
+            return []
+            
+        category_info = self.CATEGORIES[category]
+        category_path = category_info["path"]
+        
+        # Construct URL with filters if provided
+        url = f"{self.BASE_URL}{category_path}"
+        filter_params = []
+        
+        if filters:
+            for filter_name, filter_value in filters.items():
+                if isinstance(filter_value, list):
+                    for val in filter_value:
+                        filter_params.append(f"{filter_name}={val}")
+                elif filter_value:
+                    filter_params.append(f"{filter_name}={filter_value}")
+            
+            if filter_params:
+                url += "?" + "&".join(filter_params)
+        
+        # Get the page content
+        try:
+            self.logger.debug(f"Fetching URL: {url}")
+            response = self.session.get(url, timeout=10)
+            response.raise_for_status()
+            
+            # Parse with BeautifulSoup
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Extract products
+            products = []
+            product_elements = soup.select('.tr__product')
+            
+            # Limit the number of products
+            counter = 0
+            for product_el in product_elements:
+                if counter >= limit:
+                    break
+                    
+                product_data = self._parse_product_element(product_el, category)
+                if product_data:
+                    products.append(product_data)
+                    counter += 1
+            
+            return products
+            
+        except Exception as e:
+            self.logger.error(f"Error scraping {category} products: {str(e)}")
+            # Fallback to sample data if scraping fails
+            self.logger.warning(f"Using sample data for {category} as fallback")
+            return self.get_sample_data(category, count=limit, filters=filters)
+    
+    def _parse_product_element(self, product_el, category):
+        """Parse a product element from PCPartPicker search results"""
+        try:
+            # Extract basic product info
+            product = {"category": category}
+            
+            # Get name
+            name_el = product_el.select_one('.td__nameWrapper a')
+            if name_el:
+                product["name"] = name_el.text.strip()
+                product["url"] = self.BASE_URL + name_el['href'] if name_el.has_attr('href') else ""
+            else:
+                return None  # Skip if no name
+            
+            # Get price
+            price_el = product_el.select_one('.td__price')
+            if price_el:
+                price_text = price_el.text.strip()
+                if price_text and price_text != "":
+                    # Remove currency symbol and convert to float
+                    price_text = price_text.replace('£', '').replace(',', '').strip()
+                    try:
+                        product["price"] = float(price_text)
+                    except ValueError:
+                        product["price"] = 0.0
+            
+            # Get image URL
+            img_el = product_el.select_one('.td__image img')
+            if img_el and img_el.has_attr('src'):
+                product["image_url"] = img_el['src']
+            
+            # Get specifications based on category
+            specs_els = product_el.select('.td__spec')
+            
+            # Different specs based on category
+            if category == "cpu":
+                if len(specs_els) >= 3:
+                    product["cores"] = specs_els[0].text.strip()
+                    product["frequency"] = specs_els[1].text.strip()
+                    product["tdp"] = specs_els[2].text.strip()
+            elif category == "gpu":
+                if len(specs_els) >= 3:
+                    product["chipset"] = specs_els[0].text.strip()
+                    product["memory"] = specs_els[1].text.strip()
+                    product["core_clock"] = specs_els[2].text.strip()
+            elif category == "memory":
+                if len(specs_els) >= 3:
+                    product["speed"] = specs_els[0].text.strip()
+                    product["type"] = specs_els[1].text.strip()
+                    product["cas_latency"] = specs_els[2].text.strip()
+            elif category == "storage":
+                if len(specs_els) >= 3:
+                    product["capacity"] = specs_els[0].text.strip()
+                    product["type"] = specs_els[1].text.strip()
+                    product["interface"] = specs_els[2].text.strip()
+            elif category == "motherboard":
+                if len(specs_els) >= 3:
+                    product["socket"] = specs_els[0].text.strip()
+                    product["form_factor"] = specs_els[1].text.strip()
+                    product["chipset"] = specs_els[2].text.strip()
+            
+            # Add a unique ID
+            import hashlib
+            product["id"] = hashlib.md5(product["name"].encode()).hexdigest()
+            
+            return product
+            
+        except Exception as e:
+            self.logger.error(f"Error parsing product element: {str(e)}")
+            return None
     
     def save_results(self, results):
         """Save results to a file"""
