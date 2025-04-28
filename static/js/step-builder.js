@@ -448,8 +448,44 @@ class StepBuilder {
         if (detailsPrice) detailsPrice.textContent = price;
         if (detailsSpecs) detailsSpecs.textContent = specs;
         
-        // Open the panel
+        // Create overlay if it doesn't exist
+        let overlay = document.querySelector('.component-details-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'component-details-overlay';
+            document.body.appendChild(overlay);
+            
+            // Add click event to close when clicking outside
+            overlay.addEventListener('click', () => {
+                this.closeComponentDetails();
+            });
+        }
+        
+        // Open the panel and show overlay
         this.detailsPanel.classList.add('open');
+        overlay.classList.add('active');
+        
+        // Focus on the panel (for accessibility)
+        setTimeout(() => {
+            const closeBtn = this.detailsPanel.querySelector('.component-details-close');
+            if (closeBtn) closeBtn.focus();
+        }, 100);
+        
+        // Prevent body scrolling
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Close component details panel
+    closeComponentDetails() {
+        if (!this.detailsPanel) return;
+        
+        // Close the panel and hide overlay
+        this.detailsPanel.classList.remove('open');
+        const overlay = document.querySelector('.component-details-overlay');
+        if (overlay) overlay.classList.remove('active');
+        
+        // Restore body scrolling
+        document.body.style.overflow = '';
     }
     
     // Apply selected filters
