@@ -9,6 +9,7 @@ import threading
 from datetime import datetime
 import time
 from content_scraper import ContentScraper, run_content_scraper
+from pc_component_scraper import PCComponentScraper, run_component_scraper
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -287,6 +288,73 @@ def run_scraper():
     
     return redirect(url_for('admin.scraper_dashboard', 
                           message="Content Aggregator scraper started with default settings (common components, 3 products each).",
+                          category="info"))
+
+
+@admin_bp.route('/admin/scraper/run_pc_scraper', methods=['GET', 'POST'])
+@admin_required
+def run_pc_scraper():
+    """Run the new PC Component scraper that uses international sites"""
+    global scraper_running, scraper_thread
+    
+    if scraper_running:
+        return redirect(url_for('admin.scraper_dashboard', 
+                              message="Scraper is already running. Please wait for it to finish.",
+                              category="warning"))
+    
+    # If it's a POST request, get parameters from form
+    if request.method == 'POST':
+        category = request.form.get('category', 'all')
+        limit = int(request.form.get('limit', 5))
+        
+        # Start the scraper in a separate thread
+        def run_pc_scraper_thread():
+            global scraper_running
+            try:
+                scraper_running = True
+                
+                if category == 'all':
+                    # Fetch all categories
+                    filepath = run_component_scraper(categories=None, count_per_category=limit)
+                else:
+                    # Fetch specific category
+                    filepath = run_component_scraper(categories=[category], count_per_category=limit)
+                    
+                logging.info(f"PC Component Scraper completed. Data saved to {filepath}")
+                    
+            except Exception as e:
+                logging.error(f"Error running PC component scraper: {str(e)}")
+            finally:
+                scraper_running = False
+        
+        scraper_thread = threading.Thread(target=run_pc_scraper_thread)
+        scraper_thread.daemon = True
+        scraper_thread.start()
+        
+        return redirect(url_for('admin.scraper_dashboard', 
+                              message="PC Component scraper started. This may take a few minutes.",
+                              category="info"))
+    
+    # If it's a GET request, just start with default parameters
+    def run_default_pc_scraper_thread():
+        global scraper_running
+        try:
+            scraper_running = True
+            # Just fetch the most common categories with minimal details
+            common_categories = ['cpu', 'gpu', 'memory', 'storage', 'motherboard']
+            filepath = run_component_scraper(categories=common_categories, count_per_category=3)
+            logging.info(f"PC Component Scraper completed. Data saved to {filepath}")
+        except Exception as e:
+            logging.error(f"Error running PC component scraper: {str(e)}")
+        finally:
+            scraper_running = False
+    
+    scraper_thread = threading.Thread(target=run_default_pc_scraper_thread)
+    scraper_thread.daemon = True
+    scraper_thread.start()
+    
+    return redirect(url_for('admin.scraper_dashboard', 
+                          message="PC Component scraper started with default settings (common components, 3 products each).",
                           category="info"))
 
 @admin_bp.route('/admin/scraper/view/<filename>')
