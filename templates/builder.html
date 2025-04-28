@@ -317,13 +317,21 @@
                                 {% endif %}
                             </div>
                             
-                            {% if category in current_config %}
-                                {% set component = components[category] | selectattr('id', 'equalto', current_config[category]) | first %}
-                                <div class="build-component-info flex-grow-1">
-                                    <div class="build-component-name">{{ component.name }}</div>
-                                    <div class="build-component-category text-muted small">{{ category|capitalize }}</div>
-                                </div>
-                                <div class="build-component-price text-success fw-bold">${{ component.price }}</div>
+                            {% if category in current_config and current_config[category] and components[category]|length > 0 %}
+                                {% set component_list = components[category] | selectattr('id', 'equalto', current_config[category]) | list %}
+                                {% if component_list|length > 0 %}
+                                    {% set component = component_list[0] %}
+                                    <div class="build-component-info flex-grow-1">
+                                        <div class="build-component-name">{{ component.name }}</div>
+                                        <div class="build-component-category text-muted small">{{ category|capitalize }}</div>
+                                    </div>
+                                    <div class="build-component-price text-success fw-bold">${{ component.price }}</div>
+                                {% else %}
+                                    <div class="build-component-info flex-grow-1">
+                                        <div class="build-component-missing">{{ category|capitalize }} Not Found</div>
+                                        <div class="build-component-category text-muted small">Component missing in database</div>
+                                    </div>
+                                {% endif %}
                             {% else %}
                                 <div class="build-component-info flex-grow-1">
                                     <div class="build-component-missing">{{ category|capitalize }} Not Selected</div>
