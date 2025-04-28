@@ -43,11 +43,31 @@
             
             <div class="step-indicator" data-step="2">
                 <span>3</span>
-                <div class="step-indicator-label">Storage</div>
+                <div class="step-indicator-label">Motherboard</div>
             </div>
             
             <div class="step-indicator" data-step="3">
                 <span>4</span>
+                <div class="step-indicator-label">Memory</div>
+            </div>
+            
+            <div class="step-indicator" data-step="4">
+                <span>5</span>
+                <div class="step-indicator-label">Graphics</div>
+            </div>
+            
+            <div class="step-indicator" data-step="5">
+                <span>6</span>
+                <div class="step-indicator-label">Power Supply</div>
+            </div>
+            
+            <div class="step-indicator" data-step="6">
+                <span>7</span>
+                <div class="step-indicator-label">Storage</div>
+            </div>
+            
+            <div class="step-indicator" data-step="7">
+                <span>8</span>
                 <div class="step-indicator-label">Review</div>
             </div>
         </div>
@@ -246,7 +266,292 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 3: Storage (HDD/SSD) -->
+            <!-- Step 3: Motherboard -->
+            <div id="step-motherboard" class="step-panel" data-required="true" data-category="motherboard">
+                <h2 class="step-title">Select Your Motherboard</h2>
+                <p class="step-description">Choose a motherboard that's compatible with your CPU and offers the features you need.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Chipset:</div>
+                    <div class="filter-options" data-filter-type="chipset">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="b660">Intel B660</div>
+                        <div class="filter-tag" data-filter-value="z690">Intel Z690</div>
+                        <div class="filter-tag" data-filter-value="b550">AMD B550</div>
+                        <div class="filter-tag" data-filter-value="x570">AMD X570</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- Motherboard 1 -->
+                    <div class="component-card" data-component-id="msi-b660m" data-price="139" data-chipset="b660">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="component-name">MSI PRO B660M-A DDR4</div>
+                        <div class="component-specs">Intel B660 chipset, Micro-ATX, DDR4 memory support, PCIe 4.0</div>
+                        <div class="component-price">$139.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Motherboard 2 -->
+                    <div class="component-card" data-component-id="asus-prime-b550" data-price="149" data-chipset="b550">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="component-name">ASUS PRIME B550-PLUS</div>
+                        <div class="component-specs">AMD B550 chipset, ATX, DDR4 memory support, PCIe 4.0</div>
+                        <div class="component-price">$149.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Motherboard 3 -->
+                    <div class="component-card" data-component-id="gigabyte-z690" data-price="219" data-chipset="z690">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="component-name">GIGABYTE Z690 GAMING X DDR4</div>
+                        <div class="component-specs">Intel Z690 chipset, ATX, DDR4 memory support, PCIe 5.0</div>
+                        <div class="component-price">$219.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 4: Memory (RAM) -->
+            <div id="step-ram" class="step-panel" data-required="true" data-category="ram">
+                <h2 class="step-title">Select Your Memory (RAM)</h2>
+                <p class="step-description">Choose memory that provides the right amount of capacity and speed for your workloads.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Capacity:</div>
+                    <div class="filter-options" data-filter-type="capacity">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="16">16GB</div>
+                        <div class="filter-tag" data-filter-value="32">32GB</div>
+                        <div class="filter-tag" data-filter-value="64">64GB</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- RAM 1 -->
+                    <div class="component-card" data-component-id="corsair-vengeance-16gb" data-price="79" data-capacity="16">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <div class="component-name">CORSAIR VENGEANCE RGB PRO 16GB (2x8GB)</div>
+                        <div class="component-specs">DDR4 3200MHz, CL16, RGB lighting</div>
+                        <div class="component-price">$79.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- RAM 2 -->
+                    <div class="component-card" data-component-id="crucial-ballistix-32gb" data-price="129" data-capacity="32">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <div class="component-name">CRUCIAL BALLISTIX 32GB (2x16GB)</div>
+                        <div class="component-specs">DDR4 3600MHz, CL16, low profile design</div>
+                        <div class="component-price">$129.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- RAM 3 -->
+                    <div class="component-card" data-component-id="gskill-trident-64gb" data-price="249" data-capacity="64">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <div class="component-name">G.SKILL TRIDENT Z RGB 64GB (2x32GB)</div>
+                        <div class="component-specs">DDR4 3600MHz, CL18, RGB lighting</div>
+                        <div class="component-price">$249.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 5: Graphics Card (GPU) -->
+            <div id="step-gpu" class="step-panel" data-required="true" data-category="gpu">
+                <h2 class="step-title">Select Your Graphics Card (GPU)</h2>
+                <p class="step-description">Choose a graphics card that provides the performance you need for gaming and visual workloads.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Brand:</div>
+                    <div class="filter-options" data-filter-type="brand">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="nvidia">NVIDIA</div>
+                        <div class="filter-tag" data-filter-value="amd">AMD</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- GPU 1 -->
+                    <div class="component-card" data-component-id="nvidia-rtx-3060" data-price="349" data-brand="nvidia">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div class="component-name">NVIDIA GeForce RTX 3060 12GB</div>
+                        <div class="component-specs">12GB GDDR6, Ray Tracing, DLSS, 1777 MHz Boost Clock</div>
+                        <div class="component-price">$349.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- GPU 2 -->
+                    <div class="component-card" data-component-id="amd-rx-6700-xt" data-price="429" data-brand="amd">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div class="component-name">AMD Radeon RX 6700 XT 12GB</div>
+                        <div class="component-specs">12GB GDDR6, Ray Accelerator, 2581 MHz Boost Clock</div>
+                        <div class="component-price">$429.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- GPU 3 -->
+                    <div class="component-card" data-component-id="nvidia-rtx-3080" data-price="699" data-brand="nvidia">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div class="component-name">NVIDIA GeForce RTX 3080 10GB</div>
+                        <div class="component-specs">10GB GDDR6X, Ray Tracing, DLSS, 1710 MHz Boost Clock</div>
+                        <div class="component-price">$699.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 6: Power Supply -->
+            <div id="step-power" class="step-panel" data-required="true" data-category="power_supply">
+                <h2 class="step-title">Select Your Power Supply</h2>
+                <p class="step-description">Choose a power supply that delivers clean, stable power with adequate wattage for your components.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Wattage:</div>
+                    <div class="filter-options" data-filter-type="wattage">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="550">550W</div>
+                        <div class="filter-tag" data-filter-value="650">650W</div>
+                        <div class="filter-tag" data-filter-value="750">750W</div>
+                        <div class="filter-tag" data-filter-value="850">850W</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- PSU 1 -->
+                    <div class="component-card" data-component-id="corsair-rm550x" data-price="89" data-wattage="550">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="component-name">CORSAIR RM550x 80 PLUS Gold</div>
+                        <div class="component-specs">550W, Fully Modular, 80 PLUS Gold certified, Zero RPM mode</div>
+                        <div class="component-price">$89.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- PSU 2 -->
+                    <div class="component-card" data-component-id="evga-650-bq" data-price="69" data-wattage="650">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="component-name">EVGA 650 BQ 80 PLUS Bronze</div>
+                        <div class="component-specs">650W, Semi-Modular, 80 PLUS Bronze certified</div>
+                        <div class="component-price">$69.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- PSU 3 -->
+                    <div class="component-card" data-component-id="seasonic-focus-750" data-price="109" data-wattage="750">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="component-name">SEASONIC FOCUS GX-750 80 PLUS Gold</div>
+                        <div class="component-specs">750W, Fully Modular, 80 PLUS Gold certified, Hybrid Mode</div>
+                        <div class="component-price">$109.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 7: Storage (HDD/SSD) -->
             <div id="step-storage" class="step-panel" data-required="true" data-category="storage">
                 <h2 class="step-title">Select Your Storage (HDD/SSD)</h2>
                 <p class="step-description">Choose storage that provides enough space and speed for your needs. SSDs offer faster performance, while HDDs provide more storage for the cost.</p>
