@@ -36,7 +36,6 @@ class StepBuilder {
         this.validateStep = this.validateStep.bind(this);
         this.updateTotalPrice = this.updateTotalPrice.bind(this);
         this.submitBuild = this.submitBuild.bind(this);
-        this.addSelectButtons = this.addSelectButtons.bind(this);
         
         // Initialize event handler references
         this.handleEscapeKey = null;
@@ -145,57 +144,7 @@ class StepBuilder {
         // Initialize empty build configuration
         this.initBuildConfig();
         
-        // Add select buttons next to all detail buttons
-        this.addSelectButtons();
-        
         console.log('Step Builder initialized with', this.totalSteps, 'steps');
-    }
-    
-    // Add Select buttons next to all View Details buttons
-    addSelectButtons() {
-        // Find all component detail buttons
-        const detailButtons = document.querySelectorAll('.component-details-btn');
-        
-        detailButtons.forEach(button => {
-            // Check if a select button already exists next to this button
-            let parentContainer = button.parentNode;
-            
-            // If the button is not already in a flex container with select button
-            if (!parentContainer.classList.contains('d-flex')) {
-                // Get the component card this button belongs to
-                const componentCard = button.closest('.component-card');
-                if (!componentCard) return;
-                
-                // Remove any existing mt-2 class from the button
-                button.classList.remove('mt-2');
-                
-                // Create a flex container
-                const buttonContainer = document.createElement('div');
-                buttonContainer.className = 'd-flex gap-2 mt-2';
-                
-                // Create the select button
-                const selectButton = document.createElement('button');
-                selectButton.className = 'btn btn-sm btn-primary component-select-btn';
-                selectButton.innerHTML = '<i class="fas fa-check me-1"></i> Select';
-                
-                // Add event listener to the select button to directly select the component
-                selectButton.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent event bubbling
-                    
-                    // Call the component selection method
-                    this.selectComponent(componentCard);
-                });
-                
-                // Replace the original button with our new container
-                parentContainer.replaceChild(buttonContainer, button);
-                
-                // Add both buttons to the container
-                buttonContainer.appendChild(button);
-                buttonContainer.appendChild(selectButton);
-                
-                console.log('Added select button to component card');
-            }
-        });
     }
     
     // Initialize the build configuration object
@@ -402,9 +351,6 @@ class StepBuilder {
         }
         
         console.log('Navigated to step', stepIndex + 1);
-        
-        // Ensure select buttons are added to this step's components
-        this.addSelectButtons();
     }
     
     // Update step indicators
