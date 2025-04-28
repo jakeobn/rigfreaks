@@ -27,7 +27,14 @@ def admin_required(f):
     @wraps(f)
     @admin_login_required  # First ensure the admin is logged in
     def decorated_function(*args, **kwargs):
-        return f(*args, **kwargs)
+        # For simplicity, we'll just check if the user ID is 1
+        # In a real-world app, you'd check for an is_admin flag
+        admin_id = session.get('admin_id')
+        if admin_id == 1:
+            return f(*args, **kwargs)
+        else:
+            flash('You do not have administrator privileges.', 'danger')
+            return redirect(url_for('index'))
     return decorated_function
 
 @admin_bp.route('/admin/login', methods=['GET', 'POST'])
@@ -37,18 +44,25 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        # Find admin user
-        user = User.query.filter_by(username=username).first()
-        
-        # For simplicity, we're assuming admin is user with ID 1
-        # In a real app, you would have a role or is_admin field
-        if user and user.id == 1 and user.check_password(password):
+        # For this demo, we'll hardcode admin credentials
+        # In a real app, you would check credentials from the database
+        if username == "Jake" and password == "admin123":
             session['admin_logged_in'] = True
-            session['admin_id'] = user.id
+            session['admin_id'] = 1
             flash('Logged in successfully!', 'success')
             return redirect(url_for('admin.dashboard'))
         else:
-            flash('Invalid username or password.', 'danger')
+            # We can also try to look up in the database as a fallback
+            user = User.query.filter_by(username=username).first()
+            
+            # For simplicity, we're assuming admin is user with ID 1
+            if user and user.id == 1 and user.check_password(password):
+                session['admin_logged_in'] = True
+                session['admin_id'] = user.id
+                flash('Logged in successfully!', 'success')
+                return redirect(url_for('admin.dashboard'))
+            else:
+                flash('Invalid username or password. Try using Jake/admin123', 'danger')
     
     return render_template('admin/login.html')
 
