@@ -1,0 +1,13 @@
+{
+  "source": "PC Component Scraper",
+  "scrape_date": "2025-04-28T19:16:21.448470",
+  "total_categories": 5,
+  "total_components": 0,
+  "categories": {
+    "cpu": [],
+    "gpu": [],
+    "memory": [],
+    "storage": [],
+    "motherboard": []
+  }
+}
