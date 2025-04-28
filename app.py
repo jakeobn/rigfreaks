@@ -129,7 +129,7 @@ def component_detail(category, component_id):
     
     if category not in components:
         flash(f"Component category '{category}' not found", "danger")
-        return redirect(url_for('builder'))
+        return redirect(url_for('step_builder'))
     
     # Use the helper function for more efficient lookup
     from utils import get_component_by_id
