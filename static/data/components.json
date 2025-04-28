@@ -171,6 +171,51 @@
       }
     },
     {
+      "id": "montech-king-95-pro-red",
+      "name": "Montech KING 95 PRO - Red",
+      "price": 129.99,
+      "brand": "Montech",
+      "form_factor": "Mid Tower",
+      "motherboard_compatibility": ["ATX", "mATX", "Mini-ITX"],
+      "dimensions": {
+        "width": 300,
+        "depth": 475,
+        "height": 442
+      },
+      "weight": 9.2,
+      "color": "Vibrant Red",
+      "materials": ["Steel", "Tempered Glass"],
+      "expansion_slots": 7,
+      "drive_bays": {
+        "2.5_or_3.5_inch": {
+          "2.5_inch": 8,
+          "3.5_inch": 5
+        }
+      },
+      "cooling": {
+        "side": "Supports 2 x 140mm or 120mm fans (2 x 140mm ARGB fans included)",
+        "top": "Supports 2 x 140mm or 3 x 120mm fans",
+        "bottom": "Supports 2 x 140mm or 3 x 120mm fans (3 x 120mm ARGB fans included)",
+        "rear": "Supports 1 x 120mm fan (ARGB fan included)"
+      },
+      "ports": {
+        "usb_3": 2,
+        "usb_c": 1,
+        "audio": "1 x 3.5mm Jack",
+        "mic": "1 x 3.5mm Jack"
+      },
+      "part_number": "KING 95 PRO (Red)",
+      "warranty": "1 Year",
+      "image_url": "https://cdn.example.com/case_montech_king95pro_red.webp",
+      "specs": {
+        "Included Fans": "6 ARGB LED fans (2 side, 1 rear, 3 bottom)",
+        "PSU Support": "ATX Power Supply supported",
+        "User Controls": "Power, LED",
+        "Internal Expansion Bays": "8 x 2.5\" OR 5 x 3.5\"",
+        "Expansion Slots": "7 x Full Height"
+      }
+    },
+    {
       "id": "montech-king-95-pro-blue",
       "name": "Montech KING 95 PRO - Blue",
       "price": 129.99,
