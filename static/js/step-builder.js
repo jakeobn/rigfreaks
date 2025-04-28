@@ -102,6 +102,18 @@ class StepBuilder {
             }
         });
         
+        // Ensure all required component categories are included in the config
+        const requiredCategories = ['case', 'cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'cooling'];
+        requiredCategories.forEach(category => {
+            if (!this.buildConfig[category]) {
+                this.buildConfig[category] = {
+                    id: null,
+                    name: null,
+                    price: 0
+                };
+            }
+        });
+        
         console.log('Build config initialized:', this.buildConfig);
     }
     
