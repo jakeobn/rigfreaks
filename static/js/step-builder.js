@@ -478,8 +478,7 @@ class StepBuilder {
             if (closeBtn) closeBtn.focus();
         }, 100);
         
-        // Prevent body scrolling
-        document.body.style.overflow = 'hidden';
+        // Don't prevent all interactions, just make the modal the focus point
     }
     
     // Close component details panel
@@ -491,8 +490,7 @@ class StepBuilder {
         const overlay = document.querySelector('.component-details-overlay');
         if (overlay) overlay.classList.remove('active');
         
-        // Restore body scrolling
-        document.body.style.overflow = '';
+        // No need to restore body scrolling as we're not preventing it
     }
     
     // Apply selected filters
