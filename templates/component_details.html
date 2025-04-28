@@ -157,6 +157,13 @@
                                     <td>{{ component.ports.audio }}</td>
                                 </tr>
                                 {% endif %}
+                                
+                                {% if component.ports.mic %}
+                                <tr>
+                                    <th scope="row">Microphone</th>
+                                    <td>{{ component.ports.mic }}</td>
+                                </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -191,6 +198,20 @@
                                 <tr>
                                     <th scope="row">PSU Shroud</th>
                                     <td>{{ component.cooling.psu_shroud }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.cooling.side %}
+                                <tr>
+                                    <th scope="row">Side</th>
+                                    <td>{{ component.cooling.side }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.cooling.bottom %}
+                                <tr>
+                                    <th scope="row">Bottom</th>
+                                    <td>{{ component.cooling.bottom }}</td>
                                 </tr>
                                 {% endif %}
                             </tbody>
