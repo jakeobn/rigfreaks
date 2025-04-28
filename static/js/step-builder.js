@@ -228,7 +228,7 @@ class StepBuilder {
         const closeDetailBtn = document.querySelector('.component-details-close');
         if (closeDetailBtn && this.detailsPanel) {
             closeDetailBtn.addEventListener('click', () => {
-                this.detailsPanel.classList.remove('open');
+                this.closeComponentDetails();
             });
         }
         
@@ -458,6 +458,13 @@ class StepBuilder {
             // Add click event to close when clicking outside
             overlay.addEventListener('click', () => {
                 this.closeComponentDetails();
+            });
+            
+            // Add keyboard event for Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.detailsPanel.classList.contains('open')) {
+                    this.closeComponentDetails();
+                }
             });
         }
         
