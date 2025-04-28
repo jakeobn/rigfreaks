@@ -430,7 +430,7 @@
 .component-details-overlay.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; /* Capture clicks when active */
+    pointer-events: none; /* Keep allowing clicks to pass through */
 }
 
 .component-details-header {
