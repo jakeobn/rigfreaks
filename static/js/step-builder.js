@@ -584,54 +584,37 @@ class StepBuilder {
     
     // Apply selected filters
     applyFilters() {
-        // Get all active filters by group
-        const filterGroups = document.querySelectorAll('.filter-options');
-        const activeFilters = {};
+        // Simplified filtering approach focusing on brand filters for now
+        const currentStepPanel = document.querySelector('.step-panel.active');
+        if (!currentStepPanel) return;
         
-        filterGroups.forEach(group => {
-            const filterType = group.getAttribute('data-filter-type');
-            if (!filterType) return;
-            
-            activeFilters[filterType] = [];
-            group.querySelectorAll('.filter-tag.active').forEach(tag => {
-                const value = tag.getAttribute('data-filter-value');
-                // Only add if it's not 'all'
-                if (value !== 'all') {
-                    activeFilters[filterType].push(value);
-                }
-            });
-        });
+        const filterOptions = currentStepPanel.querySelector('.filter-options[data-filter-type="brand"]');
+        if (!filterOptions) return;
         
-        // Apply filters to components
-        const allComponents = document.querySelectorAll('.component-card');
-        allComponents.forEach(component => {
-            let shouldShow = true;
-            
-            // Check each filter group
-            for (const filterType in activeFilters) {
-                // If no filters in this group or 'all' is selected, skip checking
-                if (activeFilters[filterType].length === 0) continue;
-                
-                // For brand filters, use data-brand attribute
-                let componentValue = component.getAttribute(`data-${filterType}`);
-                
-                // Special case for brand filter - check if the value is in the list
-                if (filterType === 'brand' && activeFilters[filterType].length > 0) {
-                    const brandValue = component.getAttribute('data-brand')?.toLowerCase();
-                    if (!brandValue || !activeFilters[filterType].includes(brandValue)) {
-                        shouldShow = false;
-                        break;
-                    }
-                }
-                // For other filter types
-                else if (componentValue && !activeFilters[filterType].includes(componentValue)) {
-                    shouldShow = false;
-                    break;
-                }
+        // Find which filter tag is active (if any)
+        const activeFilterTag = filterOptions.querySelector('.filter-tag.active');
+        const filterValue = activeFilterTag ? activeFilterTag.getAttribute('data-filter-value') : 'all';
+        
+        console.log('Active filter:', filterValue);
+        
+        // Get all component cards in the current step
+        const componentCards = currentStepPanel.querySelectorAll('.component-card');
+        
+        // Show/hide components based on filter
+        componentCards.forEach(card => {
+            // If "all" is selected, show everything
+            if (filterValue === 'all') {
+                card.style.display = 'block';
+                return;
             }
             
-            // Show or hide based on filter match
-            component.style.display = shouldShow ? 'block' : 'none';
+            // Otherwise, filter by brand
+            const cardBrand = card.getAttribute('data-brand')?.toLowerCase();
+            if (cardBrand === filterValue) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
         });
     }
     
