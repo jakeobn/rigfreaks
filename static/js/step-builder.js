@@ -594,7 +594,11 @@ class StepBuilder {
             
             activeFilters[filterType] = [];
             group.querySelectorAll('.filter-tag.active').forEach(tag => {
-                activeFilters[filterType].push(tag.getAttribute('data-filter-value'));
+                const value = tag.getAttribute('data-filter-value');
+                // Only add if it's not 'all'
+                if (value !== 'all') {
+                    activeFilters[filterType].push(value);
+                }
             });
         });
         
@@ -605,12 +609,22 @@ class StepBuilder {
             
             // Check each filter group
             for (const filterType in activeFilters) {
-                // If no filters in this group, skip checking
+                // If no filters in this group or 'all' is selected, skip checking
                 if (activeFilters[filterType].length === 0) continue;
                 
-                const componentValue = component.getAttribute(`data-${filterType}`);
-                // If component doesn't match any selected filter in this group, hide it
-                if (!activeFilters[filterType].includes(componentValue)) {
+                // For brand filters, use data-brand attribute
+                let componentValue = component.getAttribute(`data-${filterType}`);
+                
+                // Special case for brand filter - check if the value is in the list
+                if (filterType === 'brand' && activeFilters[filterType].length > 0) {
+                    const brandValue = component.getAttribute('data-brand')?.toLowerCase();
+                    if (!brandValue || !activeFilters[filterType].includes(brandValue)) {
+                        shouldShow = false;
+                        break;
+                    }
+                }
+                // For other filter types
+                else if (componentValue && !activeFilters[filterType].includes(componentValue)) {
                     shouldShow = false;
                     break;
                 }
