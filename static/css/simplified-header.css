@@ -94,7 +94,7 @@
 
 /* Mobile navigation menu */
 #mobileNav {
-    background-color: rgba(0, 0, 0, 0.8);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
     position: absolute;
     width: 100%;
     left: 0;
@@ -108,10 +108,11 @@
 }
 
 #mobileNav .nav-link {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     padding: 0.75rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: color 0.2s ease;
+    font-weight: 500;
 }
 
 #mobileNav .nav-link:hover,
