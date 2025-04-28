@@ -7,13 +7,13 @@
   "power_supply": [],
   "case": [
     {
-      "id": "deepcool-cc560-argb-v2",
-      "name": "DeepCool CC560 ARGB V2 - Black",
-      "description": "Mid Tower ATX case with tempered glass side panel and ARGB lighting",
-      "price": 54.36,
+      "id": "deepcool-cc560-v2",
+      "name": "DeepCool CC560 V2 - Black",
+      "description": "Mid Tower ATX case with tempered glass side panel and Blue LED lighting",
+      "price": 56.40,
       "brand": "DeepCool",
       "form_factor": "Mid Tower",
-      "motherboard_compatibility": ["ATX", "MicroATX", "Mini-ITX"],
+      "motherboard_compatibility": ["ATX", "mATX", "Mini-ITX"],
       "dimensions": {
         "width": 215,
         "depth": 432,
@@ -25,27 +25,27 @@
       "expansion_slots": 7,
       "drive_bays": {
         "2.5_inch": 2,
-        "2.5_3.5_inch": 1,
-        "3.5_inch": 1
+        "3.5_inch": 2
       },
       "cooling": {
-        "front": "Supports 3 x 140mm or 120mm fans (3 x 120mm ARGB LED fans included)",
+        "front": "Supports 2 x 140mm or 3 x 120mm fans (3 x 120mm Blue LED fans included)",
         "top": "Supports 2 x 140mm or 120mm fans",
-        "rear": "Supports 1 x 120mm fan (ARGB LED fan included)",
+        "rear": "Supports 1 x 120mm fan (Blue LED fan included)",
         "psu_shroud": "Supports 2 x 120mm fans"
       },
       "ports": {
         "usb_3": 1,
         "usb_2": 1,
-        "audio": "1 x 3.5mm COMBO Jack"
+        "audio": "1 x 3.5mm Jack shared with Microphone"
       },
-      "part_number": "R-CC560-BKTAA4-G-2",
-      "warranty": "2 Years",
+      "part_number": "R-CC560-BKGAA4-G-2",
+      "warranty": "1 Year",
       "image_url": "https://cdn.example.com/case_deepcool_cc560.webp",
       "specs": {
-        "Included Fans": "4 ARGB LED fans (3 front, 1 rear)",
+        "Included Fans": "4 Blue LED fans (3 front, 1 rear)",
         "PSU Support": "ATX Power Supply supported",
-        "User Controls": "Power, LED"
+        "Internal Expansion Bays": "2 x 2.5\", 2 x 3.5\"",
+        "Expansion Slots": "7 x Full Height"
       }
     }
   ],

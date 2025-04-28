@@ -1,0 +1,251 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ component.name }} - Details{% endblock %}
+
+{% block content %}
+<div class="container py-4 mt-5 pt-3">
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('step_builder') }}">PC Builder</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('step_builder') }}">{{ category|capitalize }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ component.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Component Details Section -->
+    <div class="row">
+        <!-- Image Column -->
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body p-3 text-center">
+                    <div class="component-image bg-dark p-5 mb-3 rounded">
+                        {% if category == 'case' %}
+                            <i class="fas fa-desktop fa-5x text-light"></i>
+                        {% elif category == 'cpu' %}
+                            <i class="fas fa-microchip fa-5x text-light"></i>
+                        {% elif category == 'motherboard' %}
+                            <i class="fas fa-server fa-5x text-light"></i>
+                        {% elif category == 'ram' %}
+                            <i class="fas fa-memory fa-5x text-light"></i>
+                        {% elif category == 'gpu' %}
+                            <i class="fas fa-film fa-5x text-light"></i>
+                        {% elif category == 'storage' %}
+                            <i class="fas fa-hdd fa-5x text-light"></i>
+                        {% elif category == 'power_supply' %}
+                            <i class="fas fa-plug fa-5x text-light"></i>
+                        {% elif category == 'cooling' %}
+                            <i class="fas fa-fan fa-5x text-light"></i>
+                        {% else %}
+                            <i class="fas fa-cog fa-5x text-light"></i>
+                        {% endif %}
+                    </div>
+                    <h5 class="mb-3">{{ component.name }}</h5>
+                    <div class="price-badge mb-3">
+                        <span class="badge bg-primary px-3 py-2 fs-5">£{{ component.price }}</span>
+                    </div>
+                    <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="fas fa-plus-circle me-2"></i>Add to Build
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Details Column -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i>Component Specifications</h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">{{ component.description }}</p>
+                    
+                    <!-- General Specifications Table -->
+                    <h5 class="mt-4 mb-3 border-bottom pb-2">General Specifications</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover specification-table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="w-25">Brand</th>
+                                    <td>{{ component.brand }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Part Number</th>
+                                    <td>{{ component.part_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Warranty</th>
+                                    <td>{{ component.warranty }}</td>
+                                </tr>
+                                
+                                {% if category == 'case' %}
+                                <tr>
+                                    <th scope="row">Form Factor</th>
+                                    <td>{{ component.form_factor }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Color</th>
+                                    <td>{{ component.color }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Materials</th>
+                                    <td>{{ component.materials|join(', ') }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Dimensions (W×D×H)</th>
+                                    <td>{{ component.dimensions.width }} × {{ component.dimensions.depth }} × {{ component.dimensions.height }} mm</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Weight</th>
+                                    <td>{{ component.weight }} kg</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Expansion Slots</th>
+                                    <td>{{ component.expansion_slots }} slots</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Motherboard Support</th>
+                                    <td>{{ component.motherboard_compatibility|join(', ') }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.specs %}
+                                    {% for key, value in component.specs.items() %}
+                                    <tr>
+                                        <th scope="row">{{ key }}</th>
+                                        <td>{{ value }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if category == 'case' %}
+                    <!-- Ports & Connectivity -->
+                    <h5 class="mt-4 mb-3 border-bottom pb-2">Ports & Connectivity</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover specification-table">
+                            <tbody>
+                                {% if component.ports.usb_3 %}
+                                <tr>
+                                    <th scope="row" class="w-25">USB 3.0 Ports</th>
+                                    <td>{{ component.ports.usb_3 }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.ports.usb_2 %}
+                                <tr>
+                                    <th scope="row">USB 2.0 Ports</th>
+                                    <td>{{ component.ports.usb_2 }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.ports.usb_c %}
+                                <tr>
+                                    <th scope="row">USB Type-C Ports</th>
+                                    <td>{{ component.ports.usb_c }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.ports.audio %}
+                                <tr>
+                                    <th scope="row">Audio</th>
+                                    <td>{{ component.ports.audio }}</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Cooling Options -->
+                    <h5 class="mt-4 mb-3 border-bottom pb-2">Cooling Options</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover specification-table">
+                            <tbody>
+                                {% if component.cooling.front %}
+                                <tr>
+                                    <th scope="row" class="w-25">Front</th>
+                                    <td>{{ component.cooling.front }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.cooling.top %}
+                                <tr>
+                                    <th scope="row">Top</th>
+                                    <td>{{ component.cooling.top }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.cooling.rear %}
+                                <tr>
+                                    <th scope="row">Rear</th>
+                                    <td>{{ component.cooling.rear }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.cooling.psu_shroud %}
+                                <tr>
+                                    <th scope="row">PSU Shroud</th>
+                                    <td>{{ component.cooling.psu_shroud }}</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Storage Options -->
+                    <h5 class="mt-4 mb-3 border-bottom pb-2">Storage Options</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover specification-table">
+                            <tbody>
+                                {% if component.drive_bays["2.5_inch"] %}
+                                <tr>
+                                    <th scope="row" class="w-25">2.5" Bays</th>
+                                    <td>{{ component.drive_bays["2.5_inch"] }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.drive_bays["3.5_inch"] %}
+                                <tr>
+                                    <th scope="row">3.5" Bays</th>
+                                    <td>{{ component.drive_bays["3.5_inch"] }}</td>
+                                </tr>
+                                {% endif %}
+                                
+                                {% if component.drive_bays["2.5_3.5_inch"] %}
+                                <tr>
+                                    <th scope="row">Combo 2.5"/3.5" Bays</th>
+                                    <td>{{ component.drive_bays["2.5_3.5_inch"] }}</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Products -->
+    <div class="related-products mt-5">
+        <h3 class="mb-4 border-bottom pb-2">You might also like</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Empty for now, could be populated with similar components -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add any JavaScript functionality needed for the component details page
+    });
+</script>
+{% endblock %}
