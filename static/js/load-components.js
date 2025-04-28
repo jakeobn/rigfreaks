@@ -61,6 +61,36 @@ function displayComponents(data, componentType) {
     
     // Create component cards
     components.forEach(component => {
+        // Add a component specs description if not already present
+        if (!component.description) {
+            // Create a description based on specs
+            switch(componentType) {
+                case 'case':
+                    component.description = `${component.form_factor} with ${component.specs?.["Included Fans"] || 'cooling support'}`;
+                    break;
+                case 'cpu':
+                    component.description = `${component.cores || ''} cores, ${component.base_clock || ''} GHz`;
+                    break;
+                case 'motherboard':
+                    component.description = `${component.socket || ''}, ${component.chipset || ''} chipset`;
+                    break;
+                case 'ram':
+                    component.description = `${component.capacity || ''} GB, ${component.speed || ''} MHz`;
+                    break;
+                case 'gpu':
+                    component.description = `${component.memory || ''} GB, ${component.memory_type || ''}`;
+                    break;
+                case 'storage':
+                    component.description = `${component.capacity || ''} ${component.type || 'SSD'}`;
+                    break;
+                case 'power_supply':
+                    component.description = `${component.wattage || ''} Watts, ${component.certification || ''}`;
+                    break;
+                default:
+                    component.description = '';
+            }
+        }
+        
         const card = createComponentCard(component, componentType);
         componentCardsContainer.appendChild(card);
     });
