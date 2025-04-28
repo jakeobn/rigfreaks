@@ -77,6 +77,8 @@ def builder():
         'builder.html',
         components=components,
         current_config=session['pc_config'],
+        current_category=None,  # No category selected initially
+        active_category=None,   # No active category
         compatibility_issues=compatibility_issues,
         total_price=total_price
     )
@@ -91,12 +93,18 @@ def select_component(category):
     
     # Get the current configuration
     current_config = session.get('pc_config', {})
+    total_price = calculate_total_price(current_config)
+    compatibility_issues = check_compatibility(current_config)
     
+    # For our redesigned template, we'll render the builder with the active category
     return render_template(
-        'component_select.html',
-        category=category,
-        components=components[category],
-        current_selection=current_config.get(category)
+        'builder.html',
+        components=components,
+        current_config=current_config,
+        current_category=category,
+        active_category=category,
+        compatibility_issues=compatibility_issues,
+        total_price=total_price
     )
     
 @app.route('/component/<category>/<component_id>', methods=['GET'])
@@ -149,7 +157,8 @@ def add_component(category, component_id):
         flash_message += "</ul>"
         flash(flash_message, "warning")
     
-    return redirect(url_for('builder'))
+    # Redirect back to the same category view to show the selected component
+    return redirect(url_for('select_component', category=category))
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):
@@ -157,7 +166,8 @@ def remove_component(category):
         del session['pc_config'][category]
         session.modified = True
     
-    return redirect(url_for('builder'))
+    # Redirect back to the same category view
+    return redirect(url_for('select_component', category=category))
 
 @app.route('/summary')
 def summary():
@@ -223,6 +233,7 @@ def reset_configuration():
     if 'pc_config' in session:
         session['pc_config'] = {}
         session.modified = True
+        flash("Your build has been reset", "info")
     
     return redirect(url_for('builder'))
 
