@@ -7,6 +7,52 @@
   "power_supply": [],
   "case": [
     {
+      "id": "hyte-y70-touch-infinite-black",
+      "name": "HYTE Y70 Touch Infinite - Black",
+      "price": 424.90,
+      "brand": "HYTE",
+      "form_factor": "Mid Tower",
+      "motherboard_compatibility": ["E-ATX", "ATX", "mATX", "Mini-ITX"],
+      "dimensions": {
+        "width": 320,
+        "depth": 470,
+        "height": 470
+      },
+      "weight": 12.5,
+      "color": "Black",
+      "materials": ["Tempered Glass", "Steel", "ABS"],
+      "expansion_slots": {
+        "full_height": 4,
+        "half_height": 7
+      },
+      "drive_bays": {
+        "2.5_inch": 4,
+        "3.5_inch": 2
+      },
+      "cooling": {
+        "top": "Supports 2 x 140mm or 3 x 120mm fans",
+        "rear": "Supports 1 x 140mm or 120mm fan",
+        "side": "Supports 2 x 140mm or 3 x 120mm fans",
+        "bottom": "Supports 2 x 140mm or 3 x 120mm fans"
+      },
+      "ports": {
+        "usb_3": 2,
+        "usb_c": 1,
+        "audio": "1 x 3.5mm COMBO Jack"
+      },
+      "part_number": "CS-HYTE-Y70TTI-BB",
+      "warranty": "3 Years",
+      "image_url": "https://cdn.example.com/case_hyte_y70_touch_infinite_black.webp",
+      "specs": {
+        "Included Fans": "Premium ARGB fans with Integrated Touch Display",
+        "PSU Support": "ATX Power Supply supported",
+        "User Controls": "Power, Reset, ARGB Control",
+        "Internal Expansion Bays": "4 x 2.5\" or 2 x 3.5\"",
+        "Expansion Slots": "4 x Full Height, 7 x Half Height",
+        "Special Features": "Integrated Touch Display, Infinity Mirror, Premium ARGB Lighting"
+      }
+    },
+    {
       "id": "hyte-y70-touch-infinite-black-white",
       "name": "HYTE Y70 Touch Infinite - Black/White",
       "price": 423.08,
