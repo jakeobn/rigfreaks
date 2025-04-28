@@ -65,6 +65,11 @@ def index():
 
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
+    # Redirect to the step-by-step builder as the default PC builder
+    return redirect(url_for('step_builder'))
+
+@app.route('/builder/classic', methods=['GET', 'POST'])
+def classic_builder():
     # Initialize session if it doesn't exist
     if 'pc_config' not in session:
         session['pc_config'] = {}
@@ -106,7 +111,7 @@ def select_component(category):
     
     if category not in components:
         flash(f"Component category '{category}' not found", "danger")
-        return redirect(url_for('builder'))
+        return redirect(url_for('step_builder'))
     
     # Get the current configuration
     current_config = session.get('pc_config', {})
@@ -168,7 +173,7 @@ def add_component(category, component_id):
         flash_message += "</ul>"
         flash(flash_message, "warning")
     
-    return redirect(url_for('builder'))
+    return redirect(url_for('step_builder'))
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):
@@ -176,13 +181,13 @@ def remove_component(category):
         del session['pc_config'][category]
         session.modified = True
     
-    return redirect(url_for('builder'))
+    return redirect(url_for('step_builder'))
 
 @app.route('/summary')
 def summary():
     if 'pc_config' not in session or not session['pc_config']:
         flash("Please build a PC configuration first", "warning")
-        return redirect(url_for('builder'))
+        return redirect(url_for('step_builder'))
     
     components = load_component_data()
     config_details = {}
@@ -243,7 +248,7 @@ def reset_configuration():
         session['pc_config'] = {}
         session.modified = True
     
-    return redirect(url_for('builder'))
+    return redirect(url_for('step_builder'))
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
