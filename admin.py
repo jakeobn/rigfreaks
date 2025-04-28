@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session, jsonify, send_from_directory
 from models import db, ContactMessage, User, Build, PreBuiltConfig
 from functools import wraps
-from auth import login_required
+from werkzeug.security import check_password_hash, generate_password_hash
 import logging
 import os
 import json
@@ -12,22 +12,54 @@ from chillblast_scraper import ChillblastScraper
 
 admin_bp = Blueprint('admin', __name__)
 
+# Admin login check decorator (custom for admin panel)
+def admin_login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'admin_logged_in' not in session:
+            flash('Please log in to access the admin area.', 'warning')
+            return redirect(url_for('admin.login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 # Admin role required decorator
 def admin_required(f):
     @wraps(f)
-    @login_required  # First ensure the user is logged in
+    @admin_login_required  # First ensure the admin is logged in
     def decorated_function(*args, **kwargs):
-        user_id = session.get('user_id')
-        user = User.query.get(user_id)
+        return f(*args, **kwargs)
+    return decorated_function
+
+@admin_bp.route('/admin/login', methods=['GET', 'POST'])
+def login():
+    """Admin login page"""
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        # Find admin user
+        user = User.query.filter_by(username=username).first()
         
         # For simplicity, we're assuming admin is user with ID 1
         # In a real app, you would have a role or is_admin field
-        if user and user.id == 1:
-            return f(*args, **kwargs)
+        if user and user.id == 1 and user.check_password(password):
+            session['admin_logged_in'] = True
+            session['admin_id'] = user.id
+            flash('Logged in successfully!', 'success')
+            return redirect(url_for('admin.dashboard'))
         else:
-            flash('You do not have permission to access this page.', 'danger')
-            return redirect(url_for('index'))
-    return decorated_function
+            flash('Invalid username or password.', 'danger')
+    
+    return render_template('admin/login.html')
+
+@admin_bp.route('/admin/logout')
+@admin_login_required
+def logout():
+    """Admin logout"""
+    session.pop('admin_logged_in', None)
+    session.pop('admin_id', None)
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('admin.login'))
 
 @admin_bp.route('/admin/messages')
 @admin_required
