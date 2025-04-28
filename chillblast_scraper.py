@@ -59,8 +59,10 @@ class ChillblastScraper:
         for product in product_containers:
             link_element = product.select_one('a.product-item-title')
             if link_element and 'href' in link_element.attrs:
-                product_url = urljoin(self.base_url, link_element['href'])
-                product_links.append(product_url)
+                href = link_element['href']
+                if isinstance(href, str):
+                    product_url = urljoin(self.base_url, href)
+                    product_links.append(product_url)
         
         print(f"Found {len(product_links)} product links on {category_url}")
         return product_links
@@ -143,8 +145,10 @@ class ChillblastScraper:
             product_data['images'] = []
             for img in image_elements:
                 if 'src' in img.attrs:
-                    img_url = urljoin(self.base_url, img['src'])
-                    product_data['images'].append(img_url)
+                    src = img['src']
+                    if isinstance(src, str):
+                        img_url = urljoin(self.base_url, src)
+                        product_data['images'].append(img_url)
         
         return product_data
     
