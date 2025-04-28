@@ -395,7 +395,7 @@
     max-height: 90vh;
     background-color: var(--bs-dark);
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
-    z-index: 1055; /* Higher than overlay */
+    z-index: 1060; /* Higher than overlay to ensure it's on top */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
