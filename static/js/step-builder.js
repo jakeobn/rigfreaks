@@ -56,19 +56,43 @@ class StepBuilder {
         this.stepIndicators = document.querySelectorAll('.step-indicator');
         this.stepPanels = document.querySelectorAll('.step-panel');
         
-        // Set total steps
-        this.totalSteps = this.stepPanels.length;
+        // Set total steps - we have exactly 4 steps, hardcode if needed
+        this.totalSteps = 4;
+        if (this.stepPanels.length != 4) {
+            console.warn(`Expected 4 step panels, found ${this.stepPanels.length}`);
+        }
         
-        // Store steps configuration
-        this.steps = Array.from(this.stepPanels).map((panel, index) => {
-            return {
-                index: index,
-                id: panel.id,
-                title: panel.querySelector('.step-title')?.textContent || `Step ${index + 1}`,
-                required: panel.hasAttribute('data-required'),
-                category: panel.getAttribute('data-category') || null
-            };
-        });
+        // Store steps configuration, guarantee 4 steps
+        this.steps = [
+            {
+                index: 0,
+                id: 'step-case',
+                title: 'Choose Your Case',
+                required: true,
+                category: 'case'
+            },
+            {
+                index: 1,
+                id: 'step-cpu',
+                title: 'Select Your Processor (CPU)',
+                required: true,
+                category: 'cpu'
+            },
+            {
+                index: 2,
+                id: 'step-storage',
+                title: 'Select Your Storage (HDD/SSD)',
+                required: true,
+                category: 'storage'
+            },
+            {
+                index: 3,
+                id: 'step-review',
+                title: 'Review Your Build',
+                required: false,
+                category: null
+            }
+        ];
         
         // Set up navigation buttons
         this.nextBtn = document.querySelector('.step-btn-next');
