@@ -12,6 +12,7 @@ class StepBuilder {
         this.steps = [];
         this.buildConfig = {};
         this.totalPrice = 0;
+        this.isOpeningDetails = false; // Flag to track popup open state
         
         // DOM elements
         this.stepContainer = null;
@@ -31,9 +32,14 @@ class StepBuilder {
         this.selectComponent = this.selectComponent.bind(this);
         this.updateBuildSummary = this.updateBuildSummary.bind(this);
         this.showComponentDetails = this.showComponentDetails.bind(this);
+        this.closeComponentDetails = this.closeComponentDetails.bind(this);
         this.validateStep = this.validateStep.bind(this);
         this.updateTotalPrice = this.updateTotalPrice.bind(this);
         this.submitBuild = this.submitBuild.bind(this);
+        
+        // Initialize event handler references
+        this.handleEscapeKey = null;
+        this.handleOutsideClick = null;
         
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', this.init);
@@ -459,6 +465,9 @@ class StepBuilder {
             return;
         }
         
+        // Set flag to prevent immediate closing
+        this.isOpeningDetails = true;
+        
         // Get component details
         const name = componentCard.querySelector('.component-name').textContent;
         const price = componentCard.querySelector('.component-price').textContent;
@@ -477,12 +486,33 @@ class StepBuilder {
         if (detailsSpecs) detailsSpecs.textContent = specs;
         if (selectBtn) selectBtn.setAttribute('data-component-id', componentId);
         
-        // No overlay, just use keyboard event for accessibility
-        document.addEventListener('keydown', (e) => {
+        // Remove any existing event handlers to avoid duplicates
+        document.removeEventListener('keydown', this.handleEscapeKey);
+        document.removeEventListener('click', this.handleOutsideClick);
+        
+        // Create bound event handlers so we can remove them later
+        this.handleEscapeKey = (e) => {
             if (e.key === 'Escape' && this.detailsPanel.classList.contains('open')) {
                 this.closeComponentDetails();
             }
-        });
+        };
+        
+        this.handleOutsideClick = (e) => {
+            // If it's the initial click that opened the popup, ignore it
+            if (this.isOpeningDetails) {
+                this.isOpeningDetails = false;
+                return;
+            }
+            
+            // Check if the click is outside the panel
+            if (this.detailsPanel.classList.contains('open') && !this.detailsPanel.contains(e.target)) {
+                this.closeComponentDetails();
+            }
+        };
+        
+        // Add new event listeners
+        document.addEventListener('keydown', this.handleEscapeKey);
+        document.addEventListener('click', this.handleOutsideClick);
         
         // Open the panel
         this.detailsPanel.classList.add('open');
@@ -491,17 +521,24 @@ class StepBuilder {
         setTimeout(() => {
             const closeBtn = this.detailsPanel.querySelector('.component-details-close');
             if (closeBtn) closeBtn.focus();
+            
+            // Reset flag after a short delay to allow first click to be ignored
+            setTimeout(() => {
+                this.isOpeningDetails = false;
+            }, 100);
         }, 100);
-        
-        // Don't prevent all interactions, just make the modal the focus point
     }
     
     // Close component details panel
     closeComponentDetails() {
         if (!this.detailsPanel) return;
         
-        // Close the panel (no overlay anymore)
+        // Close the panel
         this.detailsPanel.classList.remove('open');
+        
+        // Remove event listeners
+        document.removeEventListener('keydown', this.handleEscapeKey);
+        document.removeEventListener('click', this.handleOutsideClick);
     }
     
     // Apply selected filters
