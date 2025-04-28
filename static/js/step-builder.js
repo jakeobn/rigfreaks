@@ -240,10 +240,10 @@ class StepBuilder {
             }
         });
         
-        // Update progress indicators
+        // Update progress indicators - only highlight the indicators corresponding to actual steps
         this.updateStepIndicators();
         
-        // Update progress fill
+        // Update progress fill based on the number of actual steps, not indicators
         if (this.progressFill) {
             const progress = ((stepIndex) / (this.totalSteps - 1)) * 100;
             this.progressFill.style.width = `${progress}%`;
