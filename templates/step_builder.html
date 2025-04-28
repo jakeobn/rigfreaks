@@ -271,7 +271,165 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- More steps can be added similarly -->
+            <!-- Step 3: Storage (HDD/SSD) -->
+            <div id="step-storage" class="step-panel" data-required="true" data-category="storage">
+                <h2 class="step-title">Select Your Storage (HDD/SSD)</h2>
+                <p class="step-description">Choose storage that provides enough space and speed for your needs. SSDs offer faster performance, while HDDs provide more storage for the cost.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Type:</div>
+                    <div class="filter-options" data-filter-type="type">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="ssd">SSD</div>
+                        <div class="filter-tag" data-filter-value="hdd">HDD</div>
+                        <div class="filter-tag" data-filter-value="nvme">NVMe</div>
+                    </div>
+                    
+                    <div class="filter-title mt-3">Filter by Capacity:</div>
+                    <div class="filter-options" data-filter-type="capacity">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="512gb">512GB</div>
+                        <div class="filter-tag" data-filter-value="1tb">1TB</div>
+                        <div class="filter-tag" data-filter-value="2tb">2TB</div>
+                        <div class="filter-tag" data-filter-value="4tb">4TB+</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- SSD 1 -->
+                    <div class="component-card" data-component-id="pcs-512gb-ssd" data-price="49" data-type="ssd" data-capacity="512gb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">PCS 512GB 2.5" SATA III SSD</div>
+                        <div class="component-specs">512GB capacity, SATA III interface, up to 550MB/s read, 520MB/s write.</div>
+                        <div class="component-price">$49.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- SSD 2 -->
+                    <div class="component-card" data-component-id="samsung-980-1tb" data-price="89" data-type="nvme" data-capacity="1tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">SAMSUNG 980 1TB M.2 NVMe SSD</div>
+                        <div class="component-specs">1TB capacity, PCIe Gen 3.0 x4, NVMe interface, up to 3,500MB/s read, 3,000MB/s write.</div>
+                        <div class="component-price">$89.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- SSD 3 -->
+                    <div class="component-card" data-component-id="wd-blue-1tb-ssd" data-price="79" data-type="ssd" data-capacity="1tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">WD BLUE 1TB 2.5" SATA III SSD</div>
+                        <div class="component-specs">1TB capacity, SATA III interface, up to 560MB/s read, 530MB/s write.</div>
+                        <div class="component-price">$79.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- SSD 4 -->
+                    <div class="component-card" data-component-id="samsung-980-pro-1tb" data-price="129" data-type="nvme" data-capacity="1tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">SAMSUNG 980 PRO 1TB M.2 NVMe SSD</div>
+                        <div class="component-specs">1TB capacity, PCIe Gen 4.0 x4, NVMe interface, up to 7,000MB/s read, 5,000MB/s write.</div>
+                        <div class="component-price">$129.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- HDD 1 -->
+                    <div class="component-card" data-component-id="seagate-2tb-hdd" data-price="54" data-type="hdd" data-capacity="2tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">SEAGATE BARRACUDA 2TB HDD</div>
+                        <div class="component-specs">2TB capacity, 3.5" form factor, 7200 RPM, 256MB cache, SATA III interface.</div>
+                        <div class="component-price">$54.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- HDD 2 -->
+                    <div class="component-card" data-component-id="wd-blue-4tb-hdd" data-price="89" data-type="hdd" data-capacity="4tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">WD BLUE 4TB HDD</div>
+                        <div class="component-specs">4TB capacity, 3.5" form factor, 5400 RPM, 64MB cache, SATA III interface.</div>
+                        <div class="component-price">$89.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- SSD 5 -->
+                    <div class="component-card" data-component-id="crucial-p3-2tb" data-price="149" data-type="nvme" data-capacity="2tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">CRUCIAL P3 2TB M.2 NVMe SSD</div>
+                        <div class="component-specs">2TB capacity, PCIe Gen 3.0 x4, NVMe interface, up to 3,500MB/s read, 3,000MB/s write.</div>
+                        <div class="component-price">$149.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- HDD 3 -->
+                    <div class="component-card" data-component-id="seagate-4tb-hdd" data-price="94" data-type="hdd" data-capacity="4tb">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="component-name">SEAGATE BARRACUDA 4TB HDD</div>
+                        <div class="component-specs">4TB capacity, 3.5" form factor, 5400 RPM, 256MB cache, SATA III interface.</div>
+                        <div class="component-price">$94.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
             
             <!-- Final Review Step -->
             <div id="step-review" class="step-panel" data-required="false">
