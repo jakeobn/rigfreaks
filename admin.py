@@ -8,7 +8,7 @@ import json
 import threading
 from datetime import datetime
 import time
-from pcspecialist_scraper import PCSpecialistProvider
+from content_scraper import ContentScraper, run_content_scraper
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -211,7 +211,7 @@ def scraper_dashboard():
 @admin_bp.route('/admin/scraper/run', methods=['GET', 'POST'])
 @admin_required
 def run_scraper():
-    """Run the PCSpecialist UK scraper"""
+    """Run the Content Aggregator scraper for PC components"""
     global scraper_running, scraper_thread
     
     if scraper_running:
@@ -230,18 +230,29 @@ def run_scraper():
             global scraper_running
             try:
                 scraper_running = True
-                provider = PCSpecialistProvider()
+                search_terms = {
+                    "cpu": "processor intel amd",
+                    "gpu": "graphics card nvidia amd",
+                    "motherboard": "motherboard",
+                    "memory": "ram ddr4 ddr5",
+                    "storage": "ssd nvme",
+                    "case": "computer case",
+                    "power_supply": "power supply",
+                    "cpu_cooler": "cpu cooler"
+                }
                 
                 if category == 'all':
                     # Fetch all categories
-                    filters = {}
-                    results = provider.fetch_product_data(categories=None, filters=filters, count_per_category=limit)
-                    provider.save_results(results)
+                    filepath = run_content_scraper(categories=None, 
+                                                 search_terms=search_terms, 
+                                                 count_per_category=limit)
                 else:
                     # Fetch specific category
-                    filters = {}
-                    results = provider.fetch_product_data(categories=[category], filters=filters, count_per_category=limit)
-                    provider.save_results(results)
+                    filepath = run_content_scraper(categories=[category], 
+                                                 search_terms=search_terms, 
+                                                 count_per_category=limit)
+                    
+                logging.info(f"Scraper completed. Data saved to {filepath}")
                     
             except Exception as e:
                 logging.error(f"Error running scraper: {str(e)}")
@@ -253,7 +264,7 @@ def run_scraper():
         scraper_thread.start()
         
         return redirect(url_for('admin.scraper_dashboard', 
-                              message="PCSpecialist scraper started. This may take a few minutes.",
+                              message="Content Aggregator scraper started. This may take a few minutes.",
                               category="info"))
     
     # If it's a GET request, just start with default parameters
@@ -263,9 +274,8 @@ def run_scraper():
             scraper_running = True
             # Just fetch the most common categories with minimal details
             common_categories = ['cpu', 'gpu', 'memory', 'storage', 'motherboard']
-            provider = PCSpecialistProvider()
-            results = provider.fetch_product_data(categories=common_categories, count_per_category=3)
-            provider.save_results(results)
+            filepath = run_content_scraper(categories=common_categories, count_per_category=3)
+            logging.info(f"Scraper completed. Data saved to {filepath}")
         except Exception as e:
             logging.error(f"Error running scraper: {str(e)}")
         finally:
@@ -276,7 +286,7 @@ def run_scraper():
     scraper_thread.start()
     
     return redirect(url_for('admin.scraper_dashboard', 
-                          message="PCSpecialist scraper started with default settings (common categories, 3 products each).",
+                          message="Content Aggregator scraper started with default settings (common components, 3 products each).",
                           category="info"))
 
 @admin_bp.route('/admin/scraper/view/<filename>')
