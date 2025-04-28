@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/simplified-header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/seamless-blend.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page-transitions.css') }}">
     
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -141,10 +142,14 @@
         {% endif %}
     {% endwith %}
 
-    <!-- Main Content -->
-    <main class="main-content p-0">
-        {% block content %}{% endblock %}
-    </main>
+    <!-- Main Content with Page Transition Container -->
+    <div class="page-transition-container">
+        <main class="main-content p-0">
+            <div class="page-content visible">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
 
     <!-- Chillblast-inspired Footer with animated elements -->
     <footer class="site-footer">
@@ -325,6 +330,16 @@
         });
     </script>
     
+    <!-- Page Transition Script -->
+    <script src="{{ url_for('static', filename='js/page-transitions.js') }}"></script>
+    
     {% block extra_js %}{% endblock %}
+    
+    <!-- Page Transition Overlay Element -->
+    <div class="page-transition-overlay">
+        <div class="transition-loader">
+            <div class="spinner"></div>
+        </div>
+    </div>
 </body>
 </html>
