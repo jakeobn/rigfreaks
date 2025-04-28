@@ -7,6 +7,45 @@
   "power_supply": [],
   "case": [
     {
+      "id": "corsair-3000d-rgb-airflow",
+      "name": "Corsair 3000D RGB AIRFLOW - Black",
+      "price": 93.53,
+      "brand": "Corsair",
+      "form_factor": "Mid Tower",
+      "motherboard_compatibility": ["ATX", "mATX", "Mini-ITX"],
+      "dimensions": {
+        "width": 230,
+        "depth": 462,
+        "height": 466
+      },
+      "weight": 7.3,
+      "color": "Black",
+      "materials": ["Steel", "Plastic", "Tempered Glass"],
+      "expansion_slots": 7,
+      "drive_bays": {
+        "2.5_inch": 2,
+        "3.5_inch": 2
+      },
+      "cooling": {
+        "front": "Supports 2 x 140mm or 3 x 120mm fans (3 x 120mm ARGB fans included)",
+        "top": "Supports 2 x 140mm or 2 x 120mm fans",
+        "rear": "Supports 1 x 120mm fan"
+      },
+      "ports": {
+        "usb_3": 2,
+        "audio": "1 x 3.5mm Jack shared with Microphone"
+      },
+      "part_number": "CC-9011255-WW",
+      "warranty": "2 Years",
+      "image_url": "https://cdn.example.com/case_corsair_3000d.webp",
+      "specs": {
+        "Included Fans": "3 x 120mm ARGB fans (front)",
+        "PSU Support": "ATX Power Supply supported",
+        "Internal Expansion Bays": "2 x 2.5\", 2 x 3.5\"",
+        "Expansion Slots": "7 x Full Height, 2 x Vertical"
+      }
+    },
+    {
       "id": "deepcool-cc560-v2",
       "name": "DeepCool CC560 V2 - Black",
       "price": 54.40,
