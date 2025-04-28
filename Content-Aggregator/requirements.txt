@@ -1,0 +1,6 @@
+requests
+bs4
+lxml
+flask
+flask_session
+werkzeug==0.16.0
