@@ -232,6 +232,33 @@ class StepBuilder {
             });
         }
         
+        // Select component from the details panel
+        const selectComponentBtn = document.querySelector('.component-select-btn');
+        if (selectComponentBtn && this.detailsPanel) {
+            selectComponentBtn.addEventListener('click', () => {
+                // Get component ID directly from the button
+                const componentId = selectComponentBtn.getAttribute('data-component-id');
+                if (!componentId) {
+                    console.error('No component ID found on select button');
+                    return;
+                }
+                
+                // Find component card with this ID
+                const currentPanel = this.stepPanels[this.currentStep];
+                const componentCard = currentPanel.querySelector(`[data-component-id="${componentId}"]`);
+                
+                if (componentCard) {
+                    // Select this component
+                    this.selectComponent(componentCard);
+                    // Close the details panel
+                    this.closeComponentDetails();
+                    console.log(`Selected component from details panel: ${componentId}`);
+                } else {
+                    console.error(`Component with ID ${componentId} not found in current panel`);
+                }
+            });
+        }
+        
         // Filter tags
         const filterTags = document.querySelectorAll('.filter-tag');
         filterTags.forEach(tag => {
@@ -442,11 +469,13 @@ class StepBuilder {
         const detailsName = this.detailsPanel.querySelector('.component-details-name');
         const detailsPrice = this.detailsPanel.querySelector('.component-details-price');
         const detailsSpecs = this.detailsPanel.querySelector('.component-details-description');
+        const selectBtn = this.detailsPanel.querySelector('.component-select-btn');
         
         if (detailsTitle) detailsTitle.textContent = 'Component Details';
         if (detailsName) detailsName.textContent = name;
         if (detailsPrice) detailsPrice.textContent = price;
         if (detailsSpecs) detailsSpecs.textContent = specs;
+        if (selectBtn) selectBtn.setAttribute('data-component-id', componentId);
         
         // Create overlay if it doesn't exist
         let overlay = document.querySelector('.component-details-overlay');

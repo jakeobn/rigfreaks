@@ -395,7 +395,7 @@
     max-height: 90vh;
     background-color: var(--bs-dark);
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
-    z-index: 1050;
+    z-index: 1055; /* Higher than overlay */
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -403,6 +403,7 @@
     flex-direction: column;
     overflow: auto;
     border-radius: 12px;
+    pointer-events: all; /* Ensure panel gets all clicks */
 }
 
 .component-details-panel.open {
