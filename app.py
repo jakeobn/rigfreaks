@@ -81,6 +81,25 @@ def builder():
         total_price=total_price
     )
 
+@app.route('/builder/step-by-step', methods=['GET'])
+def step_builder():
+    """Step-by-Step PC Builder page with guided interface."""
+    # Initialize session if it doesn't exist
+    if 'pc_config' not in session:
+        session['pc_config'] = {}
+    
+    components = load_component_data()
+    compatibility_issues = check_compatibility(session['pc_config'])
+    total_price = calculate_total_price(session['pc_config'])
+    
+    return render_template(
+        'step_builder.html',
+        components=components,
+        current_config=session['pc_config'],
+        compatibility_issues=compatibility_issues,
+        total_price=total_price
+    )
+
 @app.route('/select/<category>', methods=['GET'])
 def select_component(category):
     components = load_component_data()

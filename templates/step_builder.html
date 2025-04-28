@@ -1,0 +1,424 @@
+{% extends 'layout.html' %}
+
+{% block title %}PC Builder - Step by Step{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/step-builder.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="mb-3">Build Your Custom PC</h1>
+            <p class="lead">Follow our step-by-step process to build your perfect custom PC.</p>
+        </div>
+    </div>
+
+    <!-- Step Builder Container -->
+    <div class="step-builder-container">
+        <!-- Progress Bar -->
+        <div class="step-progress-bar">
+            <div class="step-progress-fill"></div>
+            
+            <!-- Step Indicators -->
+            <div class="step-indicator" data-step="0">
+                <span>1</span>
+                <div class="step-indicator-label">Case</div>
+            </div>
+            
+            <div class="step-indicator" data-step="1">
+                <span>2</span>
+                <div class="step-indicator-label">CPU</div>
+            </div>
+            
+            <div class="step-indicator" data-step="2">
+                <span>3</span>
+                <div class="step-indicator-label">Motherboard</div>
+            </div>
+            
+            <div class="step-indicator" data-step="3">
+                <span>4</span>
+                <div class="step-indicator-label">Memory</div>
+            </div>
+            
+            <div class="step-indicator" data-step="4">
+                <span>5</span>
+                <div class="step-indicator-label">Graphics</div>
+            </div>
+            
+            <div class="step-indicator" data-step="5">
+                <span>6</span>
+                <div class="step-indicator-label">Storage</div>
+            </div>
+            
+            <div class="step-indicator" data-step="6">
+                <span>7</span>
+                <div class="step-indicator-label">Power Supply</div>
+            </div>
+            
+            <div class="step-indicator" data-step="7">
+                <span>8</span>
+                <div class="step-indicator-label">Cooling</div>
+            </div>
+            
+            <div class="step-indicator" data-step="8">
+                <span>9</span>
+                <div class="step-indicator-label">Review</div>
+            </div>
+        </div>
+        
+        <!-- Step Content Area -->
+        <div class="step-content">
+            <!-- Step 1: Case -->
+            <div id="step-case" class="step-panel" data-required="true" data-category="case">
+                <h2 class="step-title">Choose Your Case</h2>
+                <p class="step-description">Select a case that fits your style and has enough room for all your components.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Brand:</div>
+                    <div class="filter-options" data-filter-type="brand">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="pcs">PCS</div>
+                        <div class="filter-tag" data-filter-value="corsair">Corsair</div>
+                        <div class="filter-tag" data-filter-value="lian-li">Lian Li</div>
+                        <div class="filter-tag" data-filter-value="fractal">Fractal</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- Case 1 -->
+                    <div class="component-card" data-component-id="pcs-pulse" data-price="29" data-brand="pcs">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">PCS PULSE MID TOWER CASE (PWM)</div>
+                        <div class="component-specs">Mid-tower ATX case with PWM fan control. Standard cooling configuration.</div>
+                        <div class="component-price">$29.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 2 -->
+                    <div class="component-card" data-component-id="pcs-prism" data-price="43" data-brand="pcs">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">PCS PRISM II ARGB MID TOWER CASE (PWM)</div>
+                        <div class="component-specs">Mid-tower ATX case with ARGB lighting and PWM fan control.</div>
+                        <div class="component-price">$43.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 3 -->
+                    <div class="component-card" data-component-id="pcs-aegis-white" data-price="58" data-brand="pcs">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">PCS AEGIS WHITE ARGB MID TOWER CASE</div>
+                        <div class="component-specs">White mid-tower ATX case with ARGB lighting and tempered glass side panel.</div>
+                        <div class="component-price">$58.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 4 -->
+                    <div class="component-card" data-component-id="corsair-3000d" data-price="59" data-brand="corsair">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">CORSAIR 3000D AIRFLOW MID TOWER GAMING CASE</div>
+                        <div class="component-specs">High airflow mid-tower case with optimized thermal performance.</div>
+                        <div class="component-price">$59.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 5 -->
+                    <div class="component-card" data-component-id="pcs-spectrum-white" data-price="61" data-brand="pcs">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">PCS SPECTRUM II ARGB MID TOWER CASE (PWM) *WHITE*</div>
+                        <div class="component-specs">White mid-tower case with ARGB lighting effects and PWM fan control.</div>
+                        <div class="component-price">$61.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 6 -->
+                    <div class="component-card" data-component-id="lian-li-lancool" data-price="63" data-brand="lian-li">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">LIAN LI LANCOOL 205 MESH C GAMING CASE - WHITE</div>
+                        <div class="component-specs">White mesh front panel case with excellent airflow and cable management.</div>
+                        <div class="component-price">$63.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 7 -->
+                    <div class="component-card" data-component-id="pcs-lumin-xc" data-price="74" data-brand="pcs">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">PCS LUMIN XC ARGB CURVED TG (PWM)</div>
+                        <div class="component-specs">Premium case with curved tempered glass and ARGB lighting effects.</div>
+                        <div class="component-price">$74.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Case 8 -->
+                    <div class="component-card" data-component-id="fractal-pop-silent" data-price="75" data-brand="fractal">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="component-name">FRACTAL POP SILENT CASE TG (BLACK)</div>
+                        <div class="component-specs">Sound-dampened case with noise reduction features and tempered glass side panel.</div>
+                        <div class="component-price">$75.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 2: CPU -->
+            <div id="step-cpu" class="step-panel" data-required="true" data-category="cpu">
+                <h2 class="step-title">Select Your Processor (CPU)</h2>
+                <p class="step-description">Choose a processor that fits your performance needs and budget.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Brand:</div>
+                    <div class="filter-options" data-filter-type="brand">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="intel">Intel</div>
+                        <div class="filter-tag" data-filter-value="amd">AMD</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- CPU 1 -->
+                    <div class="component-card" data-component-id="intel-i3-12100" data-price="99" data-brand="intel">
+                        <div class="component-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="component-image">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="component-name">Intel Core i3-12100 Quad Core</div>
+                        <div class="component-specs">4 cores, 8 threads, up to 4.30GHz, 12MB Cache</div>
+                        <div class="component-price">$99.00</div>
+                        <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Add more CPUs as needed -->
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- More steps can be added similarly -->
+            
+            <!-- Final Review Step -->
+            <div id="step-review" class="step-panel" data-required="false">
+                <h2 class="step-title">Review Your Build</h2>
+                <p class="step-description">Review your component selections and make any final changes before proceeding.</p>
+                
+                <!-- Build Summary -->
+                <div class="build-summary">
+                    <h3 class="build-summary-title">
+                        <i class="fas fa-clipboard-list me-2"></i>
+                        Your Custom PC Configuration
+                    </h3>
+                    
+                    <ul class="build-summary-list">
+                        <!-- Items will be populated by JavaScript -->
+                    </ul>
+                    
+                    <div class="build-total">
+                        <div class="build-total-label">Total Price:</div>
+                        <div class="build-total-price">$0.00</div>
+                    </div>
+                </div>
+                
+                <!-- Compatibility Check -->
+                <div class="compatibility-check mt-4">
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle me-2"></i>
+                        All components are compatible and ready for assembly.
+                    </div>
+                </div>
+                
+                <!-- Estimated Performance -->
+                <div class="estimated-performance mt-4">
+                    <h4 class="mb-3">Estimated Performance:</h4>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h5 class="card-title">Gaming</h5>
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                                    </div>
+                                    <small class="text-muted">Good for 1080p gaming</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h5 class="card-title">Productivity</h5>
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 55%"></div>
+                                    </div>
+                                    <small class="text-muted">Suitable for everyday tasks</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="card bg-dark">
+                                <div class="card-body">
+                                    <h5 class="card-title">Content Creation</h5>
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"></div>
+                                    </div>
+                                    <small class="text-muted">Basic video and photo editing</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Final Success Step (hidden initially) -->
+            <div class="final-step" style="display: none;">
+                <div class="final-step-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="final-step-title">Your Build is Complete!</h2>
+                <p class="final-step-message">Your custom PC configuration has been added to your cart. Proceed to checkout to complete your order.</p>
+                
+                <div class="final-actions">
+                    <a href="{{ url_for('cart.view_cart') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-shopping-cart me-2"></i>View Cart
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-home me-2"></i>Return to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step Navigation -->
+        <div class="step-navigation">
+            <button class="step-btn step-btn-secondary step-btn-prev">
+                <i class="fas fa-arrow-left"></i>
+                <span>Previous Step</span>
+            </button>
+            
+            <button class="step-btn step-btn-primary step-btn-next">
+                <span>Next Step</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Component Details Panel -->
+<div class="component-details-panel">
+    <div class="component-details-header">
+        <div class="component-details-title">Component Details</div>
+        <button class="component-details-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="component-details-content">
+        <div class="component-details-image">
+            <i class="fas fa-desktop"></i>
+        </div>
+        
+        <div class="component-details-info">
+            <div class="component-details-name">Component Name</div>
+            <div class="component-details-price">$0.00</div>
+        </div>
+        
+        <div class="component-details-description">
+            Detailed specifications will appear here.
+        </div>
+        
+        <div class="component-details-specs">
+            <div class="component-spec-item">
+                <div class="component-spec-label">Form Factor:</div>
+                <div class="component-spec-value">Mid-Tower ATX</div>
+            </div>
+            <div class="component-spec-item">
+                <div class="component-spec-label">Dimensions:</div>
+                <div class="component-spec-value">450mm x 220mm x 450mm</div>
+            </div>
+            <div class="component-spec-item">
+                <div class="component-spec-label">Features:</div>
+                <div class="component-spec-value">RGB Lighting, Tempered Glass, Dust Filters</div>
+            </div>
+        </div>
+        
+        <div class="component-details-actions">
+            <button class="btn btn-primary component-select-btn">
+                <i class="fas fa-check me-2"></i>Select This Component
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/step-builder.js') }}"></script>
+{% endblock %}

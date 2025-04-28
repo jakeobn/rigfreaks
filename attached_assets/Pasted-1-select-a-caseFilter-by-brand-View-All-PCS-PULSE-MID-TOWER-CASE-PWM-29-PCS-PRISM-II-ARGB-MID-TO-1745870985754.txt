@@ -1,0 +1,241 @@
+1) select a caseFilter by brand:
+View All
+PCS PULSE MID TOWER CASE (PWM)£29	PCS PRISM II ARGB MID TOWER CASE (PWM)£43	PCS AEGIS WHITE ARGB MID TOWER CASE£58	CORSAIR 3000D AIRFLOW  MID TOWER GAMING CASE£59	PCS SPECTRUM II ARGB MID TOWER CASE (PWM) *WHITE*£61	LIAN LI LANCOOL 205 MESH C GAMING CASE - WHITE£63	PCS LUMIN XC ARGB CURVED TG (PWM)£74	£10	FRACTAL POP SILENT CASE TG (BLACK)£75	CORSAIR 3500X ARGB TEMPERED GLASS MID-TOWER (PCS)£77	FRACTAL FOCUS 2 ARGB GAMING CASE (BLACK)£77	FRACTAL POP SILENT CASE SOLID (BLACK)£78	CORSAIR FRAME 4000D RS ARGB MODULAR - WHITE£82	CORSAIR FRAME 4000D RS ARGB MODULAR£82	CORSAIR iCUE 4000X RGB TEMPERED GLASS MID-TOWER ATX CASE - WHITE£87	CORSAIR 5000D AIRFLOW TEMPERED GLASS GAMING CASE£106	NZXT H6 FLOW RGB CASE£113	PCS LUMIN ARGB MID TOWER CASE (PWM)£120	PCS LUMIN ARGB MID TOWER CASE (WHITE) (PWM)£120	THERMALTAKE CERES 350 MX GAMING CASE (BLACK)£123	CORSAIR 2500X MICRO ATX TEMPERED GLASS DUAL CHAMBER CASE£124	FRACTAL NORTH TG GAMING CASE (BLACK)£128	FRACTAL NORTH TG GAMING CASE (WHITE)£130	CORSAIR iCUE 5000X RGB MID TOWER ATX CASE - WHITE£136	FRACTAL DEFINE 7 BLACK QUIET MID-TOWER CASE£140	THERMALTAKE TOWER 300 VERTICAL GAMING CASE mATX (BLACK)£148	FRACTAL NORTH TG XL GAMING CASE (BLACK)£153	be quiet! SHADOW BASE 800 FX GAMING CASE£172	FRACTAL DEFINE 7 XL BLACK QUIET TOWER CASE£187
+2) choose your core components
+Processor (CPU)
+Processor (CPU)
+
+Intel® Core™ i3 Quad Core Processor i3-12100 (Up to 4.30GHz) 12MB Cache
+Motherboard
+Motherboard
+
+ASUS® PRIME H610M-A-CSM D4 (mATX, LGA1700, DDR4, PCIe 4.0)
+Memory (RAM)
+Memory (RAM)
+
+8GB PCS PRO DDR4 3200MHz (1 x 8GB)
+Graphics Card
+Graphics Card
+
+INTEGRATED GRAPHICS ACCELERATOR (GPU)
+Graphics Card Support Bracket
+Graphics Card Support Bracket
+
+NONE (BRACKET INCLUDED AS STANDARD ON 4070 Ti / RX 7700 XT AND ABOVE)
+2) hard drives, optical storage & memory card reader
+1<sup>st</sup> M.2 SSD Drive
+1st M.2 SSD Drive
+
+256GB PCS PCIe M.2 SSD (3200 MB/R, 2700 MB/W)
+2<sup>nd</sup> M.2 SSD Drive
+2nd M.2 SSD Drive
+
+NONE
+Show additional storage options
+1<sup>st</sup> Storage Drive
+1st Storage Drive
+
+NONE
+2<sup>nd</sup> Storage Drive
+2nd Storage Drive
+
+NONE
+RAID
+RAID
+
+NONE
+DVD/BLU-RAY Drive
+DVD/BLU-RAY Drive
+
+NOT REQUIRED
+External DVD/BLU-RAY Drive
+External DVD/BLU-RAY Drive
+
+NONE
+External Hard Drive
+External Hard Drive
+
+NONE
+Memory Card Reader
+Memory Card Reader
+
+NONE
+3) power and cooling
+Power Supply
+Power Supply
+
+CORSAIR 550W CX SERIES™ CX-550 POWER SUPPLY
+⤷Get a discount code for 20% off select peripherals at Corsair.com
+Power Cable
+Power Cable
+
+1 x 1.5 Metre UK Power Cable (Kettle Lead)
+Processor Cooling
+Processor Cooling
+
+STANDARD CPU COOLER LGA1700 (95W TDP) (£5)
+Thermal Paste
+Thermal Paste
+
+STANDARD THERMAL PASTE FOR SUFFICIENT COOLING
+LED Lighting
+LED Lighting
+
+NONE
+Extra Case Fans
+Extra Case Fans
+
+NONE
+4) system refinements
+Sound Card
+Sound Card
+
+ONBOARD 6 CHANNEL (5.1) HIGH DEF AUDIO (AS STANDARD)
+Network Card
+Network Card
+
+10/100/1000 GIGABIT LAN PORT (£0)
+Wireless Network Card
+Wireless Network Card
+
+WIRELESS INTEL® Wi-Fi 6E AX210 2,400Mbps/5GHz, 300Mbps/2.4GHz PCI-E CARD + BT 5.0 (£23)
+Wireless Router/HomePlugs
+Wireless Router/HomePlugs
+
+NONE
+USB/Thunderbolt Options
+USB/Thunderbolt Options
+
+MIN. 2 x USB 3.0 & 2 x USB 2.0 PORTS @ BACK PANEL + MIN. 2 FRONT PORTS
+Capture/Streaming Cards
+Capture/Streaming Cards
+
+NONE
+External Capture Card
+External Capture Card
+
+NONE
+Firewire
+Firewire
+
+NONE
+5) choose your operating system and software
+Operating System
+Operating System
+
+Windows 11 Home 64 Bit - inc. Single Licence
+Operating System Language
+Operating System Language
+
+United Kingdom - English Language
+Windows Recovery Media
+Windows Recovery Media
+
+Windows 10/11 Multi-Language Recovery Image - Unlimited Downloads from Online Account
+Office Software
+Office Software
+
+FREE 30 Day Trial of Microsoft 365® (Operating System Required)
+Anti-Virus
+Anti-Virus
+
+Norton 360 inc. Game Optimizer - Free 90 Day License
+Browser
+Browser
+
+Microsoft® Edge
+6) peripherals & accessories
+Monitor
+Monitor
+
+NONE
+
+01
+2<sup>nd</sup> Monitor
+2nd Monitor
+
+NONE
+
+01
+Monitor Cables
+Monitor Cables
+
+NONE
+
+01
+Multi Monitor Mounts
+Multi Monitor Mounts
+
+NONE
+Keyboard & Mouse
+Keyboard & Mouse
+
+NONE
+Mouse
+Mouse
+
+NONE
+Controllers
+Controllers
+
+NONE
+Headsets
+Headsets
+
+NONE
+Mouse Pad
+Mouse Pad
+
+NONE
+Streaming Accessories
+Streaming Accessories
+
+NONE
+Gaming Chair
+Gaming Chair
+
+NONE
+Speakers
+Speakers
+
+NONE
+Webcam
+Webcam
+
+NONE
+Key Light
+Key Light
+
+NONE
+Microphone
+Microphone
+
+NONE
+Surge Protection
+Surge Protection
+
+NONE
+Cable Management
+Cable Management
+
+NONE
+7) delivery & services
+Warranty
+Warranty
+
+3 Year Standard Warranty (6 Month Collect & Return, 1 Year Parts, 3 Year Labour)
+Home Installation
+Home Installation
+
+NONE
+Delivery
+Delivery
+
+STANDARD INSURED DELIVERY TO UK MAINLAND (MON-FRI)
+Build Time
+Build Time
+
+Standard Build - Approximately 6 to 8 working days
+
+Quantity
+1
