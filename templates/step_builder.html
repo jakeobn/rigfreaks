@@ -10,8 +10,17 @@
 <div class="container mt-5 pt-5">
     <div class="row mb-4">
         <div class="col-12">
-            <h1 class="mb-3">Build Your Custom PC</h1>
-            <p class="lead">Follow our step-by-step process to build your perfect custom PC.</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-3">Build Your Custom PC</h1>
+                    <p class="lead">Follow our step-by-step process to build your perfect custom PC.</p>
+                </div>
+                <div>
+                    <a href="{{ url_for('builder') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-th-large me-2"></i>Switch to Standard Builder
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
