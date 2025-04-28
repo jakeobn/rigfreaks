@@ -73,6 +73,10 @@ def builder():
     compatibility_issues = check_compatibility(session['pc_config'])
     total_price = calculate_total_price(session['pc_config'])
     
+    print("DEBUG: Rendering builder template with components:", list(components.keys()))
+    print("DEBUG: Current config:", session['pc_config'])
+    print("DEBUG: Total price:", total_price)
+    
     return render_template(
         'builder.html',
         components=components,
