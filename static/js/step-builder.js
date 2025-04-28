@@ -382,28 +382,55 @@ class StepBuilder {
     }
     
     // Handle component selection
-    selectComponent(componentCard) {
-        const componentId = componentCard.getAttribute('data-component-id');
-        const componentName = componentCard.querySelector('.component-name').textContent;
-        const componentPrice = parseFloat(
-            componentCard.getAttribute('data-price') || 
-            componentCard.querySelector('.component-price').textContent.replace('$', '').trim()
-        );
-        const category = componentCard.closest('.step-panel').getAttribute('data-category');
+    selectComponent(componentCardOrId, componentPrice) {
+        let componentId, componentName;
+        
+        // Check if we received a DOM element or an ID string
+        if (typeof componentCardOrId === 'string') {
+            // We received an ID and price directly
+            componentId = componentCardOrId;
+            
+            // Try to find the component name from the card
+            const card = document.querySelector(`.component-card[data-component-id="${componentId}"]`);
+            componentName = card ? card.querySelector('.component-name').textContent : componentId;
+        } else {
+            // We received a DOM element
+            const componentCard = componentCardOrId;
+            componentId = componentCard.getAttribute('data-component-id');
+            componentName = componentCard.querySelector('.component-name').textContent;
+            componentPrice = parseFloat(
+                componentCard.getAttribute('data-price') || 
+                componentCard.querySelector('.component-price').textContent.replace('£', '').trim()
+            );
+        }
+        
+        // Get the current active step panel for the category
+        const activePanel = document.querySelector('.step-panel.active');
+        const category = activePanel.getAttribute('data-category');
         
         if (!category) {
-            console.error('Component panel has no data-category attribute');
+            console.error('Active step panel has no data-category attribute');
             return;
         }
         
-        // Remove selected class from siblings
-        const siblings = componentCard.closest('.component-cards').querySelectorAll('.component-card');
-        siblings.forEach(card => {
-            card.classList.remove('selected');
-        });
+        // Find the component card element if we were passed an ID
+        let componentCard;
+        if (typeof componentCardOrId === 'string') {
+            componentCard = document.querySelector(`.component-card[data-component-id="${componentCardOrId}"]`);
+        } else {
+            componentCard = componentCardOrId;
+        }
         
-        // Add selected class to this component
-        componentCard.classList.add('selected');
+        if (componentCard) {
+            // Remove selected class from siblings
+            const siblings = document.querySelectorAll('.component-card');
+            siblings.forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to this component
+            componentCard.classList.add('selected');
+        }
         
         // Update build configuration
         this.buildConfig[category] = {
@@ -438,7 +465,7 @@ class StepBuilder {
                         <div class="build-summary-category">${this.formatCategoryName(category)}</div>
                         <div class="build-summary-selection">${component.name}</div>
                     </div>
-                    <div class="build-summary-price">$${component.price.toFixed(2)}</div>
+                    <div class="build-summary-price">£${component.price.toFixed(2)}</div>
                 `;
                 summaryContainer.appendChild(summaryItem);
             }
@@ -665,7 +692,7 @@ class StepBuilder {
         // Update total display
         const totalDisplay = document.querySelector('.build-total-price');
         if (totalDisplay) {
-            totalDisplay.textContent = `$${this.totalPrice.toFixed(2)}`;
+            totalDisplay.textContent = `£${this.totalPrice.toFixed(2)}`;
         }
     }
     

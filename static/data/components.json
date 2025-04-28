@@ -9,8 +9,7 @@
     {
       "id": "deepcool-cc560-v2",
       "name": "DeepCool CC560 V2 - Black",
-      "description": "Mid Tower ATX case with tempered glass side panel and Blue LED lighting",
-      "price": 56.40,
+      "price": 54.40,
       "brand": "DeepCool",
       "form_factor": "Mid Tower",
       "motherboard_compatibility": ["ATX", "mATX", "Mini-ITX"],
@@ -51,7 +50,6 @@
     {
       "id": "montech-king-65-pro",
       "name": "Montech KING 65 PRO - Black",
-      "description": "Stylish Mid Tower ATX case with ARGB lighting and excellent airflow",
       "price": 80.40,
       "brand": "Montech",
       "form_factor": "Mid Tower",
@@ -95,7 +93,6 @@
     {
       "id": "corsair-3500x",
       "name": "Corsair 3500X - White",
-      "description": "Premium Mid Tower ATX case with tempered glass side panel in striking white finish",
       "price": 91.10,
       "brand": "Corsair",
       "form_factor": "Mid Tower",
