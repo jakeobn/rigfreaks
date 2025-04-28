@@ -66,7 +66,7 @@ def index():
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
     # Redirect to the step-by-step builder as the default PC builder
-    return redirect(url_for('step_builder'))
+    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
 
 @app.route('/builder/classic', methods=['GET', 'POST'])
 def classic_builder():
@@ -111,7 +111,7 @@ def select_component(category):
     
     if category not in components:
         flash(f"Component category '{category}' not found", "danger")
-        return redirect(url_for('step_builder'))
+        return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
     
     # Get the current configuration
     current_config = session.get('pc_config', {})
@@ -129,7 +129,7 @@ def component_detail(category, component_id):
     
     if category not in components:
         flash(f"Component category '{category}' not found", "danger")
-        return redirect(url_for('step_builder'))
+        return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
     
     # Use the helper function for more efficient lookup
     from utils import get_component_by_id
@@ -137,7 +137,7 @@ def component_detail(category, component_id):
     
     if not component:
         flash(f"Component with ID '{component_id}' not found in category '{category}'", "danger")
-        return redirect(url_for('select_component', category=category))
+        return redirect(f'https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/select/{category}')
     
     # Check if this component is currently selected in the build
     current_config = session.get('pc_config', {})
@@ -173,7 +173,7 @@ def add_component(category, component_id):
         flash_message += "</ul>"
         flash(flash_message, "warning")
     
-    return redirect(url_for('step_builder'))
+    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):
@@ -181,13 +181,13 @@ def remove_component(category):
         del session['pc_config'][category]
         session.modified = True
     
-    return redirect(url_for('step_builder'))
+    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
 
 @app.route('/summary')
 def summary():
     if 'pc_config' not in session or not session['pc_config']:
         flash("Please build a PC configuration first", "warning")
-        return redirect(url_for('step_builder'))
+        return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
     
     components = load_component_data()
     config_details = {}
@@ -248,7 +248,7 @@ def reset_configuration():
         session['pc_config'] = {}
         session.modified = True
     
-    return redirect(url_for('step_builder'))
+    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
