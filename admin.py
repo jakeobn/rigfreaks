@@ -8,7 +8,7 @@ import json
 import threading
 from datetime import datetime
 import time
-from chillblast_scraper import ChillblastScraper
+from pcpartpicker_scraper import PCPartPickerScraper
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -211,7 +211,7 @@ def scraper_dashboard():
 @admin_bp.route('/admin/scraper/run', methods=['GET', 'POST'])
 @admin_required
 def run_scraper():
-    """Run the Chillblast scraper"""
+    """Run the PCPartPicker UK scraper"""
     global scraper_running, scraper_thread
     
     if scraper_running:
@@ -223,21 +223,25 @@ def run_scraper():
     if request.method == 'POST':
         category = request.form.get('category', 'all')
         limit = int(request.form.get('limit', 5))
+        get_details = request.form.get('get_details') == 'on'
         
         # Start the scraper in a separate thread
         def run_scraper_thread():
             global scraper_running
             try:
                 scraper_running = True
-                scraper = ChillblastScraper()
+                scraper = PCPartPickerScraper()
                 
                 if category == 'all':
-                    scraper.scrape_main_categories(limit)
+                    # Scrape all categories
+                    results = scraper.scrape_categories(limit_per_category=limit, get_details=get_details)
+                    scraper.save_results(results)
                 else:
-                    categories = {
-                        category: f"https://www.chillblast.com/{category.lower().replace('_', '-')}"
-                    }
-                    scraper.scrape_categories(categories, limit)
+                    # Scrape specific category
+                    results = {}
+                    products = scraper.scrape_category(category, limit=limit, get_details=get_details)
+                    results[category] = products
+                    scraper.save_results(results)
                     
             except Exception as e:
                 logging.error(f"Error running scraper: {str(e)}")
@@ -249,7 +253,7 @@ def run_scraper():
         scraper_thread.start()
         
         return redirect(url_for('admin.scraper_dashboard', 
-                              message="Scraper started. This may take a few minutes.",
+                              message="PCPartPicker scraper started. This may take a few minutes.",
                               category="info"))
     
     # If it's a GET request, just start with default parameters
@@ -257,8 +261,11 @@ def run_scraper():
         global scraper_running
         try:
             scraper_running = True
-            scraper = ChillblastScraper()
-            scraper.scrape_main_categories(3)  # Limit to 3 per category for quick test
+            # Just scrape the most common categories with minimal details
+            common_categories = ['cpu', 'gpu', 'memory', 'storage', 'motherboard']
+            scraper = PCPartPickerScraper()
+            results = scraper.scrape_categories(categories=common_categories, limit_per_category=3, get_details=False)
+            scraper.save_results(results)
         except Exception as e:
             logging.error(f"Error running scraper: {str(e)}")
         finally:
@@ -269,7 +276,7 @@ def run_scraper():
     scraper_thread.start()
     
     return redirect(url_for('admin.scraper_dashboard', 
-                          message="Scraper started with default settings (3 products per category).",
+                          message="PCPartPicker scraper started with default settings (common categories, 3 products each).",
                           category="info"))
 
 @admin_bp.route('/admin/scraper/view/<filename>')
@@ -286,12 +293,28 @@ def view_scraped_file(filename):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            products = data.get('products', [])
+            
+            # Check if it's PCPartPicker format (has 'categories') or old format (has 'products')
+            all_products = []
+            source = data.get('source', 'Unknown')
+            
+            if 'categories' in data:
+                # New PCPartPicker format
+                categories = data.get('categories', {})
+                for category_name, products in categories.items():
+                    # Add category info to each product
+                    for product in products:
+                        product['category'] = category_name
+                        all_products.append(product)
+            else:
+                # Old format
+                all_products = data.get('products', [])
         
         return render_template(
             'admin/view_scraped_file.html',
-            products=products,
-            filename=filename
+            products=all_products,
+            filename=filename,
+            source=source
         )
     except Exception as e:
         flash(f"Error reading file: {str(e)}", "danger")
@@ -311,37 +334,114 @@ def import_products(filename):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            products = data.get('products', [])
+            
+            # Prepare all products from any file format
+            all_products = []
+            
+            # Check if it's PCPartPicker format (has 'categories') or old format (has 'products')
+            if 'categories' in data:
+                # New PCPartPicker format
+                categories = data.get('categories', {})
+                for category_name, products in categories.items():
+                    # Add category info to each product
+                    for product in products:
+                        product['category'] = category_name
+                        all_products.append(product)
+            else:
+                # Old format
+                all_products = data.get('products', [])
         
         # Import products as prebuilt configurations
         counter = 0
-        for product in products:
+        for product in all_products:
             # Skip products without sufficient data
-            if not product.get('title') or not product.get('price'):
+            product_name = product.get('name') or product.get('title')
+            product_price = product.get('price')
+            
+            if not product_name or not product_price:
                 continue
                 
             # Map product category to our system
             category_mapping = {
+                # PCPartPicker categories
+                'cpu': 'processor',
+                'motherboard': 'motherboard',
+                'memory': 'memory',
+                'storage': 'storage',
+                'gpu': 'graphics',
+                'case': 'case',
+                'power_supply': 'power',
+                'cpu_cooler': 'cooling',
+                
+                # Old Chillblast categories
                 'Gaming_PCs': 'gaming',
                 'Custom_PCs': 'custom',
                 'Workstations': 'workstation'
             }
-            category = category_mapping.get(product.get('category'), 'gaming')
+            
+            product_category = product.get('category', 'unknown')
+            category = category_mapping.get(product_category, 'custom')
+            
+            # Get the description from most likely fields
+            description = product.get('description', '')
+            if not description and product.get('specifications'):
+                # Format specifications as description if no description available
+                specs = product.get('specifications', {})
+                description = "\\n".join([f"{key}: {value}" for key, value in specs.items()])
+            
+            # Extract component IDs based on the format
+            cpu_id = ''
+            gpu_id = ''
+            memory_id = ''
+            storage_id = ''
+            motherboard_id = ''
+            power_supply_id = ''
+            case_id = ''
+            cooling_id = ''
+            
+            # For PCPartPicker data
+            if product_category == 'cpu':
+                cpu_id = product_name
+            elif product_category == 'gpu':
+                gpu_id = product_name
+            elif product_category == 'memory':
+                memory_id = product_name
+            elif product_category == 'storage':
+                storage_id = product_name
+            elif product_category == 'motherboard':
+                motherboard_id = product_name
+            elif product_category == 'power_supply':
+                power_supply_id = product_name
+            elif product_category == 'case':
+                case_id = product_name
+            elif product_category == 'cpu_cooler':
+                cooling_id = product_name
+            # For old format (Chillblast)
+            elif 'components' in product:
+                components = product.get('components', {})
+                cpu_id = components.get('cpu', '')
+                gpu_id = components.get('gpu', '')
+                memory_id = components.get('ram', '')
+                storage_id = components.get('storage', '')
+                motherboard_id = components.get('motherboard', '')
+                power_supply_id = components.get('power_supply', '')
+                case_id = components.get('case', '')
+                cooling_id = components.get('cooling', '')
             
             # Create a new prebuilt config
             prebuilt = PreBuiltConfig(
-                name=product.get('title'),
-                description=product.get('description', ''),
+                name=product_name,
+                description=description,
                 category=category,
-                price=product.get('price'),
-                cpu_id=product.get('components', {}).get('cpu', ''),
-                gpu_id=product.get('components', {}).get('gpu', ''),
-                ram_id=product.get('components', {}).get('ram', ''),
-                storage_id=product.get('components', {}).get('storage', ''),
-                motherboard_id=product.get('components', {}).get('motherboard', ''),
-                power_supply_id=product.get('components', {}).get('power_supply', ''),
-                case_id=product.get('components', {}).get('case', ''),
-                cooling_id=product.get('components', {}).get('cooling', '')
+                price=float(product_price) if isinstance(product_price, str) else product_price,
+                cpu_id=cpu_id,
+                gpu_id=gpu_id,
+                ram_id=memory_id,
+                storage_id=storage_id,
+                motherboard_id=motherboard_id,
+                power_supply_id=power_supply_id,
+                case_id=case_id,
+                cooling_id=cooling_id
             )
             
             db.session.add(prebuilt)
@@ -370,42 +470,124 @@ def import_single_product(filename, product_index):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            products = data.get('products', [])
             
-            if product_index >= len(products):
+            # Prepare all products from any file format
+            all_products = []
+            
+            # Check if it's PCPartPicker format (has 'categories') or old format (has 'products')
+            if 'categories' in data:
+                # New PCPartPicker format
+                categories = data.get('categories', {})
+                for category_name, products in categories.items():
+                    # Add category info to each product
+                    for product in products:
+                        product['category'] = category_name
+                        all_products.append(product)
+            else:
+                # Old format
+                all_products = data.get('products', [])
+            
+            if product_index >= len(all_products):
                 flash("Product index out of range.", "danger")
                 return redirect(url_for('admin.view_scraped_file', filename=filename))
             
-            product = products[product_index]
+            product = all_products[product_index]
             
+            # Skip products without sufficient data
+            product_name = product.get('name') or product.get('title')
+            product_price = product.get('price')
+            
+            if not product_name or not product_price:
+                flash("Product doesn't have required name and price information.", "danger")
+                return redirect(url_for('admin.view_scraped_file', filename=filename))
+                
             # Map product category to our system
             category_mapping = {
+                # PCPartPicker categories
+                'cpu': 'processor',
+                'motherboard': 'motherboard',
+                'memory': 'memory',
+                'storage': 'storage',
+                'gpu': 'graphics',
+                'case': 'case',
+                'power_supply': 'power',
+                'cpu_cooler': 'cooling',
+                
+                # Old Chillblast categories
                 'Gaming_PCs': 'gaming',
                 'Custom_PCs': 'custom',
                 'Workstations': 'workstation'
             }
-            category = category_mapping.get(product.get('category'), 'gaming')
+            
+            product_category = product.get('category', 'unknown')
+            category = category_mapping.get(product_category, 'custom')
+            
+            # Get the description from most likely fields
+            description = product.get('description', '')
+            if not description and product.get('specifications'):
+                # Format specifications as description if no description available
+                specs = product.get('specifications', {})
+                description = "\\n".join([f"{key}: {value}" for key, value in specs.items()])
+            
+            # Extract component IDs based on the format
+            cpu_id = ''
+            gpu_id = ''
+            memory_id = ''
+            storage_id = ''
+            motherboard_id = ''
+            power_supply_id = ''
+            case_id = ''
+            cooling_id = ''
+            
+            # For PCPartPicker data
+            if product_category == 'cpu':
+                cpu_id = product_name
+            elif product_category == 'gpu':
+                gpu_id = product_name
+            elif product_category == 'memory':
+                memory_id = product_name
+            elif product_category == 'storage':
+                storage_id = product_name
+            elif product_category == 'motherboard':
+                motherboard_id = product_name
+            elif product_category == 'power_supply':
+                power_supply_id = product_name
+            elif product_category == 'case':
+                case_id = product_name
+            elif product_category == 'cpu_cooler':
+                cooling_id = product_name
+            # For old format (Chillblast)
+            elif 'components' in product:
+                components = product.get('components', {})
+                cpu_id = components.get('cpu', '')
+                gpu_id = components.get('gpu', '')
+                memory_id = components.get('ram', '')
+                storage_id = components.get('storage', '')
+                motherboard_id = components.get('motherboard', '')
+                power_supply_id = components.get('power_supply', '')
+                case_id = components.get('case', '')
+                cooling_id = components.get('cooling', '')
             
             # Create a new prebuilt config
             prebuilt = PreBuiltConfig(
-                name=product.get('title'),
-                description=product.get('description', ''),
+                name=product_name,
+                description=description,
                 category=category,
-                price=product.get('price'),
-                cpu_id=product.get('components', {}).get('cpu', ''),
-                gpu_id=product.get('components', {}).get('gpu', ''),
-                ram_id=product.get('components', {}).get('ram', ''),
-                storage_id=product.get('components', {}).get('storage', ''),
-                motherboard_id=product.get('components', {}).get('motherboard', ''),
-                power_supply_id=product.get('components', {}).get('power_supply', ''),
-                case_id=product.get('components', {}).get('case', ''),
-                cooling_id=product.get('components', {}).get('cooling', '')
+                price=float(product_price) if isinstance(product_price, str) else product_price,
+                cpu_id=cpu_id,
+                gpu_id=gpu_id,
+                ram_id=memory_id,
+                storage_id=storage_id,
+                motherboard_id=motherboard_id,
+                power_supply_id=power_supply_id,
+                case_id=case_id,
+                cooling_id=cooling_id
             )
             
             db.session.add(prebuilt)
             db.session.commit()
             
-            flash(f"Successfully imported '{product.get('title')}' as a pre-built configuration.", "success")
+            flash(f"Successfully imported '{product_name}' as a pre-built configuration.", "success")
             return redirect(url_for('admin.view_scraped_file', filename=filename))
             
     except Exception as e:
