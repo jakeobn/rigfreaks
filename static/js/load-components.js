@@ -116,7 +116,6 @@ function createComponentCard(component, type) {
             ${getIconForType(type)}
         </div>
         <div class="component-name">${component.name}</div>
-        <div class="component-specs">${getComponentSpecs(component, type)}</div>
         <div class="component-price">£${component.price.toFixed(2)}</div>
         <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
             <i class="fas fa-info-circle me-1"></i> View Details
