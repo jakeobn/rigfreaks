@@ -8,7 +8,7 @@ import json
 import threading
 from datetime import datetime
 import time
-from pcpartpicker_scraper import PCPartPickerProvider
+from pcspecialist_scraper import PCSpecialistProvider
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -211,7 +211,7 @@ def scraper_dashboard():
 @admin_bp.route('/admin/scraper/run', methods=['GET', 'POST'])
 @admin_required
 def run_scraper():
-    """Run the PCPartPicker UK scraper"""
+    """Run the PCSpecialist UK scraper"""
     global scraper_running, scraper_thread
     
     if scraper_running:
@@ -230,7 +230,7 @@ def run_scraper():
             global scraper_running
             try:
                 scraper_running = True
-                provider = PCPartPickerProvider()
+                provider = PCSpecialistProvider()
                 
                 if category == 'all':
                     # Fetch all categories
@@ -253,7 +253,7 @@ def run_scraper():
         scraper_thread.start()
         
         return redirect(url_for('admin.scraper_dashboard', 
-                              message="PCPartPicker scraper started. This may take a few minutes.",
+                              message="PCSpecialist scraper started. This may take a few minutes.",
                               category="info"))
     
     # If it's a GET request, just start with default parameters
@@ -263,7 +263,7 @@ def run_scraper():
             scraper_running = True
             # Just fetch the most common categories with minimal details
             common_categories = ['cpu', 'gpu', 'memory', 'storage', 'motherboard']
-            provider = PCPartPickerProvider()
+            provider = PCSpecialistProvider()
             results = provider.fetch_product_data(categories=common_categories, count_per_category=3)
             provider.save_results(results)
         except Exception as e:
@@ -276,7 +276,7 @@ def run_scraper():
     scraper_thread.start()
     
     return redirect(url_for('admin.scraper_dashboard', 
-                          message="PCPartPicker scraper started with default settings (common categories, 3 products each).",
+                          message="PCSpecialist scraper started with default settings (common categories, 3 products each).",
                           category="info"))
 
 @admin_bp.route('/admin/scraper/view/<filename>')
