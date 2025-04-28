@@ -477,29 +477,15 @@ class StepBuilder {
         if (detailsSpecs) detailsSpecs.textContent = specs;
         if (selectBtn) selectBtn.setAttribute('data-component-id', componentId);
         
-        // Create overlay if it doesn't exist
-        let overlay = document.querySelector('.component-details-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'component-details-overlay';
-            document.body.appendChild(overlay);
-            
-            // Add click event to close when clicking outside
-            overlay.addEventListener('click', () => {
+        // No overlay, just use keyboard event for accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.detailsPanel.classList.contains('open')) {
                 this.closeComponentDetails();
-            });
-            
-            // Add keyboard event for Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && this.detailsPanel.classList.contains('open')) {
-                    this.closeComponentDetails();
-                }
-            });
-        }
+            }
+        });
         
-        // Open the panel and show overlay
+        // Open the panel
         this.detailsPanel.classList.add('open');
-        overlay.classList.add('active');
         
         // Focus on the panel (for accessibility)
         setTimeout(() => {
@@ -514,12 +500,8 @@ class StepBuilder {
     closeComponentDetails() {
         if (!this.detailsPanel) return;
         
-        // Close the panel and hide overlay
+        // Close the panel (no overlay anymore)
         this.detailsPanel.classList.remove('open');
-        const overlay = document.querySelector('.component-details-overlay');
-        if (overlay) overlay.classList.remove('active');
-        
-        // No need to restore body scrolling as we're not preventing it
     }
     
     // Apply selected filters
