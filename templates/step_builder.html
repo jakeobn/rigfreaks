@@ -678,8 +678,8 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{{ url_for('static', filename='js/step-builder.js') }}"></script>
-<script src="{{ url_for('static', filename='js/load-components.js') }}"></script>
+<script src="{{ url_for('static', filename='js/step-builder.js', v='1.0.1') }}"></script>
+<script src="{{ url_for('static', filename='js/load-components.js', v='1.0.1') }}"></script>
 <script>
     // Initialize the step builder as a global object
     window.stepBuilder = new StepBuilder();
