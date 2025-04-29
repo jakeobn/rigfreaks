@@ -278,9 +278,10 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="{{ url_for('static', filename='js/component-gallery.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Add any JavaScript functionality needed for the component details page
+        // Any additional component-specific JavaScript can be added here
     });
 </script>
 {% endblock %}
