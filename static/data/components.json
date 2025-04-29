@@ -435,7 +435,7 @@
       },
       "part_number": "R-CC560-BKGAA4-G-2",
       "warranty": "1 Year",
-      "image_url": "https://cdn.example.com/case_deepcool_cc560.webp",
+      "image_url": "/static/img/cases/deepcool-cc560-v2.webp",
       "specs": {
         "Included Fans": "4 Blue LED fans (3 front, 1 rear)",
         "PSU Support": "ATX Power Supply supported",
