@@ -27,6 +27,9 @@ class StepBuilder {
         // Bind methods to preserve 'this' context
         this.init = this.init.bind(this);
         this.setupEventListeners = this.setupEventListeners.bind(this);
+        
+        // Make this instance available globally for other scripts to use
+        window.stepBuilder = this;
         this.goToStep = this.goToStep.bind(this);
         this.updateStepIndicators = this.updateStepIndicators.bind(this);
         this.selectComponent = this.selectComponent.bind(this);
@@ -66,6 +69,15 @@ class StepBuilder {
         this.totalSteps = 8;
         if (this.stepPanels.length != 8) {
             console.warn(`Expected 8 step panels, found ${this.stepPanels.length}`);
+        }
+        
+        // Load components for the initial active step
+        const activePanel = document.querySelector('.step-panel.active');
+        if (activePanel) {
+            const componentType = activePanel.getAttribute('data-category');
+            if (componentType) {
+                this.loadComponentsForStep(componentType);
+            }
         }
         
         // Store steps configuration, guarantee 8 steps
@@ -486,6 +498,146 @@ class StepBuilder {
     formatCategoryName(category) {
         return category.replace(/_/g, ' ')
             .replace(/\b\w/g, c => c.toUpperCase());
+    }
+    
+    // Load components for the specified step
+    loadComponentsForStep(componentType) {
+        console.log(`Loading components for ${componentType}...`);
+        const componentCardsContainer = document.querySelector('.step-panel.active .component-cards');
+        if (!componentCardsContainer) {
+            console.warn('No component cards container found for active step');
+            return;
+        }
+        
+        // Load component data from JSON file
+        fetch('/static/data/components.json')
+            .then(response => response.json())
+            .then(data => {
+                // Check if components exist for this type
+                if (data[componentType] && data[componentType].length > 0) {
+                    // Clear existing component cards
+                    componentCardsContainer.innerHTML = '';
+                    
+                    // Create component cards
+                    data[componentType].forEach(component => {
+                        // Create and add component description if not present
+                        if (!component.description) {
+                            switch(componentType) {
+                                case 'case':
+                                    component.description = `${component.form_factor || ''} with ${component.specs?.["Included Fans"] || 'cooling support'}`;
+                                    break;
+                                case 'cpu':
+                                    component.description = `${component.cores || ''} cores, ${component.base_clock || ''} GHz`;
+                                    break;
+                                case 'motherboard':
+                                    component.description = `${component.socket || ''}, ${component.chipset || ''} chipset`;
+                                    break;
+                                case 'ram':
+                                    component.description = `${component.capacity || ''} GB, ${component.speed || ''} MHz`;
+                                    break;
+                                case 'gpu':
+                                    component.description = `${component.memory || ''} GB, ${component.memory_type || ''}`;
+                                    break;
+                                case 'storage':
+                                    component.description = `${component.capacity || ''} ${component.type || 'SSD'}`;
+                                    break;
+                                case 'power_supply':
+                                    component.description = `${component.wattage || ''} Watts, ${component.certification || ''}`;
+                                    break;
+                                default:
+                                    component.description = '';
+                            }
+                        }
+                        
+                        // Create component card HTML
+                        const card = document.createElement('div');
+                        card.className = 'component-card';
+                        card.dataset.componentId = component.id;
+                        card.dataset.price = component.price;
+                        card.dataset.brand = component.brand?.toLowerCase() || '';
+                        
+                        // Check if this component is already selected in the build config
+                        if (this.buildConfig[componentType] && this.buildConfig[componentType].id === component.id) {
+                            card.classList.add('selected');
+                        }
+                        
+                        // HTML structure for the component card
+                        card.innerHTML = `
+                            <div class="component-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="component-image">
+                                ${component.image_url ? 
+                                    `<img src="${component.image_url}" alt="${component.name}" class="img-fluid component-img">` : 
+                                    this.getIconForType(componentType)}
+                            </div>
+                            <div class="component-name">${component.name}</div>
+                            <div class="component-price">£${component.price.toFixed(2)}</div>
+                            <button class="btn btn-sm btn-outline-light mt-2 component-details-btn">
+                                <i class="fas fa-info-circle me-1"></i> View Details
+                            </button>
+                        `;
+                        
+                        // Add the component card to the container
+                        componentCardsContainer.appendChild(card);
+                        
+                        // Add click event to select this component
+                        card.addEventListener('click', () => {
+                            this.selectComponent(card);
+                        });
+                        
+                        // Add click event for the details button
+                        const detailsBtn = card.querySelector('.component-details-btn');
+                        if (detailsBtn) {
+                            detailsBtn.addEventListener('click', (e) => {
+                                e.stopPropagation(); // Prevent triggering the card click
+                                this.showComponentDetails(component.id);
+                            });
+                        }
+                    });
+                    
+                    console.log(`Loaded ${data[componentType].length} ${componentType} components`);
+                } else {
+                    // No components found for this type
+                    console.log(`No ${componentType} components found in data`);
+                    componentCardsContainer.innerHTML = `
+                        <div class="empty-components-state text-center py-5">
+                            <div class="mb-3">
+                                <i class="fas fa-exclamation-circle fa-3x text-secondary"></i>
+                            </div>
+                            <h5 class="mb-2">No Components Available</h5>
+                            <p class="text-muted">No ${componentType.replace('_', ' ')} components are currently available.</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading component data:', error);
+                componentCardsContainer.innerHTML = `
+                    <div class="error-state text-center py-5">
+                        <div class="mb-3">
+                            <i class="fas fa-times-circle fa-3x text-danger"></i>
+                        </div>
+                        <h5 class="mb-2">Error Loading Components</h5>
+                        <p class="text-muted">There was a problem loading the component data. Please try refreshing the page.</p>
+                    </div>
+                `;
+            });
+    }
+    
+    // Get icon for component type
+    getIconForType(type) {
+        switch(type) {
+            case 'cpu': return '<i class="fas fa-microchip"></i>';
+            case 'motherboard': return '<i class="fas fa-server"></i>';
+            case 'ram': return '<i class="fas fa-memory"></i>';
+            case 'gpu': return '<i class="fas fa-film"></i>';
+            case 'storage': return '<i class="fas fa-hdd"></i>';
+            case 'power_supply': return '<i class="fas fa-plug"></i>';
+            case 'case': return '<i class="fas fa-desktop"></i>';
+            case 'cooling': return '<i class="fas fa-fan"></i>';
+            default: return '<i class="fas fa-puzzle-piece"></i>';
+        }
     }
     
     // Show component details panel

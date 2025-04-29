@@ -1,9 +1,18 @@
 /**
  * Load Components Script
  * Dynamically loads PC components from JSON data file
+ *
+ * NOTE: This script is now mostly superseded by the StepBuilder's loadComponentsForStep method
+ * but is kept for compatibility with non-step-builder pages.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if StepBuilder is active - if so, it will handle component loading
+    if (window.stepBuilder) {
+        console.log('StepBuilder detected, component loading will be handled by StepBuilder');
+        return;
+    }
+    
     // Check if we're on a page that needs components loaded
     const componentCardsContainer = document.querySelector('.component-cards');
     if (!componentCardsContainer) {
