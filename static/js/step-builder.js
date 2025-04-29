@@ -322,6 +322,13 @@ class StepBuilder {
                 setTimeout(() => {
                     panel.classList.remove('step-fade-in');
                 }, 500);
+                
+                // Get component type from the active panel
+                const componentType = panel.getAttribute('data-category');
+                if (componentType) {
+                    // Load components for this step
+                    this.loadComponentsForStep(componentType);
+                }
             }
         });
         
