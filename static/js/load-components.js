@@ -38,11 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/static/data/components.json')
         .then(response => response.json())
         .then(data => {
-            console.log('Component data loaded for:', componentType);
-            console.log('CPU data length:', data.cpu ? data.cpu.length : 0);
-            console.log('CPU data first item:', data.cpu && data.cpu.length > 0 ? data.cpu[0].id : 'None');
+            console.log('Component data loaded:', data);
             if (data[componentType] && data[componentType].length > 0) {
-                console.log(`Found ${data[componentType].length} components for ${componentType}`);
                 displayComponents(data, componentType);
             } else {
                 console.log(`No ${componentType} components found in data`);
