@@ -513,8 +513,17 @@ class StepBuilder {
         fetch('/static/data/components.json')
             .then(response => response.json())
             .then(data => {
+                // Add debug logging
+                console.log('Step Builder - Component data loaded for:', componentType);
+                console.log('Step Builder - CPU count:', data.cpu ? data.cpu.length : 0);
+                if (data.cpu && data.cpu.length > 0) {
+                    console.log('Step Builder - First CPU:', data.cpu[0].id, data.cpu[0].name);
+                    console.log('Step Builder - Last CPU:', data.cpu[data.cpu.length-1].id, data.cpu[data.cpu.length-1].name);
+                }
+                
                 // Check if components exist for this type
                 if (data[componentType] && data[componentType].length > 0) {
+                    console.log(`Step Builder - Found ${data[componentType].length} ${componentType} components`);
                     // Clear existing component cards
                     componentCardsContainer.innerHTML = '';
                     
