@@ -140,13 +140,10 @@ def component_detail(category, component_id):
         return redirect(f'https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/select/{category}')
     
     # Add additional images for gallery view
-    if category == 'case' and component_id == 'CC560-V2':
+    if category == 'case' and component_id == 'deepcool-cc560-v2':
         # For the DeepCool CC560 V2 case, we have multiple images
         component['additional_images'] = [
-            "https://www.cclonline.com/images/avante/CC560-V2_01.jpg",
-            "https://www.cclonline.com/images/avante/CC560-V2_02.jpg",
-            "https://www.cclonline.com/images/avante/CC560-V2_03.jpg",
-            "https://www.cclonline.com/images/avante/CC560-V2_04.jpg"
+            "/static/img/cases/deepcool-cc560-v2.png"
         ]
     
     # Check if this component is currently selected in the build
