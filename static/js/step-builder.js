@@ -515,9 +515,6 @@ class StepBuilder {
             .then(data => {
                 // Check if components exist for this type
                 if (data[componentType] && data[componentType].length > 0) {
-                    // Sort components by price (highest first)
-                    data[componentType].sort((a, b) => b.price - a.price);
-                    
                     // Clear existing component cards
                     componentCardsContainer.innerHTML = '';
                     
