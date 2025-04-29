@@ -21,10 +21,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/seamless-blend.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/page-transitions.css') }}">
     
-    <!-- Blueimp Gallery CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/blueimp-gallery.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/component-gallery.css') }}">
-    
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
@@ -262,9 +258,6 @@
     <!-- Vanilla Tilt.js for 3D card effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     
-    <!-- Blueimp Gallery Script -->
-    <script src="{{ url_for('static', filename='js/blueimp-gallery.min.js') }}"></script>
-    
     <!-- Modern Homepage Effects -->
     <script>
         // Initialize AOS animations
@@ -347,16 +340,6 @@
         <div class="transition-loader">
             <div class="spinner"></div>
         </div>
-    </div>
-    
-    <!-- The Gallery as lightbox dialog -->
-    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-        <div class="slides"></div>
-        <h3 class="title"></h3>
-        <a class="prev">‹</a>
-        <a class="next">›</a>
-        <a class="close">×</a>
-        <ol class="indicator"></ol>
     </div>
 </body>
 </html>

@@ -139,13 +139,6 @@ def component_detail(category, component_id):
         flash(f"Component with ID '{component_id}' not found in category '{category}'", "danger")
         return redirect(f'https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/select/{category}')
     
-    # Add additional images for gallery view
-    if category == 'case' and component_id == 'deepcool-cc560-v2':
-        # For the DeepCool CC560 V2 case, we have multiple images
-        component['additional_images'] = [
-            "/static/img/cases/deepcool-cc560-v2.png"
-        ]
-    
     # Check if this component is currently selected in the build
     current_config = session.get('pc_config', {})
     is_selected = current_config.get(category) == component_id

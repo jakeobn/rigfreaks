@@ -22,19 +22,7 @@
                 <div class="card-body p-3 text-center">
                     <div class="component-image bg-dark p-5 mb-3 rounded">
                         {% if component.image_url %}
-                            <a href="{{ component.image_url }}" class="component-gallery-item" data-gallery>
-                                <img src="{{ component.image_url }}" alt="{{ component.name }}" class="img-fluid component-img">
-                            </a>
-                            
-                            {% if component.additional_images %}
-                                <div class="additional-images mt-3 d-flex">
-                                    {% for img_url in component.additional_images %}
-                                        <a href="{{ img_url }}" class="component-gallery-item additional-image-thumb" data-gallery>
-                                            <img src="{{ img_url }}" alt="{{ component.name }} - Image {{ loop.index + 1 }}" class="img-thumbnail">
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
+                            <img src="{{ component.image_url }}" alt="{{ component.name }}" class="img-fluid component-img">
                         {% elif category == 'case' %}
                             <i class="fas fa-desktop fa-5x text-light"></i>
                         {% elif category == 'cpu' %}
@@ -278,10 +266,9 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{{ url_for('static', filename='js/component-gallery.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Any additional component-specific JavaScript can be added here
+        // Add any JavaScript functionality needed for the component details page
     });
 </script>
 {% endblock %}
