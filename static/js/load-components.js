@@ -113,7 +113,9 @@ function createComponentCard(component, type) {
             <i class="fas fa-check"></i>
         </div>
         <div class="component-image">
-            ${getIconForType(type)}
+            ${component.image_url ? 
+                `<img src="${component.image_url}" alt="${component.name}" class="img-fluid component-img">` : 
+                getIconForType(type)}
         </div>
         <div class="component-name">${component.name}</div>
         <div class="component-price">£${component.price.toFixed(2)}</div>

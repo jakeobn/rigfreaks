@@ -222,6 +222,16 @@
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 1rem;
     text-align: center;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.component-image img.component-img {
+    max-height: 120px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .component-name {
@@ -464,6 +474,16 @@
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 1.5rem;
     text-align: center;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.component-details-image img.component-img {
+    max-height: 180px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .component-details-info {

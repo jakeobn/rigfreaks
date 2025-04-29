@@ -21,7 +21,9 @@
             <div class="card h-100 shadow-sm">
                 <div class="card-body p-3 text-center">
                     <div class="component-image bg-dark p-5 mb-3 rounded">
-                        {% if category == 'case' %}
+                        {% if component.image_url %}
+                            <img src="{{ component.image_url }}" alt="{{ component.name }}" class="img-fluid component-img">
+                        {% elif category == 'case' %}
                             <i class="fas fa-desktop fa-5x text-light"></i>
                         {% elif category == 'cpu' %}
                             <i class="fas fa-microchip fa-5x text-light"></i>
