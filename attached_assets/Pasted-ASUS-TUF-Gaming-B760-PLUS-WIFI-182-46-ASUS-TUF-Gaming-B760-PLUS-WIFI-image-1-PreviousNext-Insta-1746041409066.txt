@@ -1,0 +1,138 @@
+ASUS TUF Gaming B760-PLUS WIFI
++ £182.46
+
+
+ASUS TUF Gaming B760-PLUS WIFI image 1
+PreviousNext
+Installed Processors (Max):
+0 (1)
+Supported Processor Manufacturer:
+Intel
+Supported Processors:
+Intel Core 14th & 13th Gen Processors
+Intel Core 12th Gen
+Pentium Gold and Celeron Processors
+64-bit Support:
+Yes
+Socket:
+LGA1700
+USB Ports:
+1 x USB-C 3.2
+1 x USB 3.1
+3 x USB 3.0
+1 x USB 2.0
+DisplayPorts:
+1 x DisplayPort 1.4
+HDMI Port:
+1 x HDMI 2.1
+SATA Connectors:
+4 x SATA
+USB Connectors:
+1 x USB-C 3.1 header (supports 1 port)
+1 x USB 3.0 header (supports 2 ports)
+2 x USB 2.0 headers (supports 4 ports)
+Memory Bus Speed:
+Up to 7200 MT/s
+Memory Type:
+DDR5
+Northbridge:
+Intel B760
+RAID Supported:
+Yes
+RAID Format:
+RAID 0
+1
+5
+10
+SATA Supported:
+Yes
+RJ-45 Ports:
+1 x RJ-45
+Audio Line In Ports:
+1 x 3.5mm Jack
+Audio Line Out Ports:
+3 x 3.5mm Jacks
+Microphone In Port:
+1 x 3.5mm Jack
+S/PDIF Port:
+1 x S/PDIF Optical Out
+Antenna Connector(s):
+2 x SMA Antenna
+Front Panel Connectors:
+1 x Front Panel
+1 x Front Audio
+Cooling Fan Support:
+1 x CPU fan header
+1 x CPU OPT fan header
+1 x AIO pump header
+4 x Chassis fan headers
+Thunderbolt Port(s):
+1 x Thunderbolt 4 header
+Serial Connectors:
+1 x COM header
+Chassis Intrusion Connector:
+1 x Chassis Intrusion header
+Power Connector Port:
+1 x 24-pin ATX
+1 x 8-pin EPS
+1 x 4-pin EPS
+Other Connectors:
+2 x M.2 slots
+Key M
+Type 2242/2260/2280 (PCIe Gen4)
+1 x M.2 slot
+Key M
+Type 2242/2260/2280/22110 (PCIe Gen4)
+3 x 3-pin ARGB LED headers
+1 x 4-pin RGB LED header
+Number of PCI Express Slots:
+1 x PCI Express 5.0 x16 slot
+1 x PCI Express 3.0 x16 slot (@ x4)
+2 x PCI Express 3.0 x1 slots
+Maximum RAM:
+192 GB
+Memory Slot:
+4 x DIMM
+Integrated Graphics Supported:
+Yes
+Warranty:
+3 Years
+Integrated Sound:
+Realtek
+Integrated Network:
+Realtek
+Network Speeds Supported:
+Up to 2.5 Gbps
+Wireless LAN:
+Yes - Wi-Fi 6
+Wireless Network Speed:
+Up to 2.4 Gbps
+Bluetooth:
+Yes
+Bluetooth Version:
+5.2
+Operating Systems Supported:
+Microsoft Windows 11
+Jumpers:
+1 x Clear CMOS
+Software Included:
+Yes
+Drivers:
+Yes
+Form Factor:
+ATX Motherboard
+In The Box:
+1 x Motherboard
+2 x SATA 6Gb/s cables
+1 x ASUS Wi-Fi moving antenna
+1 x TUF Gaming sticker
+2 x M.2 Rubber Packages
+1 x Screw package for M.2 SSD
+1 x TUF Certification card
+1 x User guide
+Width:
+244 mm
+Length:
+305 mm
+Part Number:
+90MB1ER0-M1EAY0
