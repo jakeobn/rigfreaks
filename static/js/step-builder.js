@@ -353,6 +353,11 @@ class StepBuilder {
                     // Load components for this step
                     this.loadComponentsForStep(componentType);
                 }
+                
+                // If this is the review step, update the missing components alert
+                if (stepIndex === this.totalSteps - 1) {
+                    this.updateMissingComponentsAlert();
+                }
             }
         });
         
@@ -504,6 +509,68 @@ class StepBuilder {
         
         // Update total price
         this.updateTotalPrice();
+        
+        // Update missing components alert if we're on the review step
+        if (this.currentStep === this.totalSteps - 1) {
+            this.updateMissingComponentsAlert();
+        }
+    }
+    
+    // Update the missing components alert on the review page
+    updateMissingComponentsAlert() {
+        // Check each required component
+        const missingComponents = [];
+        const missingComponentSteps = [];
+        
+        for (let i = 0; i < this.totalSteps - 1; i++) {
+            const s = this.steps[i];
+            // Skip non-required steps or steps without a category
+            if (!s.required || !s.category) continue;
+            
+            // Check if a component is selected for this category
+            const isSelected = !!this.buildConfig[s.category]?.id;
+            if (!isSelected) {
+                missingComponents.push(this.formatCategoryName(s.category));
+                missingComponentSteps.push(i); // Store the step index for linking
+            }
+        }
+        
+        // Show or hide the missing components alert
+        const missingAlert = document.getElementById('missing-components-alert');
+        const missingList = document.getElementById('missing-components-list');
+        
+        if (!missingAlert || !missingList) return;
+        
+        if (missingComponents.length > 0) {
+            // Clear previous list
+            missingList.innerHTML = '';
+            
+            // Add each missing component as a list item with a link
+            missingComponents.forEach((component, index) => {
+                const li = document.createElement('li');
+                const stepLink = document.createElement('a');
+                stepLink.href = '#';
+                stepLink.textContent = component;
+                stepLink.className = 'text-white font-weight-bold';
+                stepLink.style.textDecoration = 'underline';
+                
+                // Add click event to navigate to that step
+                const stepIndex = missingComponentSteps[index];
+                stepLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.goToStep(stepIndex);
+                });
+                
+                li.appendChild(stepLink);
+                missingList.appendChild(li);
+            });
+            
+            // Show the alert
+            missingAlert.style.display = 'block';
+        } else {
+            // Hide the alert if all components are selected
+            missingAlert.style.display = 'none';
+        }
     }
     
     // Format category name for display
@@ -797,6 +864,7 @@ class StepBuilder {
         if (stepIndex === this.totalSteps - 1) {
             // Check each required component
             const missingComponents = [];
+            const missingComponentSteps = [];
             
             for (let i = 0; i < this.totalSteps - 1; i++) {
                 const s = this.steps[i];
@@ -807,22 +875,59 @@ class StepBuilder {
                 const isSelected = !!this.buildConfig[s.category]?.id;
                 if (!isSelected) {
                     missingComponents.push(this.formatCategoryName(s.category));
+                    missingComponentSteps.push(i); // Store the step index for linking
                 }
             }
             
-            // If there are missing components, show error
-            if (missingComponents.length > 0 && showError) {
-                const errorMsg = document.querySelector(`#${step.id} .step-error-message`);
-                if (errorMsg) {
-                    errorMsg.textContent = `Please select the following component(s): ${missingComponents.join(', ')}`;
-                    errorMsg.style.display = 'block';
+            // Show or hide the missing components alert
+            const missingAlert = document.getElementById('missing-components-alert');
+            const missingList = document.getElementById('missing-components-list');
+            
+            if (missingComponents.length > 0) {
+                // Clear previous list
+                missingList.innerHTML = '';
+                
+                // Add each missing component as a list item with a link
+                missingComponents.forEach((component, index) => {
+                    const li = document.createElement('li');
+                    const stepLink = document.createElement('a');
+                    stepLink.href = '#';
+                    stepLink.textContent = component;
+                    stepLink.className = 'text-white font-weight-bold';
+                    stepLink.style.textDecoration = 'underline';
                     
-                    // Hide after 5 seconds
-                    setTimeout(() => {
-                        errorMsg.style.display = 'none';
-                    }, 5000);
+                    // Add click event to navigate to that step
+                    const stepIndex = missingComponentSteps[index];
+                    stepLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.goToStep(stepIndex);
+                    });
+                    
+                    li.appendChild(stepLink);
+                    missingList.appendChild(li);
+                });
+                
+                // Show the alert
+                missingAlert.style.display = 'block';
+                
+                // Show error message as well if needed
+                if (showError) {
+                    const errorMsg = document.querySelector(`#${step.id} .step-error-message`);
+                    if (errorMsg) {
+                        errorMsg.textContent = `Please select all required components before completing your build.`;
+                        errorMsg.style.display = 'block';
+                        
+                        // Hide after 5 seconds
+                        setTimeout(() => {
+                            errorMsg.style.display = 'none';
+                        }, 5000);
+                    }
                 }
+                
                 return false;
+            } else {
+                // Hide the alert if all components are selected
+                missingAlert.style.display = 'none';
             }
             
             return missingComponents.length === 0;
