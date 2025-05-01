@@ -3680,6 +3680,34 @@
   "storage": [],
   "power_supply": [
     {
+      "id": "our-choice-1000w-gold",
+      "name": "1000W Our Choice 80 Plus Gold",
+      "price": 109.03,
+      "brand": "Our Choice",
+      "description": "The 1000W Our Choice 80 Plus Gold power supply delivers exceptional power and efficiency for high-end gaming rigs and professional workstations. With 1000 watts of continuous power and 80 Plus Gold certification, it provides abundant clean power for multi-GPU setups and overclocked systems with up to 90% energy efficiency. This semi-modular PSU features premium components, including 100% Japanese capacitors rated at 105°C, and a fluid dynamic bearing fan for silent cooling even under heavy loads. With comprehensive safety protections and flexible modular cabling, it's the perfect choice for enthusiasts and professionals who demand reliable power for the most demanding hardware configurations.",
+      "image_url": "/static/images/power_supply/our-choice-1000w-gold.png",
+      "type": "ATX Power Supply",
+      "wattage": 1000,
+      "efficiency": "80 Plus Gold",
+      "modularity": "Semi-Modular",
+      "fan_size": "135mm Fluid Dynamic Bearing",
+      "power_connectors": {
+        "main": "24-pin ATX",
+        "cpu": "2 x 8-pin (4+4) EPS",
+        "pcie": "6 x 8-pin (6+2) PCIe",
+        "sata": "12 x SATA",
+        "molex": "5 x Molex"
+      },
+      "input_voltage": "100-240V",
+      "input_frequency": "50-60Hz",
+      "mtbf": "100,000 hours",
+      "protection": ["OVP", "UVP", "OPP", "SCP", "OTP", "OCP", "SIP"],
+      "dimensions": "150mm x 140mm x 86mm",
+      "warranty": "5 Years",
+      "part_number": "OUR-CHOICE-1000W-GOLD",
+      "features": ["80 Plus Gold Certified", "Semi-Modular Design", "100% Japanese Capacitors", "Active PFC", "Fluid Dynamic Bearing Fan", "Multi-GPU Support", "Enhanced Safety Protections", "Sleeved Cables", "Compatible with Intel and AMD platforms", "Up to 90% energy efficiency"]
+    },
+    {
       "id": "our-choice-750w-gold",
       "name": "750W Our Choice 80 Plus Gold",
       "price": 100.77,
