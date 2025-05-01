@@ -3680,6 +3680,34 @@
   "storage": [],
   "power_supply": [
     {
+      "id": "our-choice-750w-gold",
+      "name": "750W Our Choice 80 Plus Gold",
+      "price": 100.77,
+      "brand": "Our Choice",
+      "description": "The 750W Our Choice 80 Plus Gold power supply delivers premium efficiency and reliability for high-performance gaming rigs and workstations. With 80 Plus Gold certification, it provides excellent energy efficiency up to 90%, reducing heat output and electricity costs. This power supply features a semi-modular design, allowing you to connect only the cables you need for a cleaner build with improved airflow. The 120mm fluid dynamic bearing fan offers whisper-quiet operation, while high-quality Japanese capacitors ensure long-term stability and durability. Perfect for enthusiasts who demand reliable power with premium efficiency.",
+      "image_url": "/static/images/power_supply/our-choice-750w-gold.png",
+      "type": "ATX Power Supply",
+      "wattage": 750,
+      "efficiency": "80 Plus Gold",
+      "modularity": "Semi-Modular",
+      "fan_size": "120mm Fluid Dynamic Bearing",
+      "power_connectors": {
+        "main": "24-pin ATX",
+        "cpu": "2 x 8-pin (4+4) EPS",
+        "pcie": "4 x 8-pin (6+2) PCIe",
+        "sata": "8 x SATA",
+        "molex": "4 x Molex"
+      },
+      "input_voltage": "100-240V",
+      "input_frequency": "50-60Hz",
+      "mtbf": "100,000 hours",
+      "protection": ["OVP", "UVP", "OPP", "SCP", "OTP", "OCP"],
+      "dimensions": "150mm x 140mm x 86mm",
+      "warranty": "5 Years",
+      "part_number": "CCL-CHOICE-750W-GOLD",
+      "features": ["80 Plus Gold Certified", "Semi-Modular Design", "Active PFC", "High-quality Japanese capacitors", "Fluid Dynamic Bearing Fan", "Comprehensive protection suite", "Compatible with high-end GPUs", "Compatible with Intel and AMD platforms", "Up to 90% energy efficiency"]
+    },
+    {
       "id": "our-choice-750w-bronze",
       "name": "750W Our Choice 80 Plus Bronze",
       "price": 63.99,
