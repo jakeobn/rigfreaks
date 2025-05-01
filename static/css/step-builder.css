@@ -29,7 +29,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    background: linear-gradient(90deg, rgba(var(--bs-primary-rgb), 0.2) 0%, rgba(var(--bs-primary-rgb), 0.05) 100%);
+    background: linear-gradient(90deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 191, 255, 0.05) 100%); /* Electric Blue */
     transition: width 0.5s cubic-bezier(0.44, 0.05, 0.33, 1);
     z-index: 1;
 }
@@ -70,11 +70,11 @@
 }
 
 .step-indicator.active {
-    background-color: var(--bs-primary);
-    border-color: var(--bs-primary);
+    background-color: #00BFFF; /* Electric Blue */
+    border-color: #00BFFF; /* Electric Blue */
     color: white;
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(var(--bs-primary-rgb), 0.6);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6); /* Electric Blue */
 }
 
 .step-indicator.completed {
@@ -153,7 +153,7 @@
 }
 
 .filter-tag.active {
-    background-color: var(--bs-primary);
+    background-color: #00BFFF; /* Electric Blue */
     color: white;
 }
 
@@ -186,13 +186,13 @@
     background-color: rgba(255, 255, 255, 0.08);
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    border-color: rgba(var(--bs-primary-rgb), 0.3);
+    border-color: rgba(0, 191, 255, 0.3); /* Electric Blue */
 }
 
 .component-card.selected {
-    background-color: rgba(var(--bs-primary-rgb), 0.15);
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 15px rgba(var(--bs-primary-rgb), 0.4);
+    background-color: rgba(0, 191, 255, 0.15); /* Electric Blue */
+    border-color: #00BFFF; /* Electric Blue */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4); /* Electric Blue */
 }
 
 .component-card.selected:hover {
@@ -420,12 +420,12 @@
 }
 
 .step-btn-next {
-    background-color: var(--bs-primary);
+    background-color: #00BFFF; /* Electric Blue */
     color: white;
 }
 
 .step-btn-next:hover {
-    background-color: var(--bs-primary-hover, #0069d9);
+    background-color: #00A6DD; /* Darker Electric Blue */
     transform: translateX(5px);
 }
 
@@ -475,7 +475,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: var(--bs-primary);
+    background-color: #00BFFF; /* Electric Blue */
     color: white;
 }
 
