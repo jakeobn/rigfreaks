@@ -58,9 +58,13 @@
                     {% endif %}
                 </div>
                 
-                <!-- No real image, using icon placeholder -->
+                <!-- Component image or icon placeholder -->
                 <div class="text-center py-5 bg-dark">
-                    {% if category == 'cpu' %}
+                    {% if category == 'cooling' and component.id in ['deepcool-ak400-zero-dark', 'be-quiet-pure-rock-2-black'] %}
+                        <a href="{{ url_for('component_detail', category=category, component_id=component.id) }}">
+                            <img src="{{ url_for('static', filename='images/cooling/' + component.id + '.png') }}" alt="{{ component.name }}" class="img-fluid cooling-image" style="max-height: 150px;">
+                        </a>
+                    {% elif category == 'cpu' %}
                         <i class="fas fa-microchip fa-5x text-secondary"></i>
                     {% elif category == 'motherboard' %}
                         <i class="fas fa-server fa-5x text-secondary"></i>
@@ -107,7 +111,7 @@
                     </div>
                     
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fs-5 fw-bold text-success">${{ component.price }}</span>
+                        <span class="fs-5 fw-bold text-success">£{{ component.price }}</span>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input compare-checkbox" id="compare-{{ component.id }}" value="{{ component.id }}">
                             <label class="form-check-label" for="compare-{{ component.id }}">Compare</label>

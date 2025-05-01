@@ -27,7 +27,9 @@
             <div class="card">
                 <div class="card-body p-3 text-center">
                     <div class="component-image bg-dark p-5 mb-3 rounded">
-                        {% if category == 'cpu' %}
+                        {% if category == 'cooling' and component.id in ['deepcool-ak400-zero-dark', 'be-quiet-pure-rock-2-black'] %}
+                            <img src="{{ url_for('static', filename='images/cooling/' + component.id + '.png') }}" alt="{{ component.name }}" class="img-fluid" style="max-height: 250px;">
+                        {% elif category == 'cpu' %}
                             <i class="fas fa-microchip fa-8x text-secondary"></i>
                         {% elif category == 'motherboard' %}
                             <i class="fas fa-server fa-8x text-secondary"></i>
