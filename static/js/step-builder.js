@@ -98,17 +98,17 @@ class StepBuilder {
             },
             {
                 index: 2,
-                id: 'step-cooling',
-                title: 'Select Your CPU Cooler',
-                required: true,
-                category: 'cooling'
-            },
-            {
-                index: 3,
                 id: 'step-motherboard',
                 title: 'Select Your Motherboard',
                 required: true,
                 category: 'motherboard'
+            },
+            {
+                index: 3,
+                id: 'step-cooling',
+                title: 'Select Your CPU Cooler',
+                required: true,
+                category: 'cooling'
             },
             {
                 index: 4,
