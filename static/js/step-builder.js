@@ -457,28 +457,43 @@ class StepBuilder {
             componentCard = componentCardOrId;
         }
         
-        if (componentCard) {
-            // Remove selected class from siblings
-            const siblings = document.querySelectorAll('.component-card');
-            siblings.forEach(card => {
-                card.classList.remove('selected');
-            });
-            
-            // Add selected class to this component
-            componentCard.classList.add('selected');
-        }
+        // Check if this component is already selected
+        const isCurrentlySelected = this.buildConfig[category].id === componentId;
         
-        // Update build configuration
-        this.buildConfig[category] = {
-            id: componentId,
-            name: componentName,
-            price: componentPrice
-        };
+        // Remove selected class from all components
+        const allComponentCards = document.querySelectorAll('.component-card');
+        allComponentCards.forEach(card => {
+            card.classList.remove('selected');
+        });
+        
+        // If the component wasn't already selected, select it. Otherwise, unselect it.
+        if (!isCurrentlySelected) {
+            // Add selected class to this component
+            if (componentCard) {
+                componentCard.classList.add('selected');
+            }
+            
+            // Update build configuration
+            this.buildConfig[category] = {
+                id: componentId,
+                name: componentName,
+                price: componentPrice
+            };
+            
+            console.log('Selected component:', this.buildConfig[category]);
+        } else {
+            // If we're unselecting, reset the build config for this category
+            this.buildConfig[category] = {
+                id: null,
+                name: null,
+                price: 0
+            };
+            
+            console.log('Unselected component for category:', category);
+        }
         
         // Update build summary
         this.updateBuildSummary();
-        
-        console.log('Selected component:', this.buildConfig[category]);
     }
     
     // Update the build summary
