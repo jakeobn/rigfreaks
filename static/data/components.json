@@ -3679,6 +3679,46 @@
   "gpu": [],
   "storage": [
     {
+      "id": "crucial-p310-1tb",
+      "name": "1TB Crucial P310",
+      "price": 77.40,
+      "brand": "Crucial",
+      "description": "The Crucial P310 1TB SSD delivers exceptional performance with PCIe Gen4 x4 NVMe technology in a sleek M.2 form factor. Featuring blazing-fast sequential read speeds up to 7,100 MB/s and write speeds up to 6,000 MB/s, this drive dramatically reduces load times and accelerates data-intensive tasks. With 1TB of storage capacity and a solid 220 TBW endurance rating, it provides ample space and reliability for gaming libraries, creative projects, and everyday computing. The sleek black design with Crucial branding complements any build while the 5-year warranty ensures long-term peace of mind.",
+      "image_url": "/static/images/storage/crucial-p310-1tb.png",
+      "capacity": 1000,
+      "type": "SSD",
+      "interface": "PCIe Gen4 x4 NVMe",
+      "form_factor": "M.2-2280",
+      "read_speed": 7100,
+      "write_speed": 6000,
+      "memory_type": "3D NAND",
+      "tbw": 220,
+      "mtbf": 1800000,
+      "dimensions": {
+        "width": 22,
+        "depth": 80,
+        "height": 2.2
+      },
+      "weight": 7,
+      "operating_temperature": "0 ~ 70 °C",
+      "storage_temperature": "-40 ~ +85 °C",
+      "vibration_resistance": "20G (10~2000Hz)",
+      "warranty": "5 Years",
+      "part_number": "CT1000P310SSD8",
+      "features": [
+        "PCIe Gen4 x4 NVMe interface",
+        "M.2-2280 form factor",
+        "Up to 7,100 MB/s read speeds",
+        "Up to 6,000 MB/s write speeds",
+        "Micron 3D NAND technology",
+        "Low power consumption",
+        "Sleek all-black design",
+        "220 TBW endurance rating",
+        "5-year limited warranty",
+        "Crucial Storage Executive software support"
+      ]
+    },
+    {
       "id": "kingston-nv3-500gb",
       "name": "500GB Kingston NV3",
       "price": 44.21,
