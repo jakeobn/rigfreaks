@@ -3677,7 +3677,48 @@
   ],
   "ram": [],
   "gpu": [],
-  "storage": [],
+  "storage": [
+    {
+      "id": "kingston-nv3-500gb",
+      "name": "500GB Kingston NV3",
+      "price": 44.21,
+      "brand": "Kingston",
+      "description": "The Kingston NV3 500GB SSD delivers high-speed PCIe Gen4 NVMe performance in a compact M.2 form factor. With read speeds up to 6,000 MB/s and write speeds up to 2,200 MB/s, this drive accelerates boot times, application loading, and file transfers. The 3D NAND technology ensures reliability with a 160 TBW endurance rating and 2,000,000 hours MTBF. Perfect for gamers, content creators, and everyday users who want to enhance system responsiveness and multitasking capabilities while keeping temperatures and power consumption low.",
+      "image_url": "/static/images/storage/kingston-nv3-500gb.png",
+      "capacity": 500,
+      "type": "SSD",
+      "interface": "PCIe Gen4 NVMe",
+      "form_factor": "M.2-2280",
+      "read_speed": 6000,
+      "write_speed": 2200,
+      "memory_type": "3D NAND",
+      "tbw": 160,
+      "mtbf": 2000000,
+      "dimensions": {
+        "width": 22,
+        "depth": 80,
+        "height": 3.8
+      },
+      "weight": 6.6,
+      "operating_temperature": "0 ~ 70 °C",
+      "storage_temperature": "-40 ~ +85 °C",
+      "vibration_resistance": "10G (10~1000Hz)",
+      "warranty": "3 Years",
+      "part_number": "SNV3S/500G",
+      "features": [
+        "PCIe Gen4 NVMe interface",
+        "3D NAND technology",
+        "M.2-2280 form factor",
+        "Up to 6,000 MB/s read speeds",
+        "Up to 2,200 MB/s write speeds",
+        "Low power consumption",
+        "Compact design",
+        "Compatible with NVMe systems",
+        "160 TBW endurance rating",
+        "3-year warranty with free technical support"
+      ]
+    }
+  ],
   "power_supply": [
     {
       "id": "our-choice-850w-gold",
