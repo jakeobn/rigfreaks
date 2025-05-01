@@ -155,23 +155,31 @@ def component_detail(category, component_id):
 
 @app.route('/add/<category>/<component_id>', methods=['POST'])
 def add_component(category, component_id):
-    app.logger.debug(f"Adding component: {category} - {component_id}")
+    app.logger.debug(f"Adding/Removing component: {category} - {component_id}")
     # Initialize configuration if it doesn't exist
     if 'pc_config' not in session:
         session['pc_config'] = {}
     
-    # Add component to configuration
-    session['pc_config'][category] = component_id
-    session.modified = True
-    
-    # Check compatibility after adding component
-    compatibility_issues = check_compatibility(session['pc_config'])
-    if compatibility_issues:
-        flash_message = "<strong>Warning:</strong> Compatibility issues detected:<ul>"
-        for issue in compatibility_issues:
-            flash_message += f"<li>{issue}</li>"
-        flash_message += "</ul>"
-        flash(flash_message, "warning")
+    # Toggle component behavior - if the same component is selected, remove it
+    if category in session['pc_config'] and session['pc_config'][category] == component_id:
+        # This is a toggle/unselect action
+        del session['pc_config'][category]
+        session.modified = True
+        return redirect(url_for('step_builder'))
+    else:
+        # This is an add/select action
+        # Add component to configuration
+        session['pc_config'][category] = component_id
+        session.modified = True
+        
+        # Check compatibility after adding component
+        compatibility_issues = check_compatibility(session['pc_config'])
+        if compatibility_issues:
+            flash_message = "<strong>Warning:</strong> Compatibility issues detected:<ul>"
+            for issue in compatibility_issues:
+                flash_message += f"<li>{issue}</li>"
+            flash_message += "</ul>"
+            flash(flash_message, "warning")
     
     return redirect(url_for('step_builder'))
 
