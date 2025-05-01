@@ -4402,6 +4402,29 @@
       "connector": "4-pin PWM",
       "part_number": "R-AK400-BKNNMN-G-2",
       "warranty": "3 Years"
+    },
+    {
+      "id": "be-quiet-pure-rock-2-black",
+      "name": "Be Quiet! Pure Rock 2 Black",
+      "price": 41.49,
+      "brand": "be quiet!",
+      "description": "Silent and efficient CPU air cooler with a 120mm Pure Wings 2 fan, featuring pure aluminum heatsink and copper heat pipes. Compatible with Intel and AMD sockets offering 150W TDP cooling capacity.",
+      "type": "Air Cooler",
+      "socket_support": "Intel: 1200 / 2066 / 1150 / 1151 / 1155 / 2011(-3) square ILM, AMD: AM4 / AM3(+)",
+      "fan_size": "120mm",
+      "fan_speed": "1500 RPM",
+      "noise_level": "19.1 ~ 26.8 dBA",
+      "cooling_capacity": "150 W",
+      "fan_bearing": "Rifle",
+      "dimensions": "121mm (W) x 87mm (D) x 155mm (H)",
+      "weight": "575 g",
+      "connector": "4-pin PWM",
+      "part_number": "BK007",
+      "warranty": "3 Years",
+      "lifetime": "80,000 hours",
+      "base_material": "Aluminium & Copper",
+      "heatsink_material": "Aluminium",
+      "in_the_box": "Cooler with pre-applied Thermal Grease, Pure Wings 2 PWM Fan, Mounting Kit"
     }
   ],
   "os": []
