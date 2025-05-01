@@ -4569,5 +4569,17 @@
       "in_the_box": "Cooler with pre-applied Thermal Grease, Pure Wings 2 PWM Fan, Mounting Kit"
     }
   ],
-  "os": []
+  "os": [
+    {
+      "id": "no-windows",
+      "name": "No Windows",
+      "price": 0.00,
+      "brand": "RIGFREAKS",
+      "description": "With this option, you are responsible for understanding the process for installing Windows or your chosen operating system, as well as sourcing your own license, and configuring the BIOS correctly - our support team will not be able to assist with an operating system installation. For ease and to guarantee the best possible performance from your new PC, we recommend you choose to have Windows 11 supplied and preinstalled by our experienced engineers.",
+      "image_url": "/static/images/os/no-windows.png",
+      "type": "Operating System",
+      "part_number": "NO-WINDOWS",
+      "features": ["No preinstalled operating system", "BIOS configured for installation", "No OS support included"]
+    }
+  ]
 }
