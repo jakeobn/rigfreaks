@@ -181,13 +181,13 @@ def remove_component(category):
         del session['pc_config'][category]
         session.modified = True
     
-    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+    return redirect(url_for('step_builder'))
 
 @app.route('/summary')
 def summary():
     if 'pc_config' not in session or not session['pc_config']:
         flash("Please build a PC configuration first", "warning")
-        return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+        return redirect(url_for('step_builder'))
     
     components = load_component_data()
     config_details = {}
@@ -248,7 +248,7 @@ def reset_configuration():
         session['pc_config'] = {}
         session.modified = True
     
-    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+    return redirect(url_for('step_builder'))
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
