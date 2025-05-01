@@ -372,8 +372,43 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 3: Motherboard -->
-            <div id="step-motherboard" class="step-panel" data-required="true" data-category="motherboard" data-step="3">
+            <!-- Step 3: CPU Cooling -->
+            <div id="step-cooling" class="step-panel" data-required="true" data-category="cooling" data-step="3">
+                <h2 class="step-title">Select Your CPU Cooler</h2>
+                <p class="step-description">Choose a cooling solution that will keep your processor running at optimal temperatures.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Type:</div>
+                    <div class="filter-options" data-filter-type="type">
+                        <div class="filter-tag" data-filter-value="all">All Coolers</div>
+                        <div class="filter-tag" data-filter-value="Air Cooler">Air Coolers</div>
+                        <div class="filter-tag" data-filter-value="Liquid Cooler">Liquid Coolers</div>
+                    </div>
+                    
+                    <div class="filter-title mt-3">Filter by Brand:</div>
+                    <div class="filter-options" data-filter-type="brand">
+                        <div class="filter-tag" data-filter-value="all">All Brands</div>
+                        <div class="filter-tag" data-filter-value="Noctua">Noctua</div>
+                        <div class="filter-tag" data-filter-value="Corsair">Corsair</div>
+                        <div class="filter-tag" data-filter-value="DeepCool">DeepCool</div>
+                        <div class="filter-tag" data-filter-value="Arctic">Arctic</div>
+                        <div class="filter-tag" data-filter-value="be quiet!">be quiet!</div>
+                        <div class="filter-tag" data-filter-value="NZXT">NZXT</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards Container -->
+                <div class="component-cards">
+                    <!-- Cooling cards will be loaded dynamically -->
+                </div>
+                
+                <!-- Error Message -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 4: Motherboard -->
+            <div id="step-motherboard" class="step-panel" data-required="true" data-category="motherboard" data-step="4">
                 <h2 class="step-title">Select Your Motherboard</h2>
                 <p class="step-description">Choose a motherboard that's compatible with your CPU and offers the features you need.</p>
                 
@@ -402,8 +437,8 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 4: Memory (RAM) -->
-            <div id="step-ram" class="step-panel" data-required="true" data-category="ram" data-step="4">
+            <!-- Step 5: Memory (RAM) -->
+            <div id="step-ram" class="step-panel" data-required="true" data-category="ram" data-step="5">
                 <h2 class="step-title">Select Your Memory (RAM)</h2>
                 <p class="step-description">Choose memory that provides the right amount of capacity and speed for your workloads.</p>
                 
@@ -431,8 +466,8 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 5: Graphics Card (GPU) -->
-            <div id="step-gpu" class="step-panel" data-required="true" data-category="gpu" data-step="5">
+            <!-- Step 6: Graphics Card (GPU) -->
+            <div id="step-gpu" class="step-panel" data-required="true" data-category="gpu" data-step="6">
                 <h2 class="step-title">Select Your Graphics Card (GPU)</h2>
                 <p class="step-description">Choose a graphics card that provides the performance you need for gaming and visual workloads.</p>
                 
@@ -459,8 +494,8 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 6: Power Supply -->
-            <div id="step-power" class="step-panel" data-required="true" data-category="power_supply" data-step="6">
+            <!-- Step 7: Power Supply -->
+            <div id="step-power" class="step-panel" data-required="true" data-category="power_supply" data-step="7">
                 <h2 class="step-title">Select Your Power Supply</h2>
                 <p class="step-description">Choose a power supply that delivers clean, stable power with adequate wattage for your components.</p>
                 
@@ -489,8 +524,8 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 7: Storage (HDD/SSD) -->
-            <div id="step-storage" class="step-panel" data-required="true" data-category="storage" data-step="7">
+            <!-- Step 8: Storage (HDD/SSD) -->
+            <div id="step-storage" class="step-panel" data-required="true" data-category="storage" data-step="8">
                 <h2 class="step-title">Select Your Storage (HDD/SSD)</h2>
                 <p class="step-description">Choose storage that provides enough space and speed for your needs. SSDs offer faster performance, while HDDs provide more storage for the cost.</p>
                 
@@ -527,8 +562,8 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Final Review Step -->
-            <div id="step-review" class="step-panel" data-required="false" data-step="8">
+            <!-- Step 9: Final Review -->
+            <div id="step-review" class="step-panel" data-required="false" data-step="9">
                 <h2 class="step-title">Review Your Build</h2>
                 <p class="step-description">Review your component selections and make any final changes before proceeding.</p>
                 
