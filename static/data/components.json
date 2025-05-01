@@ -4571,6 +4571,20 @@
   ],
   "os": [
     {
+      "id": "windows-11-pro",
+      "name": "Windows 11 Pro",
+      "price": 139.99,
+      "brand": "Microsoft",
+      "description": "Windows 11 Pro is the ultimate operating system for professional PC builders and power users. Packed with advanced features, it offers robust security measures, including BitLocker encryption and Windows Hello biometric authentication, to protect sensitive data. With enhanced productivity tools such as Microsoft Teams integration and seamless virtualization support, Windows 11 Pro empowers users to maximize their efficiency and take their projects to the next level.",
+      "image_url": "/static/images/os/windows-11-pro.png",
+      "type": "Operating System",
+      "part_number": "WIN11-PRO",
+      "activation": "Digital License",
+      "license_type": "OEM",
+      "architecture": "64-bit",
+      "features": ["Pre-installed & activated", "BitLocker Encryption", "Remote Desktop", "Windows Sandbox", "Group Policy Management", "Advanced security features", "Hyper-V virtualization", "Business networking features", "Microsoft Store for Business"]
+    },
+    {
       "id": "windows-11-home",
       "name": "Windows 11 Home",
       "price": 114.99,
