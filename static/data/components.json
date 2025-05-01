@@ -4381,6 +4381,28 @@
       }
     }
   ],
-  "cooling": [],
+  "cooling": [
+    {
+      "id": "deepcool-ak400-zero-dark",
+      "name": "DeepCool AK400 ZERO DARK",
+      "price": 30.14,
+      "brand": "DeepCool",
+      "description": "High-performance CPU cooler with a 120mm fluid dynamic bearing fan, offering 220W TDP cooling capacity. Compatible with Intel LGA1700/1200/1151/1150/1155 and AMD AM5/AM4 sockets.",
+      "type": "Air Cooler",
+      "socket_support": "Intel: LGA1700/1200/1151/1150/1155, AMD: AM5/AM4",
+      "fan_size": "120mm",
+      "fan_speed": "500 ~ 1850 RPM",
+      "noise_level": "<= 29 dB(A)",
+      "cooling_capacity": "220 W",
+      "airflow": "66.47 CFM",
+      "fan_bearing": "Fluid Dynamic",
+      "dimensions": "97mm (W) x 155mm (D) x 127mm (H)",
+      "weight": "661 g",
+      "fan_pressure": "2.04 mmAq",
+      "connector": "4-pin PWM",
+      "part_number": "R-AK400-BKNNMN-G-2",
+      "warranty": "3 Years"
+    }
+  ],
   "os": []
 }
