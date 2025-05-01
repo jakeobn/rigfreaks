@@ -1,0 +1,140 @@
+ASUS ROG Strix Z890-F Gaming WiFi
++ £462.36
+
+
+ASUS ROG Strix Z890-F Gaming WiFi image 1
+PreviousNext
+Installed Processors (Max):
+0 (1)
+Supported Processor Manufacturer:
+Intel
+Supported Processors:
+Intel Core Ultra Processors (Series 2)
+64-bit Support:
+Yes
+Socket:
+LGA1851
+USB Ports:
+2 x Thunderbolt 4
+2 x USB-C 3.1
+4 x USB 3.1
+4 x USB 3.0
+2 x USB 2.0
+DisplayPorts:
+1 x DisplayPort 1.4
+HDMI Port:
+1 x HDMI 2.1
+SATA Connectors:
+4 x SATA III
+USB Connectors:
+1 x USB-C 3.2 header (supports 1 port)
+2 x USB 3.0 headers (supports 4 ports)
+2 x USB 2.0 headers (supports 4 ports)
+Memory Bus Speed:
+Up to 8600 MT/s
+Memory Type:
+DDR5
+Northbridge:
+Intel Z890
+RAID Supported:
+Yes
+RAID Format:
+RAID 0
+1
+5
+10
+SATA Supported:
+Yes
+RJ-45 Ports:
+1 x RJ-45
+Audio Line Out Ports:
+1 x 3.5mm Jack
+Microphone In Port:
+1 x 3.5mm Jack
+S/PDIF Port:
+1 x S/PDIF Optical Out
+Antenna Connector(s):
+2 x SMA Antenna
+Front Panel Connectors:
+1 x Front Panel
+1 x Front Audio
+Cooling Fan Support:
+1 x CPU fan header
+1 x CPU OPT fan header
+1 x AIO pump header
+5 x Chassis fan headers
+Thunderbolt Port(s):
+1 x Thunderbolt 4 header
+Chassis Intrusion Connector:
+1 x Chassis Intrusion header
+Power Connector Port:
+1 x 24-pin ATX
+2 x 8-pin EPS
+Other Connectors:
+1 x M.2 slot
+Key M
+Type 2242/2260/2280/22110 (PCIe Gen5)
+2 x M.2 slots
+Key M
+Type 2280 (PCIe Gen4)
+1 x M.2 slot
+Key M
+Type 2280/22110 (PCIe Gen4)
+1 x M.2 slot
+Key M
+Type 2242/2260/2280 (PCIe Gen4 or SATA)
+3 x 3-pin ARGB headers
+1 x Thermal Sensor header
+Number of PCI Express Slots:
+1 x PCI Express 5.0 x16 slot
+1 x PCI Express 4.0 x16 slot (@ x4)
+Maximum RAM:
+192 GB
+Memory Slot:
+4 x DIMM
+Integrated Graphics Supported:
+Yes
+Warranty:
+3 Years
+Integrated Sound:
+ROG SupremeFX ALC4080
+Integrated Network:
+Intel
+Network Speeds Supported:
+Up to 2.5 Gbps
+Wireless LAN:
+Yes - Wi-Fi 7
+Wireless Network Speed:
+Up to 5.8 Gbps
+Bluetooth:
+Yes
+Bluetooth Version:
+5.4
+Operating Systems Supported:
+Windows 11
+BIOS:
+256 Mb Flash ROM
+UEFI AMI BIOS
+Software Included:
+Yes
+Drivers:
+Yes
+Form Factor:
+ATX Motherboard
+In The Box:
+Motherboard
+2 x SATA 6Gb/s cables
+1 x Thermal pad for M.2 22110
+1 x ASUS WiFi Q-Antenna
+1 x Cable ties package
+1 x M.2 Q-Latch package
+1 x ROG key chain
+1 x ROG Strix stickers
+3 x M.2 rubber packages
+1 x Quick start guide
+Width:
+244 mm
+Length:
+305 mm
+Part Number:
+90MB1I40-M0EAY0
