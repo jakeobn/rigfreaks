@@ -125,22 +125,22 @@
 }
 :root {
     /* Core colors */
-    --primary-color: #333333; /* Charcoal Gray */
-    --secondary-color: #00BFFF; /* Electric Blue */
-    --accent-color: #C0C0C0; /* Silver */
-    --accent-hover: #FFFFFF; /* White */
+    --primary-color: var(--bs-primary);
+    --secondary-color: #0dcaf0;
+    --accent-color: #f48c06;
+    --accent-hover: #e07a00;
     --success: #12b886;
-    --info: #00BFFF; /* Electric Blue */
+    --info: #0dcaf0;
     --warning: #fd7e14;
     --danger: #fa5252;
     --purple: #7950f2;
     --pink: #e64980;
     
     /* Background colors */
-    --bg-dark: #000000; /* Black */
-    --bg-darker: #0a0a0a; /* Very Dark Gray */
-    --bg-lighter: #222222; /* Slightly lighter charcoal */
-    --bg-card: #1a1a1a; /* Dark Gray */
+    --bg-dark: #0d1117;
+    --bg-darker: #08090e;
+    --bg-lighter: #1a1d24;
+    --bg-card: #111826;
     
     /* Text colors */
     --text-light: #e9ecef;
