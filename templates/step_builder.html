@@ -43,12 +43,12 @@
             
             <div class="step-indicator" data-step="2">
                 <span>3</span>
-                <div class="step-indicator-label">CPU Cooler</div>
+                <div class="step-indicator-label">Motherboard</div>
             </div>
             
             <div class="step-indicator" data-step="3">
                 <span>4</span>
-                <div class="step-indicator-label">Motherboard</div>
+                <div class="step-indicator-label">CPU Cooler</div>
             </div>
             
             <div class="step-indicator" data-step="4">
@@ -372,8 +372,38 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 3: CPU Cooling -->
-            <div id="step-cooling" class="step-panel" data-required="true" data-category="cooling" data-step="3">
+            <!-- Step 3: Motherboard -->
+            <div id="step-motherboard" class="step-panel" data-required="true" data-category="motherboard" data-step="3">
+                <h2 class="step-title">Select Your Motherboard</h2>
+                <p class="step-description">Choose a motherboard that's compatible with your CPU and offers the features you need.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Chipset:</div>
+                    <div class="filter-options" data-filter-type="chipset">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="b660">Intel B660</div>
+                        <div class="filter-tag" data-filter-value="z690">Intel Z690</div>
+                        <div class="filter-tag" data-filter-value="b550">AMD B550</div>
+                        <div class="filter-tag" data-filter-value="x570">AMD X570</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- No components available -->
+                    <div class="alert alert-info w-100 text-center">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No components are available in this category at the moment.
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 4: CPU Cooling -->
+            <div id="step-cooling" class="step-panel" data-required="true" data-category="cooling" data-step="4">
                 <h2 class="step-title">Select Your CPU Cooler</h2>
                 <p class="step-description">Choose a cooling solution that will keep your processor running at optimal temperatures.</p>
                 
@@ -401,36 +431,6 @@
                 <!-- Component Cards Container -->
                 <div class="component-cards">
                     <!-- Cooling cards will be loaded dynamically -->
-                </div>
-                
-                <!-- Error Message -->
-                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
-            </div>
-            
-            <!-- Step 4: Motherboard -->
-            <div id="step-motherboard" class="step-panel" data-required="true" data-category="motherboard" data-step="4">
-                <h2 class="step-title">Select Your Motherboard</h2>
-                <p class="step-description">Choose a motherboard that's compatible with your CPU and offers the features you need.</p>
-                
-                <!-- Filter Section -->
-                <div class="filter-section">
-                    <div class="filter-title">Filter by Chipset:</div>
-                    <div class="filter-options" data-filter-type="chipset">
-                        <div class="filter-tag" data-filter-value="all">View All</div>
-                        <div class="filter-tag" data-filter-value="b660">Intel B660</div>
-                        <div class="filter-tag" data-filter-value="z690">Intel Z690</div>
-                        <div class="filter-tag" data-filter-value="b550">AMD B550</div>
-                        <div class="filter-tag" data-filter-value="x570">AMD X570</div>
-                    </div>
-                </div>
-                
-                <!-- Component Cards -->
-                <div class="component-cards">
-                    <!-- No components available -->
-                    <div class="alert alert-info w-100 text-center">
-                        <i class="fas fa-info-circle me-2"></i>
-                        No components are available in this category at the moment.
-                    </div>
                 </div>
                 
                 <!-- Error Message Area -->
