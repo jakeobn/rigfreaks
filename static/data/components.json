@@ -4571,6 +4571,20 @@
   ],
   "os": [
     {
+      "id": "windows-11-home",
+      "name": "Windows 11 Home",
+      "price": 114.99,
+      "brand": "Microsoft",
+      "description": "Windows 11 Home is the latest operating system from Microsoft, designed to bring a fresh and intuitive experience to your PC. With its sleek and modern interface, users can enjoy a seamless multitasking environment, enhanced productivity features, and improved gaming capabilities. Packed with innovative updates, including a centralized Start menu, virtual desktops, and a new Microsoft Store, Windows 11 Home is the perfect choice for PC builders seeking a user-friendly and powerful operating system.",
+      "image_url": "/static/images/os/windows-11-home.png",
+      "type": "Operating System",
+      "part_number": "WIN11-HOME",
+      "activation": "Digital License",
+      "license_type": "OEM",
+      "architecture": "64-bit",
+      "features": ["Pre-installed & activated", "Centralized Start menu", "Microsoft Store", "DirectX 12 Ultimate", "Xbox Game Pass integration", "Microsoft Teams", "Windows Hello", "Voice Typing", "Snap Layouts"]
+    },
+    {
       "id": "no-windows",
       "name": "No Windows",
       "price": 0.00,
