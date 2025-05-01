@@ -1,0 +1,43 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- PC Case Outline -->
+  <rect x="100" y="60" width="200" height="280" rx="10" ry="10" fill="#2c3e50" stroke="#34495e" stroke-width="4"/>
+  
+  <!-- Glass Side Panel -->
+  <rect x="110" y="75" width="180" height="250" rx="5" ry="5" fill="#1a2530" stroke="#3498db" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Front Panel -->
+  <rect x="100" y="60" width="30" height="280" fill="#34495e" stroke="#2c3e50" stroke-width="2"/>
+  
+  <!-- Power Button -->
+  <circle cx="115" cy="90" r="8" fill="#3498db" stroke="#2980b9" stroke-width="1"/>
+  
+  <!-- USB Ports -->
+  <rect x="105" y="120" width="20" height="8" rx="2" ry="2" fill="#7f8c8d"/>
+  <rect x="105" y="135" width="20" height="8" rx="2" ry="2" fill="#7f8c8d"/>
+  
+  <!-- Front Fans (suggestion) -->
+  <rect x="105" y="160" width="20" height="160" rx="5" ry="5" fill="#2c3e50" stroke="#34495e" stroke-width="1"/>
+  
+  <!-- Inside Components (Silhouette) -->
+  <!-- Motherboard -->
+  <rect x="140" y="95" width="130" height="170" rx="2" ry="2" fill="#3A6073" opacity="0.7"/>
+  
+  <!-- CPU -->
+  <rect x="170" y="115" width="40" height="40" fill="#7f8c8d" opacity="0.8"/>
+  
+  <!-- GPU -->
+  <rect x="145" y="190" width="120" height="25" fill="#2c3e50" stroke="#34495e" stroke-width="1"/>
+  
+  <!-- RAM Sticks -->
+  <rect x="170" y="165" width="10" height="40" fill="#3498db" opacity="0.7"/>
+  <rect x="185" y="165" width="10" height="40" fill="#3498db" opacity="0.7"/>
+  <rect x="200" y="165" width="10" height="40" fill="#3498db" opacity="0.7"/>
+  <rect x="215" y="165" width="10" height="40" fill="#3498db" opacity="0.7"/>
+  
+  <!-- PSU -->
+  <rect x="140" y="280" width="130" height="40" fill="#34495e" stroke="#2c3e50" stroke-width="1"/>
+  
+  <!-- Cable Hints -->
+  <path d="M 180 155 C 190 190, 150 200, 145 215" stroke="#95a5a6" stroke-width="2" fill="none"/>
+  <path d="M 200 155 C 220 170, 240 180, 250 210" stroke="#95a5a6" stroke-width="2" fill="none"/>
+</svg>
