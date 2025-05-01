@@ -4445,7 +4445,7 @@
       "price": 65.62,
       "brand": "Kingston",
       "description": "32GB (2x16GB) Kingston FURY Beast DDR4 memory delivers impressive performance with speeds up to 3200MHz and CL16 latency. This high-capacity kit is perfect for demanding workloads, content creation, and multitasking. The stylish black heat spreader provides efficient thermal dissipation while maintaining a sleek aesthetic, and with XMP profiles for easy overclocking, it's an ideal choice for gamers and power users who need ample memory.",
-      "image_url": "/static/images/ram/kingston-fury-beast-32gb.jpg",
+      "image_url": "/static/images/ram/kingston-fury-beast-32gb.png",
       "type": "Desktop Memory",
       "memory_type": "DDR4",
       "memory_speed": "3200 MHz",
