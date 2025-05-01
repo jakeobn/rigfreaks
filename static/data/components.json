@@ -4381,6 +4381,37 @@
       }
     }
   ],
+  "ram": [
+    {
+      "id": "kingston-fury-beast-16gb",
+      "name": "16GB Kingston FURY Beast",
+      "price": 37.10,
+      "brand": "Kingston",
+      "description": "16GB (2x8GB) Kingston FURY Beast DDR4 memory delivers impressive performance with speeds up to 3200MHz and CL16 latency. The sleek black heat spreader design adds style to your build while providing efficient cooling for consistent performance. With XMP support for easy overclocking, this kit is perfect for gamers and PC enthusiasts seeking reliable and stylish memory.",
+      "image_url": "/static/images/ram/kingston-fury-beast-16gb.png",
+      "type": "Desktop Memory",
+      "memory_type": "DDR4",
+      "memory_speed": "3200 MHz",
+      "designation": "PC4-25600",
+      "memory_size_total": "16 GB",
+      "modules": "2 modules",
+      "memory_size_individual": "8 GB",
+      "pin_configuration": "288 pin",
+      "memory_package": "DIMM",
+      "bus_configuration": "Unbuffered",
+      "error_correction": "No",
+      "cas_latency": "CL16",
+      "voltage": "1.35 V",
+      "operating_temperature": "0 ~ 85 °C",
+      "color": "Black",
+      "in_the_box": "2 x 8GB DIMMs",
+      "dimensions": "133.4mm (W) x 7.1mm (D) x 34mm (H)",
+      "weight": "72.1 g",
+      "warranty": "Lifetime",
+      "part_number": "KF432C16BBK2/16",
+      "features": ["XMP Ready", "Dual Channel Kit", "Low Profile Heat Spreader", "Intel & AMD Compatible", "Plug and Play Functionality"]
+    }
+  ],
   "cooling": [
     {
       "id": "be-quiet-dark-rock-pro-5",
