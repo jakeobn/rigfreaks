@@ -4,28 +4,166 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/step-builder.css') }}">
+<style>
+    .header-container {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .header-inner-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .main-left-panel {
+        padding: 1.5rem;
+    }
+    .main-right-panel {
+        padding: 1.5rem;
+    }
+    .main-prebuilt-name {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    .main-order-summary-container {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-top: 2rem;
+    }
+    .main-order-summary-heading {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    .main-order-summary-text {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .summary-category-name-text {
+        color: #555;
+    }
+    .primary-button {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+    }
+    .primary-button-pill {
+        font-size: 0.75rem;
+        font-weight: normal;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5 pt-5">
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h1 class="mb-3">Build Your Custom PC</h1>
-                    <p class="lead">Follow our step-by-step process to build your perfect custom PC.</p>
+<div class="header-container border-bottom py-2">
+    <div class="header-inner-container mx-auto" style="max-width: 1200px;">
+        <div class="left-container ms-3">
+            <a href="{{ url_for('index') }}" class="btn btn-link text-dark text-decoration-none">
+                <i class="fas fa-arrow-left me-2"></i>Go Back
+            </a>
+        </div>
+        <div class="px-2 text-center">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="RIGFREAKS" height="40">
+            </a>
+        </div>
+        <div class="right-container me-3">
+            <span class="d-flex align-items-center">
+                <div class="form-check form-switch d-flex align-items-center ms-auto">
+                    <input class="form-check-input me-2" type="checkbox" role="switch" id="expertModeSwitch">
+                    <label class="form-check-label" for="expertModeSwitch">Expert Mode</label>
                 </div>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0">
+    <div class="row mx-0">
+        <div class="main-left-panel col-xl-6 py-3 py-lg-4 px-xl-5 text-center overflow-auto">
+            <div class="mx-auto ms-xl-auto me-xl-0 d-flex flex-column position-relative">
                 <div>
-                    <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/classic" class="btn btn-outline-primary">
-                        <i class="fas fa-th-large me-2"></i>Switch to Standard Builder
-                    </a>
+                    <h1 class="main-prebuilt-name text-center">Configure your custom gaming PC</h1>
+                </div>
+                
+                <div class="main-prebuilt-image-container d-flex justify-content-center pb-5 pb-xl-0">
+                    <div class="position-relative">
+                        <img src="{{ url_for('static', filename='img/blank-pc.png') }}" alt="Gaming PC" class="pc-image d-block" style="max-width: 350px;">
+                    </div>
+                </div>
+                
+                <!-- Order Summary Container -->
+                <div class="main-order-summary-container d-flex flex-column bg-white py-3 px-4 w-100">
+                    <div class="d-flex">
+                        <div class="d-flex flex-column align-items-start w-100">
+                            <div class="mb-2">
+                                <h2 class="main-order-summary-heading d-inline-block mb-0 me-1">Your Custom Build</h2>
+                                <button class="toggle-summary-button d-inline-block border-0 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary" aria-expanded="true" aria-controls="collapseSummary">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="main-order-summary-price me-5 font-weight-bold text-muted">
+                                <span id="summary-total-price">£0.00</span>
+                            </div>
+                        </div>
+                        <button id="continue-button" class="primary-button position-relative text-casing px-3 px-sm-5">
+                            Continue
+                            <span class="position-absolute primary-button-pill top-0 translate-middle badge rounded-pill bg-danger" id="missing-items-count">8 missing items</span>
+                        </button>
+                    </div>
+                    
+                    <div class="collapse show mb-3" id="collapseSummary">
+                        <div class="card border-0">
+                            <div class="default-view-mode" id="summary-components-list">
+                                <!-- Summary items will be populated by JavaScript -->
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">Case</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">CPU</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">Motherboard</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">CPU Cooler</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">Memory</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">Graphics</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">Power Supply</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                                <div class="main-order-summary-text text-start d-flex w-100 text-casing fw-semibold border-bottom border-silver-2 py-2">
+                                    <span class="summary-category-name-text pe-2 pe-sm-3">Storage</span>
+                                    <span class="ms-auto text-danger text-end">Not selected - required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Step Builder Container -->
-    <div class="step-builder-container">
+        
+        <div class="main-right-panel col-xl-6 py-3 py-lg-4 px-xl-5 overflow-auto">
+            <!-- Step Builder Container -->
+            <div class="step-builder-container">
         <!-- Progress Bar -->
         <div class="step-progress-bar">
             <div class="step-progress-fill"></div>
@@ -756,6 +894,8 @@
             <button class="btn btn-primary component-select-btn">
                 <i class="fas fa-check me-2"></i>Select This Component
             </button>
+        </div>
+            </div>
         </div>
     </div>
 </div>
