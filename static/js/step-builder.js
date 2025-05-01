@@ -65,10 +65,10 @@ class StepBuilder {
         this.stepIndicators = document.querySelectorAll('.step-indicator');
         this.stepPanels = document.querySelectorAll('.step-panel');
         
-        // Set total steps - we have exactly 8 steps, hardcode if needed
-        this.totalSteps = 8;
-        if (this.stepPanels.length != 8) {
-            console.warn(`Expected 8 step panels, found ${this.stepPanels.length}`);
+        // Set total steps - we have exactly 9 steps (added CPU cooling), hardcode if needed
+        this.totalSteps = 9;
+        if (this.stepPanels.length != 9) {
+            console.warn(`Expected 9 step panels, found ${this.stepPanels.length}`);
         }
         
         // Load components for the initial active step
@@ -80,7 +80,7 @@ class StepBuilder {
             }
         }
         
-        // Store steps configuration, guarantee 8 steps
+        // Store steps configuration, guarantee 9 steps
         this.steps = [
             {
                 index: 0,
@@ -98,41 +98,48 @@ class StepBuilder {
             },
             {
                 index: 2,
+                id: 'step-cooling',
+                title: 'Select Your CPU Cooler',
+                required: true,
+                category: 'cooling'
+            },
+            {
+                index: 3,
                 id: 'step-motherboard',
                 title: 'Select Your Motherboard',
                 required: true,
                 category: 'motherboard'
             },
             {
-                index: 3,
+                index: 4,
                 id: 'step-ram',
                 title: 'Select Your Memory (RAM)',
                 required: true,
                 category: 'ram'
             },
             {
-                index: 4,
+                index: 5,
                 id: 'step-gpu',
                 title: 'Select Your Graphics Card',
                 required: true,
                 category: 'gpu'
             },
             {
-                index: 5,
+                index: 6,
                 id: 'step-power',
                 title: 'Select Your Power Supply',
                 required: true,
                 category: 'power_supply'
             },
             {
-                index: 6,
+                index: 7,
                 id: 'step-storage',
                 title: 'Select Your Storage (HDD/SSD)',
                 required: true,
                 category: 'storage'
             },
             {
-                index: 7,
+                index: 8,
                 id: 'step-review',
                 title: 'Review Your Build',
                 required: false,
