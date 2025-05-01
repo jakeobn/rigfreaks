@@ -66,7 +66,7 @@ def index():
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
     # Redirect to the step-by-step builder as the default PC builder
-    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+    return redirect(url_for('step_builder'))
 
 @app.route('/builder/classic', methods=['GET', 'POST'])
 def classic_builder():
@@ -111,7 +111,7 @@ def select_component(category):
     
     if category not in components:
         flash(f"Component category '{category}' not found", "danger")
-        return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+        return redirect(url_for('step_builder'))
     
     # Get the current configuration
     current_config = session.get('pc_config', {})
@@ -129,7 +129,7 @@ def component_detail(category, component_id):
     
     if category not in components:
         flash(f"Component category '{category}' not found", "danger")
-        return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+        return redirect(url_for('step_builder'))
     
     # Use the helper function for more efficient lookup
     from utils import get_component_by_id
@@ -137,7 +137,7 @@ def component_detail(category, component_id):
     
     if not component:
         flash(f"Component with ID '{component_id}' not found in category '{category}'", "danger")
-        return redirect(f'https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/select/{category}')
+        return redirect(url_for('select_component', category=category))
     
     # Check if this component is currently selected in the build
     current_config = session.get('pc_config', {})
@@ -173,7 +173,7 @@ def add_component(category, component_id):
         flash_message += "</ul>"
         flash(flash_message, "warning")
     
-    return redirect('https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step')
+    return redirect(url_for('step_builder'))
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):
