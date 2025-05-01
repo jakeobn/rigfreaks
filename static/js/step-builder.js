@@ -228,13 +228,11 @@ class StepBuilder {
             });
         }
         
-        // Step indicators - allow clicking directly on steps
+        // Step indicators - allow clicking directly on any step
         this.stepIndicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
-                // Only allow going to steps that are already completed or the next step
-                if (index <= this.getHighestCompletedStep() + 1) {
-                    this.goToStep(index);
-                }
+                // Allow going to any step
+                this.goToStep(index);
             });
         });
         
@@ -794,6 +792,41 @@ class StepBuilder {
     // Validate current step
     validateStep(stepIndex, showError = true) {
         const step = this.steps[stepIndex];
+        
+        // For the review step (final step), check if all required steps have components selected
+        if (stepIndex === this.totalSteps - 1) {
+            // Check each required component
+            const missingComponents = [];
+            
+            for (let i = 0; i < this.totalSteps - 1; i++) {
+                const s = this.steps[i];
+                // Skip non-required steps or steps without a category
+                if (!s.required || !s.category) continue;
+                
+                // Check if a component is selected for this category
+                const isSelected = !!this.buildConfig[s.category]?.id;
+                if (!isSelected) {
+                    missingComponents.push(this.formatCategoryName(s.category));
+                }
+            }
+            
+            // If there are missing components, show error
+            if (missingComponents.length > 0 && showError) {
+                const errorMsg = document.querySelector(`#${step.id} .step-error-message`);
+                if (errorMsg) {
+                    errorMsg.textContent = `Please select the following component(s): ${missingComponents.join(', ')}`;
+                    errorMsg.style.display = 'block';
+                    
+                    // Hide after 5 seconds
+                    setTimeout(() => {
+                        errorMsg.style.display = 'none';
+                    }, 5000);
+                }
+                return false;
+            }
+            
+            return missingComponents.length === 0;
+        }
         
         // If step is not required, it's always valid
         if (!step.required) return true;
