@@ -65,10 +65,10 @@ class StepBuilder {
         this.stepIndicators = document.querySelectorAll('.step-indicator');
         this.stepPanels = document.querySelectorAll('.step-panel');
         
-        // Set total steps - we have exactly 9 steps (added CPU cooling), hardcode if needed
-        this.totalSteps = 9;
-        if (this.stepPanels.length != 9) {
-            console.warn(`Expected 9 step panels, found ${this.stepPanels.length}`);
+        // Set total steps - we have exactly 10 steps (added OS), hardcode if needed
+        this.totalSteps = 10;
+        if (this.stepPanels.length != 10) {
+            console.warn(`Expected 10 step panels, found ${this.stepPanels.length}`);
         }
         
         // Load components for the initial active step
@@ -80,7 +80,7 @@ class StepBuilder {
             }
         }
         
-        // Store steps configuration, guarantee 9 steps
+        // Store steps configuration, guarantee 10 steps
         this.steps = [
             {
                 index: 0,
@@ -140,6 +140,13 @@ class StepBuilder {
             },
             {
                 index: 8,
+                id: 'step-os',
+                title: 'Select Your Operating System',
+                required: true,
+                category: 'os'
+            },
+            {
+                index: 9,
                 id: 'step-review',
                 title: 'Review Your Build',
                 required: false,
@@ -180,7 +187,7 @@ class StepBuilder {
         });
         
         // Ensure all required component categories are included in the config
-        const requiredCategories = ['case', 'cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'cooling'];
+        const requiredCategories = ['case', 'cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'cooling', 'os'];
         requiredCategories.forEach(category => {
             if (!this.buildConfig[category]) {
                 this.buildConfig[category] = {

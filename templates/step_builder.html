@@ -73,6 +73,11 @@
             
             <div class="step-indicator" data-step="8">
                 <span>9</span>
+                <div class="step-indicator-label">OS</div>
+            </div>
+            
+            <div class="step-indicator" data-step="9">
+                <span>10</span>
                 <div class="step-indicator-label">Review</div>
             </div>
         </div>
@@ -562,8 +567,37 @@
                 <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
             </div>
             
-            <!-- Step 9: Final Review -->
-            <div id="step-review" class="step-panel" data-required="false" data-step="9">
+            <!-- Step 9: Operating System -->
+            <div id="step-os" class="step-panel" data-required="true" data-category="os" data-step="9">
+                <h2 class="step-title">Select Your Operating System</h2>
+                <p class="step-description">Choose an operating system for your PC. Windows is the most popular choice for gaming, while Linux offers more customization options.</p>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-title">Filter by Type:</div>
+                    <div class="filter-options" data-filter-type="type">
+                        <div class="filter-tag" data-filter-value="all">View All</div>
+                        <div class="filter-tag" data-filter-value="windows">Windows</div>
+                        <div class="filter-tag" data-filter-value="linux">Linux</div>
+                        <div class="filter-tag" data-filter-value="none">No OS</div>
+                    </div>
+                </div>
+                
+                <!-- Component Cards -->
+                <div class="component-cards">
+                    <!-- No components available -->
+                    <div class="alert alert-info w-100 text-center">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No operating system options are available at the moment.
+                    </div>
+                </div>
+                
+                <!-- Error Message Area -->
+                <div class="step-error-message alert alert-danger mt-3" style="display: none;"></div>
+            </div>
+            
+            <!-- Step 10: Final Review -->
+            <div id="step-review" class="step-panel" data-required="false" data-step="10">
                 <h2 class="step-title">Review Your Build</h2>
                 <p class="step-description">Review your component selections and make any final changes before proceeding.</p>
                 
