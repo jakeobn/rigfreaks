@@ -3680,6 +3680,34 @@
   "storage": [],
   "power_supply": [
     {
+      "id": "our-choice-750w-bronze",
+      "name": "750W Our Choice 80 Plus Bronze",
+      "price": 63.99,
+      "brand": "Our Choice",
+      "description": "The 750W Our Choice 80 Plus Bronze power supply delivers reliable power for high-performance gaming systems and demanding workstations. With 80 Plus Bronze certification, it provides good efficiency to reduce energy costs while the 120mm fan ensures quiet operation even under heavy loads. This non-modular power supply comes with ample connectors for high-end graphics cards and peripherals, including multiple PCIe, SATA, and CPU power connectors. It's the perfect affordable solution for gamers and content creators who need additional headroom for power-hungry components.",
+      "image_url": "/static/images/power_supply/our-choice-750w-bronze.png",
+      "type": "ATX Power Supply",
+      "wattage": 750,
+      "efficiency": "80 Plus Bronze",
+      "modularity": "Non-Modular",
+      "fan_size": "120mm",
+      "power_connectors": {
+        "main": "24-pin ATX",
+        "cpu": "1 x 8-pin (4+4) EPS",
+        "pcie": "4 x 8-pin (6+2) PCIe",
+        "sata": "8 x SATA",
+        "molex": "3 x Molex"
+      },
+      "input_voltage": "100-240V",
+      "input_frequency": "50-60Hz",
+      "mtbf": "100,000 hours",
+      "protection": ["OVP", "UVP", "OPP", "SCP", "OTP"],
+      "dimensions": "150mm x 140mm x 86mm",
+      "warranty": "3 Years",
+      "part_number": "OUR-CHOICE-750W-BRONZE",
+      "features": ["80 Plus Bronze Certified", "Active PFC", "High-quality Japanese capacitors", "Silent 120mm fan", "Comprehensive protection suite", "Compatible with high-end GPUs", "Compatible with Intel and AMD platforms"]
+    },
+    {
       "id": "our-choice-650w-bronze",
       "name": "650W Our Choice 80 Plus Bronze",
       "price": 55.99,
