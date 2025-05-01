@@ -1003,20 +1003,14 @@ class StepBuilder {
     }
     
     // Calculate and update total price
-    calculateTotalPrice() {
-        // Calculate total from all selected components
-        let total = 0;
-        for (const category in this.buildConfig) {
-            if (this.buildConfig[category].id) {
-                total += this.buildConfig[category].price;
-            }
-        }
-        return total;
-    }
-    
     updateTotalPrice() {
         // Calculate total from all selected components
-        this.totalPrice = this.calculateTotalPrice();
+        this.totalPrice = 0;
+        for (const category in this.buildConfig) {
+            if (this.buildConfig[category].id) {
+                this.totalPrice += this.buildConfig[category].price;
+            }
+        }
         
         // Update total display
         const totalDisplay = document.querySelector('.build-total-price');
