@@ -21,19 +21,19 @@ body::before {
     pointer-events: none;
     opacity: 0.15;
     background: 
-        /* Match blob-1 from hero */
+        /* Top right blob - Electric Blue */
         radial-gradient(circle at 90% 10%, 
-            rgba(var(--bs-primary-rgb), 0.5), 
+            rgba(0, 191, 255, 0.5), 
             transparent 50%) top right no-repeat,
-        /* Match blob-2 from hero */
+        /* Bottom left blob - Charcoal/Silver Mix */
         radial-gradient(circle at 10% 90%, 
-            rgba(var(--bs-success-rgb), 0.5),
-            rgba(var(--bs-primary-rgb), 0.5), 
+            rgba(192, 192, 192, 0.4),
+            rgba(51, 51, 51, 0.5), 
             transparent 50%) bottom left no-repeat,
-        /* Match blob-3 from hero */
+        /* Center left blob - Electric Blue/Silver Mix */
         radial-gradient(circle at 40% 40%, 
-            rgba(var(--bs-info-rgb), 0.5),
-            rgba(var(--bs-purple-rgb), 0.5), 
+            rgba(0, 191, 255, 0.4),
+            rgba(192, 192, 192, 0.5), 
             transparent 50%) center left no-repeat;
     background-size: 
         45vw 45vw,  /* blob-1 size */
@@ -131,7 +131,7 @@ label {
 .hero-blob.blob-1 {
     width: 45vw;
     height: 45vw;
-    background: linear-gradient(125deg, var(--primary-color), var(--info));
+    background: linear-gradient(125deg, #333333, #00BFFF); /* Charcoal to Electric Blue */
     top: -20%;
     right: -15%;
     opacity: 0.15;
@@ -140,7 +140,7 @@ label {
 .hero-blob.blob-2 {
     width: 30vw;
     height: 30vw;
-    background: linear-gradient(220deg, var(--success), var(--primary-color));
+    background: linear-gradient(220deg, #C0C0C0, #333333); /* Silver to Charcoal */
     bottom: -10%;
     left: -10%;
     opacity: 0.15;
@@ -149,7 +149,7 @@ label {
 .hero-blob.blob-3 {
     width: 25vw;
     height: 25vw;
-    background: linear-gradient(45deg, var(--info), var(--purple));
+    background: linear-gradient(45deg, #00BFFF, #C0C0C0); /* Electric Blue to Silver */
     top: 30%;
     left: 10%;
     opacity: 0.15;
