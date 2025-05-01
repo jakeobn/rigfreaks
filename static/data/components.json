@@ -3679,6 +3679,55 @@
   "gpu": [],
   "storage": [
     {
+      "id": "samsung-990-pro-1tb",
+      "name": "1TB Samsung 990 PRO",
+      "price": 102.54,
+      "brand": "Samsung",
+      "description": "The Samsung 990 PRO 1TB represents the pinnacle of M.2 NVMe storage technology, delivering exceptional performance for the most demanding users. With industry-leading sequential read speeds up to 7,450 MB/s and write speeds up to 6,900 MB/s, along with phenomenal random read/write performance reaching 1.2/1.55 million IOPS, this drive delivers unmatched responsiveness for professionals and enthusiasts alike. The 990 PRO features Samsung's proprietary V-NAND technology and controller, optimized for gaming, content creation, and intensive workloads, while the intelligent thermal control and nickel-coated controller prevent performance throttling under sustained loads. With a 600 TBW endurance rating and 5-year warranty, it offers reliability that matches its elite performance profile.",
+      "image_url": "/static/images/storage/samsung-990-pro-1tb.png",
+      "capacity": 1000,
+      "type": "SSD",
+      "interface": "PCIe Gen4 x4 NVMe",
+      "form_factor": "M.2-2280",
+      "read_speed": 7450,
+      "write_speed": 6900,
+      "random_read_iops": 1200000,
+      "random_write_iops": 1550000,
+      "memory_type": "Samsung V-NAND 3-bit MLC",
+      "tbw": 600,
+      "mtbf": 1500000,
+      "dimensions": {
+        "width": 22,
+        "depth": 80,
+        "height": 2.3
+      },
+      "weight": 9,
+      "operating_temperature": "0 ~ 70 °C",
+      "shock_resistance": "1,500 G & 0.5 ms",
+      "power_consumption": {
+        "active": "5.4 ~ 7.8 W",
+        "idle": "50 mW"
+      },
+      "voltage": "3.3 V",
+      "warranty": "5 Years",
+      "part_number": "MZ-V9P1T0BW",
+      "features": [
+        "Samsung proprietary V-NAND technology",
+        "PCIe Gen4 x4 NVMe interface",
+        "M.2-2280 form factor",
+        "Up to 7,450 MB/s read speeds",
+        "Up to 6,900 MB/s write speeds",
+        "Supreme random performance (1.2M/1.55M IOPS)",
+        "Samsung Magician software support",
+        "Dynamic Thermal Guard technology",
+        "Nickel-coated controller for thermal management",
+        "600 TBW endurance rating",
+        "5-year limited warranty",
+        "Hardware-based AES 256-bit encryption",
+        "TCG/Opal IEEE1667 compliant"
+      ]
+    },
+    {
       "id": "crucial-t500-1tb",
       "name": "1TB Crucial T500",
       "price": 86.79,
