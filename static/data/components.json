@@ -3678,7 +3678,36 @@
   "ram": [],
   "gpu": [],
   "storage": [],
-  "power_supply": [],
+  "power_supply": [
+    {
+      "id": "our-choice-650w-bronze",
+      "name": "650W Our Choice 80 Plus Bronze",
+      "price": 55.99,
+      "brand": "Our Choice",
+      "description": "The 650W Our Choice 80 Plus Bronze power supply delivers reliable power for mid-range gaming systems and workstations. With 80 Plus Bronze certification, it offers good efficiency to help reduce electricity costs and heat output. This non-modular power supply features all essential connectors for modern systems including PCIe, SATA, and CPU power. The 120mm fan ensures quiet operation while providing adequate cooling. Perfect for budget-conscious builders who don't want to compromise on quality and reliability.",
+      "image_url": "/static/images/power_supply/our-choice-650w-bronze.png",
+      "type": "ATX Power Supply",
+      "wattage": 650,
+      "efficiency": "80 Plus Bronze",
+      "modularity": "Non-Modular",
+      "fan_size": "120mm",
+      "power_connectors": {
+        "main": "24-pin ATX",
+        "cpu": "1 x 8-pin (4+4) EPS",
+        "pcie": "2 x 8-pin (6+2) PCIe",
+        "sata": "6 x SATA",
+        "molex": "3 x Molex"
+      },
+      "input_voltage": "100-240V",
+      "input_frequency": "50-60Hz",
+      "mtbf": "100,000 hours",
+      "protection": ["OVP", "UVP", "OPP", "SCP", "OTP"],
+      "dimensions": "150mm x 140mm x 86mm",
+      "warranty": "3 Years",
+      "part_number": "OUR-CHOICE-650W-BRONZE",
+      "features": ["80 Plus Bronze Certified", "Active PFC", "High-quality Japanese capacitors", "Silent 120mm fan", "Comprehensive protection suite", "Compatible with Intel and AMD platforms"]
+    }
+  ],
   "case": [
     {
       "id": "hyte-y70-touch-infinite-white",
