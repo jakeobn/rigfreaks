@@ -47,13 +47,13 @@
                     </div>
                     
                     <div class="price-box mb-3">
-                        <span class="fs-4 fw-bold text-success">£{{ component.price }}</span>
+                        <span class="fs-4 fw-bold text-success">${{ component.price }}</span>
                     </div>
                     
                     <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post" id="detail-select-form">
-                        <button type="submit" class="btn {% if is_selected %}btn-danger{% else %}btn-primary{% endif %} btn-lg w-100 mb-2" id="detail-select-btn">
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-2" id="detail-select-btn">
                             {% if is_selected %}
-                                <i class="fas fa-times me-1"></i><span class="btn-text">Remove Component</span>
+                                <i class="fas fa-check me-1"></i><span class="btn-text">Selected</span>
                             {% else %}
                                 <i class="fas fa-plus me-1"></i><span class="btn-text">Add to Build</span>
                             {% endif %}
@@ -953,7 +953,7 @@
             });
         }, 1000); // 1 second loading animation
         
-        // Handle select/add/remove button loading animation
+        // Handle select/add button loading animation
         const selectForm = document.getElementById('detail-select-form');
         if (selectForm) {
             selectForm.addEventListener('submit', function(e) {
@@ -964,13 +964,10 @@
                 const originalText = btnText.textContent;
                 const originalIcon = btn.querySelector('i').className;
                 
-                // Determine if this is an add or remove action
-                const isRemoveAction = btn.classList.contains('btn-danger');
-                
                 // Add loading state
                 btn.classList.add('btn-loading');
                 btn.disabled = true;
-                btnText.textContent = isRemoveAction ? 'Removing...' : 'Adding...';
+                btnText.textContent = 'Processing...';
                 btn.querySelector('i').className = 'fas fa-spinner fa-spin';
                 
                 // Submit the form after a short delay
