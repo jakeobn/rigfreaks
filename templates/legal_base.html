@@ -1,0 +1,163 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="legal-section py-5 mt-5 pt-4">
+    <div class="container">
+        <div class="row">
+            <!-- Legal navigation sidebar -->
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="legal-nav-card rounded-4 p-4 mb-4 bg-dark bg-opacity-50 backdrop-blur-sm border border-opacity-20 border-light">
+                        <h4 class="mb-3 text-primary">Legal Documents</h4>
+                        <ul class="nav flex-column legal-nav">
+                            <li class="nav-item mb-2">
+                                <a class="nav-link {% if active_page == 'terms' %}active{% endif %}" href="{{ url_for('terms') }}">
+                                    <i class="fas fa-file-contract me-2"></i> Terms & Conditions
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link {% if active_page == 'privacy' %}active{% endif %}" href="{{ url_for('privacy') }}">
+                                    <i class="fas fa-user-shield me-2"></i> Privacy Policy
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if active_page == 'cookies' %}active{% endif %}" href="{{ url_for('cookies') }}">
+                                    <i class="fas fa-cookie-bite me-2"></i> Cookie Policy
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contact-box rounded-4 p-4 bg-dark bg-opacity-50 backdrop-blur-sm border border-opacity-20 border-light">
+                        <h5 class="mb-3">Questions?</h5>
+                        <p class="small mb-3">If you have any questions about our legal documents, please contact our support team.</p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-sm w-100">
+                            <i class="fas fa-envelope me-2"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main content area -->
+            <div class="col-lg-9">
+                <div class="legal-content-card rounded-4 p-4 p-lg-5 bg-dark bg-opacity-50 backdrop-blur-sm border border-opacity-20 border-light shadow-lg">
+                    <div class="legal-header mb-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="legal-icon-wrapper me-3">
+                                <div class="legal-icon">
+                                    {% block legal_icon %}{% endblock %}
+                                </div>
+                            </div>
+                            <h1 class="mb-0">{% block legal_title %}{% endblock %}</h1>
+                        </div>
+                        <div class="legal-intro p-3 rounded-3 bg-dark bg-opacity-50 border border-opacity-10 border-light">
+                            <p class="mb-0">{% block legal_intro %}{% endblock %}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="legal-sections">
+                        {% block legal_content %}{% endblock %}
+                    </div>
+
+                    <div class="legal-footer mt-5 pt-4 border-top border-opacity-10 border-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-muted small mb-0">Last updated: May 2025</p>
+                            <div>
+                                <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-question-circle me-2"></i> Ask a Question
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Legal Pages Modern Styling */
+.legal-section {
+    color: var(--bs-light);
+}
+
+.legal-nav-card, .contact-box, .legal-content-card {
+    transition: all 0.3s ease;
+}
+
+.backdrop-blur-sm {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.legal-nav .nav-link {
+    color: var(--bs-light);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    padding: 0.6rem 1rem;
+}
+
+.legal-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.legal-nav .nav-link.active {
+    background-color: var(--bs-primary);
+    color: var(--bs-dark);
+    font-weight: 500;
+}
+
+.legal-icon-wrapper {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-info) 100%);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--bs-dark);
+    box-shadow: 0 4px 20px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.legal-section-card {
+    background-color: rgba(30, 40, 60, 0.5);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legal-section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.legal-section-header {
+    background: linear-gradient(to right, rgba(25, 35, 55, 0.95), rgba(35, 45, 65, 0.9));
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.legal-section-body {
+    padding: 1.5rem;
+}
+
+.legal-section-content ul li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.legal-section-content ul li:before {
+    content: '•';
+    color: var(--bs-primary);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+}
+</style>
+{% endblock %}

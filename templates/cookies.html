@@ -1,120 +1,248 @@
-{% extends "layout.html" %}
+{% extends "legal_base.html" %}
 
 {% block title %}Cookie Policy - RigFreaks{% endblock %}
 
-{% block content %}
-<section class="py-5 mt-5 pt-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="mb-4">Cookie Policy</h1>
-                <div class="card bg-dark mb-4">
-                    <div class="card-body">
-                        <p>RigFreaks ("we", "us", "our") uses cookies to enhance your experience while using our website. This Cookie Policy explains what cookies are, how we use them, and your choices regarding their use.</p>
-                        <p>By using our website, you agree to the use of cookies as described in this policy.</p>
-                    </div>
-                </div>
+{% set active_page = 'cookies' %}
 
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">1. What Are Cookies?</h2>
+{% block legal_icon %}<i class="fas fa-cookie-bite"></i>{% endblock %}
+
+{% block legal_title %}Cookie Policy{% endblock %}
+
+{% block legal_intro %}
+    RigFreaks ("we", "us", "our") uses cookies to enhance your experience while using our website. This Cookie Policy explains what cookies are, how we use them, and your choices regarding their use. By using our website, you agree to the use of cookies as described in this policy.
+{% endblock %}
+
+{% block legal_content %}
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">1</span>
+                What Are Cookies?
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3 d-none d-lg-block">
+                        <div class="rounded-4 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-cookie text-primary" style="font-size: 2.5rem;"></i>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div>
                         <p>Cookies are small text files that are placed on your device when you visit a website. These files allow the website to remember your actions and preferences (such as login details, language preferences, etc.) over a period of time, so you don't have to re-enter them whenever you visit the site or browse between pages.</p>
-                    </div>
-                </div>
-
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">2. Types of Cookies We Use</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>We use several types of cookies on our website:</p>
-                        
-                        <h3 class="h6 mt-4">a. Essential Cookies</h3>
-                        <p>These cookies are necessary for the operation of our website. Without them, certain features or functionality may not work. Examples include cookies that enable you to log in, manage your shopping cart, and complete purchases.</p>
-                        
-                        <h3 class="h6 mt-4">b. Performance Cookies</h3>
-                        <p>These cookies collect information about how visitors use our website, such as which pages are visited most frequently or if any error messages are received. These cookies help us improve the performance of our website. All information collected by these cookies is anonymous.</p>
-                        
-                        <h3 class="h6 mt-4">c. Functional Cookies</h3>
-                        <p>These cookies allow our website to remember your preferences and choices, such as language or region, to provide a more personalized experience. They can also be used to remember changes you've made to settings like font size, or to provide certain services like watching a video.</p>
-                        
-                        <h3 class="h6 mt-4">d. Targeting or Advertising Cookies</h3>
-                        <p>These cookies are used to deliver advertisements that are more relevant to you based on your browsing habits. They may be placed by third-party advertising partners with our consent and are used to track your activity across websites to build a profile of your interests.</p>
-                    </div>
-                </div>
-
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">3. How We Use Cookies</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>We use cookies for various reasons, including:</p>
-                        <ul>
-                            <li><strong>Improving Website Functionality:</strong> Essential cookies enable basic functionality such as navigation and user authentication.</li>
-                            <li><strong>Tracking Performance:</strong> Performance cookies help us analyze website performance, identify issues, and improve our content and services.</li>
-                            <li><strong>Personalizing Content:</strong> Functional cookies allow us to tailor the content on our site to your preferences, making your experience more user-friendly.</li>
-                            <li><strong>Advertising and Analytics:</strong> Targeting cookies are used to serve you relevant advertisements and gather insights into your browsing behavior.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">4. Third-Party Cookies</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>We may allow third-party services, such as Google Analytics, social media platforms (e.g., Facebook, Instagram), and advertising networks, to place cookies on our website. These third parties may use cookies to collect information about your browsing habits and interests. We do not control these cookies, and they are governed by the privacy policies of the respective third parties.</p>
-                    </div>
-                </div>
-
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">5. Your Cookie Choices</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>You can manage or block cookies through your browser settings. Most browsers allow you to:</p>
-                        <ul>
-                            <li>Accept or reject cookies</li>
-                            <li>Set your browser to alert you when a cookie is being set</li>
-                            <li>Delete cookies already stored on your device</li>
-                        </ul>
-                        <p>If you block or disable cookies, please be aware that certain features of our website may not function properly, and your user experience may be impacted.</p>
-                        <p>To manage cookies, follow the instructions provided by your browser:</p>
-                        <ul>
-                            <li>Google Chrome: <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome Cookie Settings</a></li>
-                            <li>Mozilla Firefox: <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer">Firefox Cookie Settings</a></li>
-                            <li>Safari: <a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari Cookie Settings</a></li>
-                            <li>Microsoft Edge: <a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Edge Cookie Settings</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">6. Changes to This Cookie Policy</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>We may update our Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. Any updates to the policy will be posted on this page, and we will update the effective date accordingly.</p>
-                    </div>
-                </div>
-
-                <div class="card bg-dark mb-4">
-                    <div class="card-header">
-                        <h2 class="h5 mb-0">7. Contact Us</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>If you have any questions about our use of cookies or would like to exercise any of your rights regarding cookie preferences, please contact us:</p>
-                        <p class="mt-2 mb-0">
-                            <strong>RigFreaks</strong><br>
-                            Email: support@rigfreaks.com<br>
-                            Website: https://www.rigfreaks.com
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">2</span>
+                Types of Cookies We Use
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <p>We use several types of cookies on our website:</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="cookie-type-card p-3 rounded-3 bg-dark bg-opacity-50 h-100">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px">
+                                    <i class="fas fa-shield-alt text-dark"></i>
+                                </div>
+                                <h3 class="h6 mb-0 fw-bold">Essential Cookies</h3>
+                            </div>
+                            <p class="small">These cookies are necessary for the operation of our website. Without them, certain features or functionality may not work. Examples include cookies that enable you to log in, manage your shopping cart, and complete purchases.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="cookie-type-card p-3 rounded-3 bg-dark bg-opacity-50 h-100">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px">
+                                    <i class="fas fa-chart-line text-dark"></i>
+                                </div>
+                                <h3 class="h6 mb-0 fw-bold">Performance Cookies</h3>
+                            </div>
+                            <p class="small">These cookies collect information about how visitors use our website, such as which pages are visited most frequently or if any error messages are received. These cookies help us improve the performance of our website. All information collected by these cookies is anonymous.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="cookie-type-card p-3 rounded-3 bg-dark bg-opacity-50 h-100">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px">
+                                    <i class="fas fa-sliders-h text-dark"></i>
+                                </div>
+                                <h3 class="h6 mb-0 fw-bold">Functional Cookies</h3>
+                            </div>
+                            <p class="small">These cookies allow our website to remember your preferences and choices, such as language or region, to provide a more personalized experience. They can also be used to remember changes you've made to settings like font size, or to provide certain services like watching a video.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="cookie-type-card p-3 rounded-3 bg-dark bg-opacity-50 h-100">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px">
+                                    <i class="fas fa-ad text-dark"></i>
+                                </div>
+                                <h3 class="h6 mb-0 fw-bold">Targeting or Advertising Cookies</h3>
+                            </div>
+                            <p class="small">These cookies are used to deliver advertisements that are more relevant to you based on your browsing habits. They may be placed by third-party advertising partners with our consent and are used to track your activity across websites to build a profile of your interests.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">3</span>
+                How We Use Cookies
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <p>We use cookies for various reasons, including:</p>
+                <div class="table-responsive mt-3">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">Purpose</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-cogs text-primary me-2"></i> Website Functionality</td>
+                                <td>Essential cookies enable basic functionality such as navigation and user authentication.</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-tachometer-alt text-primary me-2"></i> Performance Tracking</td>
+                                <td>Performance cookies help us analyze website performance, identify issues, and improve our content and services.</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-user-cog text-primary me-2"></i> Personalization</td>
+                                <td>Functional cookies allow us to tailor the content on our site to your preferences, making your experience more user-friendly.</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-bullseye text-primary me-2"></i> Targeting</td>
+                                <td>Targeting cookies are used to serve you relevant advertisements and gather insights into your browsing behavior.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">4</span>
+                Third-Party Cookies
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <p>We may allow third-party services, such as Google Analytics, social media platforms (e.g., Facebook, Instagram), and advertising networks, to place cookies on our website. These third parties may use cookies to collect information about your browsing habits and interests. We do not control these cookies, and they are governed by the privacy policies of the respective third parties.</p>
+                
+                <div class="d-flex align-items-center mt-3 p-3 rounded-3 bg-dark bg-opacity-50">
+                    <i class="fas fa-exclamation-circle text-warning me-3 fs-4"></i>
+                    <p class="mb-0 small">By using our website, you acknowledge and accept that third-party cookies are subject to their respective privacy policies, which may differ from ours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">5</span>
+                Your Cookie Choices
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <p>You can manage or block cookies through your browser settings. Most browsers allow you to:</p>
+                <ul>
+                    <li>Accept or reject cookies</li>
+                    <li>Set your browser to alert you when a cookie is being set</li>
+                    <li>Delete cookies already stored on your device</li>
+                </ul>
+                <p>If you block or disable cookies, please be aware that certain features of our website may not function properly, and your user experience may be impacted.</p>
+                
+                <div class="browser-settings-box p-3 rounded-3 bg-dark bg-opacity-75 mt-4">
+                    <h4 class="h6 mb-3">Browser Cookie Settings</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-chrome text-primary me-2 fs-5"></i>
+                                <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="text-light">Chrome Cookie Settings</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-firefox text-primary me-2 fs-5"></i>
+                                <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer" class="text-light">Firefox Cookie Settings</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-safari text-primary me-2 fs-5"></i>
+                                <a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener noreferrer" class="text-light">Safari Cookie Settings</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-edge text-primary me-2 fs-5"></i>
+                                <a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="text-light">Edge Cookie Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">6</span>
+                Changes to This Cookie Policy
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <p>We may update our Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. Any updates to the policy will be posted on this page, and we will update the effective date accordingly.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-section-card">
+        <div class="legal-section-header">
+            <h2 class="h5 mb-0 d-flex align-items-center">
+                <span class="badge bg-primary rounded-circle me-2">7</span>
+                Contact Us
+            </h2>
+        </div>
+        <div class="legal-section-body">
+            <div class="legal-section-content">
+                <p>If you have any questions about our use of cookies or would like to exercise any of your rights regarding cookie preferences, please contact us:</p>
+                <div class="p-3 rounded-3 bg-dark bg-opacity-50 mt-3">
+                    <p class="mb-0">
+                        <strong>RigFreaks</strong><br>
+                        Email: support@rigfreaks.com<br>
+                        Website: https://www.rigfreaks.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
