@@ -272,120 +272,131 @@
                 <h2 class="display-5 fw-bold mb-4">What Customers Are Saying</h2>
             </div>
             
-            <!-- Modern testimonial carousel -->
-            <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel" data-aos="fade-up">
-                <!-- Carousel indicators -->
-                <div class="carousel-indicators testimonial-indicators">
-                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Testimonial 1"></button>
-                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Testimonial 2"></button>
-                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Testimonial 3"></button>
+            <!-- Testimonial slider with multiple visible cards -->
+            <div class="testimonial-slider">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+                            <!-- Carousel indicators -->
+                            <div class="carousel-indicators testimonial-indicators">
+                                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            </div>
+                            
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <!-- First slide with 2 testimonials -->
+                                <div class="carousel-item active">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 mb-4 mb-md-0">
+                                            <div class="testimonial-card-modern">
+                                                <div class="testimonial-quote">
+                                                    <i class="fas fa-quote-right"></i>
+                                                </div>
+                                                <div class="testimonial-avatar">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="testimonial-rating-modern">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                                <div class="testimonial-content-modern">
+                                                    <p>"Absolutely thrilled with my custom rig from RigFreaks! Arrived fast, packaged like a tank, and runs every game on ultra."</p>
+                                                </div>
+                                                <div class="testimonial-footer">
+                                                    <div class="testimonial-author-modern">
+                                                        <div class="testimonial-name">Josh M.</div>
+                                                        <div class="testimonial-role">Manchester</div>
+                                                    </div>
+                                                    <div class="testimonial-verified">
+                                                        <i class="fas fa-check-circle"></i> Verified Purchase
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="testimonial-card-modern testimonial-featured">
+                                                <div class="testimonial-quote">
+                                                    <i class="fas fa-quote-right"></i>
+                                                </div>
+                                                <div class="testimonial-avatar">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="testimonial-rating-modern">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                                <div class="testimonial-content-modern">
+                                                    <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup."</p>
+                                                </div>
+                                                <div class="testimonial-footer">
+                                                    <div class="testimonial-author-modern">
+                                                        <div class="testimonial-name">Rhea L.</div>
+                                                        <div class="testimonial-role">London</div>
+                                                    </div>
+                                                    <div class="testimonial-verified">
+                                                        <i class="fas fa-check-circle"></i> Verified Purchase
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Second slide with 1 testimonial centered -->
+                                <div class="carousel-item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 mx-auto">
+                                            <div class="testimonial-card-modern">
+                                                <div class="testimonial-quote">
+                                                    <i class="fas fa-quote-right"></i>
+                                                </div>
+                                                <div class="testimonial-avatar">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="testimonial-rating-modern">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                                <div class="testimonial-content-modern">
+                                                    <p>"I've ordered PCs before but never had service this personal. They even double-checked my selections for compatibility before building."</p>
+                                                </div>
+                                                <div class="testimonial-footer">
+                                                    <div class="testimonial-author-modern">
+                                                        <div class="testimonial-name">Tom W.</div>
+                                                        <div class="testimonial-role">Leeds</div>
+                                                    </div>
+                                                    <div class="testimonial-verified">
+                                                        <i class="fas fa-check-circle"></i> Verified Purchase
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Carousel controls -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <!-- Testimonial 1 -->
-                    <div class="carousel-item active">
-                        <div class="testimonial-card-modern">
-                            <div class="testimonial-quote">
-                                <i class="fas fa-quote-right"></i>
-                            </div>
-                            <div class="testimonial-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="testimonial-rating-modern">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="testimonial-content-modern">
-                                <p>"Absolutely thrilled with my custom rig from RigFreaks! Arrived fast, packaged like a tank, and runs every game on ultra."</p>
-                            </div>
-                            <div class="testimonial-footer">
-                                <div class="testimonial-author-modern">
-                                    <div class="testimonial-name">Josh M.</div>
-                                    <div class="testimonial-role">Manchester</div>
-                                </div>
-                                <div class="testimonial-verified">
-                                    <i class="fas fa-check-circle"></i> Verified Purchase
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="carousel-item">
-                        <div class="testimonial-card-modern testimonial-featured">
-                            <div class="testimonial-quote">
-                                <i class="fas fa-quote-right"></i>
-                            </div>
-                            <div class="testimonial-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="testimonial-rating-modern">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="testimonial-content-modern">
-                                <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup."</p>
-                            </div>
-                            <div class="testimonial-footer">
-                                <div class="testimonial-author-modern">
-                                    <div class="testimonial-name">Rhea L.</div>
-                                    <div class="testimonial-role">London</div>
-                                </div>
-                                <div class="testimonial-verified">
-                                    <i class="fas fa-check-circle"></i> Verified Purchase
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 3 -->
-                    <div class="carousel-item">
-                        <div class="testimonial-card-modern">
-                            <div class="testimonial-quote">
-                                <i class="fas fa-quote-right"></i>
-                            </div>
-                            <div class="testimonial-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="testimonial-rating-modern">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="testimonial-content-modern">
-                                <p>"I've ordered PCs before but never had service this personal. They even double-checked my selections for compatibility before building."</p>
-                            </div>
-                            <div class="testimonial-footer">
-                                <div class="testimonial-author-modern">
-                                    <div class="testimonial-name">Tom W.</div>
-                                    <div class="testimonial-role">Leeds</div>
-                                </div>
-                                <div class="testimonial-verified">
-                                    <i class="fas fa-check-circle"></i> Verified Purchase
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Carousel controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
             
             <!-- Trust badges -->

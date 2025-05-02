@@ -1398,12 +1398,20 @@
     margin-bottom: 3rem;
 }
 
-/* Testimonial Carousel Styles */
-.testimonial-carousel {
+/* Testimonial Slider Styles */
+.testimonial-slider {
     position: relative;
-    max-width: 900px;
     margin: 0 auto 3rem;
     z-index: 1;
+    max-width: 1200px;
+}
+
+#testimonialCarousel {
+    padding-bottom: 50px;
+}
+
+.testimonial-card-modern {
+    height: 100%;
 }
 
 .carousel-inner {
@@ -1411,7 +1419,7 @@
 }
 
 .testimonial-indicators {
-    bottom: -40px;
+    bottom: 0;
     margin-bottom: 0;
 }
 
@@ -1429,9 +1437,10 @@
 }
 
 .carousel-control-prev, .carousel-control-next {
-    width: 10%;
-    opacity: 0.5;
+    width: 5%;
+    opacity: 0.7;
     color: var(--bs-primary);
+    margin-top: -3rem;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
