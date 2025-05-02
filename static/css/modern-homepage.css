@@ -1605,30 +1605,7 @@
 }
 
 /* Trust Badges */
-.trust-badges {
-    margin-top: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.trust-badge {
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.trust-badge:hover {
-    transform: translateY(-5px);
-}
-
-.trust-badge-title {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--text-light);
-}
-
-.trust-badge-text {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
+/* Trust badges section removed */
 
 /* ------- MODERN CTA SECTION ------- */
 .cta-modern {
