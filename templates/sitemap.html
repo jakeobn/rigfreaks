@@ -1,0 +1,312 @@
+{% extends 'layout.html' %}
+
+{% block title %}Site Map{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4 mb-4">Site Map</h1>
+            <p class="lead mb-5">A complete guide to navigate through our website.</p>
+        </div>
+    </div>
+    
+    <div class="row mb-5">
+        <!-- Main Navigation Section -->
+        <div class="col-md-4 mb-4">
+            <div class="card bg-dark border-primary h-100">
+                <div class="card-header bg-primary bg-opacity-25">
+                    <h3 class="h5 mb-0">Main Navigation</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{{ url_for('index') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-home me-2 text-primary"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-tools me-2 text-primary"></i>
+                                <span>PC Builder</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-desktop me-2 text-primary"></i>
+                                <span>Prebuilt PCs</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('about') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-info-circle me-2 text-primary"></i>
+                                <span>About Us</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('delivery') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-truck me-2 text-primary"></i>
+                                <span>Delivery Information</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('faq') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-question-circle me-2 text-primary"></i>
+                                <span>FAQ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('contact') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-envelope me-2 text-primary"></i>
+                                <span>Contact Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Account & Shopping Section -->
+        <div class="col-md-4 mb-4">
+            <div class="card bg-dark border-success h-100">
+                <div class="card-header bg-success bg-opacity-25">
+                    <h3 class="h5 mb-0">Account & Shopping</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{{ url_for('auth.login') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-sign-in-alt me-2 text-success"></i>
+                                <span>Login</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('auth.register') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-user-plus me-2 text-success"></i>
+                                <span>Register</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('auth.profile') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-user-circle me-2 text-success"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('builds.list_builds') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-save me-2 text-success"></i>
+                                <span>My Builds</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('cart.view_cart') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-shopping-cart me-2 text-success"></i>
+                                <span>Shopping Cart</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Legal & Information Section -->
+        <div class="col-md-4 mb-4">
+            <div class="card bg-dark border-info h-100">
+                <div class="card-header bg-info bg-opacity-25">
+                    <h3 class="h5 mb-0">Legal & Information</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{{ url_for('terms') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-file-contract me-2 text-info"></i>
+                                <span>Terms & Conditions</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('privacy') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-shield-alt me-2 text-info"></i>
+                                <span>Privacy Policy</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{{ url_for('cookies') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-cookie-bite me-2 text-info"></i>
+                                <span>Cookie Policy</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('sitemap') }}" class="d-flex align-items-center text-decoration-none">
+                                <i class="fas fa-sitemap me-2 text-info"></i>
+                                <span>Site Map</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PC Building Process Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card bg-dark border-warning">
+                <div class="card-header bg-warning bg-opacity-25">
+                    <h3 class="h5 mb-0">PC Building Process</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h4 class="h6 mb-3">Step-by-Step Builder</h4>
+                            <ol class="ps-3">
+                                <li class="mb-2">Select Case</li>
+                                <li class="mb-2">Choose CPU</li>
+                                <li class="mb-2">Select Motherboard</li>
+                                <li class="mb-2">Add CPU Cooling</li>
+                                <li class="mb-2">Choose Memory (RAM)</li>
+                                <li class="mb-2">Select Graphics Card</li>
+                                <li class="mb-2">Choose Power Supply</li>
+                                <li class="mb-2">Add Storage</li>
+                                <li class="mb-2">Select Operating System</li>
+                                <li>Review Your Build</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="h6 mb-3">PC Configurator Options</h4>
+                            <ul class="ps-3">
+                                <li class="mb-2">Step-by-Step Builder - Guided experience</li>
+                                <li class="mb-2">Classic Builder - All components at once</li>
+                                <li class="mb-2">Prebuilt Systems - Ready-to-go configurations</li>
+                                <li class="mb-2">Save Your Build - Create an account to save configurations</li>
+                                <li>Performance Benchmarks - See how your build performs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Customer Resources Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-dark border-secondary">
+                <div class="card-header bg-secondary bg-opacity-25">
+                    <h3 class="h5 mb-0">Customer Resources</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h4 class="h6 mb-3">Support</h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <a href="{{ url_for('contact') }}" class="d-flex align-items-center text-decoration-none">
+                                        <i class="fas fa-headset me-2 text-secondary"></i>
+                                        <span>Contact Support</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('faq') }}" class="d-flex align-items-center text-decoration-none">
+                                        <i class="fas fa-question-circle me-2 text-secondary"></i>
+                                        <span>Frequently Asked Questions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h4 class="h6 mb-3">Company</h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <a href="{{ url_for('about') }}" class="d-flex align-items-center text-decoration-none">
+                                        <i class="fas fa-building me-2 text-secondary"></i>
+                                        <span>About RigFreaks</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('delivery') }}" class="d-flex align-items-center text-decoration-none">
+                                        <i class="fas fa-truck me-2 text-secondary"></i>
+                                        <span>Shipping & Delivery</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="h6 mb-3">Connect With Us</h4>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="social-icon-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon-link">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon-link">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-icon-link">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .social-icon-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--bs-light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon-link:hover {
+        background: var(--bs-primary);
+        color: var(--bs-white);
+        transform: translateY(-3px);
+    }
+    
+    .card {
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .list-unstyled a {
+        color: var(--bs-light);
+        padding: 5px 0;
+        transition: all 0.2s ease;
+    }
+    
+    .list-unstyled a:hover {
+        color: var(--bs-primary);
+        transform: translateX(5px);
+    }
+    
+    .list-unstyled a:hover i {
+        transform: scale(1.2);
+    }
+    
+    .list-unstyled i {
+        transition: all 0.2s ease;
+    }
+</style>
+{% endblock %}

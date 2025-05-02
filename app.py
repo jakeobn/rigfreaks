@@ -333,5 +333,10 @@ def faq():
     """Frequently Asked Questions page."""
     return render_template('faq.html')
 
+@app.route('/sitemap')
+def sitemap():
+    """Site Map page showing all website pages in an organized format."""
+    return render_template('sitemap.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
