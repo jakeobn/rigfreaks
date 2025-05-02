@@ -313,6 +313,11 @@ def privacy():
     """Privacy Policy page."""
     return render_template('privacy.html')
 
+@app.route('/cookies')
+def cookies():
+    """Cookie Policy page."""
+    return render_template('cookies.html')
+
 @app.route('/about')
 def about():
     """About Us page with company information."""
