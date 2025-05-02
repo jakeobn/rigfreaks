@@ -309,5 +309,10 @@ def about():
     """About Us page with company information."""
     return render_template('about.html')
 
+@app.route('/delivery')
+def delivery():
+    """Delivery Information page with shipping details."""
+    return render_template('delivery.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

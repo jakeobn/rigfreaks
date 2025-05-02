@@ -43,6 +43,7 @@
                     <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
                     <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link">Parts Store</a>
                     <a href="{{ url_for('about') }}" class="nav-link {% if request.path == url_for('about') %}active{% endif %}">About</a>
+                    <a href="{{ url_for('delivery') }}" class="nav-link {% if request.path == url_for('delivery') %}active{% endif %}">Delivery</a>
                     <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
                 </nav>
                 
@@ -99,6 +100,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_for('about') %}active{% endif %}" href="{{ url_for('about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('delivery') %}active{% endif %}" href="{{ url_for('delivery') }}">Delivery</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
@@ -202,6 +206,7 @@
                         <ul class="footer-links">
                             <li><a href="{{ url_for('contact') }}">Contact Support</a></li>
                             <li><a href="{{ url_for('about') }}">About Us</a></li>
+                            <li><a href="{{ url_for('delivery') }}">Delivery Information</a></li>
                             <li><a href="{{ url_for('contact') }}">Compatibility Help</a></li>
                             <li><a href="{{ url_for('cart.view_cart') }}">Cart/Checkout</a></li>
                         </ul>

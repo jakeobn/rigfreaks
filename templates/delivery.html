@@ -1,0 +1,234 @@
+{% extends 'layout.html' %}
+
+{% block title %}Delivery Information - RigFreaks{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <section class="delivery-header text-center mb-5">
+        <h1 class="display-4 fw-bold">Delivery Information</h1>
+        <h2 class="lead fs-3 text-primary mb-4">Custom PC Excellence, Delivered to Your Door</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="delivery-intro fs-5">
+                    At RigFreaks, we are committed to delivering high-performance custom PCs that exceed your expectations. Our process is thorough, ensuring every component meets the highest standards of quality and reliability.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="delivery-timeline-container p-4 rounded-3 mb-5" data-aos="fade-up">
+                <h3 class="mb-4 text-primary">Order Processing and Build Time</h3>
+                <p class="fs-5">
+                    Once you place your order, we begin by sourcing the best parts available for your custom PC. Depending on the availability of components, it can take 1-3 days for us to acquire everything needed. Afterward, our experienced technicians start assembling your system. This step typically takes 1-2 days, as we ensure every piece fits perfectly and is securely installed.
+                </p>
+
+                <h3 class="mt-5 mb-4 text-primary">Rigorous Testing and Troubleshooting</h3>
+                <p class="fs-5">
+                    After the build is complete, your custom PC undergoes a series of rigorous stress tests to ensure that all components are functioning at their peak performance. We test for:
+                </p>
+                
+                <ul class="testing-list fs-5">
+                    <li>CPU performance and stability</li>
+                    <li>GPU load handling and temperature regulation</li>
+                    <li>Memory stress tests to check for reliability</li>
+                    <li>Hard drive and SSD read/write speeds</li>
+                    <li>Overall system stability under high usage scenarios</li>
+                </ul>
+                
+                <p class="fs-5">
+                    If any issues arise during these tests, we troubleshoot immediately, replacing or adjusting parts as necessary to ensure your PC meets our high standards. This process usually takes 2-3 days, as we prioritize delivering a system that runs smoothly and reliably.
+                </p>
+
+                <h3 class="mt-5 mb-4 text-primary">Packaging and Shipping</h3>
+                <p class="fs-5">
+                    Once your PC passes all tests and we're confident it's in perfect working order, we carefully package it for safe delivery. We use high-quality packaging materials to ensure your PC arrives in pristine condition. Standard shipping within the UK typically takes 1-2 days, depending on the courier service.
+                </p>
+            </div>
+            
+            <!-- Delivery Timeline Visualization -->
+            <div class="delivery-timeline" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-center mb-4">Estimated Delivery Time: 7-10 Days</h3>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-progress-bar"></div>
+                    
+                    <div class="row timeline-steps">
+                        <div class="col-md-4 timeline-step">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h4 class="mb-3">Order Processing & Build</h4>
+                                <p class="timeline-duration">3-5 days</p>
+                                <p class="timeline-desc">Depending on component availability and complexity of the build.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 timeline-step">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h4 class="mb-3">Testing & Troubleshooting</h4>
+                                <p class="timeline-duration">2-3 days</p>
+                                <p class="timeline-desc">Rigorous testing to ensure peak performance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 timeline-step">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h4 class="mb-3">Shipping</h4>
+                                <p class="timeline-duration">1-2 days</p>
+                                <p class="timeline-desc">Secure delivery within the UK mainland.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="delivery-notes mt-5 p-4 rounded-3" data-aos="fade-up">
+                <h3 class="mb-4">Important Notes:</h3>
+                <ul class="delivery-restrictions fs-5">
+                    <li>Unfortunately, we can't offer timed or Saturday/Sunday delivery services outside of the UK mainland.</li>
+                    <li>Currently, we are unable to deliver to the Republic of Ireland.</li>
+                </ul>
+                <p class="mt-4 fs-5">
+                    Thank you for choosing RigFreaks! We take pride in delivering a PC that's perfectly suited to your needs, with unparalleled performance and reliability.
+                </p>
+            </div>
+            
+            <div class="text-center mt-5 mb-5">
+                <a href="{{ url_for('step_builder') }}" class="btn btn-primary btn-lg px-4 py-3">
+                    <i class="fas fa-drafting-compass me-2"></i>Start Building Your PC
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS for the Delivery Page -->
+<style>
+    .delivery-intro {
+        font-weight: 300;
+        line-height: 1.7;
+    }
+    
+    .delivery-timeline-container, .delivery-notes {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .testing-list li {
+        margin-bottom: 0.5rem;
+        position: relative;
+        padding-left: 25px;
+    }
+    
+    .testing-list li:before {
+        content: "\f058";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--bs-primary);
+    }
+    
+    .delivery-restrictions li {
+        margin-bottom: 0.5rem;
+        position: relative;
+        padding-left: 25px;
+    }
+    
+    .delivery-restrictions li:before {
+        content: "\f071";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: #ffc107;
+    }
+    
+    /* Timeline styling */
+    .delivery-timeline {
+        padding: 2rem;
+        margin-bottom: 3rem;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+    }
+    
+    .timeline-wrapper {
+        position: relative;
+        padding: 2rem 0;
+    }
+    
+    .timeline-progress-bar {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: rgba(var(--bs-primary-rgb), 0.3);
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+    
+    .timeline-steps {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .timeline-step {
+        text-align: center;
+        position: relative;
+    }
+    
+    .timeline-point {
+        width: 20px;
+        height: 20px;
+        background-color: var(--bs-primary);
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        position: relative;
+    }
+    
+    .timeline-point:before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background-color: rgba(var(--bs-primary-rgb), 0.3);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+    
+    .timeline-content {
+        padding: 0 0.5rem;
+    }
+    
+    .timeline-duration {
+        display: inline-block;
+        font-weight: 600;
+        color: var(--bs-primary);
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        padding: 0.3rem 1rem;
+        border-radius: 30px;
+        margin-bottom: 0.5rem;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.4);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
+{% endblock %}
