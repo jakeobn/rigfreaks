@@ -308,6 +308,11 @@ def terms():
     """Terms & Conditions page."""
     return render_template('terms.html')
 
+@app.route('/privacy')
+def privacy():
+    """Privacy Policy page."""
+    return render_template('privacy.html')
+
 @app.route('/about')
 def about():
     """About Us page with company information."""

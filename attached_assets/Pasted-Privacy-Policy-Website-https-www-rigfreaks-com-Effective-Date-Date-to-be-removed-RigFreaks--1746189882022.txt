@@ -1,0 +1,104 @@
+Privacy Policy
+Website: https://www.rigfreaks.com
+Effective Date: [Date to be removed]
+
+RigFreaks (“we”, “us”, “our”) is committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website and use our services. By accessing our website, you agree to the terms of this Privacy Policy.
+
+1. Information We Collect
+We collect personal information from you in various ways, including:
+
+a. Personal Identification Information
+When you place an order or sign up for an account, we may collect the following personal details:
+
+Name
+
+Email address
+
+Mailing address
+
+Phone number
+
+Payment information (e.g., credit card details)
+
+b. Non-Personal Identification Information
+We may collect non-personal details about your interaction with our website, such as:
+
+IP address
+
+Browser type
+
+Device type
+
+Pages viewed
+
+Referring website or source
+
+2. How We Use Your Information
+We use your personal information for the following purposes:
+
+To process transactions: We may use your data to fulfill orders, process payments, and deliver products.
+
+To communicate with you: We may send you order updates, promotional emails, or customer service-related messages.
+
+To improve our services: We may use your non-personal information to enhance website functionality, troubleshoot issues, and improve customer experience.
+
+To comply with legal obligations: We may need to share your information for legal reasons, such as complying with tax and shipping regulations.
+
+3. Data Sharing
+We do not sell or rent your personal information to third parties. However, we may share your data with trusted third parties for the following purposes:
+
+Payment processing: We share necessary payment details with third-party providers (e.g., Stripe or PayPal) to process your payment securely.
+
+Shipping providers: To deliver your order, we share your information with third-party delivery companies (e.g., Royal Mail, DPD).
+
+Legal requirements: We may disclose your information to law enforcement or regulatory bodies if required by law.
+
+4. Data Protection
+We implement industry-standard security measures to protect your personal data:
+
+Encryption: Your payment and account details are encrypted during transmission via Secure Socket Layer (SSL) technology.
+
+Access control: We restrict access to personal information to only those employees and third parties who need it to perform their duties.
+
+While we take reasonable precautions, no data transmission over the internet can be guaranteed 100% secure, so we cannot guarantee the absolute security of your information.
+
+5. Your Rights
+As a user, you have the following rights regarding your personal data under the General Data Protection Regulation (GDPR):
+
+Access: You can request a copy of the personal information we hold about you.
+
+Rectification: You can request correction of any inaccuracies in your personal data.
+
+Erasure: You can request that we delete your personal information, subject to certain exceptions.
+
+Restriction: You can request the restriction of processing of your personal data under specific conditions.
+
+Data Portability: You can request to receive your data in a structured, commonly used format.
+
+Objection: You can object to the processing of your personal data for certain purposes, such as marketing.
+
+To exercise any of these rights, please contact us using the details provided below.
+
+6. Cookies
+We use cookies to improve your browsing experience and provide you with personalized content and advertising. Cookies are small text files stored on your device.
+
+You can control cookies through your browser settings. However, please note that disabling cookies may affect your ability to use certain features of our website.
+
+For more information on how we use cookies, please refer to our Cookie Policy.
+
+7. Third-Party Links
+Our website may contain links to third-party websites or services that are not operated by us. We are not responsible for the content or privacy practices of these third-party sites. We recommend reviewing their privacy policies before sharing any personal information.
+
+8. Children’s Privacy
+Our services are not intended for children under the age of 18. We do not knowingly collect personal information from children. If we learn that we have inadvertently collected personal data from a child under 18, we will take steps to delete the information as soon as possible.
+
+9. Changes to This Privacy Policy
+We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or business operations. When we update the policy, we will post the revised version on this page. The changes will be effective immediately upon posting, and we encourage you to review the policy regularly.
+
+10. Contact Us
+If you have any questions or concerns regarding this Privacy Policy or would like to exercise your rights under GDPR, please contact us:
+
+RigFreaks
+Email: support@rigfreaks.com
+Website: https://www.rigfreaks.com
+
