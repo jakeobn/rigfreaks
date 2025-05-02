@@ -1,0 +1,205 @@
+{% extends 'layout.html' %}
+
+{% block title %}About RigFreaks{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <section class="about-header text-center mb-5">
+        <h1 class="display-4 fw-bold">About RigFreaks</h1>
+        <h2 class="lead fs-3 text-primary mb-4">Built to Perform. Designed for You.</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="about-intro fs-5">
+                    At RigFreaks, we're not just building PCs — we're delivering power, precision, and personality in every rig. Based in the UK, we specialize in custom-built desktop PCs tailored for gamers, creators, streamers, and professionals who demand more than just average performance.
+                </p>
+                <p class="fs-5">
+                    We believe your PC should work as hard as you do — whether you're climbing the ranks in competitive gaming, editing 4K footage, designing in CAD, or multitasking across demanding workflows. That's why every RigFreaks machine is assembled with care, tested for quality, and optimized for real-world use.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-5">
+
+    <section class="about-story mb-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-5 fw-bold mb-4">Our Story</h2>
+                <p class="fs-5">
+                    RigFreaks started with a simple frustration: mass-produced PCs just didn't deliver. Too many prebuilt systems were packed with mismatched components, subpar cooling, and limited upgrade paths — all wrapped in flashy marketing. We knew there had to be a better way.
+                </p>
+                <p class="fs-5">
+                    So we created RigFreaks — a UK-based service that puts customization, quality, and performance first. With a team of builders who live and breathe PC tech, we set out to create a place where every customer gets a rig that's built with purpose, passion, and precision.
+                </p>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="about-image-container" data-aos="fade-left">
+                    <img src="{{ url_for('static', filename='img/custom/about-image-1.jpg') }}" alt="PC Building" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-5">
+
+    <section class="about-why mb-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <h2 class="display-5 fw-bold mb-4">Why Choose RigFreaks?</h2>
+                <ul class="why-choose-list">
+                    <li class="mb-3">
+                        <strong class="text-primary">100% UK Focus</strong> – We only serve the UK, which means faster delivery, localized support, and no surprises with taxes or import fees.
+                    </li>
+                    <li class="mb-3">
+                        <strong class="text-primary">Expert Compatibility Checks</strong> – Every part is hand-verified by experienced builders before assembly.
+                    </li>
+                    <li class="mb-3">
+                        <strong class="text-primary">No Bloatware, Ever</strong> – We ship clean systems with only the essentials installed — no unnecessary apps or background junk.
+                    </li>
+                    <li class="mb-3">
+                        <strong class="text-primary">Real Customer Support</strong> – We're a small, passionate team that genuinely cares about your build.
+                    </li>
+                    <li class="mb-3">
+                        <strong class="text-primary">Premium Cable Management</strong> – Because your rig should look as good as it performs.
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 order-lg-1 d-flex justify-content-center">
+                <div class="about-image-container" data-aos="fade-right">
+                    <img src="{{ url_for('static', filename='img/custom/about-image-2.jpg') }}" alt="PC Assembly" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-5">
+
+    <section class="mission-vision mb-5">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-6">
+                <div class="mission-card p-4 mb-4 mb-md-0" data-aos="fade-up">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-bullseye fa-2x"></i>
+                    </div>
+                    <h3 class="fw-bold mb-3">Our Mission</h3>
+                    <p>To empower users across the UK with reliable, high-performance desktops — built the right way, from the ground up.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="vision-card p-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-eye fa-2x"></i>
+                    </div>
+                    <h3 class="fw-bold mb-3">Our Vision</h3>
+                    <p>To be the UK's most trusted name in custom PC building, where power meets personalization and every user is proud to call their machine a RigFreak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-5">
+
+    <section class="cta-section mb-5 text-center" data-aos="fade-up">
+        <h2 class="display-5 fw-bold mb-4">Let's Build Something Awesome</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="fs-5 mb-4">
+                    Whether you're new to the world of custom PCs or you've been speccing builds for years, we make the process easy, transparent, and fun. Choose your parts, place your order, and leave the heavy lifting to us. We'll build it, test it, and deliver it straight to your door — ready to fire up.
+                </p>
+                <p class="fs-5 fw-bold mb-5">This isn't just another PC. It's your RigFreak.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{{ url_for('step_builder') }}" class="btn btn-primary btn-lg px-4 py-3">
+                        <i class="fas fa-drafting-compass me-2"></i>Design Your PC
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-secondary btn-lg px-4 py-3">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Custom CSS for the About Page -->
+<style>
+    .about-intro {
+        font-weight: 300;
+        line-height: 1.7;
+    }
+    
+    .why-choose-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .why-choose-list li {
+        position: relative;
+        padding-left: 30px;
+        font-size: 1.1rem;
+    }
+    
+    .why-choose-list li:before {
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--bs-primary);
+    }
+    
+    .mission-card, .vision-card {
+        height: 100%;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .mission-card:hover, .vision-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .icon-circle {
+        width: 70px;
+        height: 70px;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    .about-image-container {
+        position: relative;
+        max-width: 500px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+    
+    .about-image-container:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 1px solid var(--bs-primary);
+        border-radius: 15px;
+        opacity: 0.3;
+        z-index: -1;
+    }
+    
+    hr {
+        opacity: 0.1;
+    }
+
+    .cta-section {
+        background-color: rgba(var(--bs-primary-rgb), 0.05);
+        padding: 4rem 2rem;
+        border-radius: 15px;
+    }
+</style>
+{% endblock %}

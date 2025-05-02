@@ -304,5 +304,10 @@ def contact():
 
 # Legal routes removed as per updated site map
 
+@app.route('/about')
+def about():
+    """About Us page with company information."""
+    return render_template('about.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
