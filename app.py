@@ -302,7 +302,11 @@ def contact():
         
     return render_template('contact.html')
 
-# Legal routes removed as per updated site map
+# Legal routes
+@app.route('/terms')
+def terms():
+    """Terms & Conditions page."""
+    return render_template('terms.html')
 
 @app.route('/about')
 def about():
