@@ -116,19 +116,10 @@
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-}
-
-.footer-links a i {
-    margin-right: 0.5rem;
-    color: var(--bs-primary);
-    font-size: 0.9rem;
 }
 
 .footer-links a:hover {
     color: var(--bs-primary);
-    transform: translateX(3px);
 }
 
 .footer-socials {
