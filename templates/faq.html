@@ -1,0 +1,312 @@
+{% extends 'layout.html' %}
+
+{% block title %}Frequently Asked Questions - RigFreaks{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <section class="faq-header text-center mb-5">
+        <h1 class="display-4 fw-bold">Frequently Asked Questions</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="faq-intro fs-5">
+                    Find answers to common questions about our custom PC builds, delivery process, and after-sales support. If you can't find what you're looking for, don't hesitate to <a href="{{ url_for('contact') }}" class="text-primary">contact us</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="faq-search mb-5" data-aos="fade-up">
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-end-0">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="faqSearch" class="form-control border-start-0 ps-0" placeholder="Search frequently asked questions...">
+                </div>
+            </div>
+            
+            <div class="accordion faq-accordion" id="faqAccordion">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item faq-item" data-aos="fade-up">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="false" aria-controls="faqOne">
+                            <i class="fas fa-clock me-3 text-primary"></i>
+                            How long does it take to receive my custom PC?
+                        </button>
+                    </h2>
+                    <div id="faqOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Our typical delivery time is 7-10 days. This includes time for sourcing parts, building the PC, performing rigorous testing, and shipping. Please note that availability of components may affect the timeline.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="50">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                            <i class="fas fa-shipping-fast me-3 text-primary"></i>
+                            Can I track my order?
+                        </button>
+                    </h2>
+                    <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Yes! Once your PC has been shipped, you will receive a tracking number via email to monitor its progress until it arrives safely at your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+                            <i class="fas fa-globe-europe me-3 text-primary"></i>
+                            Do you offer international shipping?
+                        </button>
+                    </h2>
+                    <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Currently, we only offer shipping within the UK mainland. Unfortunately, we are unable to deliver to the Republic of Ireland or other international destinations at this time.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="150">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
+                            <i class="fas fa-edit me-3 text-primary"></i>
+                            Can I customize my PC after placing the order?
+                        </button>
+                    </h2>
+                    <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Once your order is placed, we begin the build process. Customizations may be limited, but please feel free to contact us immediately if you need to adjust your order. We'll do our best to accommodate any changes before we start building.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-expanded="false" aria-controls="faqFive">
+                            <i class="fas fa-headset me-3 text-primary"></i>
+                            Do you offer after-sales support?
+                        </button>
+                    </h2>
+                    <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Absolutely! We offer technical support and troubleshooting assistance. If you encounter any issues after receiving your PC, our team is here to help. We also provide guidance on optimizing your system and upgrading parts.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="250">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSix" aria-expanded="false" aria-controls="faqSix">
+                            <i class="fas fa-calendar-alt me-3 text-primary"></i>
+                            Can I request a specific delivery time?
+                        </button>
+                    </h2>
+                    <div id="faqSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Unfortunately, we cannot offer timed or Saturday/Sunday delivery services outside of the UK mainland. Our standard shipping typically takes 1-2 days within the UK mainland.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 7 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeven" aria-expanded="false" aria-controls="faqSeven">
+                            <i class="fas fa-exclamation-triangle me-3 text-primary"></i>
+                            What should I do if I receive a damaged PC?
+                        </button>
+                    </h2>
+                    <div id="faqSeven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>We take great care in packaging your PC securely. However, if your PC arrives damaged, please contact us immediately with photos of the damage. We will work with you to resolve the issue as quickly as possible, including arranging a replacement if necessary.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 8 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="350">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEight" aria-expanded="false" aria-controls="faqEight">
+                            <i class="fas fa-undo-alt me-3 text-primary"></i>
+                            Can I return my custom-built PC?
+                        </button>
+                    </h2>
+                    <div id="faqEight" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Due to the custom nature of our builds, we generally do not accept returns unless the product is faulty or damaged during shipping. Please review your configuration carefully before placing your order.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 9 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqNine" aria-expanded="false" aria-controls="faqNine">
+                            <i class="fas fa-microchip me-3 text-primary"></i>
+                            What components do you offer for custom builds?
+                        </button>
+                    </h2>
+                    <div id="faqNine" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>We offer a wide range of high-quality components from leading manufacturers. Our builds typically include Intel/AMD CPUs, NVIDIA/AMD GPUs, Corsair/Seagate storage solutions, and MSI/Asus motherboards, among others. You can select from a variety of options when customizing your PC on our site.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 10 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="450">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTen" aria-expanded="false" aria-controls="faqTen">
+                            <i class="fas fa-shield-alt me-3 text-primary"></i>
+                            What warranty do you provide?
+                        </button>
+                    </h2>
+                    <div id="faqTen" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Each custom-built PC comes with a 3-year warranty covering any manufacturing defects or hardware failures. We also provide lifetime technical support for your system.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 11 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEleven" aria-expanded="false" aria-controls="faqEleven">
+                            <i class="fas fa-gamepad me-3 text-primary"></i>
+                            Can you build a PC for gaming, content creation, or other specific needs?
+                        </button>
+                    </h2>
+                    <div id="faqEleven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Yes! We specialize in custom-built PCs for various purposes, including gaming, content creation, video editing, 3D rendering, and more. When you select your parts, you can choose configurations tailored to your specific needs.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 12 -->
+                <div class="accordion-item faq-item" data-aos="fade-up" data-aos-delay="550">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwelve" aria-expanded="false" aria-controls="faqTwelve">
+                            <i class="fas fa-puzzle-piece me-3 text-primary"></i>
+                            How do I ensure my selected parts are compatible?
+                        </button>
+                    </h2>
+                    <div id="faqTwelve" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>We use industry-standard parts that are known to be compatible with each other. However, if you have any concerns, our team is always available to help double-check compatibility before your order is finalized. We ensure every part is tested thoroughly for optimal performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 mb-5" data-aos="fade-up">
+                <p class="mb-4 fs-5">Still have questions?</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg px-4 py-3">
+                    <i class="fas fa-envelope me-2"></i>Contact Our Support Team
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS for the FAQ Page -->
+<style>
+    .faq-intro {
+        font-weight: 300;
+        line-height: 1.7;
+    }
+    
+    .faq-search {
+        max-width: 800px;
+        margin: 0 auto 3rem;
+    }
+    
+    .faq-search .form-control {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .faq-search .input-group-text {
+        border-color: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .faq-accordion {
+        margin-bottom: 3rem;
+    }
+    
+    .faq-item {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+    
+    .accordion-button {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-primary);
+        box-shadow: none;
+    }
+    
+    .accordion-button::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+    
+    .accordion-button:not(.collapsed)::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23007bff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+    
+    .accordion-body {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+</style>
+
+<!-- FAQ Search JavaScript -->
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        searchInput.addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.accordion-button').textContent.toLowerCase();
+                const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}
