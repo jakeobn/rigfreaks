@@ -145,11 +145,18 @@
     color: white;
 }
 
-/* X (formerly Twitter) icon styling */
-.footer-social-link .fa-times {
-    font-weight: bold;
-    font-size: 1.2rem;
-    transform: rotate(0deg);
+/* Social icons styling */
+.social-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    filter: invert(1);
+    transition: all 0.2s ease;
+}
+
+.footer-social-link:hover .social-icon {
+    filter: invert(1) brightness(1.2);
+    transform: scale(1.1);
 }
 
 .footer-newsletter-text {

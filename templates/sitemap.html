@@ -235,19 +235,19 @@
                             <h4 class="h6 mb-3">Connect With Us</h4>
                             <div class="d-flex gap-3">
                                 <a href="#" class="social-icon-link">
-                                    <i class="fab fa-facebook-f"></i>
+                                    <img src="{{ url_for('static', filename='icons/facebook.svg') }}" alt="Facebook" class="social-icon">
                                 </a>
                                 <a href="#" class="social-icon-link">
-                                    <i class="fas fa-times"></i>
+                                    <img src="{{ url_for('static', filename='icons/x.svg') }}" alt="X" class="social-icon">
                                 </a>
                                 <a href="#" class="social-icon-link">
-                                    <i class="fab fa-instagram"></i>
+                                    <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram" class="social-icon">
                                 </a>
                                 <a href="#" class="social-icon-link">
-                                    <i class="fab fa-youtube"></i>
+                                    <img src="{{ url_for('static', filename='icons/youtube.svg') }}" alt="YouTube" class="social-icon">
                                 </a>
                                 <a href="#" class="social-icon-link">
-                                    <i class="fab fa-discord"></i>
+                                    <img src="{{ url_for('static', filename='icons/discord.svg') }}" alt="Discord" class="social-icon">
                                 </a>
                             </div>
                         </div>
@@ -309,11 +309,18 @@
         transition: all 0.2s ease;
     }
     
-    /* X (formerly Twitter) icon styling */
-    .social-icon-link .fa-times {
-        font-weight: bold;
-        font-size: 1.2rem;
-        transform: rotate(0deg);
+    /* Social icons styling */
+    .social-icon {
+        width: 20px;
+        height: 20px;
+        display: block;
+        filter: invert(1);
+        transition: all 0.2s ease;
+    }
+    
+    .social-icon-link:hover .social-icon {
+        filter: invert(1) brightness(1.2);
+        transform: scale(1.1);
     }
 </style>
 {% endblock %}
