@@ -148,12 +148,12 @@
     width: 24px;
     height: 24px;
     display: block;
-    filter: invert(1);
+    fill: white;
     transition: all 0.2s ease;
 }
 
 .footer-social-link:hover .social-icon {
-    filter: invert(1) brightness(1.2);
+    fill: var(--bs-primary);
     transform: scale(1.1);
 }
 
