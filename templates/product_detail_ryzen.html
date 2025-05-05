@@ -88,17 +88,39 @@
                             <div class="col-6 mb-3">
                                 <div class="key-feature-card p-3 text-center h-100">
                                     {% set icon = 'bolt' %}
-                                    {% for icon_name, keywords in feature_icons.items() %}
-                                        {% for keyword in keywords %}
-                                            {% if keyword in feature_text %}
-                                                {% set icon = icon_name %}
-                                                {% break %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endfor %}
+                                    {# Simpler icon selection logic - choose first matching keyword #}
+                                    {% if 'Ryzen' in feature_text or 'CPU' in feature_text %}
+                                        {% set icon = 'microchip' %}
+                                    {% elif 'RTX' in feature_text or 'GPU' in feature_text or 'Graphics' in feature_text %}
+                                        {% set icon = 'tv' %}
+                                    {% elif 'Memory' in feature_text or 'RAM' in feature_text or 'DDR' in feature_text %}
+                                        {% set icon = 'memory' %}
+                                    {% elif 'Storage' in feature_text or 'SSD' in feature_text or 'NVMe' in feature_text %}
+                                        {% set icon = 'hdd' %}
+                                    {% elif 'Cooling' in feature_text or 'AIO' in feature_text or 'Liquid' in feature_text %}
+                                        {% set icon = 'snowflake' %}
+                                    {% elif 'RGB' in feature_text or 'Lighting' in feature_text %}
+                                        {% set icon = 'lightbulb' %}
+                                    {% elif 'PCIe' in feature_text or 'WiFi' in feature_text or 'Bluetooth' in feature_text %}
+                                        {% set icon = 'wifi' %}
+                                    {% endif %}
                                     <i class="fas fa-{{ icon }} feature-icon mb-3"></i>
                                     <h5>{{ feature_text }}</h5>
-                                    <p class="small mb-0">{{ feature_text }}</p>
+                                    <p class="small mb-0">
+                                        {% if 'Cooling' in feature_text %}
+                                            Better thermal performance for overclocking and quiet operation
+                                        {% elif 'RTX' in feature_text %}
+                                            Incredible gaming performance with realistic lighting and reflections
+                                        {% elif 'RGB' in feature_text %}
+                                            Customizable lighting to match your style and room aesthetic
+                                        {% elif 'PCIe' in feature_text %}
+                                            Faster data transfer speeds for better component performance
+                                        {% elif 'NVMe' in feature_text or 'Storage' in feature_text %}
+                                            Ultra-fast load times and responsive system performance
+                                        {% else %}
+                                            Premium feature for enhanced gaming and computing experience
+                                        {% endif %}
+                                    </p>
                                 </div>
                             </div>
                         {% endfor %}
