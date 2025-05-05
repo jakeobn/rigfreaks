@@ -1,12 +1,27 @@
-/* Dark gradient background for entire website - matching hero section */
-body {
-    background-color: var(--bg-darker); /* Same as hero background */
+/* Dark gradient background for entire website - a continuous gradient for all sections */
+:root {
+    --global-bg-color: #121212;
+    --global-bg-gradient: linear-gradient(135deg, rgba(18, 18, 18, 0.97) 0%, rgba(18, 18, 18, 0.95) 100%);
+}
+
+html, body {
+    background-color: var(--global-bg-color);
+    background-image: var(--global-bg-gradient);
     color: rgba(255, 255, 255, 0.85);
     position: relative;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+/* Force all section backgrounds to be transparent */
+section, .container-fluid, .featured-pcs-section, .pc-categories-section, 
+.usp-features-section, .trending-products-section, .shop-components-section,
+.special-offers-section, .testimonials-section, .why-choose-section,
+.blog-section, .cta-section, .features-modern {
+    background-color: transparent !important;
+    background-image: none !important;
 }
 
 /* Create blobs that match the hero section exactly */
