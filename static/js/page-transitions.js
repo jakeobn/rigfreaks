@@ -149,7 +149,9 @@ class PageTransitionController {
         if (url.includes('/builder/step-by-step') || 
             url.includes('/builder/classic') || 
             url.includes('/add/') || 
-            url.includes('/remove/')) {
+            url.includes('/remove/') ||
+            url.includes('/component/') ||
+            url.includes('/builder')) {
             // Use normal navigation for these routes
             window.location.href = url;
             return;
@@ -161,7 +163,7 @@ class PageTransitionController {
         // Navigate to the new page after a short delay
         setTimeout(() => {
             this.navigateToPage(url);
-        }, 400);
+        }, 300); // Reduced transition time
     }
     
     // Start the transition effect
