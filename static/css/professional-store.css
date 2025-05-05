@@ -679,12 +679,19 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .spec-badge {
-    position: relative;
-    top: unset;
-    left: unset;
-    right: unset;
-    bottom: unset;
+    position: static;
+    transform: none !important;
     margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .hero-badges {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   
   .hero-section::before {
