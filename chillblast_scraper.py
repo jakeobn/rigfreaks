@@ -17,6 +17,18 @@ from datetime import datetime
 BASE_URL = "https://www.chillblast.com"
 GAMING_PC_URL = "https://www.chillblast.com/gaming-pcs"
 WORKSTATION_URL = "https://www.chillblast.com/workstations"
+CUSTOM_PC_URL = "https://www.chillblast.com/custom-pcs"
+LAPTOP_URL = "https://www.chillblast.com/laptops"
+COMPONENT_URLS = {
+    "cpu": "https://www.chillblast.com/pc-components/processors",
+    "motherboard": "https://www.chillblast.com/pc-components/motherboards", 
+    "ram": "https://www.chillblast.com/pc-components/memory",
+    "gpu": "https://www.chillblast.com/pc-components/graphics-cards",
+    "storage": "https://www.chillblast.com/pc-components/storage",
+    "power_supply": "https://www.chillblast.com/pc-components/power-supplies",
+    "case": "https://www.chillblast.com/pc-components/cases",
+    "cooling": "https://www.chillblast.com/pc-components/cooling"
+}
 
 # Output directories
 DATA_DIR = "scraped_data"
@@ -202,18 +214,48 @@ def scrape_all_products():
     print("Scraping workstations...")
     workstations = scrape_product_list(WORKSTATION_URL, 'workstation')
     
-    # Combine all products
-    all_products = gaming_pcs + workstations
+    # Get custom PCs
+    print("Scraping custom PCs...")
+    custom_pcs = scrape_product_list(CUSTOM_PC_URL, 'custom')
     
-    # Get detailed information for each product (limit to 5 for demonstration)
+    # Get laptops
+    print("Scraping laptops...")
+    laptops = scrape_product_list(LAPTOP_URL, 'laptop')
+    
+    # Get components
+    components = {}
+    for category, url in COMPONENT_URLS.items():
+        print(f"Scraping {category} components...")
+        components[category] = scrape_product_list(url, category)
+        time.sleep(1)  # Be nice to the server
+    
+    # Combine all products
+    all_products = gaming_pcs + workstations + custom_pcs + laptops
+    for category, items in components.items():
+        all_products.extend(items)
+    
+    # Get detailed information for products (get up to 3 of each type)
     detailed_products = []
-    for i, product in enumerate(all_products[:5]):
-        print(f"Scraping details for {product['name']}...")
-        detailed_product = extract_product_details(product['url'])
-        if detailed_product:
-            detailed_products.append(detailed_product)
-        # Be nice to the server
-        time.sleep(2)
+    product_types = [
+        (gaming_pcs[:3], 'gaming'),
+        (workstations[:3], 'workstation'),
+        (custom_pcs[:3], 'custom'),
+        (laptops[:3], 'laptop')
+    ]
+    
+    # Add component product types
+    for category, items in components.items():
+        product_types.append((items[:3], category))
+    
+    for products, product_type in product_types:
+        for product in products:
+            print(f"Scraping details for {product_type}: {product['name']}...")
+            detailed_product = extract_product_details(product['url'])
+            if detailed_product:
+                detailed_product['product_type'] = product_type
+                detailed_products.append(detailed_product)
+            # Be nice to the server
+            time.sleep(2)
     
     # Save to JSON file with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -223,8 +265,12 @@ def scrape_all_products():
     with open(os.path.join(DATA_DIR, f"chillblast_products_list_{timestamp}.json"), 'w') as f:
         json.dump(all_products, f, indent=2)
     
+    # Save components separately for PC builder
+    with open(os.path.join(DATA_DIR, f"chillblast_components_{timestamp}.json"), 'w') as f:
+        json.dump(components, f, indent=2)
+    
     print(f"Scraped {len(all_products)} products, saved {len(detailed_products)} with full details")
-    return all_products, detailed_products
+    return all_products, detailed_products, components
 
 def scrape_layout_patterns():
     """Analyze and extract layout patterns from Chillblast website."""
@@ -304,12 +350,13 @@ def main():
     
     # Scrape products
     print("Scraping products...")
-    all_products, detailed_products = scrape_all_products()
+    all_products, detailed_products, components = scrape_all_products()
     
     print("Scraping complete!")
     return {
         "products": len(all_products),
-        "detailed_products": len(detailed_products)
+        "detailed_products": len(detailed_products),
+        "components": {cat: len(items) for cat, items in components.items()}
     }
 
 if __name__ == "__main__":
