@@ -1,0 +1,760 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ config.name }} | RIGFREAKS{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <!-- Product Header Section -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1 class="product-title mb-2">{{ config.name }}</h1>
+            <div class="product-rating mb-3">
+                <span class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </span>
+                <span class="reviews-count ms-2">(24 Reviews)</span>
+            </div>
+            <p class="product-description lead">{{ config.description }}</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+            <div class="product-price-box">
+                <div class="product-price">
+                    <span class="price-label">Price</span>
+                    <span class="price-value">£{{ config.price }}</span>
+                </div>
+                <div class="price-options mt-2">
+                    <small>or as low as £{{ (config.price / 12) | round(2) }}/month with finance</small>
+                </div>
+                <div class="product-actions mt-3">
+                    <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-primary btn-lg w-100 mb-2">
+                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-question-circle me-2"></i> Ask a Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Product Content Section -->
+    <div class="row">
+        <!-- Product Gallery -->
+        <div class="col-lg-6 mb-4">
+            <div class="product-gallery">
+                <div class="main-image-container mb-3">
+                    {% if config.category == 'gaming' %}
+                    <img src="/static/img/gaming-pc.jpg" class="img-fluid rounded" alt="{{ config.name }}">
+                    {% elif config.category == 'professional' or config.category == 'workstation' %}
+                    <img src="/static/img/workstation-pc.jpg" class="img-fluid rounded" alt="{{ config.name }}">
+                    {% else %}
+                    <img src="/static/img/custom-pc.jpg" class="img-fluid rounded" alt="{{ config.name }}">
+                    {% endif %}
+                </div>
+                <div class="thumbnail-gallery d-flex">
+                    <div class="thumbnail-item active me-2">
+                        {% if config.category == 'gaming' %}
+                        <img src="/static/img/gaming-pc.jpg" class="img-fluid rounded" alt="Front view">
+                        {% elif config.category == 'professional' or config.category == 'workstation' %}
+                        <img src="/static/img/workstation-pc.jpg" class="img-fluid rounded" alt="Front view">
+                        {% else %}
+                        <img src="/static/img/custom-pc.jpg" class="img-fluid rounded" alt="Front view">
+                        {% endif %}
+                    </div>
+                    <div class="thumbnail-item me-2">
+                        <img src="/static/img/gaming-pc-1.jpg" class="img-fluid rounded" alt="Side view">
+                    </div>
+                    <div class="thumbnail-item me-2">
+                        <img src="/static/img/gaming-pc-2.jpg" class="img-fluid rounded" alt="Interior view">
+                    </div>
+                    <div class="thumbnail-item">
+                        <img src="/static/img/gaming-pc-3.jpg" class="img-fluid rounded" alt="Back view">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Features -->
+            <div class="key-features mt-4">
+                <h3>Key Features</h3>
+                <ul class="feature-list">
+                    {% if config_details.cpu %}
+                    <li>
+                        <i class="fas fa-microchip text-primary me-2"></i>
+                        <span>{{ config_details.cpu.name }} - {{ config_details.cpu.specs.cores }} Cores, {{ config_details.cpu.specs.speed }}GHz</span>
+                    </li>
+                    {% endif %}
+                    
+                    {% if config_details.gpu %}
+                    <li>
+                        <i class="fas fa-tv text-primary me-2"></i>
+                        <span>{{ config_details.gpu.name }} - {{ config_details.gpu.specs.vram }}GB VRAM</span>
+                    </li>
+                    {% endif %}
+                    
+                    {% if config_details.ram %}
+                    <li>
+                        <i class="fas fa-memory text-primary me-2"></i>
+                        <span>{{ config_details.ram.name }} - {{ config_details.ram.specs.capacity }}GB, {{ config_details.ram.specs.speed }}MHz</span>
+                    </li>
+                    {% endif %}
+                    
+                    {% if config_details.storage %}
+                    <li>
+                        <i class="fas fa-hdd text-primary me-2"></i>
+                        <span>{{ config_details.storage.name }} - {{ config_details.storage.specs.capacity }}</span>
+                    </li>
+                    {% endif %}
+                    
+                    <li>
+                        <i class="fas fa-shield-alt text-primary me-2"></i>
+                        <span>3-Year Peace-of-Mind Warranty</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-shipping-fast text-primary me-2"></i>
+                        <span>Free Next-Day Delivery</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Product Details and Specs -->
+        <div class="col-lg-6">
+            <div class="product-specs">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="true">Specifications</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="performance-tab" data-bs-toggle="tab" data-bs-target="#performance" type="button" role="tab" aria-controls="performance" aria-selected="false">Performance</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#warranty" type="button" role="tab" aria-controls="warranty" aria-selected="false">Warranty</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom" id="productTabsContent">
+                    <!-- Specifications Tab -->
+                    <div class="tab-pane fade show active" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Full Specifications</h4>
+                                
+                                <!-- CPU Specs -->
+                                {% if config_details.cpu %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Processor</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">CPU</div>
+                                        <div class="spec-value">{{ config_details.cpu.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Cores/Threads</div>
+                                        <div class="spec-value">{{ config_details.cpu.specs.cores }} Cores / {{ config_details.cpu.specs.threads }} Threads</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Base Clock</div>
+                                        <div class="spec-value">{{ config_details.cpu.specs.speed }} GHz</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Boost Clock</div>
+                                        <div class="spec-value">{{ config_details.cpu.specs.boost_speed }} GHz</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Motherboard Specs -->
+                                {% if config_details.motherboard %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Motherboard</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Model</div>
+                                        <div class="spec-value">{{ config_details.motherboard.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Chipset</div>
+                                        <div class="spec-value">{{ config_details.motherboard.specs.chipset }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Form Factor</div>
+                                        <div class="spec-value">{{ config_details.motherboard.specs.form_factor }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Memory Specs -->
+                                {% if config_details.ram %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Memory</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">RAM</div>
+                                        <div class="spec-value">{{ config_details.ram.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Capacity</div>
+                                        <div class="spec-value">{{ config_details.ram.specs.capacity }}GB</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Speed</div>
+                                        <div class="spec-value">{{ config_details.ram.specs.speed }}MHz</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Type</div>
+                                        <div class="spec-value">{{ config_details.ram.specs.type }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Graphics Specs -->
+                                {% if config_details.gpu %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Graphics</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">GPU</div>
+                                        <div class="spec-value">{{ config_details.gpu.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">VRAM</div>
+                                        <div class="spec-value">{{ config_details.gpu.specs.vram }}GB {{ config_details.gpu.specs.vram_type }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Display Outputs</div>
+                                        <div class="spec-value">{{ config_details.gpu.specs.outputs }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Storage Specs -->
+                                {% if config_details.storage %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Storage</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Primary Drive</div>
+                                        <div class="spec-value">{{ config_details.storage.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Capacity</div>
+                                        <div class="spec-value">{{ config_details.storage.specs.capacity }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Type</div>
+                                        <div class="spec-value">{{ config_details.storage.specs.type }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Read Speed</div>
+                                        <div class="spec-value">Up to {{ config_details.storage.specs.read_speed }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Case Specs -->
+                                {% if config_details.case %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Case</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Model</div>
+                                        <div class="spec-value">{{ config_details.case.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Form Factor</div>
+                                        <div class="spec-value">{{ config_details.case.specs.form_factor }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Color</div>
+                                        <div class="spec-value">{{ config_details.case.specs.color }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Power Supply Specs -->
+                                {% if config_details.power_supply %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Power Supply</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Model</div>
+                                        <div class="spec-value">{{ config_details.power_supply.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Wattage</div>
+                                        <div class="spec-value">{{ config_details.power_supply.specs.wattage }}W</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Efficiency</div>
+                                        <div class="spec-value">{{ config_details.power_supply.specs.rating }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <!-- Cooling Specs -->
+                                {% if config_details.cooling %}
+                                <div class="spec-group">
+                                    <h5 class="spec-category">Cooling</h5>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">CPU Cooler</div>
+                                        <div class="spec-value">{{ config_details.cooling.name }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Type</div>
+                                        <div class="spec-value">{{ config_details.cooling.specs.type }}</div>
+                                    </div>
+                                    <div class="spec-item d-flex">
+                                        <div class="spec-label">Fans</div>
+                                        <div class="spec-value">{{ config_details.cooling.specs.fans }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Tab -->
+                    <div class="tab-pane fade" id="performance" role="tabpanel" aria-labelledby="performance-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Performance Benchmarks</h4>
+                                
+                                {% if performance %}
+                                <div class="performance-summary mb-4">
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <div class="performance-card text-center p-3 rounded">
+                                                <h5>Gaming</h5>
+                                                <div class="score-circle mx-auto">
+                                                    <span class="score">{{ performance.gaming_score }}</span>
+                                                </div>
+                                                <span class="tier">{{ performance.gaming_tier }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="performance-card text-center p-3 rounded">
+                                                <h5>Content Creation</h5>
+                                                <div class="score-circle mx-auto">
+                                                    <span class="score">{{ performance.content_score }}</span>
+                                                </div>
+                                                <span class="tier">{{ performance.content_tier }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="performance-card text-center p-3 rounded">
+                                                <h5>Productivity</h5>
+                                                <div class="score-circle mx-auto">
+                                                    <span class="score">{{ performance.productivity_score }}</span>
+                                                </div>
+                                                <span class="tier">{{ performance.productivity_tier }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h5>Estimated FPS in Popular Games</h5>
+                                <div class="game-fps-table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Game</th>
+                                                <th class="text-center">1080p</th>
+                                                <th class="text-center">1440p</th>
+                                                <th class="text-center">4K</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Cyberpunk 2077</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.8) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.5) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.25) | round }}+ FPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Call of Duty: Modern Warfare</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 1.1) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.7) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.35) | round }}+ FPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fortnite</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 1.5) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.9) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.45) | round }}+ FPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Apex Legends</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 1.3) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.8) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.4) | round }}+ FPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Red Dead Redemption 2</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.7) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.45) | round }}+ FPS</td>
+                                                <td class="text-center">{{ (performance.gaming_score * 0.22) | round }}+ FPS</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> Performance benchmarks are not available for this configuration.
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Warranty Tab -->
+                    <div class="tab-pane fade" id="warranty" role="tabpanel" aria-labelledby="warranty-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Our Warranty Promise</h4>
+                                <p>Every RigFreaks PC comes with our comprehensive 3-year warranty, giving you complete peace of mind with your purchase.</p>
+                                
+                                <div class="warranty-features mt-4">
+                                    <div class="warranty-item d-flex mb-3">
+                                        <div class="warranty-icon me-3">
+                                            <i class="fas fa-shield-alt text-primary fa-2x"></i>
+                                        </div>
+                                        <div class="warranty-content">
+                                            <h5>3 Years Collect & Return</h5>
+                                            <p>If your system develops a fault within the warranty period, we'll collect it, repair it, and return it to you free of charge.</p>
+                                        </div>
+                                    </div>
+                                    <div class="warranty-item d-flex mb-3">
+                                        <div class="warranty-icon me-3">
+                                            <i class="fas fa-headset text-primary fa-2x"></i>
+                                        </div>
+                                        <div class="warranty-content">
+                                            <h5>Lifetime Technical Support</h5>
+                                            <p>Our UK-based team of experts is available to assist you with any technical issues or questions for the lifetime of your PC.</p>
+                                        </div>
+                                    </div>
+                                    <div class="warranty-item d-flex mb-3">
+                                        <div class="warranty-icon me-3">
+                                            <i class="fas fa-tools text-primary fa-2x"></i>
+                                        </div>
+                                        <div class="warranty-content">
+                                            <h5>Parts & Labor Included</h5>
+                                            <p>All replacement parts and labor costs are covered under our warranty - no hidden fees or charges.</p>
+                                        </div>
+                                    </div>
+                                    <div class="warranty-item d-flex">
+                                        <div class="warranty-icon me-3">
+                                            <i class="fas fa-sync-alt text-primary fa-2x"></i>
+                                        </div>
+                                        <div class="warranty-content">
+                                            <h5>30-Day No Quibble Returns</h5>
+                                            <p>Not completely satisfied? Return your PC within 30 days for a full refund, no questions asked (excludes shipping).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recommended Products Section -->
+    <div class="recommended-products mt-5">
+        <h3 class="section-title mb-4">You May Also Like</h3>
+        <div class="row">
+            <!-- Featured builds from our prebuilt collection -->
+            {% set exclude_id = config.id %}
+            {% set counter = 0 %}
+            {% for prebuilt in PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).limit(3).all() %}
+            <div class="col-md-4">
+                <div class="card product-card h-100">
+                    {% if prebuilt.category == 'gaming' %}
+                    <img src="/static/img/gaming-pc-{{ (counter % 3) + 1 }}.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% elif prebuilt.category == 'professional' or prebuilt.category == 'workstation' %}
+                    <img src="/static/img/workstation-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% else %}
+                    <img src="/static/img/custom-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prebuilt.name }}</h5>
+                        <p class="card-text">{{ prebuilt.description[:100] }}{% if prebuilt.description|length > 100 %}...{% endif %}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price">£{{ prebuilt.price }}</span>
+                            <a href="{{ url_for('product_detail', config_id=prebuilt.id) }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% set counter = counter + 1 %}
+            {% endfor %}
+            
+            {% if PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).count() == 0 %}
+            <!-- Fallback content if no other prebuilds are available -->
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> Looking for more options? <a href="{{ url_for('builds.prebuilt_configs') }}" class="alert-link">Check out all our prebuilt configurations</a> or <a href="{{ url_for('step_builder') }}" class="alert-link">build your own custom PC</a>.
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Product Detail Page Styles */
+    .product-title {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: white;
+    }
+    
+    .product-rating .stars {
+        color: #ffc107;
+    }
+    
+    .product-description {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .product-price-box {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-price {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .price-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .price-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--bs-success);
+    }
+    
+    .price-options small {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Gallery */
+    .product-gallery .main-image-container {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    .thumbnail-item {
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        opacity: 0.7;
+    }
+    
+    .thumbnail-item.active {
+        opacity: 1;
+        box-shadow: 0 0 0 2px var(--bs-primary);
+    }
+    
+    .thumbnail-item:hover {
+        opacity: 1;
+    }
+    
+    /* Key Features */
+    .key-features {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+    
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0 0;
+    }
+    
+    .feature-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+    }
+    
+    .feature-list li:last-child {
+        border-bottom: none;
+    }
+    
+    /* Tabs & Specifications */
+    .nav-tabs {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-tabs .nav-link {
+        color: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-tabs .nav-link:hover {
+        color: white;
+        border-color: transparent;
+    }
+    
+    .nav-tabs .nav-link.active {
+        color: var(--bs-primary);
+        background-color: transparent;
+        border-bottom-color: var(--bs-primary);
+    }
+    
+    .tab-content {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .spec-group {
+        margin-bottom: 2rem;
+    }
+    
+    .spec-category {
+        color: var(--bs-primary);
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .spec-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    
+    .spec-label {
+        flex: 0 0 40%;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+    }
+    
+    .spec-value {
+        flex: 0 0 60%;
+        color: white;
+    }
+    
+    /* Performance Cards */
+    .performance-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .score-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--bs-primary), var(--bs-info));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
+    }
+    
+    .score-circle .score {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    
+    .performance-card .tier {
+        display: block;
+        font-weight: 500;
+        color: var(--bs-info);
+    }
+    
+    /* Game FPS Table */
+    .game-fps-table {
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 1rem;
+    }
+    
+    .game-fps-table table {
+        margin-bottom: 0;
+    }
+    
+    .game-fps-table th {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        border-bottom-width: 1px;
+    }
+    
+    /* Warranty Features */
+    .warranty-item {
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+    
+    .warranty-item h5 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+    
+    .warranty-item p {
+        margin-bottom: 0;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Recommended Products */
+    .product-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-card .price {
+        font-weight: 700;
+        color: var(--bs-success);
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Thumbnail gallery functionality
+        const thumbnails = document.querySelectorAll('.thumbnail-item');
+        const mainImage = document.querySelector('.main-image-container img');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+                
+                // Set main image source to clicked thumbnail source
+                // In a real implementation, you would have different sized images
+                mainImage.src = this.querySelector('img').src;
+            });
+        });
+    });
+</script>
+{% endblock %}

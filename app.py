@@ -343,5 +343,56 @@ def prebuilt_redirect():
     """Redirect to the prebuilt configurations page."""
     return redirect(url_for('builds.prebuilt_configs'))
 
+@app.route('/product/<int:config_id>')
+def product_detail(config_id):
+    """Product detail page for a specific prebuilt configuration."""
+    # Get the prebuilt configuration
+    config = PreBuiltConfig.query.get_or_404(config_id)
+    
+    # Load component details
+    components = load_component_data()
+    config_details = {}
+    
+    # Get component details for each category
+    for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']:
+        component_id = getattr(config, f'{category}_id')
+        if component_id:
+            category_components = components.get(category, [])
+            component = next((c for c in category_components if c['id'] == component_id), None)
+            if component:
+                config_details[category] = component
+    
+    # Calculate performance benchmarks
+    performance_summary = None
+    if config.cpu_id and config.gpu_id:
+        try:
+            # Lazy import for better performance
+            from benchmarks import get_performance_summary
+            temp_config = {
+                'cpu': config.cpu_id,
+                'gpu': config.gpu_id,
+                'ram': config.ram_id
+            }
+            performance_summary = get_performance_summary(temp_config)
+        except Exception as e:
+            app.logger.error(f"Error retrieving performance summary: {str(e)}")
+    
+    # Check compatibility
+    temp_config = {}
+    for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']:
+        component_id = getattr(config, f'{category}_id')
+        if component_id:
+            temp_config[category] = component_id
+            
+    compatibility_issues = check_compatibility(temp_config)
+    
+    return render_template(
+        'product_detail.html',
+        config=config,
+        config_details=config_details,
+        performance=performance_summary,
+        compatibility_issues=compatibility_issues
+    )
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
