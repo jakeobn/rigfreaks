@@ -3,7 +3,7 @@ import logging
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash, make_response
 from models import db, User, Build, PreBuiltConfig, ContactMessage
 from werkzeug.middleware.proxy_fix import ProxyFix
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from utils import load_component_data, load_compatibility_rules, check_compatibility, calculate_total_price
 
 # Configure logging
@@ -179,7 +179,7 @@ def add_component(category, component_id):
         # This is a toggle/unselect action
         del session['pc_config'][category]
         session.modified = True
-        return redirect(url_for('step_builder'))
+        return redirect(url_for('select_component', category=category))
     else:
         # This is an add/select action
         # Add component to configuration
@@ -194,8 +194,17 @@ def add_component(category, component_id):
                 flash_message += f"<li>{issue}</li>"
             flash_message += "</ul>"
             flash(flash_message, "warning")
+        
+        # Get all steps
+        steps = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']
+        current_index = steps.index(category)
+        
+        # If this isn't the last step, move to the next one
+        if current_index < len(steps) - 1:
+            next_step = steps[current_index + 1]
+            return redirect(url_for('select_component', category=next_step))
     
-    return redirect(url_for('step_builder'))
+    return redirect(url_for('select_component', category=category))
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):
@@ -203,7 +212,7 @@ def remove_component(category):
         del session['pc_config'][category]
         session.modified = True
     
-    return redirect(url_for('step_builder'))
+    return redirect(url_for('select_component', category=category))
 
 @app.route('/summary')
 def summary():
@@ -236,11 +245,12 @@ def summary():
     
     # Cache control headers for better browser caching
     response = make_response(render_template(
-        'summary.html',
+        'chillblast_summary.html',
         config=config_details,
         compatibility_issues=compatibility_issues,
         total_price=total_price,
-        performance=performance_summary
+        performance=performance_summary,
+        current_user=current_user
     ))
     response.headers['Cache-Control'] = 'private, max-age=10'  # Cache for 10 seconds
     return response
@@ -270,7 +280,7 @@ def reset_configuration():
         session['pc_config'] = {}
         session.modified = True
     
-    return redirect(url_for('step_builder'))
+    return redirect(url_for('select_component', category='cpu'))
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():

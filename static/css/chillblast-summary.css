@@ -1,0 +1,471 @@
+/* Chillblast-inspired Summary Page Styles */
+
+/* Hero Section */
+.summary-hero {
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.summary-hero p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+
+/* Summary Content */
+.summary-section {
+    padding: 4rem 0;
+}
+
+.summary-box {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.summary-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.summary-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #0066cc;
+}
+
+.summary-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Configuration Summary */
+.config-list {
+    margin-bottom: 2rem;
+}
+
+.config-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.config-item:hover {
+    border-color: #0066cc;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.config-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #f0f7ff;
+    color: #0066cc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.config-content {
+    flex: 1;
+}
+
+.config-category {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #0066cc;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+}
+
+.config-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.config-specs {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.config-price {
+    font-weight: 700;
+    color: #333;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+/* Total Price Box */
+.total-price-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.total-price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.total-price-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.price-label {
+    color: #666;
+}
+
+.price-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.price-total-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.price-total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0066cc;
+}
+
+.vat-note {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 0.75rem;
+    text-align: right;
+}
+
+/* Performance Box */
+.performance-box {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.performance-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.performance-chart {
+    margin-bottom: 1.5rem;
+}
+
+.performance-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.performance-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.performance-value {
+    font-weight: 700;
+    color: #0066cc;
+}
+
+.performance-bar {
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.performance-progress {
+    height: 100%;
+    background-color: #0066cc;
+    border-radius: 5px;
+}
+
+.fps-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.fps-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.fps-game {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.fps-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0066cc;
+    margin-bottom: 0.25rem;
+}
+
+.fps-label {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Compatibility Box */
+.compatibility-box {
+    background-color: #fff8f8;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.compatibility-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #721c24;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.compatibility-title i {
+    margin-right: 0.75rem;
+}
+
+.compatibility-list {
+    padding-left: 3rem;
+    margin-bottom: 0;
+}
+
+.compatibility-item {
+    color: #721c24;
+    margin-bottom: 0.5rem;
+}
+
+.compatibility-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Actions Box */
+.actions-box {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-save-build {
+    flex: 1;
+}
+
+.btn-edit-build {
+    flex: 1;
+}
+
+.btn-order {
+    flex: 2;
+}
+
+/* Order Summary Box */
+.order-summary-box {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.order-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.order-detail {
+    margin-bottom: 2rem;
+}
+
+.order-detail-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.order-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.order-info-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.order-info-label {
+    color: #666;
+}
+
+.order-info-value {
+    font-weight: 600;
+    color: #333;
+    text-align: right;
+}
+
+.estimated-delivery {
+    background-color: #e6f7ff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.estimated-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0066cc;
+}
+
+.estimated-date {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.warranty-note {
+    background-color: #f0f7ff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.warranty-icon {
+    font-size: 2rem;
+    color: #0066cc;
+    margin-right: 1rem;
+}
+
+.warranty-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.warranty-content p {
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 991.98px) {
+    .summary-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .summary-title {
+        font-size: 1.5rem;
+    }
+    
+    .order-summary-box {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .summary-hero {
+        padding: 3rem 0;
+    }
+    
+    .summary-hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .summary-section {
+        padding: 3rem 0;
+    }
+    
+    .config-item {
+        flex-direction: column;
+    }
+    
+    .config-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .actions-box {
+        flex-direction: column;
+    }
+    
+    .btn-save-build,
+    .btn-edit-build,
+    .btn-order {
+        width: 100%;
+    }
+    
+    .fps-boxes {
+        flex-direction: column;
+    }
+}
