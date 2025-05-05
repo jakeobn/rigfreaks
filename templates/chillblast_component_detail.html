@@ -1,0 +1,233 @@
+{% extends 'chillblast_layout.html' %}
+
+{% block title %}{{ component.name }} - Component Details - RigFreaks{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-component-detail.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="component-detail-container">
+    <div class="container">
+        <!-- Component Detail Header -->
+        <div class="component-detail-header">
+            <div class="component-category">{{ category | capitalize }}</div>
+            <h1 class="component-title">{{ component.name }}</h1>
+            <div class="component-brand">{{ component.brand }}</div>
+        </div>
+        
+        <!-- Component Detail Content -->
+        <div class="component-detail-content">
+            <div class="component-main">
+                <div class="component-image-container">
+                    {% if component.image %}
+                    <img src="{{ component.image }}" alt="{{ component.name }}" class="component-image">
+                    {% else %}
+                    <div class="component-image-placeholder" style="height: 300px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <i class="fas fa-image" style="font-size: 3rem; color: #dee2e6;"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="component-info">
+                    <div class="component-price-box">
+                        <div class="component-price">£{{ component.price }}</div>
+                        <div class="component-tax-note">Price includes VAT</div>
+                    </div>
+                    
+                    <div class="component-status">
+                        {% if component.stock_status == 'in_stock' or not component.stock_status %}
+                        <div class="status-indicator status-in-stock"></div>
+                        <div class="status-text status-in-stock-text">In Stock</div>
+                        {% elif component.stock_status == 'low_stock' %}
+                        <div class="status-indicator status-low-stock"></div>
+                        <div class="status-text status-low-stock-text">Low Stock</div>
+                        {% else %}
+                        <div class="status-indicator status-out-stock"></div>
+                        <div class="status-text status-out-stock-text">Out of Stock</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="component-specs">
+                        <h3 class="specs-title">Key Specifications</h3>
+                        <table class="specs-table">
+                            {% for key, value in component.specs.items() if key and value %}
+                            <tr>
+                                <td class="specs-label">{{ key }}</td>
+                                <td class="specs-value">{{ value }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="2">Detailed specifications not available</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    
+                    <div class="component-actions">
+                        <form action="{{ url_for('add_component', category=category, component_id=component.id) }}" method="post">
+                            <button type="submit" class="btn-add-to-build {% if is_selected %}selected{% endif %}">
+                                {% if is_selected %}
+                                <i class="fas fa-check me-2"></i>Selected Component
+                                {% else %}
+                                <i class="fas fa-plus me-2"></i>Add to Build
+                                {% endif %}
+                            </button>
+                        </form>
+                        <a href="{{ url_for('select_component', category=category) }}" class="btn-back-to-selection">
+                            <i class="fas fa-arrow-left me-1"></i>Back to {{ category | capitalize }} Selection
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Component Tabs -->
+            <div class="component-tabs">
+                <ul class="nav nav-tabs" id="componentTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">Specifications</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="compatibility-tab" data-bs-toggle="tab" data-bs-target="#compatibility" type="button" role="tab" aria-controls="compatibility" aria-selected="false">Compatibility</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="componentTabsContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <div class="component-description">
+                            {{ component.description | safe }}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+                        <table class="specs-table">
+                            {% for key, value in component.specs.items() if key and value %}
+                            <tr>
+                                <td class="specs-label">{{ key }}</td>
+                                <td class="specs-value">{{ value }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="2">Detailed specifications not available</td>
+                            </tr>
+                            {% endfor %}
+                            
+                            {% if component.clock_speed %}
+                            <tr>
+                                <td class="specs-label">Clock Speed</td>
+                                <td class="specs-value">{{ component.clock_speed }}</td>
+                            </tr>
+                            {% endif %}
+                            
+                            {% if component.socket %}
+                            <tr>
+                                <td class="specs-label">Socket</td>
+                                <td class="specs-value">{{ component.socket }}</td>
+                            </tr>
+                            {% endif %}
+                            
+                            {% if component.cores %}
+                            <tr>
+                                <td class="specs-label">Cores</td>
+                                <td class="specs-value">{{ component.cores }}</td>
+                            </tr>
+                            {% endif %}
+                            
+                            {% if component.capacity %}
+                            <tr>
+                                <td class="specs-label">Capacity</td>
+                                <td class="specs-value">{{ component.capacity }}</td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="compatibility" role="tabpanel" aria-labelledby="compatibility-tab">
+                        <h3>Compatibility Information</h3>
+                        <p>This {{ category }} is compatible with the following:</p>
+                        
+                        {% if category == 'cpu' %}
+                        <ul>
+                            <li>Compatible with motherboards with {{ component.socket }} socket</li>
+                            <li>Supports DDR4 and DDR5 memory depending on motherboard</li>
+                            <li>Works with most modern CPU coolers (check socket compatibility)</li>
+                        </ul>
+                        {% elif category == 'motherboard' %}
+                        <ul>
+                            <li>Compatible with CPUs with {{ component.socket }} socket</li>
+                            <li>Supports RAM speeds up to {{ component.max_memory_speed }}</li>
+                            <li>Form Factor: {{ component.form_factor }}</li>
+                        </ul>
+                        {% elif category == 'ram' %}
+                        <ul>
+                            <li>Compatible with motherboards that support {{ component.type }}</li>
+                            <li>Optimized speed of {{ component.speed }}</li>
+                            <li>{{ component.modules }} modules included</li>
+                        </ul>
+                        {% elif category == 'gpu' %}
+                        <ul>
+                            <li>Compatible with PCIe x16 slots</li>
+                            <li>Requires {{ component.power_requirement or '500W' }}+ power supply</li>
+                            <li>Length: {{ component.length or 'Standard' }}</li>
+                        </ul>
+                        {% elif category == 'storage' %}
+                        <ul>
+                            <li>Interface: {{ component.interface or 'SATA/NVMe' }}</li>
+                            <li>Form Factor: {{ component.form_factor or '2.5"/M.2' }}</li>
+                            <li>Capacity: {{ component.capacity }}</li>
+                        </ul>
+                        {% elif category == 'power_supply' %}
+                        <ul>
+                            <li>Wattage: {{ component.wattage }}</li>
+                            <li>Efficiency Rating: {{ component.efficiency }}</li>
+                            <li>Form Factor: {{ component.form_factor or 'ATX' }}</li>
+                        </ul>
+                        {% elif category == 'case' %}
+                        <ul>
+                            <li>Compatible Motherboard Form Factors: {{ component.compatible_motherboards or 'ATX, Micro-ATX, Mini-ITX' }}</li>
+                            <li>Max GPU Length: {{ component.max_gpu_length or '330mm' }}</li>
+                            <li>Max CPU Cooler Height: {{ component.max_cooler_height or '160mm' }}</li>
+                        </ul>
+                        {% elif category == 'cooling' %}
+                        <ul>
+                            <li>Compatible CPU Sockets: {{ component.compatible_sockets or 'Most modern Intel and AMD sockets' }}</li>
+                            <li>Type: {{ component.type or 'Air/Liquid' }}</li>
+                            <li>Size: {{ component.size or 'Standard' }}</li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tabs
+        var tabEls = document.querySelectorAll('#componentTabs button');
+        tabEls.forEach(function(tabEl) {
+            tabEl.addEventListener('click', function(event) {
+                event.preventDefault();
+                var tabTarget = this.getAttribute('data-bs-target');
+                
+                // Remove active class from all tabs and panes
+                document.querySelectorAll('#componentTabs .nav-link').forEach(function(tab) {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-selected', 'false');
+                });
+                document.querySelectorAll('#componentTabsContent .tab-pane').forEach(function(pane) {
+                    pane.classList.remove('show', 'active');
+                });
+                
+                // Add active class to clicked tab and its pane
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                document.querySelector(tabTarget).classList.add('show', 'active');
+            });
+        });
+    });
+</script>
+{% endblock %}

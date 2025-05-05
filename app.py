@@ -159,7 +159,7 @@ def component_detail(category, component_id):
     
     # Add cache control headers for better client-side caching
     response = make_response(render_template(
-        'component_details.html',
+        'chillblast_component_detail.html',
         category=category,
         component=component,
         is_selected=is_selected
