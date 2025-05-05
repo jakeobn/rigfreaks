@@ -3,12 +3,25 @@
 /* Global background styling */
 body {
     background-color: var(--bs-dark);
+    color: white;
+}
+
+/* Remove all section paddings and margins for continuous flow */
+section {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+}
+
+/* Add consistent padding to containers instead */
+section .container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 /* PC Categories Section */
 .pc-categories-section {
-    padding: 3rem 0;
-    background-color: var(--bs-dark);
+    /* No padding or background here - controlled globally */
     color: white;
 }
 
@@ -90,7 +103,7 @@ body {
 
 /* Featured PCs Section */
 .featured-pcs-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
@@ -181,7 +194,7 @@ body {
 
 /* USP Features Section */
 .usp-features-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
@@ -203,7 +216,7 @@ body {
 
 /* Shop By Component Section */
 .shop-components-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
@@ -265,7 +278,7 @@ body {
 
 /* Testimonials Section */
 .testimonials-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
@@ -325,7 +338,7 @@ body {
 
 /* Trending Products Section */
 .trending-products-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
@@ -430,7 +443,7 @@ body {
 
 /* Why Choose Us Section */
 .why-choose-us-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
@@ -495,7 +508,7 @@ body {
 
 /* CTA Banner Section */
 .cta-banner-section {
-    background-color: var(--bs-dark);
+    /* No background here - controlled globally */
     color: white;
 }
 
