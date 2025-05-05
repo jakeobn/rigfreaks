@@ -2,6 +2,10 @@
 
 {% block title %}Home{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-home.css') }}">
+{% endblock %}
+
 {% block content %}
 {% if search_query %}
 <!-- Search Results Section -->
@@ -131,220 +135,277 @@
 <div class="container-fluid px-0">
     <!-- PC Categories Section (Chillblast-style) -->
     <section class="pc-categories-section py-5 mb-0">
-        <div class="section-header text-center mb-5">
-            <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">WHY CHOOSE US</span>
-            <h2 class="display-5 fw-bold mb-4">Why Choose Us</h2>
-        </div>
-        
-        <div class="row g-4 justify-content-center">
-            <!-- Feature Card 1 -->
-            <div class="col-md-4 col-lg-4 mb-4">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-card-inner">
-                        <div class="feature-icon-wrap">
-                            <div class="feature-icon-bg"></div>
-                            <i class="fas fa-tools feature-icon"></i>
-                        </div>
-                        <h3 class="feature-title">Expertly Crafted Builds</h3>
-                        <p class="feature-desc">Every PC is hand-assembled and rigorously tested by professionals to ensure maximum performance and reliability.</p>
-                        <span class="feature-number">01</span>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title mb-3">PCs For Every Need</h2>
+                <p class="section-subtitle">Browse our specialized PC configurations or design your own</p>
             </div>
             
-            <!-- Feature Card 2 -->
-            <div class="col-md-4 col-lg-4 mb-4">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="feature-card-inner">
-                        <div class="feature-icon-wrap">
-                            <div class="feature-icon-bg"></div>
-                            <i class="fas fa-puzzle-piece feature-icon"></i>
+            <div class="row g-3 g-md-4">
+                <!-- Gaming PC Category -->
+                <div class="col-6 col-md-3">
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="pc-category-card">
+                        <div class="pc-category-image">
+                            <img src="{{ url_for('static', filename='img/gaming-pc.jpg') }}" alt="Gaming PC" class="img-fluid">
                         </div>
-                        <h3 class="feature-title">Real-Time Compatibility Checker</h3>
-                        <p class="feature-desc">Our smart configurator only shows compatible parts, so you never have to worry about mismatched components.</p>
-                        <span class="feature-number">02</span>
-                    </div>
+                        <div class="pc-category-overlay">
+                            <h3 class="pc-category-title">Gaming PCs</h3>
+                            <span class="category-btn">Explore</span>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            
-            <!-- Feature Card 3 -->
-            <div class="col-md-4 col-lg-4 mb-4">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-card-inner">
-                        <div class="feature-icon-wrap">
-                            <div class="feature-icon-bg"></div>
-                            <i class="fas fa-award feature-icon"></i>
+                
+                <!-- Workstation PC Category -->
+                <div class="col-6 col-md-3">
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="pc-category-card">
+                        <div class="pc-category-image">
+                            <img src="{{ url_for('static', filename='img/workstation-pc.jpg') }}" alt="Workstation PC" class="img-fluid">
                         </div>
-                        <h3 class="feature-title">High-Quality Parts</h3>
-                        <p class="feature-desc">We source premium, brand-name components to deliver top-tier speed, graphics, and durability.</p>
-                        <span class="feature-number">03</span>
-                    </div>
+                        <div class="pc-category-overlay">
+                            <h3 class="pc-category-title">Workstations</h3>
+                            <span class="category-btn">Explore</span>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            
-            <!-- Feature Card 4 -->
-            <div class="col-md-4 col-lg-6 mb-4">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="feature-card-inner">
-                        <div class="feature-icon-wrap">
-                            <div class="feature-icon-bg"></div>
-                            <i class="fas fa-user-cog feature-icon"></i>
+                
+                <!-- Creator PC Category -->
+                <div class="col-6 col-md-3">
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="pc-category-card">
+                        <div class="pc-category-image">
+                            <img src="{{ url_for('static', filename='img/creator-pc.jpg') }}" alt="Creator PC" class="img-fluid">
                         </div>
-                        <h3 class="feature-title">Tailored for You</h3>
-                        <p class="feature-desc">From casual gaming to high-end workstations, we help you build a PC that fits your exact needs and budget.</p>
-                        <span class="feature-number">04</span>
-                    </div>
+                        <div class="pc-category-overlay">
+                            <h3 class="pc-category-title">Creator PCs</h3>
+                            <span class="category-btn">Explore</span>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            
-            <!-- Feature Card 5 -->
-            <div class="col-md-4 col-lg-6 mb-4">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-card-inner">
-                        <div class="feature-icon-wrap">
-                            <div class="feature-icon-bg"></div>
-                            <i class="fas fa-headset feature-icon"></i>
+                
+                <!-- Custom PC Category -->
+                <div class="col-6 col-md-3">
+                    <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="pc-category-card">
+                        <div class="pc-category-image">
+                            <img src="{{ url_for('static', filename='img/custom-pc.jpg') }}" alt="Custom PC" class="img-fluid">
                         </div>
-                        <h3 class="feature-title">Fast Delivery & Support</h3>
-                        <p class="feature-desc">Get your build delivered quickly and backed by responsive customer support whenever you need help.</p>
-                        <span class="feature-number">05</span>
-                    </div>
+                        <div class="pc-category-overlay">
+                            <h3 class="pc-category-title">Custom Build</h3>
+                            <span class="category-btn">Design Yours</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-        
-        <!-- Feature Metrics Bar -->
-        <div class="metrics-bar mt-5" data-aos="fade-up" data-aos-delay="400">
-            <div class="container">
-                <div class="row align-items-center justify-content-between text-center text-md-start">
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <div class="metric-item">
-                            <span class="metric-number">100%</span>
-                            <span class="metric-label">Expert Assembly</span>
+    </section>
+    
+    <!-- Featured PCs Showcase (Chillblast-style) -->
+    <section class="featured-pcs-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="section-title mb-1">Featured Custom Builds</h2>
+                    <p class="section-subtitle">Our most popular configurations</p>
+                </div>
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary d-none d-md-block">View All</a>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Featured PC 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="featured-pc-card">
+                        <span class="featured-badge">Best Seller</span>
+                        <div class="featured-pc-image">
+                            <img src="{{ url_for('static', filename='img/gaming-pc-1.jpg') }}" alt="Elite Gaming PC" class="img-fluid">
+                        </div>
+                        <div class="featured-pc-content">
+                            <h3 class="featured-pc-title">Elite Gaming PC</h3>
+                            <div class="featured-pc-specs">
+                                <span class="spec-item"><i class="fas fa-microchip"></i> Ryzen 9 7900X</span>
+                                <span class="spec-item"><i class="fas fa-tv"></i> RTX 4080 Super</span>
+                                <span class="spec-item"><i class="fas fa-memory"></i> 32GB DDR5</span>
+                            </div>
+                            <div class="featured-pc-price">
+                                <span class="price">£2,399</span>
+                            </div>
+                            <div class="featured-pc-actions">
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary w-100">Configure</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3 mb-4 mb-md-0">
-                        <div class="metric-item">
-                            <span class="metric-number">3-Year</span>
-                            <span class="metric-label">Premium Warranty</span>
+                </div>
+                
+                <!-- Featured PC 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="featured-pc-card">
+                        <span class="featured-badge">Top Value</span>
+                        <div class="featured-pc-image">
+                            <img src="{{ url_for('static', filename='img/gaming-pc-2.jpg') }}" alt="Pro Creator PC" class="img-fluid">
+                        </div>
+                        <div class="featured-pc-content">
+                            <h3 class="featured-pc-title">Pro Creator PC</h3>
+                            <div class="featured-pc-specs">
+                                <span class="spec-item"><i class="fas fa-microchip"></i> Intel i9-14900K</span>
+                                <span class="spec-item"><i class="fas fa-tv"></i> RTX 4070 Ti</span>
+                                <span class="spec-item"><i class="fas fa-memory"></i> 64GB DDR5</span>
+                            </div>
+                            <div class="featured-pc-price">
+                                <span class="price">£2,199</span>
+                            </div>
+                            <div class="featured-pc-actions">
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary w-100">Configure</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="metric-item">
-                            <span class="metric-number">1000+</span>
-                            <span class="metric-label">Configurations</span>
+                </div>
+                
+                <!-- Featured PC 3 -->
+                <div class="col-md-6 col-lg-4 d-none d-lg-block">
+                    <div class="featured-pc-card">
+                        <span class="featured-badge">New</span>
+                        <div class="featured-pc-image">
+                            <img src="{{ url_for('static', filename='img/gaming-pc-3.jpg') }}" alt="Compact Gaming PC" class="img-fluid">
+                        </div>
+                        <div class="featured-pc-content">
+                            <h3 class="featured-pc-title">Compact Gaming PC</h3>
+                            <div class="featured-pc-specs">
+                                <span class="spec-item"><i class="fas fa-microchip"></i> AMD Ryzen 7 7800X3D</span>
+                                <span class="spec-item"><i class="fas fa-tv"></i> RTX 4070</span>
+                                <span class="spec-item"><i class="fas fa-memory"></i> 32GB DDR5</span>
+                            </div>
+                            <div class="featured-pc-price">
+                                <span class="price">£1,799</span>
+                            </div>
+                            <div class="featured-pc-actions">
+                                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-primary w-100">Configure</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="metric-item">
-                            <span class="metric-number">24/7</span>
-                            <span class="metric-label">Technical Support</span>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4 d-md-none">
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View All PCs</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- USP Features Bar (Chillblast-style) -->
+    <section class="usp-features-section py-4">
+        <div class="container">
+            <div class="row justify-content-between text-center">
+                <div class="col-6 col-md-3 mb-3 mb-md-0">
+                    <div class="usp-feature">
+                        <div class="usp-icon">
+                            <i class="fas fa-tools"></i>
                         </div>
+                        <h4 class="usp-title">Expert Assembly</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3 mb-md-0">
+                    <div class="usp-feature">
+                        <div class="usp-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4 class="usp-title">3-Year Warranty</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="usp-feature">
+                        <div class="usp-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4 class="usp-title">Free Delivery</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="usp-feature">
+                        <div class="usp-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4 class="usp-title">Lifetime Support</h4>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="testimonials-modern py-6">
+    <!-- Customer Reviews/Testimonials Section -->
+    <section class="testimonials-section py-5">
         <div class="container">
-            <!-- Modern header with outline badge -->
-            <div class="testimonials-modern-header text-center" data-aos="fade-up">
-                <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">CUSTOMER STORIES</span>
-                <h2 class="display-5 fw-bold mb-4">What Customers Are Saying</h2>
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title mb-3">What Our Customers Say</h2>
+                <div class="overall-rating d-flex align-items-center justify-content-center">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text ms-2">4.9 out of 5 based on 150+ reviews</span>
+                </div>
             </div>
             
-            <!-- Modern testimonial cards with grid layout -->
-            <div class="testimonials-grid">
+            <div class="row g-4">
                 <!-- Testimonial 1 -->
-                <div class="testimonial-card-modern" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-quote">
-                        <i class="fas fa-quote-right"></i>
-                    </div>
-                    <div class="testimonial-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="testimonial-rating-modern">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="testimonial-content-modern">
-                        <p>"Absolutely thrilled with my custom rig from RigFreaks! Arrived fast, packaged like a tank, and runs every game on ultra."</p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <div class="testimonial-author-modern">
-                            <div class="testimonial-name">Josh M.</div>
-                            <div class="testimonial-role">Manchester</div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="testimonial-verified">
-                            <i class="fas fa-check-circle"></i> Verified Purchase
+                        <div class="testimonial-content">
+                            <p>"Absolutely thrilled with my custom rig from RigFreaks! Arrived fast, packaged like a tank, and runs every game on ultra."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Josh M.</div>
+                            <div class="author-location">Manchester</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Testimonial 2 (Featured) -->
-                <div class="testimonial-card-modern testimonial-featured" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-quote">
-                        <i class="fas fa-quote-right"></i>
-                    </div>
-                    <div class="testimonial-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="testimonial-rating-modern">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="testimonial-content-modern">
-                        <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup."</p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <div class="testimonial-author-modern">
-                            <div class="testimonial-name">Rhea L.</div>
-                            <div class="testimonial-role">London</div>
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="testimonial-verified">
-                            <i class="fas fa-check-circle"></i> Verified Purchase
+                        <div class="testimonial-content">
+                            <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Rhea L.</div>
+                            <div class="author-location">London</div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Testimonial 3 -->
-                <div class="testimonial-card-modern" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-quote">
-                        <i class="fas fa-quote-right"></i>
-                    </div>
-                    <div class="testimonial-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="testimonial-rating-modern">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="testimonial-content-modern">
-                        <p>"I've ordered PCs before but never had service this personal. They even double-checked my selections for compatibility before building."</p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <div class="testimonial-author-modern">
-                            <div class="testimonial-name">Tom W.</div>
-                            <div class="testimonial-role">Leeds</div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="testimonial-verified">
-                            <i class="fas fa-check-circle"></i> Verified Purchase
+                        <div class="testimonial-content">
+                            <p>"First time buying a custom PC and the service was exceptional. Support team answered all my questions and guided me through the whole process."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Aiden T.</div>
+                            <div class="author-location">Edinburgh</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-
         </div>
     </section>
     
