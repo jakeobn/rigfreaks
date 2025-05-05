@@ -1,298 +1,213 @@
 {% extends 'chillblast_layout.html' %}
 
-{% block title %}Custom PC Builder - RigFreaks{% endblock %}
+{% block title %}Build Your PC - Step-by-Step Builder - RigFreaks{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-pc-builder.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-builder.css') }}">
 {% endblock %}
 
 {% block content %}
-<!-- Builder Hero Section -->
-<section class="builder-hero">
+<div class="builder-container">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1>Build Your Dream PC</h1>
-                <p>Create a custom PC tailored to your exact needs with our step-by-step builder. Select each component for a truly personalized build, expertly assembled by our technicians.</p>
-            </div>
-            <div class="col-lg-6 text-center">
-                <img src="{{ url_for('static', filename='images/Untitled design (11).png') }}" alt="Custom PC Builder" class="builder-hero-image">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Builder Content -->
-<div class="container py-5">
-    <div class="row">
-        <!-- Main Builder Column -->
-        <div class="col-lg-8">
-            <!-- Builder Navigation -->
-            <nav class="builder-nav">
-                <ul class="builder-nav-list">
-                    <li class="builder-nav-item">
-                        <a href="#cpu" class="builder-nav-link {% if current_step == 'cpu' %}active{% endif %} {% if current_config.cpu %}completed{% endif %}" data-category="cpu">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <span class="builder-nav-name">CPU</span>
-                            <span class="builder-nav-step">Step 1</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#motherboard" class="builder-nav-link {% if current_step == 'motherboard' %}active{% endif %} {% if current_config.motherboard %}completed{% endif %}" data-category="motherboard">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <span class="builder-nav-name">Motherboard</span>
-                            <span class="builder-nav-step">Step 2</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#ram" class="builder-nav-link {% if current_step == 'ram' %}active{% endif %} {% if current_config.ram %}completed{% endif %}" data-category="ram">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-memory"></i>
-                            </div>
-                            <span class="builder-nav-name">Memory</span>
-                            <span class="builder-nav-step">Step 3</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#gpu" class="builder-nav-link {% if current_step == 'gpu' %}active{% endif %} {% if current_config.gpu %}completed{% endif %}" data-category="gpu">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-tv"></i>
-                            </div>
-                            <span class="builder-nav-name">Graphics</span>
-                            <span class="builder-nav-step">Step 4</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#storage" class="builder-nav-link {% if current_step == 'storage' %}active{% endif %} {% if current_config.storage %}completed{% endif %}" data-category="storage">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-hdd"></i>
-                            </div>
-                            <span class="builder-nav-name">Storage</span>
-                            <span class="builder-nav-step">Step 5</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#power_supply" class="builder-nav-link {% if current_step == 'power_supply' %}active{% endif %} {% if current_config.power_supply %}completed{% endif %}" data-category="power_supply">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <span class="builder-nav-name">Power</span>
-                            <span class="builder-nav-step">Step 6</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#case" class="builder-nav-link {% if current_step == 'case' %}active{% endif %} {% if current_config.case %}completed{% endif %}" data-category="case">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <span class="builder-nav-name">Case</span>
-                            <span class="builder-nav-step">Step 7</span>
-                        </a>
-                    </li>
-                    <li class="builder-nav-item">
-                        <a href="#cooling" class="builder-nav-link {% if current_step == 'cooling' %}active{% endif %} {% if current_config.cooling %}completed{% endif %}" data-category="cooling">
-                            <div class="builder-nav-icon">
-                                <i class="fas fa-wind"></i>
-                            </div>
-                            <span class="builder-nav-name">Cooling</span>
-                            <span class="builder-nav-step">Step 8</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <!-- Builder Header -->
+        <div class="builder-header">
+            <h1 class="builder-title">Custom PC Builder</h1>
+            <p class="builder-subtitle">Follow our step-by-step process to select the perfect components for your custom PC.</p>
             
-            <!-- Builder Content -->
-            <div class="builder-content">
-                <h2 class="builder-title">Select Your {{ current_step|capitalize }}</h2>
-                <p class="builder-subtitle">Choose the {{ current_step }} that best fits your needs and budget. All of our components are backed by our industry-leading warranty.</p>
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                {% set steps = [('cpu', 'CPU'), ('motherboard', 'Motherboard'), ('ram', 'Memory'), ('gpu', 'Graphics'), 
+                              ('storage', 'Storage'), ('power_supply', 'Power'), ('case', 'Case'), ('cooling', 'Cooling')] %}
                 
-                {% if compatibility_issues %}
-                <!-- Compatibility Alert -->
-                <div class="compatibility-alert alert alert-warning">
-                    <div class="alert-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <div class="alert-content">
-                        <h4 class="alert-title">Compatibility Issues Detected</h4>
-                        <p>Your current build has the following compatibility issues that should be addressed:</p>
-                        <ul class="alert-issues">
-                            {% for issue in compatibility_issues %}
-                            <li class="alert-issue">{{ issue }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                {% endif %}
-                
-                <!-- Components Grid -->
-                <div class="components-grid">
-                    <div class="row g-4">
-                        {% for component in components[current_step] %}
-                        <div class="col-lg-6 col-md-6">
-                            <div class="component-card position-relative {% if current_config.get(current_step) == component.id %}selected{% endif %}" data-component-id="{{ component.id }}">
-                                <div class="selected-badge">Selected</div>
-                                <div class="component-header">
-                                    <div class="component-rating">
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star-half-alt text-warning"></i>
-                                    </div>
-                                    <div class="component-price">£{{ component.price }}</div>
-                                </div>
-                                <div class="component-image">
-                                    {% if current_step == 'cpu' %}
-                                    <img src="{{ url_for('static', filename='images/242872903-B_Ryzen_9_9900X3D_3DPIB_F.jpg') }}" alt="{{ component.name }}">
-                                    {% elif current_step == 'gpu' %}
-                                    <img src="{{ url_for('static', filename='images/rtx 4090 hero image.png') }}" alt="{{ component.name }}">
-                                    {% elif current_step == 'ram' %}
-                                    <img src="{{ url_for('static', filename='images/ktc-beast-ddr4-dimm-2_front_hr (1).jpg') }}" alt="{{ component.name }}">
-                                    {% elif current_step == 'storage' %}
-                                    <img src="{{ url_for('static', filename='images/MZ-V9P1T0BW_001_Front_Black.jpg') }}" alt="{{ component.name }}">
-                                    {% elif current_step == 'cooling' %}
-                                    <img src="{{ url_for('static', filename='images/R-AK620-BKNNMT-G-1.jpg') }}" alt="{{ component.name }}">
-                                    {% else %}
-                                    <img src="{{ url_for('static', filename='images/pro.png') }}" alt="{{ component.name }}">
-                                    {% endif %}
-                                </div>
-                                <div class="component-content">
-                                    <h3 class="component-name">{{ component.name }}</h3>
-                                    <div class="component-features">
-                                        {% for feature in component.features[:3] %}
-                                        <div class="feature-item">
-                                            <span class="feature-icon"><i class="fas fa-check"></i></span>
-                                            {{ feature }}
-                                        </div>
-                                        {% endfor %}
-                                    </div>
-                                    <form action="{{ url_for('add_component', category=current_step, component_id=component.id) }}" method="post" class="component-form">
-                                        <button type="submit" class="btn btn-primary w-100">
-                                            {% if current_config.get(current_step) == component.id %}
-                                            <i class="fas fa-check-circle me-2"></i>Selected
-                                            {% else %}
-                                            <i class="fas fa-plus-circle me-2"></i>Select
-                                            {% endif %}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                
-                <!-- Navigation Buttons -->
-                <div class="builder-navigation">
-                    {% if prev_step %}
-                    <a href="{{ url_for('select_component', category=prev_step) }}" class="btn btn-lg btn-prev">
-                        <i class="fas fa-arrow-left me-2"></i>Previous: {{ prev_step|capitalize }}
-                    </a>
-                    {% else %}
-                    <div></div>
-                    {% endif %}
+                {% for step_id, step_name in steps %}
+                    {% set is_active = current_step == step_id %}
+                    {% set is_completed = step_id in current_config %}
+                    {% set step_index = loop.index %}
                     
-                    {% if next_step %}
-                    <a href="{% if current_config.get(current_step) %}{{ url_for('select_component', category=next_step) }}{% else %}#{% endif %}" class="btn btn-lg btn-primary btn-next {% if not current_config.get(current_step) %}disabled{% endif %}">
-                        Next: {{ next_step|capitalize }}<i class="fas fa-arrow-right ms-2"></i>
-                    </a>
-                    {% else %}
-                    <a href="{{ url_for('summary') }}" class="btn btn-lg btn-success">
-                        Review Your Build<i class="fas fa-check ms-2"></i>
-                    </a>
-                    {% endif %}
-                </div>
+                    <div class="step-item {% if is_active %}active{% elif is_completed %}completed{% endif %}">
+                        <div class="step-circle">
+                            {% if is_completed and not is_active %}
+                                <i class="fas fa-check"></i>
+                            {% else %}
+                                {{ step_index }}
+                            {% endif %}
+                        </div>
+                        <div class="step-label">{{ step_name }}</div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         
-        <!-- Summary Column -->
-        <div class="col-lg-4">
-            <!-- Build Summary -->
-            <div class="build-summary">
-                <h3 class="summary-title">Your Current Build</h3>
-                <div class="summary-items">
-                    {% for category in ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling'] %}
-                    <div class="summary-item">
-                        <div class="summary-label">{{ category|capitalize }}</div>
-                        <div class="summary-value">
-                            {% if current_config.get(category) %}
-                            {% set component = components[category]|selectattr('id', 'equalto', current_config[category])|first %}
-                            {{ component.name }}
-                            {% else %}
-                            <span class="text-muted">Not selected</span>
-                            {% endif %}
-                        </div>
+        <!-- Component Selection -->
+        <div class="component-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    {% set icons = {
+                        'cpu': 'fas fa-microchip',
+                        'motherboard': 'fas fa-server',
+                        'ram': 'fas fa-memory',
+                        'gpu': 'fas fa-tv',
+                        'storage': 'fas fa-hdd',
+                        'power_supply': 'fas fa-bolt',
+                        'case': 'fas fa-desktop',
+                        'cooling': 'fas fa-wind'
+                    } %}
+                    
+                    {% set titles = {
+                        'cpu': 'Select Processor',
+                        'motherboard': 'Select Motherboard',
+                        'ram': 'Select Memory',
+                        'gpu': 'Select Graphics Card',
+                        'storage': 'Select Storage',
+                        'power_supply': 'Select Power Supply',
+                        'case': 'Select Case',
+                        'cooling': 'Select Cooling'
+                    } %}
+                    
+                    <div class="section-icon">
+                        <i class="{{ icons[current_step] }}"></i>
                     </div>
+                    {{ titles[current_step] }}
+                </h2>
+                
+                <div class="filter-controls">
+                    <select class="filter-control" id="filter-brand">
+                        <option value="">All Brands</option>
+                        {% set brands = [] %}
+                        {% for component in components[current_step] %}
+                            {% if component.brand and component.brand not in brands %}
+                                {% set _ = brands.append(component.brand) %}
+                                <option value="{{ component.brand }}">{{ component.brand }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    
+                    <select class="filter-control" id="filter-sort">
+                        <option value="recommended">Recommended</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                        <option value="name-desc">Name: Z to A</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Component Cards Grid -->
+            <div class="component-grid" id="component-grid">
+                {% for component in components[current_step] %}
+                <div class="component-card {% if current_config.get(current_step) == component.id %}selected{% endif %}" data-brand="{{ component.brand }}" data-price="{{ component.price }}" data-name="{{ component.name }}">
+                    <div class="card-header">
+                        <h3 class="component-name">{{ component.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if component.image %}
+                        <img src="{{ component.image }}" alt="{{ component.name }}" class="component-img">
+                        {% else %}
+                        <div class="component-img-placeholder"></div>
+                        {% endif %}
+                        <div class="component-specs">{{ component.description | truncate(150) }}</div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="component-price">£{{ component.price }}</div>
+                        <form action="{{ url_for('add_component', category=current_step, component_id=component.id) }}" method="post">
+                            <button type="submit" class="btn-select {% if current_config.get(current_step) == component.id %}selected{% endif %}">
+                                {% if current_config.get(current_step) == component.id %}
+                                Selected
+                                {% else %}
+                                Select
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Current Build Summary -->
+            <div class="current-build">
+                <h3 class="current-build-title"><i class="fas fa-cogs"></i> Current Configuration</h3>
+                
+                <div class="current-components">
+                    {% for step_id, step_name in steps %}
+                        {% if step_id in current_config %}
+                            {% set component_id = current_config[step_id] %}
+                            {% set component = namespace(found=None) %}
+                            {% for comp in components[step_id] %}
+                                {% if comp.id == component_id %}
+                                    {% set component.found = comp %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if component.found %}
+                                <div class="current-component">
+                                    <div class="component-category">{{ step_name }}</div>
+                                    <div class="selected-component">{{ component.found.name }}</div>
+                                    <div class="component-cost">£{{ component.found.price }}</div>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="current-component" style="opacity: 0.5;">
+                                <div class="component-category">{{ step_name }}</div>
+                                <div class="selected-component">Not Selected</div>
+                                <div class="component-cost">£0.00</div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
-                <div class="summary-total">
-                    <div class="summary-total-label">Total Price</div>
-                    <div class="summary-total-value">£{{ total_price }}</div>
-                </div>
-                <div class="summary-actions">
-                    <a href="{{ url_for('reset_configuration') }}" class="btn btn-outline-secondary btn-reset" onclick="return confirm('Are you sure you want to reset your build?');">
-                        <i class="fas fa-redo-alt me-2"></i>Reset Build
-                    </a>
-                    {% if configured_components >= 4 %}
-                    <a href="{{ url_for('summary') }}" class="btn btn-success btn-review">
-                        <i class="fas fa-clipboard-check me-2"></i>Review Build
-                    </a>
-                    {% endif %}
+                
+                <div class="current-build-footer">
+                    <div class="build-actions">
+                        <form action="{{ url_for('reset_configuration') }}" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash-alt me-1"></i>Clear Build
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="total-price">
+                        <span class="total-price-label">Total:</span>
+                        <span class="total-price-value">£{{ '%0.2f' | format(total_price) }}</span>
+                    </div>
                 </div>
             </div>
             
-            {% if current_config.get('cpu') and current_config.get('gpu') %}
-            <!-- Performance Preview -->
-            <div class="performance-preview">
-                <h3 class="performance-title">Performance Preview</h3>
-                <div class="performance-chart">
-                    <div class="performance-label">
-                        <span class="performance-name">Gaming (1080p)</span>
-                        <span class="performance-value">8.5/10</span>
-                    </div>
-                    <div class="performance-bar">
-                        <div class="performance-progress" style="width: 85%"></div>
-                    </div>
-                    
-                    <div class="performance-label">
-                        <span class="performance-name">Content Creation</span>
-                        <span class="performance-value">7.8/10</span>
-                    </div>
-                    <div class="performance-bar">
-                        <div class="performance-progress" style="width: 78%"></div>
-                    </div>
-                    
-                    <div class="performance-label">
-                        <span class="performance-name">Productivity</span>
-                        <span class="performance-value">9.2/10</span>
-                    </div>
-                    <div class="performance-bar">
-                        <div class="performance-progress" style="width: 92%"></div>
-                    </div>
+            <!-- Compatibility Warnings -->
+            {% if compatibility_issues %}
+            <div class="compatibility-notice">
+                <div class="compatibility-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
                 </div>
-                <small class="text-muted">Based on your current component selection</small>
+                <div class="compatibility-content">
+                    <h4>Compatibility Issues Detected</h4>
+                    <ul>
+                        {% for issue in compatibility_issues %}
+                        <li>{{ issue }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
             {% endif %}
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="builder-nav">
+            {% if prev_step %}
+            <a href="{{ url_for('select_component', category=prev_step) }}" class="btn-prev">
+                <i class="fas fa-chevron-left"></i> Previous: {{ steps | selectattr('0', 'equalto', prev_step) | map(attribute=1) | first }}
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
             
-            <!-- Need Help Section -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Need Help?</h5>
-                    <p class="card-text">Our experts are available to assist you with your build.</p>
-                    <div class="d-flex flex-column gap-2">
-                        <a href="{{ url_for('contact') }}" class="btn btn-outline-primary">
-                            <i class="fas fa-envelope me-2"></i>Contact Us
-                        </a>
-                        <a href="tel:+448001234567" class="btn btn-outline-secondary">
-                            <i class="fas fa-phone me-2"></i>Call an Expert
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% if next_step %}
+            <a href="{{ url_for('select_component', category=next_step) }}" class="btn-next">
+                Next: {{ steps | selectattr('0', 'equalto', next_step) | map(attribute=1) | first }} <i class="fas fa-chevron-right"></i>
+            </a>
+            {% else %}
+            <a href="{{ url_for('summary') }}" class="btn-summary">
+                Review Configuration <i class="fas fa-check-circle"></i>
+            </a>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -301,74 +216,51 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Calculate number of configured components
-        const summaryItems = document.querySelectorAll('.summary-item');
-        let configuredCount = 0;
+        // Filter and sorting functionality
+        const filterBrand = document.getElementById('filter-brand');
+        const filterSort = document.getElementById('filter-sort');
+        const componentGrid = document.getElementById('component-grid');
+        const componentCards = Array.from(document.querySelectorAll('.component-card'));
         
-        summaryItems.forEach(item => {
-            const valueText = item.querySelector('.summary-value').textContent.trim();
-            if (valueText !== 'Not selected') {
-                configuredCount++;
-            }
-        });
-        
-        // Component cards click handling
-        const componentCards = document.querySelectorAll('.component-card');
-        componentCards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                // If the click was on the button, let the form submit naturally
-                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
-                    return;
-                }
-                
-                // Otherwise, trigger the form submission
-                const form = this.querySelector('form');
-                if (form) {
-                    form.submit();
+        function applyFilters() {
+            const brandValue = filterBrand.value;
+            const sortValue = filterSort.value;
+            
+            // Filter by brand
+            componentCards.forEach(card => {
+                if (brandValue === '' || card.dataset.brand === brandValue) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
                 }
             });
-        });
-        
-        // Disable next button if no component selected in current step
-        const btnNext = document.querySelector('.btn-next');
-        if (btnNext && btnNext.classList.contains('disabled')) {
-            btnNext.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('Please select a component before proceeding to the next step.');
+            
+            // Sort components
+            const visibleCards = componentCards.filter(card => card.style.display !== 'none');
+            visibleCards.sort((a, b) => {
+                switch (sortValue) {
+                    case 'price-asc':
+                        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                    case 'price-desc':
+                        return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'name-desc':
+                        return b.dataset.name.localeCompare(a.dataset.name);
+                    default: // recommended
+                        return 0; // Keep original order
+                }
+            });
+            
+            // Reappend cards in new order
+            visibleCards.forEach(card => {
+                componentGrid.appendChild(card);
             });
         }
         
-        // Calculate visible components
-        const visibleComponents = document.querySelectorAll('.component-card:not([style*="display: none"])');
-        if (visibleComponents.length === 0) {
-            const componentsGrid = document.querySelector('.components-grid');
-            if (componentsGrid) {
-                componentsGrid.innerHTML = `
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i>
-                        No components match your current filters. Please adjust your criteria.
-                    </div>
-                `;
-            }
-        }
-        
-        // Builder nav active state handling
-        const builderNavLinks = document.querySelectorAll('.builder-nav-link');
-        builderNavLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // If the link has the disabled class, prevent navigation
-                if (this.classList.contains('disabled')) {
-                    e.preventDefault();
-                    return;
-                }
-                
-                // Remove active class from all links
-                builderNavLinks.forEach(l => l.classList.remove('active'));
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-            });
-        });
+        // Add event listeners for filters
+        filterBrand.addEventListener('change', applyFilters);
+        filterSort.addEventListener('change', applyFilters);
     });
 </script>
 {% endblock %}
