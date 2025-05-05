@@ -1,11 +1,11 @@
 /* Professional Footer for E-commerce Store */
 
 .professional-footer {
-    background-color: #ffffff; /* Changed to white */
+    background-color: #212529; /* Dark background */
     padding: 4rem 0 0;
-    border-top: 1px solid var(--store-border);
+    border-top: 1px solid rgba(255,255,255,0.1);
     position: relative;
-    color: var(--store-dark);
+    color: #f8f9fa; /* Light text for dark background */
 }
 
 /* Upper Footer Sections */
@@ -29,6 +29,7 @@
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.75rem;
+    color: #ffffff; /* White text for dark background */
 }
 
 .footer-title::after {
@@ -45,7 +46,7 @@
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
     line-height: 1.6;
-    color: var(--store-gray);
+    color: rgba(255, 255, 255, 0.7); /* Light text with opacity */
 }
 
 /* Footer Links */
@@ -60,7 +61,7 @@
 }
 
 .footer-links a {
-    color: var(--store-gray);
+    color: rgba(255, 255, 255, 0.7); /* Light text with opacity */
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s ease;
@@ -93,8 +94,8 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #f5f6f8; /* Slightly darker than white to stand out */
-    color: var(--store-dark);
+    background-color: rgba(255, 255, 255, 0.1); /* Translucent white for dark background */
+    color: rgba(255, 255, 255, 0.9); /* Light text color */
     transition: all 0.3s ease;
 }
 
@@ -119,7 +120,7 @@
     display: flex;
     margin-bottom: 1rem;
     font-size: 0.95rem;
-    color: var(--store-gray);
+    color: rgba(255, 255, 255, 0.7); /* Light text with opacity */
 }
 
 .contact-info i {
@@ -173,16 +174,16 @@
 
 /* Bottom Footer */
 .footer-bottom {
-    background-color: #ffffff; /* Changed to white */
+    background-color: #191c20; /* Slightly darker than main footer */
     padding: 1.5rem 0;
     text-align: center;
     margin-top: 3rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05); /* Added subtle border */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Light border */
 }
 
 .copyright {
     font-size: 0.9rem;
-    color: var(--store-gray);
+    color: rgba(255, 255, 255, 0.6); /* Light text with opacity */
     margin-bottom: 0.75rem;
 }
 
@@ -194,7 +195,7 @@
 }
 
 .footer-bottom-links a {
-    color: var(--store-dark);
+    color: rgba(255, 255, 255, 0.7); /* Light text with opacity */
     font-size: 0.9rem;
     text-decoration: none;
     transition: color 0.2s ease;
