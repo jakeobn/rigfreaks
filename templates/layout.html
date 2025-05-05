@@ -1,67 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIGFREAKS - Premium Custom Desktops - {% block title %}Home{% endblock %}</title>
     
-    <!-- Bootstrap CSS (Light Theme) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/professional-header.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/professional-footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modern-homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hero-fixes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-background.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/simplified-header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seamless-blend.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/page-transitions.css') }}">
     
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
-    <!-- Professional Store Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/professional-store.css') }}">
-    
-    {% block styles %}{% endblock %}
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Professional E-commerce Header -->
-    <header class="professional-header">
+    <!-- Simplified Gradient Header -->
+    <header class="simplified-header">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <!-- Mobile Menu Toggle (Left) -->
-                <div class="mobile-toggle-container d-lg-none">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+                <!-- Logo -->
+                <a href="{{ url_for('index') }}" class="header-logo">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="RIGFREAKS logo">
+                </a>
                 
-                <!-- Logo (Center) -->
-                <div class="header-logo-container text-center mx-auto">
-                    <a href="{{ url_for('index') }}" class="header-logo">
-                        <img src="{{ url_for('static', filename='images/RigFreaks_20250505_230002_0000.png') }}" alt="RIGFREAKS logo">
-                    </a>
-                </div>
+                <!-- Main Navigation Links (Desktop) -->
+                <nav class="d-none d-lg-flex main-nav">
+                    <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                    <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}">PC Builder</a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
+
+                    <a href="{{ url_for('about') }}" class="nav-link {% if request.path == url_for('about') %}active{% endif %}">About</a>
+                    <a href="{{ url_for('delivery') }}" class="nav-link {% if request.path == url_for('delivery') %}active{% endif %}">Delivery</a>
+                    <a href="{{ url_for('faq') }}" class="nav-link {% if request.path == url_for('faq') %}active{% endif %}">FAQ</a>
+                    <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
+                </nav>
                 
-                <!-- Right Side Actions -->
-                <div class="header-actions-container d-flex align-items-center">
-                    <a href="{{ url_for('cart.view_cart') }}" class="action-link cart-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
+                <!-- Right Side Actions (Desktop) -->
+                <div class="d-none d-lg-flex header-actions">
+                    <a href="{{ url_for('cart.view_cart') }}" class="action-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
                         <i class="fas fa-shopping-cart"></i>
-                        {% if session.get('cart_items', 0) > 0 %}
-                        <span class="action-count">{{ session.get('cart_items', 0) }}</span>
-                        {% endif %}
+                        <span class="ms-2">Cart</span>
                     </a>
                     {% if current_user.is_authenticated %}
                     <div class="dropdown">
                         <a href="#" class="action-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i>
-                            <span class="ms-2 d-none d-xl-inline">{{ current_user.username }}</span>
+                            <span class="ms-2">{{ current_user.username }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}"><i class="fas fa-user me-2"></i> My Profile</a></li>
@@ -73,35 +70,15 @@
                     {% else %}
                     <a href="{{ url_for('auth.login') }}" class="action-link">
                         <i class="fas fa-sign-in-alt"></i>
-                        <span class="ms-2 d-none d-xl-inline">Login</span>
+                        <span class="ms-2">Login</span>
                     </a>
                     {% endif %}
                 </div>
-            </div>
-            
-            <!-- Full Width Search and Navigation (Desktop) -->
-            <div class="desktop-nav-search d-none d-lg-block mt-3">
-                <div class="row align-items-center">
-                    <div class="col-lg-4">
-                        <div class="search-form w-100">
-                            <form action="{{ url_for('index') }}" method="get">
-                                <input type="text" name="search" class="search-input" placeholder="Search for components or builds...">
-                                <button type="submit" class="search-button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <nav class="main-nav d-flex justify-content-end">
-                            <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
-                            <a href="{{ url_for('step_builder') }}" class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}">PC Builder</a>
-                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
-                            <a href="{{ url_for('about') }}" class="nav-link {% if request.path == url_for('about') %}active{% endif %}">About</a>
-                            <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
-                        </nav>
-                    </div>
-                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
         
@@ -109,26 +86,17 @@
         <div class="collapse navbar-collapse" id="mobileNav">
             <div class="container">
                 <div class="mobile-nav-container">
-                    <!-- Mobile Search Form -->
-                    <form action="{{ url_for('index') }}" method="get" class="mb-3 d-md-none">
-                        <div class="search-form">
-                            <input type="text" name="search" class="search-input" placeholder="Search for components or builds...">
-                            <button type="submit" class="search-button">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                    
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_for('index') %}active{% endif %}" href="{{ url_for('index') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}" href="{{ url_for('step_builder') }}">PC Builder</a>
+                            <a class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}" href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step">PC Builder</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}" href="{{ url_for('builds.prebuilt_configs') }}">Prebuilt PCs</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_for('about') %}active{% endif %}" href="{{ url_for('about') }}">About</a>
                         </li>
@@ -141,27 +109,28 @@
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
                         </li>
-                    </ul>
-                    
-                    <!-- Mobile Action Links -->
-                    <div class="mobile-action-links">
-                        <a href="{{ url_for('cart.view_cart') }}" class="action-link">
-                            <i class="fas fa-shopping-cart me-2"></i> Cart
-                            {% if session.get('cart_items', 0) > 0 %}
-                            ({{ session.get('cart_items', 0) }})
-                            {% endif %}
-                        </a>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}" href="{{ url_for('cart.view_cart') }}">Cart</a>
+                        </li>
                         {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.profile') }}" class="action-link">
-                            <i class="fas fa-user me-2"></i> My Account
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.profile') }}">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('builds.list_builds') }}">My Builds</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                        </li>
                         {% else %}
-                        <a href="{{ url_for('auth.login') }}" class="action-link">
-                            <i class="fas fa-sign-in-alt me-2"></i> Login
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                        </li>
                         {% endif %}
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -192,88 +161,75 @@
         </main>
     </div>
 
-    <!-- Professional E-commerce Footer -->
-    <footer class="professional-footer">
-        <div class="container">
-            <div class="row footer-top">
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-logo">
-                        <img src="{{ url_for('static', filename='images/RigFreaks_20250505_230002_0000.png') }}" alt="RIGFREAKS logo">
+    <!-- Chillblast-inspired Footer with animated elements -->
+    <footer class="site-footer">
+        <!-- Animated blob effects for footer -->
+        <div class="footer-blob blob-1"></div>
+        <div class="footer-blob blob-2"></div>
+        <div class="footer-blob blob-3"></div>
+        
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                        <div class="footer-brand">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="footer-logo">
+                                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="RIGFREAKS logo" class="footer-logo-img">
+                                </div>
+                            </div>
+                            <p class="footer-description">Custom-built desktops tailored to your exact needs. Every system is expertly assembled using high-performance components, backed by a 3-year warranty and our dedicated support team.</p>
+                            <div class="footer-socials">
+                                <a href="#" class="footer-social-link">
+                                    <svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                                <a href="#" class="footer-social-link">
+                                    <svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+                                </a>
+                                <a href="#" class="footer-social-link">
+                                    <svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="footer-about">Custom-built desktops tailored to your exact needs. Every system is expertly assembled using premium components, backed by a 3-year warranty and our dedicated support team.</p>
                     
-                    <div class="footer-social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Discord">
-                            <i class="fab fa-discord"></i>
-                        </a>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <h5 class="footer-title">Shop</h5>
+                        <ul class="footer-links">
+                            <li><a href="{{ url_for('index') }}">Home</a></li>
+                            <li><a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step">PC Builder</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}">Prebuilt PCs</a></li>
+
+                        </ul>
                     </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6">
-                    <h4 class="footer-title">Shop</h4>
-                    <ul class="footer-links">
-                        <li><a href="{{ url_for('step_builder') }}"><i class="fas fa-angle-right"></i> Custom PC Builder</a></li>
-                        <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> Gaming PCs</a></li>
-                        <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> Workstations</a></li>
-                        <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> Creator PCs</a></li>
-                        <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> PC Components</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-2 col-md-6">
-                    <h4 class="footer-title">Customer Care</h4>
-                    <ul class="footer-links">
-                        <li><a href="{{ url_for('contact') }}"><i class="fas fa-angle-right"></i> Contact Us</a></li>
-                        <li><a href="{{ url_for('faq') }}"><i class="fas fa-angle-right"></i> FAQs</a></li>
-                        <li><a href="{{ url_for('delivery') }}"><i class="fas fa-angle-right"></i> Delivery Info</a></li>
-                        <li><a href="{{ url_for('terms') }}"><i class="fas fa-angle-right"></i> Terms & Conditions</a></li>
-                        <li><a href="{{ url_for('privacy') }}"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="footer-title">Contact Information</h4>
-                    <ul class="contact-info">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <p>123 Tech Street</p>
-                                <p>PC City, CA 90210</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                <p>+1 (800) 555-RIGS</p>
-                                <p>Monday-Friday: 9am-6pm</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <p>support@rigfreaks.com</p>
-                                <p>sales@rigfreaks.com</p>
-                            </div>
-                        </li>
-                    </ul>
                     
-                    <h4 class="footer-title mt-4">Stay Updated</h4>
-                    <p>Subscribe to our newsletter for the latest PC news and exclusive offers</p>
-                    <div class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Your Email Address">
-                        <button type="submit" class="newsletter-button">Subscribe</button>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <h5 class="footer-title">Customer Care</h5>
+                        <ul class="footer-links">
+                            <li><a href="{{ url_for('contact') }}">Contact Support</a></li>
+                            <li><a href="{{ url_for('about') }}">About Us</a></li>
+                            <li><a href="{{ url_for('delivery') }}">Delivery Information</a></li>
+                            <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+                            <li><a href="{{ url_for('terms') }}">Terms & Conditions</a></li>
+                            <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                            <li><a href="{{ url_for('cookies') }}">Cookie Policy</a></li>
+                            <li><a href="{{ url_for('sitemap') }}">Site Map</a></li>
+
+                        </ul>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="footer-title">Payment Methods</h5>
+                        <div class="footer-badges">
+                            <p class="footer-newsletter-text">All orders are processed securely through our trusted payment providers.</p>
+                            <div class="footer-payment-methods">
+                                <i class="fab fa-cc-visa payment-icon"></i>
+                                <i class="fab fa-cc-mastercard payment-icon"></i>
+                                <i class="fab fa-cc-amex payment-icon"></i>
+                                <i class="fab fa-cc-paypal payment-icon"></i>
+                                <i class="fab fa-cc-apple-pay payment-icon"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -281,24 +237,13 @@
         
         <div class="footer-bottom">
             <div class="container">
-                <p class="copyright">&copy; 2025 RIGFREAKS. All rights reserved.</p>
-                
-                <div class="footer-bottom-links">
-                    <a href="{{ url_for('about') }}">About Us</a>
-                    <a href="{{ url_for('contact') }}">Contact</a>
-                    <a href="{{ url_for('sitemap') }}">Sitemap</a>
-                    <a href="{{ url_for('terms') }}">Terms</a>
-                    <a href="{{ url_for('privacy') }}">Privacy</a>
-                    <a href="{{ url_for('cookies') }}">Cookies</a>
-                </div>
-                
-                <div class="payment-methods">
-                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-amex"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-apple-pay"></i></div>
-                    <div class="payment-icon"><i class="fab fa-cc-discover"></i></div>
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <div class="footer-copyright mb-3 mb-md-0">
+                        <p class="mb-0">&copy; 2025 RIGFREAKS. All rights reserved.</p>
+                    </div>
+                    <div class="footer-disclaimer">
+                        <p class="mb-0 small">Designed by <a href="https://thebrandaxis.com" target="_blank" class="brand-axis-link">The Brand Axis</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -362,20 +307,6 @@
             if (perfBars.length > 0) {
                 setTimeout(animatePerfBars, 500);
             }
-            
-            // Close mobile menu when links are clicked
-            const mobileMenuLinks = document.querySelectorAll('.navbar-nav .nav-link, .mobile-action-links .action-link');
-            const mobileMenu = document.getElementById('mobileNav');
-            const bsCollapse = new bootstrap.Collapse(mobileMenu, {toggle: false});
-            
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    // Check if the mobile menu is open (has show class)
-                    if (mobileMenu.classList.contains('show')) {
-                        bsCollapse.hide();
-                    }
-                });
-            });
             
             // Parallax effect for hero and footer blobs
             const allBlobs = document.querySelectorAll('.hero-blob, .footer-blob');

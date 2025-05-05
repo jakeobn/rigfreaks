@@ -3,7 +3,7 @@ import logging
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash, make_response
 from models import db, User, Build, PreBuiltConfig, ContactMessage
 from werkzeug.middleware.proxy_fix import ProxyFix
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager
 from utils import load_component_data, load_compatibility_rules, check_compatibility, calculate_total_price
 
 # Configure logging
@@ -56,15 +56,12 @@ app.register_blueprint(cart_bp)
 def index():
     search_query = request.args.get('search', '')
     
-    # Get featured products for homepage
-    featured_configs = PreBuiltConfig.query.order_by(PreBuiltConfig.price.desc()).limit(6).all()
-    
     if search_query:
         # In a real implementation, this would search the database
         # For now, we'll just pass the search query to the template
-        return render_template('chillblast_index.html', search_query=search_query, featured_configs=featured_configs)
+        return render_template('index.html', search_query=search_query)
     
-    return render_template('chillblast_index.html', featured_configs=featured_configs)
+    return render_template('index.html')
 
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
@@ -96,8 +93,17 @@ def step_builder():
     if 'pc_config' not in session:
         session['pc_config'] = {}
     
-    # Default first step is selecting CPU
-    return redirect(url_for('select_component', category='cpu'))
+    components = load_component_data()
+    compatibility_issues = check_compatibility(session['pc_config'])
+    total_price = calculate_total_price(session['pc_config'])
+    
+    return render_template(
+        'step_builder.html',
+        components=components,
+        current_config=session['pc_config'],
+        compatibility_issues=compatibility_issues,
+        total_price=total_price
+    )
 
 @app.route('/select/<category>', methods=['GET'])
 def select_component(category):
@@ -110,31 +116,11 @@ def select_component(category):
     # Get the current configuration
     current_config = session.get('pc_config', {})
     
-    # Calculate total price
-    total_price = calculate_total_price(current_config)
-    
-    # Check compatibility issues
-    compatibility_issues = check_compatibility(current_config)
-    
-    # Determine previous and next steps
-    steps = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']
-    current_index = steps.index(category)
-    prev_step = steps[current_index - 1] if current_index > 0 else None
-    next_step = steps[current_index + 1] if current_index < len(steps) - 1 else None
-    
-    # Count how many components are configured
-    configured_components = sum(1 for step in steps if step in current_config)
-    
     return render_template(
-        'chillblast_step_builder.html',
-        components=components,
-        current_config=current_config,
-        compatibility_issues=compatibility_issues,
-        total_price=total_price,
-        current_step=category,
-        prev_step=prev_step,
-        next_step=next_step,
-        configured_components=configured_components
+        'component_select.html',
+        category=category,
+        components=components[category],
+        current_selection=current_config.get(category)
     )
     
 @app.route('/component/<category>/<component_id>', methods=['GET'])
@@ -159,7 +145,7 @@ def component_detail(category, component_id):
     
     # Add cache control headers for better client-side caching
     response = make_response(render_template(
-        'chillblast_component_detail.html',
+        'component_details.html',
         category=category,
         component=component,
         is_selected=is_selected
@@ -179,7 +165,7 @@ def add_component(category, component_id):
         # This is a toggle/unselect action
         del session['pc_config'][category]
         session.modified = True
-        return redirect(url_for('select_component', category=category))
+        return redirect(url_for('step_builder'))
     else:
         # This is an add/select action
         # Add component to configuration
@@ -194,17 +180,8 @@ def add_component(category, component_id):
                 flash_message += f"<li>{issue}</li>"
             flash_message += "</ul>"
             flash(flash_message, "warning")
-        
-        # Get all steps
-        steps = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']
-        current_index = steps.index(category)
-        
-        # If this isn't the last step, move to the next one
-        if current_index < len(steps) - 1:
-            next_step = steps[current_index + 1]
-            return redirect(url_for('select_component', category=next_step))
     
-    return redirect(url_for('select_component', category=category))
+    return redirect(url_for('step_builder'))
 
 @app.route('/remove/<category>', methods=['POST'])
 def remove_component(category):
@@ -212,7 +189,7 @@ def remove_component(category):
         del session['pc_config'][category]
         session.modified = True
     
-    return redirect(url_for('select_component', category=category))
+    return redirect(url_for('step_builder'))
 
 @app.route('/summary')
 def summary():
@@ -245,12 +222,11 @@ def summary():
     
     # Cache control headers for better browser caching
     response = make_response(render_template(
-        'chillblast_summary.html',
+        'summary.html',
         config=config_details,
         compatibility_issues=compatibility_issues,
         total_price=total_price,
-        performance=performance_summary,
-        current_user=current_user
+        performance=performance_summary
     ))
     response.headers['Cache-Control'] = 'private, max-age=10'  # Cache for 10 seconds
     return response
@@ -280,7 +256,7 @@ def reset_configuration():
         session['pc_config'] = {}
         session.modified = True
     
-    return redirect(url_for('select_component', category='cpu'))
+    return redirect(url_for('step_builder'))
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -411,19 +387,25 @@ def product_detail(config_id):
             
     compatibility_issues = check_compatibility(temp_config)
     
-    # Get related products for the 'You might also like' section
-    related_configs = PreBuiltConfig.query.filter(PreBuiltConfig.id != config_id).order_by(db.func.random()).limit(4).all()
-    
-    # Use our Chillblast-inspired detail template
-    return render_template(
-        'chillblast_product_detail.html',
-        config=config,
-        config_details=config_details,
-        performance=performance_summary,
-        compatibility_issues=compatibility_issues,
-        related_products=related_configs,
-        PreBuiltConfig=PreBuiltConfig
-    )
+    # Use specialized template for the Ryzen 5 5500 RTX 4060 product
+    if config.name == "Ryzen 5 5500 RTX 4060 Gaming PC":
+        return render_template(
+            'product_detail_ryzen.html',
+            config=config,
+            config_details=config_details,
+            performance=performance_summary,
+            compatibility_issues=compatibility_issues,
+            PreBuiltConfig=PreBuiltConfig
+        )
+    else:
+        return render_template(
+            'product_detail.html',
+            config=config,
+            config_details=config_details,
+            performance=performance_summary,
+            compatibility_issues=compatibility_issues,
+            PreBuiltConfig=PreBuiltConfig
+        )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
