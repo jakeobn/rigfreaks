@@ -51,11 +51,11 @@
         <div class="col-lg-6 mb-4">
             <div class="product-gallery">
                 <div class="main-image-container mb-3">
-                    <img src="/static/img/gaming-pc.jpg" class="img-fluid rounded" alt="{{ config.name }}">
+                    <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" class="img-fluid rounded" alt="{{ config.name }}">
                 </div>
                 <div class="thumbnail-gallery d-flex">
                     <div class="thumbnail-item active me-2">
-                        <img src="/static/img/gaming-pc.jpg" class="img-fluid rounded" alt="Front view">
+                        <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" class="img-fluid rounded" alt="Front view">
                     </div>
                     <div class="thumbnail-item me-2">
                         <img src="/static/img/gaming-pc-1.jpg" class="img-fluid rounded" alt="Side view">
