@@ -687,11 +687,15 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hero-badges {
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+  
+  .hero-image img {
+    margin-bottom: 1.5rem;
   }
   
   .hero-section::before {
