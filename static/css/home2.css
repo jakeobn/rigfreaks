@@ -16,6 +16,12 @@ p {
     color: #333333;
 }
 
+/* Ensure text is visible against backgrounds */
+.hero-main h1, .hero-main p, .hero-secondary h3, .hero-secondary p, 
+.feature-category h2, .feature-category p {
+    color: #ffffff;
+}
+
 a {
     color: #000000;
     text-decoration: none;
@@ -230,7 +236,8 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     height: 300px;
     margin-bottom: 1rem;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more contrast */
 }
 
 .feature-image {
@@ -539,6 +546,10 @@ a:hover {
     background-color: #000000;
     color: #ffffff;
     padding: 3rem 0;
+}
+
+.configurator-cta h2, .configurator-cta p, .configurator-cta li {
+    color: #ffffff;
 }
 
 .cta-title {
