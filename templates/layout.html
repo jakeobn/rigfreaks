@@ -360,6 +360,20 @@
                 setTimeout(animatePerfBars, 500);
             }
             
+            // Close mobile menu when links are clicked
+            const mobileMenuLinks = document.querySelectorAll('.navbar-nav .nav-link, .mobile-action-links .action-link');
+            const mobileMenu = document.getElementById('mobileNav');
+            const bsCollapse = new bootstrap.Collapse(mobileMenu, {toggle: false});
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Check if the mobile menu is open (has show class)
+                    if (mobileMenu.classList.contains('show')) {
+                        bsCollapse.hide();
+                    }
+                });
+            });
+            
             // Parallax effect for hero and footer blobs
             const allBlobs = document.querySelectorAll('.hero-blob, .footer-blob');
             window.addEventListener('mousemove', (e) => {
