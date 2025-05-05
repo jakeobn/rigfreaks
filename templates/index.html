@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="d-flex justify-content-center mt-4">
-                    <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="btn btn-primary me-3">
+                    <a href="{{ url_for('step_builder') }}" class="btn btn-primary me-3">
                         <i class="fas fa-drafting-compass me-2"></i>Design Your Custom PC
                     </a>
                     <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-secondary">
@@ -71,7 +71,7 @@
                 
                 <!-- Modern button design with hover effects -->
                 <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                    <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="btn btn-primary btn-hero-modern">
+                    <a href="{{ url_for('step_builder') }}" class="btn btn-primary btn-hero-modern">
                         <span class="btn-text">PC Builder</span>
                         <span class="btn-icon"><i class="fas fa-drafting-compass"></i></span>
                     </a>
@@ -182,7 +182,7 @@
                 
                 <!-- Custom PC Category -->
                 <div class="col-6 col-md-3">
-                    <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="pc-category-card">
+                    <a href="{{ url_for('step_builder') }}" class="pc-category-card">
                         <div class="pc-category-image">
                             <img src="{{ url_for('static', filename='img/custom-pc.jpg') }}" alt="Custom PC" class="img-fluid">
                         </div>
@@ -535,7 +535,7 @@
                         <p class="offer-text mb-0">Free Upgrade to Next-Day Shipping + Free RGB Lighting Kit with any purchase over £1,500</p>
                     </div>
                     <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                        <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="btn btn-light btn-lg">Build Now</a>
+                        <a href="{{ url_for('step_builder') }}" class="btn btn-light btn-lg">Build Now</a>
                     </div>
                 </div>
             </div>
@@ -643,7 +643,7 @@
                             <p>Never worry about mismatched parts. Our smart builder checks compatibility in real time to guarantee a flawless setup.</p>
                             <p>Our intelligent system prevents incompatible combinations and suggests optimal pairings for maximum performance.</p>
                         </div>
-                        <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="feature-link">Try our compatibility system <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url_for('step_builder') }}" class="feature-link">Try our compatibility system <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -720,7 +720,7 @@
                         <p class="cta-text">Create your perfect custom build with our easy-to-use configurator. Expert assembly, premium components, and a 3-year warranty included.</p>
                     </div>
                     <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
-                        <a href="https://778eba1a-61a7-4dc4-b064-12bf31a885df-00-267699hzag1om.worf.replit.dev/builder/step-by-step" class="btn btn-primary btn-lg px-4 py-3">Start Building Now</a>
+                        <a href="{{ url_for('step_builder') }}" class="btn btn-primary btn-lg px-4 py-3">Start Building Now</a>
                     </div>
                 </div>
             </div>
