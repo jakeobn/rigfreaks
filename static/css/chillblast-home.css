@@ -1,20 +1,27 @@
 /* Chillblast-inspired Homepage Styles */
 
+/* Global background styling */
+body {
+    background-color: var(--bs-dark);
+}
+
 /* PC Categories Section */
 .pc-categories-section {
     padding: 3rem 0;
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .section-title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--bs-dark);
+    color: white;
     margin-bottom: 0.5rem;
 }
 
 .section-subtitle {
     font-size: 1.1rem;
-    color: var(--bs-secondary);
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 1.5rem;
 }
 
@@ -83,7 +90,8 @@
 
 /* Featured PCs Section */
 .featured-pcs-section {
-    background-color: var(--bs-light);
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .featured-pc-card {
@@ -195,7 +203,8 @@
 
 /* Shop By Component Section */
 .shop-components-section {
-    background-color: white;
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .component-category-card {
@@ -231,7 +240,7 @@
 
 .component-count {
     font-size: 0.85rem;
-    color: var(--bs-secondary);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Special Offers Banner */
@@ -256,7 +265,8 @@
 
 /* Testimonials Section */
 .testimonials-section {
-    background-color: var(--bs-light);
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .overall-rating {
@@ -268,7 +278,7 @@
 }
 
 .rating-text {
-    color: var(--bs-secondary);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
 
@@ -315,7 +325,8 @@
 
 /* Trending Products Section */
 .trending-products-section {
-    background-color: white;
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .product-card {
@@ -419,7 +430,8 @@
 
 /* Why Choose Us Section */
 .why-choose-us-section {
-    background-color: white;
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .why-choose-feature-card {
@@ -483,7 +495,8 @@
 
 /* CTA Banner Section */
 .cta-banner-section {
-    background-color: var(--bs-light);
+    background-color: var(--bs-dark);
+    color: white;
 }
 
 .cta-banner {
