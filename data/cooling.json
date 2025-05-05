@@ -1,0 +1,53 @@
+[
+  {
+    "id": "1000",
+    "name": "Corsair iCUE H150i RGB Elite 360mm AIO",
+    "brand": "Corsair",
+    "price": 189.99,
+    "description": "Premium 360mm all-in-one liquid cooler with RGB lighting.",
+    "specs": {
+      "Type": "Liquid",
+      "Radiator Size": "360mm",
+      "Fan Speed": "450-2100 RPM",
+      "Noise Level": "10-30 dBA",
+      "RGB": "Yes"
+    },
+    "type": "Liquid",
+    "size": "360mm",
+    "image": "/images/components/cooling/Untitled design (28).png"
+  },
+  {
+    "id": "1001",
+    "name": "DeepCool AG620 ARGB CPU Air Cooler",
+    "brand": "DeepCool",
+    "price": 69.99,
+    "description": "Dual-tower air cooler with 6 heatpipes and ARGB lighting.",
+    "specs": {
+      "Type": "Air",
+      "Fan Speed": "500-1850 RPM",
+      "Noise Level": "18-31 dBA",
+      "Heatpipes": "6",
+      "RGB": "Yes"
+    },
+    "type": "Air",
+    "size": "Dual Tower",
+    "image": "/images/components/cooling/R-AK620-BKNNMT-G-1.jpg"
+  },
+  {
+    "id": "1002",
+    "name": "Noctua NH-D15 Chromax Black",
+    "brand": "Noctua",
+    "price": 109.99,
+    "description": "Flagship dual-tower air cooler with outstanding performance.",
+    "specs": {
+      "Type": "Air",
+      "Fan Speed": "300-1500 RPM",
+      "Noise Level": "24.6 dBA",
+      "Heatpipes": "6",
+      "RGB": "No"
+    },
+    "type": "Air",
+    "size": "Dual Tower",
+    "image": "/images/components/cooling/Untitled design (29).png"
+  }
+]
