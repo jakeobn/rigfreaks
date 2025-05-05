@@ -508,69 +508,67 @@ section .container {
     }
 }
 
-/* Why Choose Us Section */
+/* Minimal Why Choose Us Section */
 .why-choose-us-section {
-    /* No background here - controlled globally */
+    background-color: var(--bs-dark);
     color: white;
+    padding: 4rem 0 !important;
+    position: relative;
 }
 
-.why-choose-feature-card {
-    padding: 2rem;
-    height: 100%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+/* Minimal Features Grid */
+.minimal-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 40px;
 }
 
-.why-choose-feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+/* Minimal Feature Item */
+.minimal-feature {
+    text-align: center;
+    transition: transform 0.3s ease;
 }
 
-.feature-icon-large {
-    font-size: 2.5rem;
-    color: var(--bs-primary);
-    margin-bottom: 1.25rem;
+.minimal-feature:hover {
+    transform: translateY(-8px);
 }
 
-.feature-title-large {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-    color: var(--bs-dark);
-}
-
-.feature-description {
+.minimal-feature-icon {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 1.5rem;
-    color: var(--bs-secondary);
+}
+
+.minimal-feature-title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: 0;
+}
+
+.minimal-feature-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
-.feature-description p:last-child {
-    margin-bottom: 0;
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .minimal-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 30px;
+    }
 }
 
-.feature-link {
-    display: inline-block;
-    color: var(--bs-primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.feature-link:hover {
-    color: var(--bs-info);
-    text-decoration: underline;
-}
-
-.feature-link i {
-    margin-left: 5px;
-    transition: transform 0.2s ease;
-}
-
-.feature-link:hover i {
-    transform: translateX(3px);
+@media (max-width: 767.98px) {
+    .minimal-features-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+        gap: 40px;
+    }
 }
 
 /* CTA Banner Section */

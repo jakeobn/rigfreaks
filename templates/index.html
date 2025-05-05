@@ -391,88 +391,72 @@
         </div>
     </section>
     
-    <!-- Why Choose Us Features Section -->
-    <section class="why-choose-us-section py-6">
+    <!-- Minimal Why Choose Us Section -->
+    <section class="why-choose-us-section py-5">
         <div class="container">
             <div class="section-header text-center mb-5">
-                <h2 class="section-title mb-3">Why Choose RigFreaks</h2>
-                <p class="section-subtitle">The premium custom PC experience</p>
+                <h2 class="section-title">Why Choose Us</h2>
             </div>
             
-            <div class="row g-4">
-                <!-- Feature 1 -->
-                <div class="col-lg-4">
-                    <div class="why-choose-feature-card">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-check-double"></i>
-                        </div>
-                        <h3 class="feature-title-large">Smart Compatibility System</h3>
-                        <div class="feature-description">
-                            <p>Never worry about mismatched parts. Our smart builder checks compatibility in real time to guarantee a flawless setup.</p>
-                            <p>Our intelligent system prevents incompatible combinations and suggests optimal pairings for maximum performance.</p>
-                        </div>
-                        <a href="{{ url_for('step_builder') }}" class="feature-link">Try our compatibility system <i class="fas fa-arrow-right"></i></a>
+            <div class="minimal-features-grid">
+                <!-- Minimal Feature 1 -->
+                <div class="minimal-feature">
+                    <div class="minimal-feature-icon">
+                        <i class="fas fa-check-double"></i>
                     </div>
+                    <h3 class="minimal-feature-title">Smart Compatibility</h3>
+                    <div class="minimal-feature-desc">
+                        Our intelligent system ensures perfectly matched components for optimal performance.
+                    </div>
+                    <a href="{{ url_for('step_builder') }}" class="minimal-view-all">Try it now</a>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="col-lg-4">
-                    <div class="why-choose-feature-card">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3 class="feature-title-large">Plug-and-Play Ready Builds</h3>
-                        <div class="feature-description">
-                            <p>Every system arrives fully assembled, tested, and optimized — just power it on and you're good to go.</p>
-                            <p>We handle all the complex setup, cable management, and software optimization so you don't have to worry about a thing.</p>
-                        </div>
-                        <a href="{{ url_for('about') }}" class="feature-link">Learn about our assembly process <i class="fas fa-arrow-right"></i></a>
+                <!-- Minimal Feature 2 -->
+                <div class="minimal-feature">
+                    <div class="minimal-feature-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
+                    <h3 class="minimal-feature-title">Ready to Use</h3>
+                    <div class="minimal-feature-desc">
+                        Systems arrive fully assembled, tested, and optimized with professional cable management.
+                    </div>
+                    <a href="{{ url_for('about') }}" class="minimal-view-all">Learn more</a>
                 </div>
                 
-                <!-- Feature 3 -->
-                <div class="col-lg-4">
-                    <div class="why-choose-feature-card">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-concierge-bell"></i>
-                        </div>
-                        <h3 class="feature-title-large">Build Concierge Support</h3>
-                        <div class="feature-description">
-                            <p>Need help choosing parts? Our experts guide you personally, like a custom PC consultant.</p>
-                            <p>Get tailored recommendations based on your specific needs, usage patterns, and budget constraints.</p>
-                        </div>
-                        <a href="{{ url_for('contact') }}" class="feature-link">Contact our concierge team <i class="fas fa-arrow-right"></i></a>
+                <!-- Minimal Feature 3 -->
+                <div class="minimal-feature">
+                    <div class="minimal-feature-icon">
+                        <i class="fas fa-concierge-bell"></i>
                     </div>
+                    <h3 class="minimal-feature-title">Expert Support</h3>
+                    <div class="minimal-feature-desc">
+                        Our PC building experts provide personalized guidance for your specific requirements.
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="minimal-view-all">Contact us</a>
                 </div>
                 
-                <!-- Feature 4 -->
-                <div class="col-lg-6 mt-4">
-                    <div class="why-choose-feature-card">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <h3 class="feature-title-large">Performance Guarantee</h3>
-                        <div class="feature-description">
-                            <p>We benchmark and stress-test every rig before delivery, so you know exactly what you're getting.</p>
-                            <p>Each system goes through intensive testing under various workloads to ensure consistent performance even under demanding conditions.</p>
-                        </div>
-                        <a href="{{ url_for('about') }}" class="feature-link">Learn about our testing process <i class="fas fa-arrow-right"></i></a>
+                <!-- Minimal Feature 4 -->
+                <div class="minimal-feature">
+                    <div class="minimal-feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
                     </div>
+                    <h3 class="minimal-feature-title">Performance Tested</h3>
+                    <div class="minimal-feature-desc">
+                        Every system is benchmarked under various workloads to ensure consistent performance.
+                    </div>
+                    <a href="{{ url_for('about') }}" class="minimal-view-all">Our process</a>
                 </div>
                 
-                <!-- Feature 5 -->
-                <div class="col-lg-6 mt-4">
-                    <div class="why-choose-feature-card">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="feature-title-large">3-Year Peace-of-Mind Warranty</h3>
-                        <div class="feature-description">
-                            <p>No fine print. No nonsense. Just real support from people who care about your build.</p>
-                            <p>Our comprehensive warranty covers parts and labor for three full years, with quick response times and hassle-free replacement process.</p>
-                        </div>
-                        <a href="{{ url_for('terms') }}" class="feature-link">View warranty details <i class="fas fa-arrow-right"></i></a>
+                <!-- Minimal Feature 5 -->
+                <div class="minimal-feature">
+                    <div class="minimal-feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
+                    <h3 class="minimal-feature-title">3-Year Warranty</h3>
+                    <div class="minimal-feature-desc">
+                        Comprehensive coverage with quick response times and hassle-free replacements.
+                    </div>
+                    <a href="{{ url_for('terms') }}" class="minimal-view-all">Details</a>
                 </div>
             </div>
         </div>
