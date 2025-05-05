@@ -488,44 +488,96 @@
         </div>
     </div>
     
-    <!-- Recommended Products Section -->
-    <div class="recommended-products mt-5">
-        <h3 class="section-title mb-4">You May Also Like</h3>
-        <div class="row">
-            <!-- Featured builds from our prebuilt collection -->
-            {% set exclude_id = config.id %}
-            {% set counter = 0 %}
-            {% for prebuilt in PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).limit(3).all() %}
-            <div class="col-md-4">
-                <div class="card product-card h-100">
-                    {% if prebuilt.category == 'gaming' %}
-                    <img src="/static/img/gaming-pc-{{ (counter % 3) + 1 }}.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
-                    {% elif prebuilt.category == 'professional' or prebuilt.category == 'workstation' %}
-                    <img src="/static/img/workstation-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
-                    {% else %}
-                    <img src="/static/img/custom-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ prebuilt.name }}</h5>
-                        <p class="card-text">{{ prebuilt.description[:100] }}{% if prebuilt.description|length > 100 %}...{% endif %}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="price">£{{ prebuilt.price }}</span>
-                            <a href="{{ url_for('product_detail', config_id=prebuilt.id) }}" class="btn btn-sm btn-outline-primary">View Details</a>
+    <!-- Related Products Section with Modern Cards -->
+    <div class="related-products-section py-5 mt-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-6 fw-bold">You May Also Like</h2>
+                <p class="lead text-muted">Explore other powerful gaming and creative workstations</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Dynamic Related Products -->
+                {% set exclude_id = config.id %}
+                {% set counter = 0 %}
+                {% for prebuilt in PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).limit(3).all() %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="related-product-card h-100">
+                        {% if loop.first %}
+                        <div class="product-badge best-value">BEST VALUE</div>
+                        {% elif loop.index == 2 %}
+                        <div class="product-badge hot-seller">HOT SELLER</div>
+                        {% elif loop.index == 3 %}
+                        <div class="product-badge premium">PREMIUM</div>
+                        {% endif %}
+                        
+                        <div class="product-image">
+                            {% if prebuilt.category == 'gaming' %}
+                            <img src="{{ url_for('static', filename='img/lummi/gaming_pc1.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
+                            {% elif prebuilt.category == 'enthusiast' %}
+                            <img src="{{ url_for('static', filename='img/lummi/gaming_pc2.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
+                            {% elif prebuilt.category == 'professional' or prebuilt.category == 'workstation' %}
+                            <img src="{{ url_for('static', filename='img/lummi/workstation_pc.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='img/lummi/compact_pc.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
+                            {% endif %}
+                        </div>
+                        
+                        <div class="product-details p-4">
+                            <h5 class="product-title mb-3">{{ prebuilt.name }}</h5>
+                            
+                            <div class="product-specs mb-3">
+                                <div class="spec-item">
+                                    <i class="fas fa-microchip me-2"></i> {{ prebuilt.cpu_id }}
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-tv me-2"></i> {{ prebuilt.gpu_id }}
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-memory me-2"></i> {{ prebuilt.ram_id }}
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-hdd me-2"></i> {{ prebuilt.storage_id }}
+                                </div>
+                            </div>
+                            
+                            <div class="product-footer d-flex justify-content-between align-items-center mt-4">
+                                <div class="price fs-4 fw-bold">£{{ prebuilt.price }}</div>
+                                <a href="{{ url_for('product_detail', config_id=prebuilt.id) }}" class="btn btn-primary rounded-pill">
+                                    View Details
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% set counter = counter + 1 %}
-            {% endfor %}
-            
-            {% if PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).count() == 0 %}
-            <!-- Fallback content if no other prebuilds are available -->
-            <div class="col-12 text-center">
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i> Looking for more options? <a href="{{ url_for('builds.prebuilt_configs') }}" class="alert-link">Check out all our prebuilt configurations</a> or <a href="{{ url_for('step_builder') }}" class="alert-link">build your own custom PC</a>.
+                {% set counter = counter + 1 %}
+                {% endfor %}
+                
+                {% if PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).count() == 0 %}
+                <!-- Fallback content if no other prebuilds are available -->
+                <div class="col-12 text-center">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i> Looking for more options? <a href="{{ url_for('builds.prebuilt_configs') }}" class="alert-link">Check out all our prebuilt configurations</a> or <a href="{{ url_for('step_builder') }}" class="alert-link">build your own custom PC</a>.
+                    </div>
                 </div>
+                {% endif %}
             </div>
-            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Call to Action Section -->
+    <div class="cta-section py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="display-6 fw-bold mb-4">Ready to Experience Next-Level Gaming?</h2>
+            <p class="lead mb-4">Get your Ryzen 5 5500 RTX 4060 Gaming PC today and elevate your gaming experience</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-light btn-lg me-3">
+                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                </a>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-headset me-2"></i>Ask an Expert
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -740,21 +792,463 @@
         font-size: 2.5rem;
     }
     
-    /* Recommended Products */
-    .product-card {
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Modern Hero Section */
+    .product-hero-section {
+        background: linear-gradient(135deg, rgba(33, 37, 41, 0.95) 0%, rgba(18, 18, 18, 0.98) 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-bg-blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 30% 50%, rgba(var(--bs-primary-rgb), 0.3) 0%, transparent 70%);
+        filter: blur(60px);
+        z-index: 0;
+    }
+    
+    .hero-badge {
+        display: inline-block;
+        background: linear-gradient(90deg, var(--bs-primary) 0%, var(--bs-danger) 100%);
+        color: white;
+        padding: 0.5rem 1.25rem;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    .product-highlights {
+        gap: 0.75rem;
+    }
+    
+    .highlight-badge {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+    }
+    
+    .highlight-badge:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.2);
+    }
+    
+    .verified-badge {
+        background-color: rgba(var(--bs-success-rgb), 0.2);
+        color: var(--bs-success);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+    
+    .product-price-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .product-price-card .card-header {
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1rem 1.5rem;
+    }
+    
+    .product-price-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .availability-status {
+        font-size: 0.875rem;
+    }
+    
+    .shipping-estimate {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .price-container {
+        text-align: center;
+    }
+    
+    .price-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(90deg, var(--bs-success) 0%, #26c9a8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    
+    .price-options {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .add-to-cart-btn {
+        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
+        border: none;
+        box-shadow: 0 5px 15px rgba(var(--bs-primary-rgb), 0.3);
         transition: all 0.3s ease;
     }
     
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    .add-to-cart-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(var(--bs-primary-rgb), 0.4);
     }
     
-    .product-card .price {
+    /* Product Gallery with 3D Effects */
+    .product-main-image-3d {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.5s ease;
+    }
+    
+    .product-main-image-3d:hover {
+        transform: translateY(-10px) rotateY(5deg);
+    }
+    
+    .image-glow-effect {
+        position: absolute;
+        top: -20%;
+        left: -20%;
+        width: 140%;
+        height: 140%;
+        background: radial-gradient(circle at center, rgba(var(--bs-primary-rgb), 0.3) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .product-main-image-3d:hover .image-glow-effect {
+        opacity: 1;
+    }
+    
+    .image-overlay-controls {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        z-index: 2;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+    
+    .product-main-image-3d:hover .image-overlay-controls {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .product-thumbnails {
+        margin-top: 1rem;
+    }
+    
+    .thumbnail-item {
+        position: relative;
+        width: 22%;
+        aspect-ratio: 1;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.6;
+        border: 2px solid transparent;
+    }
+    
+    .thumbnail-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .thumbnail-item.active {
+        opacity: 1;
+        border-color: var(--bs-primary);
+    }
+    
+    .active-indicator {
+        position: absolute;
+        top: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid var(--bs-primary);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .thumbnail-item.active .active-indicator {
+        opacity: 1;
+    }
+    
+    /* Feature Cards with Hover Effects */
+    .feature-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.1) 0%, rgba(var(--bs-primary-rgb), 0.03) 100%);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+    }
+    
+    .feature-icon {
+        height: 3rem;
+        width: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--bs-primary) 0%, #6f42c1 100%);
+        color: white;
+        font-size: 1.25rem;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+    }
+    
+    /* Modern Tabs with Pills */
+    .product-details-tabs .nav-pills .nav-link {
+        border-radius: 30px;
+        padding: 0.75rem 1.5rem;
+        color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .product-details-tabs .nav-pills .nav-link:hover {
+        color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .product-details-tabs .nav-pills .nav-link.active {
+        color: white;
+        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
+        box-shadow: 0 5px 15px rgba(var(--bs-primary-rgb), 0.3);
+    }
+    
+    /* Performance Tab Styling */
+    .game-benchmark {
+        background-color: rgba(255, 255, 255, 0.03);
+        padding: 1.25rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .game-benchmark:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .game-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .fps-badge {
+        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
+        color: white;
         font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+    }
+    
+    .settings-info {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .progress {
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .progress-bar {
+        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
+    }
+    
+    .benchmark-card {
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .benchmark-card:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        transform: translateY(-5px);
+    }
+    
+    .benchmark-icon {
+        color: var(--bs-primary);
+        font-size: 1.5rem;
+    }
+    
+    .score-indicator {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background-color: rgba(var(--bs-success-rgb), 0.2);
         color: var(--bs-success);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    /* Warranty Details Card */
+    .warranty-details {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .warranty-icon {
+        font-size: 2rem;
+        color: var(--bs-primary);
+    }
+    
+    .coverage-list, .support-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .coverage-list li, .support-list li {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+    
+    /* Trust Badges Section */
+    .trust-badges-section {
+        background: linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(33, 37, 41, 0.95) 100%);
+    }
+    
+    .trust-card {
+        display: flex;
+        align-items: flex-start;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .trust-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(var(--bs-primary-rgb), 0.3);
+    }
+    
+    .trust-icon {
+        font-size: 2.5rem;
+        color: var(--bs-primary);
+        margin-right: 1.5rem;
+        background: rgba(var(--bs-primary-rgb), 0.1);
+        height: 4rem;
+        width: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .trust-content h4 {
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .trust-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        margin-bottom: 0;
+    }
+    
+    /* Related Products Cards */
+    .related-product-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .related-product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+    }
+    
+    .product-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 20px;
+        z-index: 2;
+    }
+    
+    .product-badge.best-value {
+        background-color: var(--bs-success);
+        color: white;
+    }
+    
+    .product-badge.hot-seller {
+        background-color: var(--bs-danger);
+        color: white;
+    }
+    
+    .product-badge.premium {
+        background-color: var(--bs-info);
+        color: white;
+    }
+    
+    .product-image {
+        padding: 2rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+        text-align: center;
+    }
+    
+    .product-title {
+        font-weight: 600;
+        color: white;
+    }
+    
+    .product-specs .spec-item {
+        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+    }
+    
+    /* Call to Action Section */
+    .cta-section {
+        background: linear-gradient(135deg, var(--bs-primary) 0%, #6f42c1 100%);
+    }
+    
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
     
     @media (max-width: 767.98px) {
