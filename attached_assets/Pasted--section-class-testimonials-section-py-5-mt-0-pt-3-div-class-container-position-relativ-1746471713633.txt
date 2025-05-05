@@ -1,0 +1,101 @@
+<section class="testimonials-section py-5 mt-0 pt-3">
+        <div class="container position-relative">
+            <!-- Decorative elements -->
+            <div class="testimonial-decor-dots d-none d-lg-block"></div>
+            <div class="testimonial-decor-line d-none d-lg-block"></div>
+            
+            <div class="section-header text-center mb-5">
+                <span class="section-tag">TRUSTED BY GAMERS</span>
+                <h2 class="section-title mb-3">What Our Customers Say</h2>
+                <div class="overall-rating d-flex align-items-center justify-content-center">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text ms-2">4.9 out of 5 based on 150+ verified reviews</span>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Testimonial 1 - Highlighted Ryzen PC Testimonial -->
+                <div class="col-md-4">
+                    <div class="testimonial-card featured-testimonial">
+                        <div class="testimonial-badge">NEW BUILD</div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Just received my Ryzen 5 RTX 4060 gaming PC and I'm blown away! The 2TB SSD is lightning fast and it handles all my games at max settings. Incredible value for the price."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <span>SM</span>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah M.</div>
+                                <div class="author-location">Bristol</div>
+                                <div class="author-purchase">Purchased: Ryzen 5 RTX 4060 Gaming PC</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup and the performance is outstanding."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <span>RL</span>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Rhea L.</div>
+                                <div class="author-location">London</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"First time buying a custom PC and the service was exceptional. Support team answered all my questions and guided me through the whole process. The finished build is a work of art!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <span>AT</span>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Aiden T.</div>
+                                <div class="author-location">Edinburgh</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
