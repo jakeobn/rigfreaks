@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIGFREAKS - Premium Custom Desktops - {% block title %}Home{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chillblast-footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page-transitions.css') }}">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <!-- Chillblast-inspired Header -->
+    <header class="chillblast-header">
+        <!-- Top Info Bar -->
+        <div class="top-info-bar">
+            <div class="container">
+                Free shipping on all orders over £999 | <a href="{{ url_for('delivery') }}">Learn more</a>
+            </div>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div class="container">
+            <div class="main-nav-container">
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- Logo -->
+                <a href="{{ url_for('index') }}" class="header-logo">
+                    <img src="{{ url_for('static', filename='images/RigFreaks_20250505_230002_0000.png') }}" alt="RIGFREAKS logo">
+                </a>
+                
+                <!-- Search Box (Desktop) -->
+                <div class="search-container d-none d-lg-block">
+                    <form action="{{ url_for('index') }}" method="get">
+                        <input type="text" name="search" class="search-input" placeholder="Search...">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Primary Navigation (Desktop) -->
+                <nav class="primary-nav">
+                    <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
+                    <a href="{{ url_for('step_builder') }}" class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}">Custom PCs</a>
+                    <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="user-actions">
+                    {% if current_user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" class="action-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}"><i class="fas fa-user"></i> My Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('builds.list_builds') }}"><i class="fas fa-save"></i> My Builds</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="action-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{{ url_for('cart.view_cart') }}" class="action-link cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        {% if session.get('cart_items', 0) > 0 %}
+                        <span class="action-count">{{ session.get('cart_items', 0) }}</span>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="collapse navbar-collapse mobile-nav-collapse" id="mobileNav">
+            <div class="container">
+                <div class="mobile-nav-container">
+                    <!-- Mobile Search Form -->
+                    <form action="{{ url_for('index') }}" method="get" class="mobile-search-form mb-3">
+                        <div class="search-container w-100">
+                            <input type="text" name="search" class="search-input" placeholder="Search...">
+                            <button type="submit" class="search-button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Mobile Navigation Links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('step_builder') }}" class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}">Custom PCs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('about') }}" class="nav-link {% if request.path == url_for('about') %}active{% endif %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('delivery') }}" class="nav-link {% if request.path == url_for('delivery') %}active{% endif %}">Delivery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('faq') }}" class="nav-link {% if request.path == url_for('faq') %}active{% endif %}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Mobile Action Links -->
+                    <div class="mobile-action-links">
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('auth.profile') }}" class="action-link">
+                            <i class="fas fa-user me-2"></i> My Account
+                        </a>
+                        <a href="{{ url_for('auth.logout') }}" class="action-link">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="action-link">
+                            <i class="fas fa-sign-in-alt me-2"></i> Login
+                        </a>
+                        <a href="{{ url_for('auth.register') }}" class="action-link">
+                            <i class="fas fa-user-plus me-2"></i> Register
+                        </a>
+                        {% endif %}
+                        <a href="{{ url_for('cart.view_cart') }}" class="action-link">
+                            <i class="fas fa-shopping-cart me-2"></i> Cart
+                            {% if session.get('cart_items', 0) > 0 %}
+                            ({{ session.get('cart_items', 0) }})
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="container mt-5 pt-4">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message|safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content with Page Transition Container -->
+    <div class="page-transition-container">
+        <main class="main-content p-0">
+            <div class="page-content visible">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <!-- Chillblast-inspired Footer -->
+    <footer class="chillblast-footer">
+        <div class="container">
+            <!-- Main Footer Content -->
+            <div class="row">
+                <!-- Company Information -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-logo-section">
+                        <div class="footer-logo">
+                            <img src="{{ url_for('static', filename='images/RigFreaks_20250505_230002_0000.png') }}" alt="RIGFREAKS logo">
+                        </div>
+                        <p class="footer-about">Custom-built desktops tailored to your exact needs. Every system is expertly assembled using premium components, backed by a 5-year warranty and our dedicated support team.</p>
+                        
+                        <div class="footer-social-links">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-nav-section">
+                        <h4>Shop</h4>
+                        <ul class="footer-links">
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> Gaming PCs</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> Workstations</a></li>
+                            <li><a href="{{ url_for('step_builder') }}"><i class="fas fa-angle-right"></i> Custom PCs</a></li>
+                            <li><a href="{{ url_for('builds.prebuilt_configs') }}"><i class="fas fa-angle-right"></i> Special Offers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Customer Support -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-nav-section">
+                        <h4>Customer Care</h4>
+                        <ul class="footer-links">
+                            <li><a href="{{ url_for('contact') }}"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+                            <li><a href="{{ url_for('delivery') }}"><i class="fas fa-angle-right"></i> Delivery</a></li>
+                            <li><a href="{{ url_for('faq') }}"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                            <li><a href="{{ url_for('about') }}"><i class="fas fa-angle-right"></i> Warranty</a></li>
+                            <li><a href="{{ url_for('terms') }}"><i class="fas fa-angle-right"></i> Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact & Newsletter -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-nav-section">
+                        <h4>Contact Us</h4>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <p>123 Tech Street, PC City, PC1 2CD</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone-alt"></i>
+                                <div>
+                                    <p>+44 (0) 800 123 4567</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <p>support@rigfreaks.com</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <h4 class="newsletter-title mt-4">Stay Updated</h4>
+                        <p>Subscribe to our newsletter for exclusive offers</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email">
+                            <button type="submit" class="newsletter-button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Footer -->
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">&copy; 2025 RIGFREAKS. All rights reserved. RIGFREAKS is a trading name of RIGFREAKS Limited, a company registered in England and Wales.</p>
+                
+                <div class="footer-bottom-links">
+                    <a href="{{ url_for('about') }}">About Us</a>
+                    <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+                    <a href="{{ url_for('cookies') }}">Cookie Policy</a>
+                    <a href="{{ url_for('terms') }}">Terms & Conditions</a>
+                    <a href="{{ url_for('sitemap') }}">Sitemap</a>
+                </div>
+                
+                <div class="payment-methods">
+                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-amex"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-apple-pay"></i></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/pc_builder.js') }}"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Vanilla Tilt.js for 3D card effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    
+    <!-- Initialize Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animation library
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                offset: 100
+            });
+            
+            // Close mobile menu when links are clicked
+            const mobileMenuLinks = document.querySelectorAll('.navbar-nav .nav-link, .mobile-action-links .action-link');
+            const mobileMenu = document.getElementById('mobileNav');
+            
+            if (mobileMenu) {
+                const bsCollapse = new bootstrap.Collapse(mobileMenu, {toggle: false});
+                
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Check if the mobile menu is open (has show class)
+                        if (mobileMenu.classList.contains('show')) {
+                            bsCollapse.hide();
+                        }
+                    });
+                });
+            }
+            
+            // Header scroll effect
+            const header = document.querySelector('.chillblast-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <!-- Page Transition Script -->
+    <script src="{{ url_for('static', filename='js/page-transitions.js') }}"></script>
+    
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Page Transition Overlay Element -->
+    <div class="page-transition-overlay">
+        <div class="transition-loader">
+            <div class="spinner"></div>
+        </div>
+    </div>
+</body>
+</html>

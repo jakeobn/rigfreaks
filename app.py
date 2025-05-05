@@ -56,12 +56,15 @@ app.register_blueprint(cart_bp)
 def index():
     search_query = request.args.get('search', '')
     
+    # Get featured products for homepage
+    featured_configs = PreBuiltConfig.query.order_by(PreBuiltConfig.price.desc()).limit(6).all()
+    
     if search_query:
         # In a real implementation, this would search the database
         # For now, we'll just pass the search query to the template
-        return render_template('index.html', search_query=search_query)
+        return render_template('chillblast_index.html', search_query=search_query, featured_configs=featured_configs)
     
-    return render_template('index.html')
+    return render_template('chillblast_index.html', featured_configs=featured_configs)
 
 @app.route('/builder', methods=['GET', 'POST'])
 def builder():
@@ -397,7 +400,7 @@ def product_detail(config_id):
         config_details=config_details,
         performance=performance_summary,
         compatibility_issues=compatibility_issues,
-        related_configs=related_configs,
+        related_products=related_configs,
         PreBuiltConfig=PreBuiltConfig
     )
 
