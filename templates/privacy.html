@@ -4,406 +4,177 @@
 
 {% set active_page = 'privacy' %}
 
-{% block legal_icon %}<i class="fas fa-user-shield"></i>{% endblock %}
+{% block legal_icon %}<i class="fas fa-shield-alt"></i>{% endblock %}
 
 {% block legal_title %}Privacy Policy{% endblock %}
 
 {% block legal_intro %}
-    RigFreaks ("we", "us", "our") is committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website and use our services. By accessing our website, you agree to the terms of this Privacy Policy.
+    RigFreaks is committed to protecting your privacy. This policy explains how we collect, use, and protect your personal information when you visit our website and use our services.
 {% endblock %}
 
 {% block legal_content %}
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">1</span>
-                Information We Collect
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <div class="d-flex">
-                    <div class="flex-shrink-0 me-3 d-none d-lg-block">
-                        <div class="rounded-4 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center p-3">
-                            <i class="fas fa-database text-primary" style="font-size: 2.5rem;"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p>We collect personal information from you in various ways, including:</p>
-                        
-                        <div class="row mt-4">
-                            <div class="col-md-6 mb-4">
-                                <div class="p-3 rounded-3 bg-dark bg-opacity-50 h-100">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px">
-                                            <i class="fas fa-id-card text-dark"></i>
-                                        </div>
-                                        <h3 class="h6 mb-0 fw-bold">Personal Identification Information</h3>
-                                    </div>
-                                    <p class="small mb-2">When you place an order or sign up for an account, we may collect:</p>
-                                    <ul class="small">
-                                        <li>Name</li>
-                                        <li>Email address</li>
-                                        <li>Mailing address</li>
-                                        <li>Phone number</li>
-                                        <li>Payment information</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6 mb-4">
-                                <div class="p-3 rounded-3 bg-dark bg-opacity-50 h-100">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px">
-                                            <i class="fas fa-desktop text-dark"></i>
-                                        </div>
-                                        <h3 class="h6 mb-0 fw-bold">Non-Personal Identification</h3>
-                                    </div>
-                                    <p class="small mb-2">We may collect non-personal information about your interaction with our website:</p>
-                                    <ul class="small">
-                                        <li>IP address</li>
-                                        <li>Browser type</li>
-                                        <li>Device type</li>
-                                        <li>Pages viewed</li>
-                                        <li>Referring website or source</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Information We Collect</h2>
+        <p>We collect the following types of information:</p>
+        
+        <div class="minimal-grid">
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Personal Information</span>
+                <p>When you place an order or sign up for an account, we collect:</p>
+                <ul>
+                    <li>Name</li>
+                    <li>Email address</li>
+                    <li>Mailing address</li>
+                    <li>Phone number</li>
+                    <li>Payment information</li>
+                </ul>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Non-Personal Information</span>
+                <p>We may collect data about your interaction with our website:</p>
+                <ul>
+                    <li>IP address</li>
+                    <li>Browser type</li>
+                    <li>Device type</li>
+                    <li>Pages viewed</li>
+                    <li>Referring website</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">2</span>
-                How We Use Your Information
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <p>We use your personal information for the following purposes:</p>
-                <div class="table-responsive mt-3">
-                    <table class="table table-dark table-hover">
-                        <thead>
-                            <tr>
-                                <th style="width: 25%">Purpose</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart text-primary me-2"></i> Processing Transactions</td>
-                                <td>We may use your data to fulfill orders, process payments, and deliver products.</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-envelope text-primary me-2"></i> Communication</td>
-                                <td>We may send you order updates, promotional emails, or customer service-related messages.</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-chart-line text-primary me-2"></i> Service Improvement</td>
-                                <td>We may use your non-personal information to enhance website functionality, troubleshoot issues, and improve customer experience.</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-gavel text-primary me-2"></i> Legal Compliance</td>
-                                <td>We may need to share your information for legal reasons, such as complying with tax and shipping regulations.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">How We Use Your Information</h2>
+        <p>We use your personal information for the following purposes:</p>
+        
+        <div class="minimal-list">
+            <div class="minimal-list-item">
+                <span>Processing Transactions</span>
+                <p>To fulfill orders, process payments, and deliver products</p>
+            </div>
+            <div class="minimal-list-item">
+                <span>Communication</span>
+                <p>To send order updates, promotional emails, and customer service messages</p>
+            </div>
+            <div class="minimal-list-item">
+                <span>Service Improvement</span>
+                <p>To enhance website functionality and improve customer experience</p>
+            </div>
+            <div class="minimal-list-item">
+                <span>Legal Compliance</span>
+                <p>To comply with tax and shipping regulations</p>
             </div>
         </div>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">3</span>
-                Data Sharing
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <div class="d-flex align-items-center mb-3 p-3 rounded-3 bg-dark bg-opacity-50">
-                    <i class="fas fa-info-circle text-primary me-3 fs-4"></i>
-                    <p class="mb-0 small">We do not sell or rent your personal information to third parties. Your privacy is important to us.</p>
-                </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Data Sharing</h2>
+        <p class="mb-4">We do not sell or rent your personal information to third parties.</p>
 
-                <p>However, we may share your data with trusted third parties for the following purposes:</p>
-                
-                <div class="row mt-3">
-                    <div class="col-md-4 mb-3">
-                        <div class="p-3 rounded-3 h-100 bg-dark bg-opacity-50 text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-credit-card text-primary fs-2"></i>
-                            </div>
-                            <h5 class="h6 mb-2">Payment Processing</h5>
-                            <p class="small mb-0">We share necessary payment details with third-party providers (e.g., Stripe or PayPal) to process your payment securely.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="p-3 rounded-3 h-100 bg-dark bg-opacity-50 text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-shipping-fast text-primary fs-2"></i>
-                            </div>
-                            <h5 class="h6 mb-2">Shipping Providers</h5>
-                            <p class="small mb-0">To deliver your order, we share your information with third-party delivery companies (e.g., Royal Mail, DPD).</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="p-3 rounded-3 h-100 bg-dark bg-opacity-50 text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-balance-scale text-primary fs-2"></i>
-                            </div>
-                            <h5 class="h6 mb-2">Legal Requirements</h5>
-                            <p class="small mb-0">We may disclose your information to law enforcement or regulatory bodies if required by law.</p>
-                        </div>
-                    </div>
-                </div>
+        <p>We may share your data with trusted third parties for the following purposes:</p>
+        
+        <div class="minimal-grid">
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Payment Processing</span>
+                <p>We share payment details with service providers like Stripe or PayPal to process transactions securely.</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Shipping Services</span>
+                <p>We share delivery information with shipping companies to fulfill your orders.</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Legal Requirements</span>
+                <p>We may disclose information to law enforcement or regulatory bodies if required by law.</p>
             </div>
         </div>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">4</span>
-                Data Protection
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <p>We implement industry-standard security measures to protect your personal data:</p>
-                <div class="row mt-3">
-                    <div class="col-md-6 mb-3">
-                        <div class="p-3 rounded-3 h-100 bg-dark bg-opacity-50 d-flex align-items-start">
-                            <div class="me-3 mt-1">
-                                <i class="fas fa-lock text-primary fs-4"></i>
-                            </div>
-                            <div>
-                                <h5 class="h6 mb-2">Encryption</h5>
-                                <p class="mb-0 small">Your payment and account details are encrypted during transmission via Secure Socket Layer (SSL) technology.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="p-3 rounded-3 h-100 bg-dark bg-opacity-50 d-flex align-items-start">
-                            <div class="me-3 mt-1">
-                                <i class="fas fa-user-lock text-primary fs-4"></i>
-                            </div>
-                            <div>
-                                <h5 class="h6 mb-2">Access Control</h5>
-                                <p class="mb-0 small">We restrict access to personal information to only those employees and third parties who need it to perform their duties.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center mt-3 p-3 rounded-3 bg-dark bg-opacity-50">
-                    <i class="fas fa-exclamation-circle text-warning me-3 fs-4"></i>
-                    <p class="mb-0 small">While we take reasonable precautions, no data transmission over the internet can be guaranteed 100% secure, so we cannot guarantee the absolute security of your information.</p>
-                </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Data Protection</h2>
+        <p>We implement industry-standard security measures to protect your personal data:</p>
+        
+        <div class="minimal-grid">
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Encryption</span>
+                <p>Your payment and account details are encrypted during transmission via SSL technology.</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Access Control</span>
+                <p>We restrict access to personal information to only employees and partners who need it to perform their duties.</p>
             </div>
         </div>
+        
+        <p class="minimal-note mt-4">While we take reasonable precautions, no data transmission over the internet can be guaranteed 100% secure.</p>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">5</span>
-                Your Rights
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <p>As a user, you have the following rights regarding your personal data under the General Data Protection Regulation (GDPR):</p>
-                <div class="row mt-3">
-                    <div class="col-md-6 mb-3">
-                        <div class="d-flex">
-                            <div class="me-2 text-primary"><i class="fas fa-eye"></i></div>
-                            <div>
-                                <h6 class="mb-1 fw-bold">Access</h6>
-                                <p class="small mb-0">You can request a copy of the personal information we hold about you.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="d-flex">
-                            <div class="me-2 text-primary"><i class="fas fa-edit"></i></div>
-                            <div>
-                                <h6 class="mb-1 fw-bold">Rectification</h6>
-                                <p class="small mb-0">You can request correction of any inaccuracies in your personal data.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="d-flex">
-                            <div class="me-2 text-primary"><i class="fas fa-trash-alt"></i></div>
-                            <div>
-                                <h6 class="mb-1 fw-bold">Erasure</h6>
-                                <p class="small mb-0">You can request that we delete your personal information, subject to certain exceptions.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="d-flex">
-                            <div class="me-2 text-primary"><i class="fas fa-pause-circle"></i></div>
-                            <div>
-                                <h6 class="mb-1 fw-bold">Restriction</h6>
-                                <p class="small mb-0">You can request the restriction of processing of your personal data under specific conditions.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="d-flex">
-                            <div class="me-2 text-primary"><i class="fas fa-file-export"></i></div>
-                            <div>
-                                <h6 class="mb-1 fw-bold">Data Portability</h6>
-                                <p class="small mb-0">You can request to receive your data in a structured, commonly used format.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="d-flex">
-                            <div class="me-2 text-primary"><i class="fas fa-hand-paper"></i></div>
-                            <div>
-                                <h6 class="mb-1 fw-bold">Objection</h6>
-                                <p class="small mb-0">You can object to the processing of your personal data for certain purposes, such as marketing.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-dark bg-opacity-50 p-3 rounded-3 mt-3">
-                    <p class="mb-0 d-flex align-items-center">
-                        <i class="fas fa-info-circle text-primary me-2"></i>
-                        To exercise any of these rights, please contact us using the details provided at the end of this policy.
-                    </p>
-                </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Your Rights</h2>
+        <p>Under GDPR, you have the following rights regarding your personal data:</p>
+        
+        <div class="minimal-grid">
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Access</span>
+                <p>Request a copy of the personal information we hold about you</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Rectification</span>
+                <p>Request correction of any inaccuracies in your data</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Erasure</span>
+                <p>Request deletion of your personal information, with certain exceptions</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Restriction</span>
+                <p>Request limited processing of your data under specific conditions</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Data Portability</span>
+                <p>Request your data in a structured, commonly used format</p>
+            </div>
+            
+            <div class="minimal-cookie-type">
+                <span class="minimal-cookie-label">Objection</span>
+                <p>Object to processing of your data for certain purposes</p>
             </div>
         </div>
+        
+        <p class="mt-4">To exercise these rights, contact us using the details at the end of this policy.</p>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">6</span>
-                Cookies
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <div class="d-flex">
-                    <div class="flex-shrink-0 me-3 d-none d-lg-block">
-                        <div class="rounded-4 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center p-3">
-                            <i class="fas fa-cookie-bite text-primary" style="font-size: 2.5rem;"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p>We use cookies to improve your browsing experience and provide you with personalized content and advertising. Cookies are small text files stored on your device.</p>
-                        <p>You can control cookies through your browser settings. However, please note that disabling cookies may affect your ability to use certain features of our website.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-dark bg-opacity-50 p-3 rounded-3 mt-3">
-                    <p class="mb-0 d-flex align-items-center">
-                        <i class="fas fa-info-circle text-primary me-2"></i>
-                        For more information on how we use cookies, please refer to our <a href="{{ url_for('cookies') }}" class="text-primary">Cookie Policy</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Cookies</h2>
+        <p>We use cookies to improve your browsing experience and provide personalized content. These are small text files stored on your device.</p>
+        <p>You can control cookies through your browser settings, though disabling them may affect certain website features.</p>
+        <p>For more details, see our <a href="{{ url_for('cookies') }}">Cookie Policy</a>.</p>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">7</span>
-                Third-Party Links
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="flex-shrink-0 me-3">
-                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="fas fa-external-link-alt text-dark"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-0">Our website may contain links to third-party websites or services that are not operated by us. We are not responsible for the content or privacy practices of these third-party sites. We recommend reviewing their privacy policies before sharing any personal information.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Third-Party Links</h2>
+        <p>Our website may contain links to third-party websites or services not operated by us. We are not responsible for the privacy practices of these sites. We recommend reviewing their privacy policies before sharing personal information.</p>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">8</span>
-                Children's Privacy
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="flex-shrink-0 me-3">
-                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="fas fa-child text-dark"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-0">Our services are not intended for children under the age of 18. We do not knowingly collect personal information from children. If we learn that we have inadvertently collected personal data from a child under 18, we will take steps to delete the information as soon as possible.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Children's Privacy</h2>
+        <p>Our services are not intended for children under 18. We do not knowingly collect personal information from children. If we discover we have collected data from a child under 18, we will delete it promptly.</p>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">9</span>
-                Changes to This Privacy Policy
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0 me-3">
-                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="fas fa-history text-dark"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="mb-0">We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or business operations. When we update the policy, we will post the revised version on this page. The changes will be effective immediately upon posting, and we encourage you to review the policy regularly.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Policy Updates</h2>
+        <p>We may update this Privacy Policy to reflect changes in our practices or legal requirements. The revised version will be posted on this page and will be effective immediately upon posting.</p>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">10</span>
-                Contact Us
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <p>If you have any questions or concerns regarding this Privacy Policy or would like to exercise your rights under GDPR, please contact us:</p>
-                <div class="p-3 rounded-3 bg-dark bg-opacity-50 mt-3">
-                    <p class="mb-0">
-                        <strong>RigFreaks</strong><br>
-                        Email: support@rigfreaks.com<br>
-                        Website: https://www.rigfreaks.com
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Contact Us</h2>
+        <p>For questions about this Privacy Policy or to exercise your GDPR rights:</p>
+        <p class="minimal-contact">support@rigfreaks.com</p>
     </div>
 {% endblock %}
