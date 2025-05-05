@@ -101,7 +101,7 @@
 
 /* Mobile navigation menu */
 #mobileNav {
-    background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgb(15, 15, 15) 100%);
+    background: #121212; /* Solid dark background */
     position: absolute;
     width: 100%;
     left: 0;
@@ -133,7 +133,7 @@
 
 /* Dropdown menu in header */
 .dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #121212; /* Solid dark background matching mobile nav */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     margin-top: 0.5rem;

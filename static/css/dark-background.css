@@ -167,7 +167,7 @@ a:hover:not(.btn), .nav-link:hover, .footer-link:hover {
 
 /* Style dropdown menu items */
 .dropdown-menu {
-    background-color: rgba(33, 37, 41, 0.95);
+    background-color: #121212; /* Consistent solid background */
     border-color: rgba(255, 255, 255, 0.15);
 }
 
