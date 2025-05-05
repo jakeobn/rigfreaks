@@ -111,7 +111,8 @@ a:hover {
     align-items: center;
     color: white;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more emphasis */
 }
 
 .hero-main::before {
@@ -167,7 +168,8 @@ a:hover {
     background-size: cover;
     background-position: center;
     color: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more emphasis */
 }
 
 .hero-secondary.gaming {
@@ -296,7 +298,8 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more contrast */
 }
 
 .product-card:hover {
@@ -428,7 +431,8 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     height: 100%;
     transition: transform 0.3s ease;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more contrast */
 }
 
 .why-choose-item:hover {
@@ -476,7 +480,8 @@ a:hover {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more contrast */
 }
 
 .game-title {
@@ -525,7 +530,8 @@ a:hover {
     max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #000000;
+    /* Added black border for more contrast */
 }
 
 /* Configurator CTA */
