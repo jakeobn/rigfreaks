@@ -145,15 +145,8 @@ def prebuilt_configs():
     # Get prebuilt configurations
     configs = PreBuiltConfig.query.order_by(PreBuiltConfig.price).all()
     
-    # Group by category
-    categories = {}
-    for config in configs:
-        if config.category not in categories:
-            categories[config.category] = []
-        categories[config.category].append(config)
-    
     # Use the Chillblast-inspired template
-    return render_template('builds/chillblast_prebuilt.html', categories=categories)
+    return render_template('chillblast_prebuilt.html', configs=configs)
 
 @builds_bp.route('/prebuilt/<int:config_id>/load')
 def load_prebuilt(config_id):
