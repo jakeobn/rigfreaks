@@ -3,7 +3,7 @@
 /* ------- PREBUILT COLLECTION SECTION ------- */
 .prebuilt-collection-section {
     position: relative;
-    background-color: #f8f9fa;
+    background-color: var(--bg-dark);
     padding: 4rem 0;
     overflow: hidden;
 }
@@ -24,18 +24,19 @@
 /* System Card Design */
 .system-card {
     position: relative;
-    background: #ffffff;
+    background: rgba(15, 23, 42, 0.3);
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
     height: 100%;
     transition: all 0.3s ease;
 }
 
 .system-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
     border-color: rgba(var(--bs-primary-rgb), 0.2);
 }
 
@@ -72,7 +73,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
     z-index: 1;
 }
 
@@ -162,7 +163,7 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0;
-    color: #333333;
+    color: var(--text-light);
 }
 
 .system-rating {
@@ -178,7 +179,7 @@
 
 .rating-count {
     font-size: 0.75rem;
-    color: #6c757d;
+    color: var(--text-muted);
     margin-top: 2px;
 }
 
@@ -193,7 +194,7 @@
     flex: 1;
     display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 8px;
     padding: 0.5rem;
     overflow: hidden;
@@ -221,7 +222,7 @@
 .highlight-value {
     font-weight: 600;
     font-size: 0.9rem;
-    color: #333333;
+    color: var(--text-light);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -229,7 +230,7 @@
 
 .highlight-label {
     font-size: 0.7rem;
-    color: #6c757d;
+    color: var(--text-muted);
 }
 
 /* System Specs */
@@ -243,9 +244,9 @@
     display: flex;
     align-items: center;
     font-size: 0.85rem;
-    color: #6c757d;
+    color: var(--text-muted);
     padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .system-specs li:last-child {
@@ -260,11 +261,11 @@
 
 /* Performance Indicator */
 .system-performance {
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 8px;
     padding: 0.75rem;
     margin-bottom: 1.25rem;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .perf-header {
@@ -275,18 +276,18 @@
 
 .perf-label {
     font-size: 0.85rem;
-    color: #6c757d;
+    color: var(--text-muted);
 }
 
 .perf-value {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #333333;
+    color: var(--text-light);
 }
 
 .perf-bar {
     height: 6px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -320,13 +321,13 @@
 
 .price-label {
     font-size: 0.75rem;
-    color: #6c757d;
+    color: var(--text-muted);
 }
 
 .price-value {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #333333;
+    color: var(--text-light);
 }
 
 /* ------- HOW IT WORKS SECTION ------- */
@@ -353,10 +354,10 @@
 .process-step-modern {
     position: relative;
     padding: 2rem 1.5rem;
-    background: #ffffff;
+    background: var(--bg-card);
     border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-md);
     height: 100%;
     transition: all 0.3s ease;
     overflow: hidden;
@@ -365,7 +366,7 @@
 
 .process-step-modern:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
     border-color: rgba(var(--bs-primary-rgb), 0.2);
 }
 
@@ -437,11 +438,11 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #333333;
+    color: var(--text-light);
 }
 
 .process-description {
-    color: #6c757d;
+    color: var(--text-muted);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
 }
@@ -468,7 +469,7 @@
 .modern-hero {
     min-height: 80vh;
     padding: 0 0 5rem 0; /* Removed top padding, kept bottom padding */
-    background-color: #ffffff;
+    background-color: var(--bg-darker);
     position: relative;
     z-index: 1;
     margin-top: 0; /* Ensure no top margin */

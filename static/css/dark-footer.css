@@ -1,24 +1,23 @@
-/* Light footer styles */
+/* Dark gradient footer styles - blend with website background */
 .site-footer {
-    background: #f8f9fa;
-    color: #333333;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
     position: relative;
     margin-top: 3rem;
     overflow: hidden;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Add subtle fade for smooth transition */
+/* Add gradient fade for smooth transition */
 .site-footer::before {
     content: '';
     position: absolute;
-    top: -100px;
+    top: -200px;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 200px;
     background: linear-gradient(to bottom, 
                  transparent, 
-                 rgba(0, 0, 0, 0.02));
+                 rgba(0, 0, 0, 0.2));
     pointer-events: none;
 }
 
@@ -40,30 +39,32 @@
 
 .footer-top {
     padding: 4rem 0 3rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     z-index: 1;
-    background: #ffffff;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .footer-bottom {
     padding: 1.5rem 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     z-index: 1;
-    background: #f8f9fa;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
 }
 
 .footer-logo-text {
-    color: #333333;
+    color: white;
 }
 
 .footer-tagline {
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-description {
-    color: #495057;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-logo {
@@ -79,6 +80,7 @@
     width: auto;
     max-width: 200px;
     object-fit: contain;
+    filter: brightness(1.1);
 }
 
 .footer-logo-icon {
@@ -94,7 +96,7 @@
 }
 
 .footer-title {
-    color: #333333;
+    color: white;
     margin-bottom: 1.25rem;
     font-weight: 600;
     font-size: 1.125rem;
@@ -111,7 +113,7 @@
 }
 
 .footer-links a {
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -130,7 +132,7 @@
     width: 36px;
     height: 36px;
     background-color: transparent;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,7 +140,7 @@
 }
 
 .footer-social-link:hover {
-    color: #333333;
+    color: white;
 }
 
 /* Social icons styling */
@@ -146,7 +148,7 @@
     width: 24px;
     height: 24px;
     display: block;
-    fill: #6c757d;
+    fill: white;
     transition: all 0.2s ease;
 }
 
@@ -156,23 +158,23 @@
 }
 
 .footer-newsletter-text {
-    color: #495057;
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 1.25rem;
 }
 
 .footer-badge-title {
-    color: #495057;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
 
 .payment-icon {
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 1.75rem;
     margin-right: 0.75rem;
 }
 
 .footer-copyright, .footer-disclaimer {
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .brand-axis-link {
