@@ -387,25 +387,19 @@ def product_detail(config_id):
             
     compatibility_issues = check_compatibility(temp_config)
     
-    # Use specialized template for the Ryzen 5 5500 RTX 4060 product
-    if config.name == "Ryzen 5 5500 RTX 4060 Gaming PC":
-        return render_template(
-            'product_detail_ryzen.html',
-            config=config,
-            config_details=config_details,
-            performance=performance_summary,
-            compatibility_issues=compatibility_issues,
-            PreBuiltConfig=PreBuiltConfig
-        )
-    else:
-        return render_template(
-            'product_detail.html',
-            config=config,
-            config_details=config_details,
-            performance=performance_summary,
-            compatibility_issues=compatibility_issues,
-            PreBuiltConfig=PreBuiltConfig
-        )
+    # Get related products for the 'You might also like' section
+    related_configs = PreBuiltConfig.query.filter(PreBuiltConfig.id != config_id).order_by(db.func.random()).limit(4).all()
+    
+    # Use our Chillblast-inspired detail template
+    return render_template(
+        'chillblast_product_detail.html',
+        config=config,
+        config_details=config_details,
+        performance=performance_summary,
+        compatibility_issues=compatibility_issues,
+        related_configs=related_configs,
+        PreBuiltConfig=PreBuiltConfig
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -152,7 +152,8 @@ def prebuilt_configs():
             categories[config.category] = []
         categories[config.category].append(config)
     
-    return render_template('builds/prebuilt.html', categories=categories)
+    # Use the Chillblast-inspired template
+    return render_template('builds/chillblast_prebuilt.html', categories=categories)
 
 @builds_bp.route('/prebuilt/<int:config_id>/load')
 def load_prebuilt(config_id):
