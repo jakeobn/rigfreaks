@@ -18,7 +18,9 @@
 }
 
 .footer-logo img {
-    height: 42px;
+    height: 48px;
+    display: block;
+    margin-bottom: 1rem;
 }
 
 .footer-title {
@@ -236,7 +238,7 @@
     }
     
     .footer-logo img {
-        height: 36px;
+        height: 40px;
     }
     
     .footer-title {
