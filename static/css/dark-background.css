@@ -75,9 +75,30 @@ body::after {
 }
 
 /* Adjust cards and other elements to work with dark background */
-.card, .component-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+.card, .component-card, .testimonial-card, .featured-pc-card, .product-card, .why-choose-feature-card {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Make card titles and content stand out */
+.card-title, .component-title, .testimonial-author, .product-title, 
+.featured-pc-title, .feature-title-large {
+    color: white !important;
+    font-weight: 600;
+}
+
+.card-text, .testimonial-content, .feature-description, .product-price,
+.product-category, .component-count, .featured-pc-specs {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Enhance card hover effects */
+.card:hover, .component-card:hover, .testimonial-card:hover, 
+.featured-pc-card:hover, .product-card:hover, .why-choose-feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .modal-content {
@@ -89,13 +110,98 @@ body::after {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Make sure text is readable on dark background */
+/* Ensure all text is clearly visible on dark background */
+/* Global text color adjustments for all elements */
+body, p, h1, h2, h3, h4, h5, h6, span, div, a, li, dt, dd, label, 
+.card-title, .card-text, .section-title, .section-subtitle,
+.component-title, .product-title, .featured-pc-title, 
+.offer-title, .offer-text, .testimonial-content, .feature-title-large,
+.feature-description, .cta-title, .cta-text {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Targeted adjustments for specific elements */
+a:not(.btn), .nav-link, .footer-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+a:hover:not(.btn), .nav-link:hover, .footer-link:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Navigation specific styles */
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-item.active .nav-link {
+    color: white !important;
+}
+
+/* Footer links and text */
+.footer {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.footer h5, .footer .footer-title {
+    color: white !important;
+    font-weight: 600;
+}
+
+.footer-link, .footer a {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.footer-link:hover, .footer a:hover {
+    color: white !important;
+}
+
+/* Keep dark text for elements that need it */
+.btn-light, .btn-secondary {
+    color: rgba(33, 37, 41, 0.95) !important;
+}
+
+/* Style dropdown menu items */
+.dropdown-menu {
+    background-color: rgba(33, 37, 41, 0.95);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dropdown-item {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white !important;
+}
+
+/* Style buttons with outline for better visibility */
+.btn-outline-primary, .btn-outline-secondary, .btn-outline-success,
+.btn-outline-danger, .btn-outline-warning, .btn-outline-info {
+    border-width: 2px;
+}
+
+.btn-outline-primary {
+    color: var(--bs-primary) !important;
+    border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover {
+    color: white !important;
+}
+
+/* Original text classes */
 .text-dark {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .text-muted {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: rgba(255, 255, 255, 0.75) !important;
 }
 
 /* Adjust alert styles for dark background */
@@ -107,24 +213,25 @@ body::after {
 /* Style form elements for dark background */
 .form-control, .form-select {
     background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .form-control:focus, .form-select:focus {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--bs-primary);
     color: white;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
 }
 
 /* Style tables for dark background */
 .table {
-    color: rgba(255, 255, 255, 0.85);
+    color: white;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
     background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.85);
+    color: white;
 }
 
 .table-hover > tbody > tr:hover > * {
@@ -132,9 +239,15 @@ body::after {
     color: white;
 }
 
+.table th {
+    color: white;
+    font-weight: 600;
+}
+
 /* Style form labels for better visibility */
 label {
-    color: rgba(255, 255, 255, 0.85);
+    color: white;
+    font-weight: 500;
 }
 
 /* Fix hero section to work with dark background */
