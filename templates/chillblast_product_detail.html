@@ -1,0 +1,566 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ config.name }} | RIGFREAKS{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/prebuilt-products.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5 pt-5 product-main">
+    <!-- Product Title and Price Section -->
+    <div class="row product-title-section">
+        <div class="col-lg-8">
+            <h1 class="product-title">{{ config.name }}</h1>
+            <div class="shipping-badge">
+                <i class="fas fa-truck"></i> Ships within 2-3 days
+            </div>
+            <div class="product-ratings mb-3">
+                <span class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </span>
+                <span class="reviews-count ms-2">(24 Reviews)</span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="product-price-box">
+                <div class="product-current-price">£{{ config.price }}</div>
+                <div class="finance-option">or as low as £{{ (config.price / 12)|round(2) }}/month with finance</div>
+                <div class="product-actions">
+                    <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-primary btn-lg w-100">
+                        <i class="fas fa-shopping-cart me-2"></i> Buy
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-question-circle me-2"></i> Ask a Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Content Area -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <!-- Product Image -->
+            <div class="product-image mb-4">
+                {% if config.id == 1 %}
+                <img src="{{ url_for('static', filename='images/RigFreaks_20250505_230002_0000.png') }}" class="img-fluid rounded" alt="{{ config.name }}">
+                {% elif config.category == 'gaming' %}
+                <img src="{{ url_for('static', filename='images/Untitled design (5).png') }}" class="img-fluid rounded" alt="{{ config.name }}">
+                {% elif config.category == 'workstation' %}
+                <img src="{{ url_for('static', filename='images/Untitled design (10).png') }}" class="img-fluid rounded" alt="{{ config.name }}">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/Untitled design (2).png') }}" class="img-fluid rounded" alt="{{ config.name }}">
+                {% endif %}
+            </div>
+            
+            <!-- Benefits Icons -->
+            <div class="row text-center mb-5">
+                <div class="col-4">
+                    <div class="benefit-icon mb-2">
+                        <i class="fas fa-tools fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="benefit-title">Every detail counts</h5>
+                    <p class="benefit-desc small">Our system engineers rigorously test every PC</p>
+                </div>
+                <div class="col-4">
+                    <div class="benefit-icon mb-2">
+                        <i class="fas fa-headset fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="benefit-title">Customer support</h5>
+                    <p class="benefit-desc small">We've got your back with our customer care</p>
+                </div>
+                <div class="col-4">
+                    <div class="benefit-icon mb-2">
+                        <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="benefit-title">5 year warranty</h5>
+                    <p class="benefit-desc small">Our PCs are built to last with industry-leading warranty</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <!-- Component Features -->
+            <div class="component-features">
+                <div class="product-feature">
+                    <h3 class="feature-title">{{ config_details.cpu.name if config_details.cpu else 'Powerful Processor' }}</h3>
+                    <p class="feature-description">
+                        {% if config_details.cpu %}
+                        {{ config_details.cpu.name }} is a fantastic choice for a {{ config.category }} PC, offering a balance of performance and affordability. With its {{ config_details.cpu.specs.cores }} cores and {{ config_details.cpu.specs.threads }} threads, it handles demanding tasks and multitasking with ease. Perfect for {{ 'gaming at high settings' if config.category == 'gaming' else 'content creation and productivity' }}.
+                        {% else %}
+                        The AMD Ryzen 5 5500 is a fantastic choice for a gaming PC, offering a balance of performance and affordability. With its 6 cores and 12 threads, it handles demanding games and multitasking with ease. While it may not be the most powerful CPU on the market, it's more than capable of delivering smooth gameplay at high settings, especially when paired with a powerful graphics card.
+                        {% endif %}
+                    </p>
+                </div>
+                
+                <div class="product-feature">
+                    <h3 class="feature-title">{{ config_details.gpu.name if config_details.gpu else 'Powerful Graphics' }}</h3>
+                    <p class="feature-description">
+                        {% if config_details.gpu %}
+                        {{ config_details.gpu.name }} delivers exceptional performance for {{ config.category }} applications. With {{ config_details.gpu.specs.vram }}GB {{ config_details.gpu.specs.vram_type }} memory, it supports advanced features and delivers smooth visuals. Perfect for {{ 'gaming with ray tracing and DLSS' if 'RTX' in config_details.gpu.name else 'gaming and creative work' }}.
+                        {% else %}
+                        The GeForce RTX 4060 is a powerful graphics card that delivers exceptional performance for 1080p gaming. Leveraging the latest Ada Lovelace architecture, it supports ray tracing for realistic lighting and reflections, and DLSS 3 technology for higher frame rates and resolutions. Whether you're playing the latest AAA titles or competitive esports, the RTX 4060 is the right GPU for the job.
+                        {% endif %}
+                    </p>
+                </div>
+                
+                <div class="product-feature">
+                    <h3 class="feature-title">{{ config_details.motherboard.name if config_details.motherboard else 'Reliable Motherboard' }}</h3>
+                    <p class="feature-description">
+                        {% if config_details.motherboard %}
+                        The {{ config_details.motherboard.name }} offers a solid foundation for a {{ config.category }} PC. It features a robust power delivery system and comprehensive connectivity with {{ config_details.motherboard.specs.expansion_slots }} expansion slots and {{ config_details.motherboard.specs.usb_ports }} USB ports. The {{ config_details.motherboard.specs.chipset }} chipset ensures compatibility with the latest components.
+                        {% else %}
+                        The A520 motherboard offers a solid foundation for a gaming PC. It features a robust power delivery system, ensuring stable power supply to the CPU during intense gaming sessions. The rear I/O panel provides a comprehensive array of ports, including USB 3.2 Gen 2 Type-A ports for high-speed data transfer, and a Gigabit Ethernet port for reliable network connectivity.
+                        {% endif %}
+                    </p>
+                </div>
+                
+                <div class="product-feature">
+                    <h3 class="feature-title">High-speed {{ config_details.ram.specs.type if config_details.ram else 'DDR4' }} memory</h3>
+                    <p class="feature-description">
+                        {% if config_details.ram %}
+                        This RIGFREAKS PC features {{ config_details.ram.specs.capacity }}GB of high-performance {{ config_details.ram.specs.type }} memory, configured as {{ config_details.ram.specs.modules }}. It delivers exceptional responsiveness with speeds of {{ config_details.ram.specs.speed }}MHz, allowing for seamless multitasking, rapid application launches, and smooth performance in demanding applications.
+                        {% else %}
+                        This RIGFREAKS gaming PC features 16GB of high-performance DDR4 memory, configured as two 8GB DIMMs. It delivers exceptional responsiveness, allowing for seamless multitasking, rapid application launches, ultra-smooth gaming experiences and stutter-free streaming.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Tabs -->
+    <div class="product-content-tabs">
+        <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="true">Specifications</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#warranty" type="button" role="tab" aria-controls="warranty" aria-selected="false">Warranty</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="build-tab" data-bs-toggle="tab" data-bs-target="#build" type="button" role="tab" aria-controls="build" aria-selected="false">Build and test</button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="productTabsContent">
+            <!-- Specifications Tab -->
+            <div class="tab-pane fade show active" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+                <h2 class="mb-4">Specifications</h2>
+                
+                <div class="specs-list">
+                    <!-- CPU Specs -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Processor (CPU)</h4>
+                        {% if config_details.cpu %}
+                        <div class="spec-row">
+                            <div class="spec-label">CPU</div>
+                            <div class="spec-value">{{ config_details.cpu.name }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Cores/Threads</div>
+                            <div class="spec-value">{{ config_details.cpu.specs.cores }} Cores | {{ config_details.cpu.specs.threads }} Threads</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Base Frequency</div>
+                            <div class="spec-value">{{ config_details.cpu.specs.speed }} GHz</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Boost Frequency</div>
+                            <div class="spec-value">{{ config_details.cpu.specs.boost_speed }} GHz</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">CPU</div>
+                            <div class="spec-value">AMD Ryzen 5 5500</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Cores/Threads</div>
+                            <div class="spec-value">6 Cores | 12 Threads</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Base Frequency</div>
+                            <div class="spec-value">3.6 GHz</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Boost Frequency</div>
+                            <div class="spec-value">4.2 GHz</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- CPU Cooler -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">CPU Cooler</h4>
+                        {% if config_details.cooling %}
+                        <div class="spec-row">
+                            <div class="spec-label">Type</div>
+                            <div class="spec-value">{{ config_details.cooling.name }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Fan(s)</div>
+                            <div class="spec-value">{{ config_details.cooling.specs.fan_count }} x {{ config_details.cooling.specs.fan_size }}mm</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">Type</div>
+                            <div class="spec-value">240mm AIO Liquid Cooler</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Fan(s)</div>
+                            <div class="spec-value">2 x 120mm</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Motherboard -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Motherboard</h4>
+                        {% if config_details.motherboard %}
+                        <div class="spec-row">
+                            <div class="spec-label">Model</div>
+                            <div class="spec-value">{{ config_details.motherboard.name }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Chipset</div>
+                            <div class="spec-value">{{ config_details.motherboard.specs.chipset }}</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">Model</div>
+                            <div class="spec-value">Gigabyte A520M S2H</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Chipset</div>
+                            <div class="spec-value">AMD A520</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Network -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Network</h4>
+                        <div class="spec-row">
+                            <div class="spec-label">Ethernet</div>
+                            <div class="spec-value">10/100/1000Mbps</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Graphics -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Graphics</h4>
+                        {% if config_details.gpu %}
+                        <div class="spec-row">
+                            <div class="spec-label">GPU</div>
+                            <div class="spec-value">{{ config_details.gpu.name }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">VRAM</div>
+                            <div class="spec-value">{{ config_details.gpu.specs.vram }}GB</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">GPU</div>
+                            <div class="spec-value">NVIDIA GeForce RTX 4060</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">VRAM</div>
+                            <div class="spec-value">8GB</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Memory -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Memory (RAM)</h4>
+                        {% if config_details.ram %}
+                        <div class="spec-row">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">{{ config_details.ram.specs.capacity }}GB {{ config_details.ram.specs.type }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Speed</div>
+                            <div class="spec-value">{{ config_details.ram.specs.speed }}MT/s</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Configuration</div>
+                            <div class="spec-value">{{ config_details.ram.specs.modules }}</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">16GB DDR4</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Speed</div>
+                            <div class="spec-value">3200MT/s</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Configuration</div>
+                            <div class="spec-value">2 x 8GB Modules</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Case -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Case</h4>
+                        {% if config_details.case %}
+                        <div class="spec-row">
+                            <div class="spec-label">Model</div>
+                            <div class="spec-value">{{ config_details.case.name }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Color</div>
+                            <div class="spec-value">{{ config_details.case.specs.color }}</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">Model</div>
+                            <div class="spec-value">Corsair 3000D RGB AIRFLOW</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Color</div>
+                            <div class="spec-value">Black</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Operating System -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Operating System</h4>
+                        <div class="spec-row">
+                            <div class="spec-label">OS</div>
+                            <div class="spec-value">Microsoft Windows 11 Home</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Power Supply -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Power Supply</h4>
+                        {% if config_details.power_supply %}
+                        <div class="spec-row">
+                            <div class="spec-label">Wattage</div>
+                            <div class="spec-value">{{ config_details.power_supply.specs.wattage }}W</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Certification</div>
+                            <div class="spec-value">{{ config_details.power_supply.specs.certification }}</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">Wattage</div>
+                            <div class="spec-value">650W</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Certification</div>
+                            <div class="spec-value">80 Plus Bronze</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Storage -->
+                    <div class="spec-group">
+                        <h4 class="spec-category">Storage</h4>
+                        {% if config_details.storage %}
+                        <div class="spec-row">
+                            <div class="spec-label">Primary Drive</div>
+                            <div class="spec-value">{{ config_details.storage.specs.capacity }} {{ config_details.storage.specs.type }}</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Interface</div>
+                            <div class="spec-value">{{ config_details.storage.specs.interface }}</div>
+                        </div>
+                        {% else %}
+                        <div class="spec-row">
+                            <div class="spec-label">Primary Drive</div>
+                            <div class="spec-value">2TB NVMe SSD</div>
+                        </div>
+                        <div class="spec-row">
+                            <div class="spec-label">Interface</div>
+                            <div class="spec-value">PCIe 4.0 x4</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Warranty Tab -->
+            <div class="tab-pane fade" id="warranty" role="tabpanel" aria-labelledby="warranty-tab">
+                <div class="warranty-box">
+                    <h3 class="warranty-title">5 year warranty</h3>
+                    <p class="mb-4">We're proud of how much customers love and trust us, and that's why your PC is protected by an industry-leading 5 year warranty. So just in-case anything goes wrong, we've got you covered.</p>
+                    
+                    <p>The first 3 years warranty covers parts and labour – we'll collect your system, repair it and replace any parts as necessary, and return it to you free of charge. The final 2 years covers labour costs on a return to base basis.</p>
+                </div>
+                
+                <div class="mt-5">
+                    <h4 class="mb-3">What's covered in your warranty?</h4>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Years 1-3: Parts and Labor</h5>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i> Free collection and return shipping</li>
+                                        <li><i class="fas fa-check text-success me-2"></i> Replacement of any defective parts</li>
+                                        <li><i class="fas fa-check text-success me-2"></i> All labor costs covered</li>
+                                        <li><i class="fas fa-check text-success me-2"></i> Technical support via phone and email</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Years 4-5: Labor Only</h5>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i> Return to base service</li>
+                                        <li><i class="fas fa-check text-success me-2"></i> All labor costs covered</li>
+                                        <li><i class="fas fa-check text-success me-2"></i> Technical support via phone and email</li>
+                                        <li><i class="fas fa-times text-danger me-2"></i> Parts replacement (chargeable)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Build and Test Tab -->
+            <div class="tab-pane fade" id="build" role="tabpanel" aria-labelledby="build-tab">
+                <h2 class="mb-4">Our Build and Test Process</h2>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <h4 class="mb-3">1. Component Selection</h4>
+                        <p>We carefully select the highest quality components for your PC. Each component is chosen not just for its individual performance, but for how well it works with other parts of your system.</p>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <h4 class="mb-3">2. Expert Assembly</h4>
+                        <p>Our experienced technicians assemble each PC with meticulous attention to detail, ensuring clean cable management, proper component seating, and optimal airflow configuration.</p>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <h4 class="mb-3">3. Stress Testing</h4>
+                        <p>Every PC undergoes extensive stress testing to ensure stability under heavy loads. We run CPU, GPU, and memory benchmarks to push your system to its limits before it reaches you.</p>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <h4 class="mb-3">4. Software Installation</h4>
+                        <p>We install the latest Windows operating system, update all drivers, and configure BIOS settings for optimal performance. Your PC arrives ready to use out of the box.</p>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <h4 class="mb-3">5. Quality Assurance</h4>
+                        <p>Before shipping, each PC undergoes a thorough quality inspection. We check every connection, verify all hardware is functioning correctly, and ensure the system meets our high standards.</p>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <h4 class="mb-3">6. Secure Packaging</h4>
+                        <p>Your new PC is carefully packaged with custom foam inserts to protect it during transit. We take extra precautions to ensure your system arrives in perfect condition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Products -->
+    <div class="related-products">
+        <h2 class="related-title">You might also like</h2>
+        
+        <div class="row g-4">
+            {% for related_config in related_configs[:3] if related_config.id != config.id %}
+            <div class="col-lg-4 col-md-6">
+                <div class="prebuilt-card">
+                    <div class="prebuilt-card-header">
+                        <h3>{{ related_config.name }}</h3>
+                    </div>
+                    
+                    <div class="prebuilt-card-image">
+                        {% if related_config.category == 'gaming' %}
+                        <img src="{{ url_for('static', filename='images/Untitled design (5).png') }}" alt="{{ related_config.name }}">
+                        {% elif related_config.category == 'workstation' %}
+                        <img src="{{ url_for('static', filename='images/Untitled design (10).png') }}" alt="{{ related_config.name }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/Untitled design (2).png') }}" alt="{{ related_config.name }}">
+                        {% endif %}
+                    </div>
+                    
+                    <div class="prebuilt-card-body">
+                        <div class="prebuilt-price">
+                            <span class="price-prefix">£</span>{{ related_config.price }}
+                        </div>
+                        
+                        <div class="prebuilt-card-specs">
+                            {% if related_config.cpu_id %}
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <div class="spec-title">CPU</div>
+                                    <div class="spec-value">{{ related_config.cpu_id }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if related_config.gpu_id %}
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-tv"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <div class="spec-title">Graphics Card</div>
+                                    <div class="spec-value">{{ related_config.gpu_id }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if related_config.storage_id %}
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-hdd"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <div class="spec-title">Storage</div>
+                                    <div class="spec-value">{{ related_config.storage_id }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if related_config.ram_id %}
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-memory"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <div class="spec-title">RAM</div>
+                                    <div class="spec-value">{{ related_config.ram_id }}</div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="prebuilt-card-footer p-3">
+                        <div class="prebuilt-card-actions">
+                            <a href="{{ url_for('product_detail', config_id=related_config.id) }}" class="btn btn-primary w-100">
+                                View PC
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
