@@ -96,17 +96,8 @@ def step_builder():
     if 'pc_config' not in session:
         session['pc_config'] = {}
     
-    components = load_component_data()
-    compatibility_issues = check_compatibility(session['pc_config'])
-    total_price = calculate_total_price(session['pc_config'])
-    
-    return render_template(
-        'step_builder.html',
-        components=components,
-        current_config=session['pc_config'],
-        compatibility_issues=compatibility_issues,
-        total_price=total_price
-    )
+    # Default first step is selecting CPU
+    return redirect(url_for('select_component', category='cpu'))
 
 @app.route('/select/<category>', methods=['GET'])
 def select_component(category):
@@ -119,11 +110,31 @@ def select_component(category):
     # Get the current configuration
     current_config = session.get('pc_config', {})
     
+    # Calculate total price
+    total_price = calculate_total_price(current_config)
+    
+    # Check compatibility issues
+    compatibility_issues = check_compatibility(current_config)
+    
+    # Determine previous and next steps
+    steps = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']
+    current_index = steps.index(category)
+    prev_step = steps[current_index - 1] if current_index > 0 else None
+    next_step = steps[current_index + 1] if current_index < len(steps) - 1 else None
+    
+    # Count how many components are configured
+    configured_components = sum(1 for step in steps if step in current_config)
+    
     return render_template(
-        'component_select.html',
-        category=category,
-        components=components[category],
-        current_selection=current_config.get(category)
+        'chillblast_step_builder.html',
+        components=components,
+        current_config=current_config,
+        compatibility_issues=compatibility_issues,
+        total_price=total_price,
+        current_step=category,
+        prev_step=prev_step,
+        next_step=next_step,
+        configured_components=configured_components
     )
     
 @app.route('/component/<category>/<component_id>', methods=['GET'])
