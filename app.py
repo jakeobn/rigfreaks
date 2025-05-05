@@ -391,7 +391,8 @@ def product_detail(config_id):
         config=config,
         config_details=config_details,
         performance=performance_summary,
-        compatibility_issues=compatibility_issues
+        compatibility_issues=compatibility_issues,
+        PreBuiltConfig=PreBuiltConfig
     )
 
 if __name__ == '__main__':
