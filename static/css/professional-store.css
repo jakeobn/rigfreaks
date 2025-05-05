@@ -177,16 +177,19 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.75rem;
   border-left: 4px solid var(--store-primary);
   transition: var(--transition);
+  z-index: 10;
+  max-width: 230px;
 }
 
 .spec-badge:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) !important;
   box-shadow: var(--shadow-lg);
 }
 
 .spec-badge i {
   font-size: 1.5rem;
   color: var(--store-primary);
+  flex-shrink: 0;
 }
 
 .spec-badge .badge-title {
@@ -204,18 +207,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .spec-badge.cpu {
-  top: 20%;
-  left: -30px;
+  top: 15%;
+  left: -15px;
+  transform: translateY(-50%);
 }
 
 .spec-badge.gpu {
   top: 50%;
-  right: -30px;
+  right: -15px;
+  transform: translateY(-50%);
 }
 
 .spec-badge.memory {
-  bottom: 20%;
-  left: 15%;
+  bottom: 15%;
+  left: -15px;
+  transform: translateY(50%);
 }
 
 /* Categories section */
