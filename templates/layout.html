@@ -32,32 +32,22 @@
     <header class="professional-header">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <!-- Logo -->
-                <a href="{{ url_for('index') }}" class="header-logo">
-                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="RIGFREAKS logo">
-                </a>
-                
-                <!-- Search Form (Desktop) -->
-                <div class="search-form d-none d-md-block mx-4 flex-grow-1 flex-md-grow-0">
-                    <form action="{{ url_for('index') }}" method="get">
-                        <input type="text" name="search" class="search-input" placeholder="Search for components or builds...">
-                        <button type="submit" class="search-button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+                <!-- Mobile Menu Toggle (Left) -->
+                <div class="mobile-toggle-container d-lg-none">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
                 
-                <!-- Main Navigation Links (Desktop) -->
-                <nav class="d-none d-lg-flex main-nav mx-4">
-                    <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
-                    <a href="{{ url_for('step_builder') }}" class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}">PC Builder</a>
-                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
-                    <a href="{{ url_for('about') }}" class="nav-link {% if request.path == url_for('about') %}active{% endif %}">About</a>
-                    <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
-                </nav>
+                <!-- Logo (Center) -->
+                <div class="header-logo-container text-center mx-auto">
+                    <a href="{{ url_for('index') }}" class="header-logo">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="RIGFREAKS logo">
+                    </a>
+                </div>
                 
-                <!-- Right Side Actions (Desktop) -->
-                <div class="d-none d-lg-flex header-actions">
+                <!-- Right Side Actions -->
+                <div class="header-actions-container d-flex align-items-center">
                     <a href="{{ url_for('cart.view_cart') }}" class="action-link cart-link {% if request.path == url_for('cart.view_cart') %}active{% endif %}">
                         <i class="fas fa-shopping-cart"></i>
                         {% if session.get('cart_items', 0) > 0 %}
@@ -84,11 +74,31 @@
                     </a>
                     {% endif %}
                 </div>
-                
-                <!-- Mobile Menu Toggle -->
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
+            </div>
+            
+            <!-- Full Width Search and Navigation (Desktop) -->
+            <div class="desktop-nav-search d-none d-lg-block mt-3">
+                <div class="row align-items-center">
+                    <div class="col-lg-4">
+                        <div class="search-form w-100">
+                            <form action="{{ url_for('index') }}" method="get">
+                                <input type="text" name="search" class="search-input" placeholder="Search for components or builds...">
+                                <button type="submit" class="search-button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <nav class="main-nav d-flex justify-content-end">
+                            <a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                            <a href="{{ url_for('step_builder') }}" class="nav-link {% if request.path == url_for('step_builder') %}active{% endif %}">PC Builder</a>
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="nav-link {% if request.path == url_for('builds.prebuilt_configs') %}active{% endif %}">Prebuilt PCs</a>
+                            <a href="{{ url_for('about') }}" class="nav-link {% if request.path == url_for('about') %}active{% endif %}">About</a>
+                            <a href="{{ url_for('contact') }}" class="nav-link {% if request.path == url_for('contact') %}active{% endif %}">Contact</a>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
         

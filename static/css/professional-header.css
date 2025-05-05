@@ -3,7 +3,7 @@
 .professional-header {
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    padding: 0.75rem 0;
+    padding: 0.75rem 0 1rem;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -11,8 +11,15 @@
 }
 
 .professional-header.scrolled {
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 0.75rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo centered in the header */
+.header-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-logo img {
@@ -22,6 +29,27 @@
 
 .scrolled .header-logo img {
     height: 38px;
+}
+
+/* Mobile toggle button (left side) */
+.mobile-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-toggler {
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    color: var(--store-dark);
+    font-size: 1.25rem;
+}
+
+/* Right side actions (cart and account) */
+.header-actions-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 /* Navigation Links */
@@ -108,11 +136,16 @@
     position: relative;
 }
 
+/* Desktop Navigation and Search */
+.desktop-nav-search {
+    border-top: 1px solid var(--store-border);
+    padding-top: 1rem;
+}
+
 /* Search Form */
 .search-form {
     position: relative;
     width: 100%;
-    max-width: 300px;
 }
 
 .search-input {
