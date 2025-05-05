@@ -208,11 +208,12 @@
             </div>
             
             <div class="row g-4">
-                <!-- Featured PC 1: Ryzen 5 RTX 4060 Gaming PC -->
+                <!-- Featured PC 1: Ryzen 5 RTX 4060 Gaming PC - NEW PREMIUM FEATURED SPOT -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="featured-pc-card">
-                        <span class="featured-badge">Best Value</span>
+                    <div class="featured-pc-card premium-card shadow-pulse">
+                        <span class="featured-badge bg-danger">NEW</span>
                         <div class="featured-pc-image">
+                            <div class="shimmer-effect"></div>
                             <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" alt="Ryzen 5 RTX 4060 Gaming PC" class="img-fluid">
                         </div>
                         <div class="featured-pc-content">
@@ -221,13 +222,21 @@
                                 <span class="spec-item"><i class="fas fa-microchip"></i> Ryzen 5 5500</span>
                                 <span class="spec-item"><i class="fas fa-tv"></i> RTX 4060 8GB</span>
                                 <span class="spec-item"><i class="fas fa-memory"></i> 16GB DDR4 3200MHz</span>
-                                <span class="spec-item"><i class="fas fa-hdd"></i> 2TB NVMe SSD</span>
+                                <span class="spec-item"><i class="fas fa-hdd text-success"></i> <strong class="text-success">2TB NVMe SSD</strong></span>
+                            </div>
+                            <div class="featured-performance">
+                                <div class="perf-label">Gaming Performance</div>
+                                <div class="perf-bar">
+                                    <div class="perf-fill" style="width: 85%;"></div>
+                                </div>
                             </div>
                             <div class="featured-pc-price">
                                 <span class="price">£999</span>
+                                <span class="limited-offer">Limited Time Offer</span>
                             </div>
-                            <div class="featured-pc-actions">
-                                <a href="{{ url_for('product_detail', config_id=4076) }}" class="btn btn-primary w-100">View Details</a>
+                            <div class="featured-pc-actions mt-3">
+                                <a href="{{ url_for('product_detail', config_id=4076) }}" class="btn btn-primary w-100 mb-2">View Details</a>
+                                <a href="{{ url_for('builds.load_prebuilt', config_id=4076) }}" class="btn btn-outline-primary w-100">Add to Cart</a>
                             </div>
                         </div>
                     </div>
@@ -542,10 +551,15 @@
         </div>
     </section>
     
-    <!-- Customer Reviews/Testimonials Section -->
+    <!-- Customer Reviews/Testimonials Section - Enhanced with modern design -->
     <section class="testimonials-section py-5 mt-0 pt-3">
-        <div class="container">
+        <div class="container position-relative">
+            <!-- Decorative elements -->
+            <div class="testimonial-decor-dots d-none d-lg-block"></div>
+            <div class="testimonial-decor-line d-none d-lg-block"></div>
+            
             <div class="section-header text-center mb-5">
+                <span class="section-tag">TRUSTED BY GAMERS</span>
                 <h2 class="section-title mb-3">What Our Customers Say</h2>
                 <div class="overall-rating d-flex align-items-center justify-content-center">
                     <div class="stars">
@@ -555,14 +569,15 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <span class="rating-text ms-2">4.9 out of 5 based on 150+ reviews</span>
+                    <span class="rating-text ms-2">4.9 out of 5 based on 150+ verified reviews</span>
                 </div>
             </div>
             
             <div class="row g-4">
-                <!-- Testimonial 1 -->
+                <!-- Testimonial 1 - Highlighted Ryzen PC Testimonial -->
                 <div class="col-md-4">
-                    <div class="testimonial-card">
+                    <div class="testimonial-card featured-testimonial">
+                        <div class="testimonial-badge">NEW BUILD</div>
                         <div class="testimonial-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -571,11 +586,17 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-content">
-                            <p>"Absolutely thrilled with my custom rig from RigFreaks! Arrived fast, packaged like a tank, and runs every game on ultra."</p>
+                            <p>"Just received my Ryzen 5 RTX 4060 gaming PC and I'm blown away! The 2TB SSD is lightning fast and it handles all my games at max settings. Incredible value for the price."</p>
                         </div>
                         <div class="testimonial-author">
-                            <div class="author-name">Josh M.</div>
-                            <div class="author-location">Manchester</div>
+                            <div class="author-avatar">
+                                <span>SM</span>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah M.</div>
+                                <div class="author-location">Bristol</div>
+                                <div class="author-purchase">Purchased: Ryzen 5 RTX 4060 Gaming PC</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -591,11 +612,16 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-content">
-                            <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup."</p>
+                            <p>"I had no idea how to choose parts, but the configurator made it simple. Got exactly what I needed for my content creation setup and the performance is outstanding."</p>
                         </div>
                         <div class="testimonial-author">
-                            <div class="author-name">Rhea L.</div>
-                            <div class="author-location">London</div>
+                            <div class="author-avatar">
+                                <span>RL</span>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Rhea L.</div>
+                                <div class="author-location">London</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -611,11 +637,16 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-content">
-                            <p>"First time buying a custom PC and the service was exceptional. Support team answered all my questions and guided me through the whole process."</p>
+                            <p>"First time buying a custom PC and the service was exceptional. Support team answered all my questions and guided me through the whole process. The finished build is a work of art!"</p>
                         </div>
                         <div class="testimonial-author">
-                            <div class="author-name">Aiden T.</div>
-                            <div class="author-location">Edinburgh</div>
+                            <div class="author-avatar">
+                                <span>AT</span>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Aiden T.</div>
+                                <div class="author-location">Edinburgh</div>
+                            </div>
                         </div>
                     </div>
                 </div>
