@@ -395,109 +395,117 @@ section .container {
     color: var(--bs-secondary);
 }
 
-/* Trending Products Section */
+/* Minimal Trending Products Section */
 .trending-products-section {
-    /* No background here - controlled globally */
+    background-color: var(--bs-dark);
     color: white;
-}
-
-.product-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    height: 100%;
+    padding: 4rem 0 !important;
     position: relative;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+/* Minimal Products Grid */
+.minimal-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
 }
 
-.product-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: var(--bs-primary);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 12px;
-    z-index: 2;
+/* Minimal Product Card */
+.minimal-product-card {
+    background-color: transparent;
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
-.product-image {
-    height: 180px;
+.minimal-product-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Minimal Product Image */
+.minimal-product-image {
+    margin-bottom: 20px;
     overflow: hidden;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bs-light);
-    padding: 1rem;
 }
 
-.product-image img {
-    max-height: 100%;
+.minimal-product-image img {
     max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
-    transition: transform 0.5s ease;
+    filter: brightness(0.9);
+    transition: all 0.5s ease;
 }
 
-.product-card:hover .product-image img {
-    transform: scale(1.05);
+.minimal-product-card:hover .minimal-product-image img {
+    filter: brightness(1);
 }
 
-.product-content {
-    padding: 1rem;
+/* Minimal Product Content */
+.minimal-product-content {
+    text-align: center;
 }
 
-.product-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--bs-dark);
-    min-height: 2.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.minimal-product-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: white;
+    letter-spacing: 0;
 }
 
-.product-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    font-size: 0.8rem;
+.minimal-product-category {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 15px;
 }
 
-.product-category {
-    color: var(--bs-secondary);
+.minimal-product-price {
+    margin-bottom: 20px;
 }
 
-.product-rating {
-    color: var(--bs-secondary);
+/* Minimal Product Actions */
+.minimal-product-actions {
+    margin-top: 20px;
 }
 
-.product-rating i {
-    color: #FFD700;
-    margin-right: 2px;
+/* Responsive Adjustments */
+@media (max-width: 1199.98px) {
+    .minimal-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
 }
 
-.product-price-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding-top: 0.75rem;
+@media (max-width: 767.98px) {
+    .minimal-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .minimal-product-image {
+        height: 140px;
+    }
+    
+    .minimal-product-title {
+        font-size: 1rem;
+    }
 }
 
-.product-price {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--bs-dark);
+@media (max-width: 575.98px) {
+    .minimal-products-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .minimal-product-image {
+        height: 200px;
+    }
 }
 
 /* Why Choose Us Section */

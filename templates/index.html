@@ -308,119 +308,85 @@
         </div>
     </section>
     
-    <!-- Trending Products Section -->  
+    <!-- Minimal Trending Products Section -->  
     <section class="trending-products-section py-5">
         <div class="container">
-            <div class="section-header d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2 class="section-title mb-1">Trending Products</h2>
-                    <p class="section-subtitle">Our most popular components right now</p>
-                </div>
-                <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary d-none d-md-block">View All</a>
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Trending Components</h2>
             </div>
             
-            <div class="trending-products-carousel">
-                <div class="row g-4">
-                    <!-- Trending Product 1 -->  
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="product-card">
-                            <div class="product-badge">Best Seller</div>
-                            <div class="product-image">
-                                <img src="{{ url_for('static', filename='img/rtx4090.jpg') }}" alt="RTX 4090" class="img-fluid">
-                            </div>
-                            <div class="product-content">
-                                <h3 class="product-title">NVIDIA RTX 4090 24GB</h3>
-                                <div class="product-meta">
-                                    <div class="product-category">Graphics Cards</div>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.9 (125)</span>
-                                    </div>
-                                </div>
-                                <div class="product-price-container">
-                                    <span class="product-price">£1,699</span>
-                                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-sm btn-primary">Add to Build</a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="minimal-products-grid">
+                <!-- Minimal Product 1 -->  
+                <div class="minimal-product-card">
+                    <div class="minimal-product-image">
+                        <img src="{{ url_for('static', filename='img/rtx4090.jpg') }}" alt="RTX 4090">
                     </div>
-                    
-                    <!-- Trending Product 2 -->  
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="product-card">
-                            <div class="product-badge">New</div>
-                            <div class="product-image">
-                                <img src="{{ url_for('static', filename='img/ryzen9.jpg') }}" alt="Ryzen 9 7900X" class="img-fluid">
-                            </div>
-                            <div class="product-content">
-                                <h3 class="product-title">AMD Ryzen 9 7900X</h3>
-                                <div class="product-meta">
-                                    <div class="product-category">Processors</div>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.8 (89)</span>
-                                    </div>
-                                </div>
-                                <div class="product-price-container">
-                                    <span class="product-price">£499</span>
-                                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-sm btn-primary">Add to Build</a>
-                                </div>
-                            </div>
+                    <div class="minimal-product-content">
+                        <h3 class="minimal-product-title">NVIDIA RTX 4090 24GB</h3>
+                        <div class="minimal-product-category">Graphics Card</div>
+                        <div class="minimal-product-price">
+                            <span class="price">£1,699</span>
                         </div>
-                    </div>
-                    
-                    <!-- Trending Product 3 -->  
-                    <div class="col-6 col-md-4 col-lg-3 d-none d-md-block">
-                        <div class="product-card">
-                            <div class="product-badge">Popular</div>
-                            <div class="product-image">
-                                <img src="{{ url_for('static', filename='img/ram.jpg') }}" alt="32GB DDR5 RAM" class="img-fluid">
-                            </div>
-                            <div class="product-content">
-                                <h3 class="product-title">Kingston Fury 32GB DDR5</h3>
-                                <div class="product-meta">
-                                    <div class="product-category">Memory</div>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.7 (56)</span>
-                                    </div>
-                                </div>
-                                <div class="product-price-container">
-                                    <span class="product-price">£159</span>
-                                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-sm btn-primary">Add to Build</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Trending Product 4 -->  
-                    <div class="col-6 col-md-4 col-lg-3 d-none d-lg-block">
-                        <div class="product-card">
-                            <div class="product-badge">Top Rated</div>
-                            <div class="product-image">
-                                <img src="{{ url_for('static', filename='img/ssd.jpg') }}" alt="Samsung 990 Pro 2TB" class="img-fluid">
-                            </div>
-                            <div class="product-content">
-                                <h3 class="product-title">Samsung 990 Pro 2TB</h3>
-                                <div class="product-meta">
-                                    <div class="product-category">Storage</div>
-                                    <div class="product-rating">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.9 (78)</span>
-                                    </div>
-                                </div>
-                                <div class="product-price-container">
-                                    <span class="product-price">£229</span>
-                                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-sm btn-primary">Add to Build</a>
-                                </div>
-                            </div>
+                        <div class="minimal-product-actions">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimal-btn">Add to Build</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="text-center mt-4 d-md-none">
-                    <a href="{{ url_for('builds.prebuilt_configs') }}" class="btn btn-outline-primary">View All Products</a>
+                <!-- Minimal Product 2 -->  
+                <div class="minimal-product-card">
+                    <div class="minimal-product-image">
+                        <img src="{{ url_for('static', filename='img/ryzen9.jpg') }}" alt="Ryzen 9 7900X">
+                    </div>
+                    <div class="minimal-product-content">
+                        <h3 class="minimal-product-title">AMD Ryzen 9 7900X</h3>
+                        <div class="minimal-product-category">Processor</div>
+                        <div class="minimal-product-price">
+                            <span class="price">£499</span>
+                        </div>
+                        <div class="minimal-product-actions">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimal-btn">Add to Build</a>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Minimal Product 3 -->  
+                <div class="minimal-product-card">
+                    <div class="minimal-product-image">
+                        <img src="{{ url_for('static', filename='img/ram.jpg') }}" alt="Kingston Fury 32GB DDR5">
+                    </div>
+                    <div class="minimal-product-content">
+                        <h3 class="minimal-product-title">Kingston Fury 32GB DDR5</h3>
+                        <div class="minimal-product-category">Memory</div>
+                        <div class="minimal-product-price">
+                            <span class="price">£159</span>
+                        </div>
+                        <div class="minimal-product-actions">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimal-btn">Add to Build</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Minimal Product 4 -->  
+                <div class="minimal-product-card">
+                    <div class="minimal-product-image">
+                        <img src="{{ url_for('static', filename='img/ssd.jpg') }}" alt="Samsung 990 Pro 2TB">
+                    </div>
+                    <div class="minimal-product-content">
+                        <h3 class="minimal-product-title">Samsung 990 Pro 2TB</h3>
+                        <div class="minimal-product-category">Storage</div>
+                        <div class="minimal-product-price">
+                            <span class="price">£229</span>
+                        </div>
+                        <div class="minimal-product-actions">
+                            <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimal-btn">Add to Build</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="{{ url_for('builds.prebuilt_configs') }}" class="minimal-view-all">View all components</a>
             </div>
         </div>
     </section>
