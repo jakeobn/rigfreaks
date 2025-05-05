@@ -338,5 +338,10 @@ def sitemap():
     """Site Map page showing all website pages in an organized format."""
     return render_template('sitemap.html')
 
+@app.route('/prebuilt')
+def prebuilt_redirect():
+    """Redirect to the prebuilt configurations page."""
+    return redirect(url_for('builds.prebuilt_configs'))
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
