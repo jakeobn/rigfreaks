@@ -1,7 +1,7 @@
 /* Professional Footer for E-commerce Store */
 
 .professional-footer {
-    background-color: #f8f9fa;
+    background-color: #ffffff; /* Changed to white */
     padding: 4rem 0 0;
     border-top: 1px solid var(--store-border);
     position: relative;
@@ -93,7 +93,7 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #eef0f2;
+    background-color: #f5f6f8; /* Slightly darker than white to stand out */
     color: var(--store-dark);
     transition: all 0.3s ease;
 }
@@ -173,10 +173,11 @@
 
 /* Bottom Footer */
 .footer-bottom {
-    background-color: #eef0f2;
+    background-color: #ffffff; /* Changed to white */
     padding: 1.5rem 0;
     text-align: center;
     margin-top: 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05); /* Added subtle border */
 }
 
 .copyright {
@@ -219,6 +220,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Added subtle border */
 }
 
 /* Responsive Adjustments */
