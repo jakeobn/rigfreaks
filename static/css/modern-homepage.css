@@ -469,10 +469,11 @@
 .modern-hero {
     min-height: 80vh;
     padding: 0 0 5rem 0; /* Removed top padding, kept bottom padding */
-    background-color: var(--bg-darker);
+    background-color: var(--bs-dark); /* Changed to match global background */
     position: relative;
     z-index: 1;
     margin-top: 0; /* Ensure no top margin */
+    margin-bottom: 0; /* Ensure no bottom margin for seamless transition */
 }
 
 /* Background Elements */
