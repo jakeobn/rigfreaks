@@ -287,3 +287,65 @@ label {
 .feature-card-inner {
     background-color: rgba(255, 255, 255, 0.05);
 }
+
+/* Enhanced styling for the Why Choose Us feature cards */
+.why-choose-feature-card {
+    padding: 2rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly brighter than regular cards */
+}
+
+.why-choose-feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.feature-icon-large {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-title-large {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: white !important;
+}
+
+.feature-description {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.feature-link {
+    display: inline-block;
+    font-weight: 500;
+    margin-top: auto;
+    color: var(--bs-primary) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+.feature-link:hover {
+    color: white !important;
+    text-decoration: none !important;
+    transform: translateX(5px);
+}
+
+/* Additional spacing utility class */
+.py-6 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
