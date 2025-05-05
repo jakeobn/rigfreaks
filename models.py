@@ -54,6 +54,13 @@ class PreBuiltConfig(db.Model):
     description = db.Column(db.Text, nullable=True)
     category = db.Column(db.String(50), nullable=False)  # e.g., gaming, productivity, budget
     price = db.Column(db.Float, default=0.0)
+    special_features = db.Column(db.Text, nullable=True)  # Stored as JSON
+    
+    def get_special_features(self):
+        """Get special features as a list"""
+        if self.special_features:
+            return json.loads(self.special_features)
+        return []
     
     # Component IDs (foreign keys to components in the JSON data)
     cpu_id = db.Column(db.String(20), nullable=True)

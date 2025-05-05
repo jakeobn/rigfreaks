@@ -1,0 +1,676 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ config.name }} | RIGFREAKS{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <!-- Product Header Section -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1 class="product-title mb-2">{{ config.name }}</h1>
+            <div class="product-rating mb-3">
+                <span class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </span>
+                <span class="reviews-count ms-2">(28 Reviews)</span>
+            </div>
+            <p class="product-description lead">{{ config.description }}</p>
+            <div class="shipping-info mt-3">
+                <span class="badge bg-success me-2">Ships within 2-3 days</span>
+                <span class="availability">In Stock</span>
+            </div>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+            <div class="product-price-box">
+                <div class="product-price">
+                    <span class="price-label">Price</span>
+                    <span class="price-value">£{{ config.price }}</span>
+                </div>
+                <div class="price-options mt-2">
+                    <small>or as low as £{{ (config.price / 12) | round(2) }}/month with finance</small>
+                </div>
+                <div class="product-actions mt-3">
+                    <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-primary btn-lg w-100 mb-2">
+                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-question-circle me-2"></i> Ask a Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Product Content Section -->
+    <div class="row">
+        <!-- Product Gallery -->
+        <div class="col-lg-6 mb-4">
+            <div class="product-gallery">
+                <div class="main-image-container mb-3">
+                    <img src="/static/img/gaming-pc.jpg" class="img-fluid rounded" alt="{{ config.name }}">
+                </div>
+                <div class="thumbnail-gallery d-flex">
+                    <div class="thumbnail-item active me-2">
+                        <img src="/static/img/gaming-pc.jpg" class="img-fluid rounded" alt="Front view">
+                    </div>
+                    <div class="thumbnail-item me-2">
+                        <img src="/static/img/gaming-pc-1.jpg" class="img-fluid rounded" alt="Side view">
+                    </div>
+                    <div class="thumbnail-item me-2">
+                        <img src="/static/img/gaming-pc-2.jpg" class="img-fluid rounded" alt="Interior view">
+                    </div>
+                    <div class="thumbnail-item">
+                        <img src="/static/img/gaming-pc-3.jpg" class="img-fluid rounded" alt="Back view">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Feature Blocks -->
+            <div class="key-feature-blocks mt-4">
+                <div class="row">
+                    {% set feature_icons = {
+                        'microchip': ['AMD Ryzen 5', 'Ryzen', 'CPU'],
+                        'tv': ['RTX', 'GPU', 'Graphics', 'GeForce'],
+                        'memory': ['DDR4', 'RAM', 'Memory'],
+                        'hdd': ['Storage', 'SSD', 'NVMe'],
+                        'snowflake': ['Cooling', 'AIO', 'Liquid'],
+                        'lightbulb': ['RGB', 'Lighting'],
+                        'wifi': ['PCIe', 'WiFi', 'Bluetooth']
+                    } %}
+                    
+                    {% if config.special_features %}
+                        {% for feature in config.get_special_features() %}
+                            {% set feature_text = feature %}
+                            <div class="col-6 mb-3">
+                                <div class="key-feature-card p-3 text-center h-100">
+                                    {% set icon = 'bolt' %}
+                                    {% for icon_name, keywords in feature_icons.items() %}
+                                        {% for keyword in keywords %}
+                                            {% if keyword in feature_text %}
+                                                {% set icon = icon_name %}
+                                                {% break %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                    <i class="fas fa-{{ icon }} feature-icon mb-3"></i>
+                                    <h5>{{ feature_text }}</h5>
+                                    <p class="small mb-0">{{ feature_text }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-microchip feature-icon mb-3"></i>
+                                <h5>AMD Ryzen 5</h5>
+                                <p class="small mb-0">6 cores, 12 threads for smooth gaming and multitasking</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-tv feature-icon mb-3"></i>
+                                <h5>GeForce RTX 4060</h5>
+                                <p class="small mb-0">Ray tracing and DLSS 3 for unparalleled gaming performance</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-memory feature-icon mb-3"></i>
+                                <h5>High-speed DDR4</h5>
+                                <p class="small mb-0">16GB DDR4 3200MHz for responsive gaming and multitasking</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-hdd feature-icon mb-3"></i>
+                                <h5>Ultra-fast Storage</h5>
+                                <p class="small mb-0">2TB NVMe SSD for lightning-fast game loading times</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Details and Specs -->
+        <div class="col-lg-6">
+            <div class="product-specs">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="true">Specifications</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="story-tab" data-bs-toggle="tab" data-bs-target="#story" type="button" role="tab" aria-controls="story" aria-selected="false">Story</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#warranty" type="button" role="tab" aria-controls="warranty" aria-selected="false">Warranty</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom" id="productTabsContent">
+                    <!-- Specifications Tab -->
+                    <div class="tab-pane fade show active" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Processor (CPU)</h4>
+                            <ul class="specs-list">
+                                <li><strong>AMD Ryzen 5 5500</strong></li>
+                                <li>6 Cores | 12 Threads</li>
+                                <li>Base Frequency: 3.6 GHz</li>
+                                <li>Boost Frequency: 4.2 GHz</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">CPU Cooler</h4>
+                            <ul class="specs-list">
+                                <li>240mm AIO Liquid Cooler</li>
+                                <li>2 x 120mm Fan(s)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Motherboard</h4>
+                            <ul class="specs-list">
+                                <li>A520 Chipset</li>
+                                <li>Wi-Fi 6 & Bluetooth 5.2</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Memory (RAM)</h4>
+                            <ul class="specs-list">
+                                <li>16GB DDR4 3200MT/s</li>
+                                <li>2 x 8GB Modules</li>
+                                <li>Latency CL16</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Graphics</h4>
+                            <ul class="specs-list">
+                                <li>NVIDIA GeForce RTX 4060</li>
+                                <li>8GB VRAM</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Storage</h4>
+                            <ul class="specs-list">
+                                <li>2TB NVMe SSD</li>
+                                <li>PCIe 4.0 x4</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Power Supply</h4>
+                            <ul class="specs-list">
+                                <li>650W</li>
+                                <li>80 Plus Bronze</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Case</h4>
+                            <ul class="specs-list">
+                                <li>Corsair 3000D RGB AIRFLOW</li>
+                                <li>Black</li>
+                                <li>Tempered Glass Side Panel</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Physical Dimensions</h4>
+                            <ul class="specs-list">
+                                <li>Width: 230mm</li>
+                                <li>Height: 462mm</li>
+                                <li>Depth: 466mm</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="specs-block mb-4">
+                            <h4 class="specs-title">Operating System</h4>
+                            <ul class="specs-list">
+                                <li>Microsoft Windows 11 Home</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Tab -->
+                    <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="story-tab">
+                        <div class="component-story mb-5">
+                            <h4>AMD Ryzen 5</h4>
+                            <p>The AMD Ryzen 5 is a fantastic choice for a gaming PC, offering a balance of performance and affordability. With its 6 cores and 12 threads, it handles demanding games and multitasking with ease. While it may not be the most powerful CPU on the market, it's more than capable of delivering smooth gameplay at high settings, especially when paired with a powerful graphics card like the GeForce RTX 4060.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>GeForce RTX 4060</h4>
+                            <p>The GeForce RTX 4060 is a powerful graphics card that delivers exceptional performance for 1080p gaming. Leveraging the latest Ada Lovelace architecture, it supports ray tracing for realistic lighting and reflections, and DLSS 3 technology for higher frame rates and resolutions. Whether you're playing the latest AAA titles or competitive esports, the RTX 4060 is the right GPU for the job.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>A520 motherboard</h4>
+                            <p>The A520 motherboard offers a solid foundation for a gaming PC. It features a robust power delivery system, ensuring stable power supply to the CPU during intense gaming sessions. The rear I/O panel provides a comprehensive array of ports, including USB 3.2 Gen 2 Type-A ports for high-speed data transfer, and a Gigabit Ethernet port for reliable network connectivity. The integrated Wi-Fi and Bluetooth capabilities offer wireless convenience.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>High-speed DDR4 memory</h4>
+                            <p>This gaming PC features 16GB of high-performance DDR4 memory, configured as two 8GB DIMMs. It delivers exceptional responsiveness, allowing for seamless multitasking, rapid application launches, ultra-smooth gaming experiences and stutter-free streaming.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>No waiting around</h4>
+                            <p>Equipped with a blazing-fast 2TB NVMe SSD, this gaming PC provides all the storage you need for your game library, files, and applications. With its Gen4 connection giving fast read and write speeds, this SSD ensures rapid boot times and near-instantaneous loading, elevating your overall gaming and computing experience.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>80 PLUS Bronze certified</h4>
+                            <p>The 750W power supply is a reliable and efficient power source for a gaming PC. It delivers ample power for high-end components like the Ryzen 5 processor and GeForce RTX 4060. With 80 PLUS Bronze certification, it offers a balance of performance and energy efficiency.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>Liquid cooled</h4>
+                            <p>To keep the powerful AMD Ryzen 5 processor cool we've chosen a powerful liquid cooler designed to ensure it's kept cool and quiet under heavy loads. The dual 120mm ARGB fans and efficient radiator ensure optimal thermal performance, while the customizable RGB lighting adds a stylish touch to your PC.</p>
+                        </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>Corsair 3000D RGB AIRFLOW</h4>
+                            <p>The Corsair 3000D RGB AIRFLOW Black case we've chosen for this Gaming PC provides a sleek and stylish enclosure. Its well-designed interior layout and excellent airflow ensure optimal thermal performance while you game, and its tempered glass side panel showcases this masterpiece. The Corsair 3000D RGB AIRFLOW strikes the perfect balance between aesthetics and functionality, making it the ideal for this high-performance gaming rig.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Warranty Tab -->
+                    <div class="tab-pane fade" id="warranty" role="tabpanel" aria-labelledby="warranty-tab">
+                        <div class="warranty-content">
+                            <h4 class="mb-4">3 Year Peace-of-Mind Warranty</h4>
+                            <p>We're proud of how much customers love and trust us, and that's why your PC is protected by a comprehensive 3 year warranty. So just in-case anything goes wrong, we've got you covered.</p>
+                            
+                            <div class="warranty-features mt-4">
+                                <div class="warranty-item d-flex mb-3">
+                                    <div class="warranty-icon me-3">
+                                        <i class="fas fa-shield-alt text-primary fa-2x"></i>
+                                    </div>
+                                    <div class="warranty-content">
+                                        <h5>3 Years Collect & Return</h5>
+                                        <p>If your system develops a fault within the warranty period, we'll collect it, repair it, and return it to you free of charge.</p>
+                                    </div>
+                                </div>
+                                <div class="warranty-item d-flex mb-3">
+                                    <div class="warranty-icon me-3">
+                                        <i class="fas fa-headset text-primary fa-2x"></i>
+                                    </div>
+                                    <div class="warranty-content">
+                                        <h5>Lifetime Technical Support</h5>
+                                        <p>Our UK-based team of experts is available to assist you with any technical issues or questions for the lifetime of your PC.</p>
+                                    </div>
+                                </div>
+                                <div class="warranty-item d-flex mb-3">
+                                    <div class="warranty-icon me-3">
+                                        <i class="fas fa-tools text-primary fa-2x"></i>
+                                    </div>
+                                    <div class="warranty-content">
+                                        <h5>Parts & Labor Included</h5>
+                                        <p>All replacement parts and labor costs are covered under our warranty - no hidden fees or charges.</p>
+                                    </div>
+                                </div>
+                                <div class="warranty-item d-flex">
+                                    <div class="warranty-icon me-3">
+                                        <i class="fas fa-sync-alt text-primary fa-2x"></i>
+                                    </div>
+                                    <div class="warranty-content">
+                                        <h5>30-Day No Quibble Returns</h5>
+                                        <p>Not completely satisfied? Return your PC within 30 days for a full refund, no questions asked (excludes shipping).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Build Quality & Support Section -->
+    <div class="build-quality-section py-5 mt-4">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="quality-card p-4 h-100">
+                    <i class="fas fa-tools quality-icon mb-3"></i>
+                    <h4>Build and test</h4>
+                    <h5 class="text-primary mb-3">Every detail counts</h5>
+                    <p>Our system engineers rigorously test every PC, making sure it's fully optimised and ready to go</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="quality-card p-4 h-100">
+                    <i class="fas fa-headset quality-icon mb-3"></i>
+                    <h4>Customer support</h4>
+                    <h5 class="text-primary mb-3">World-class support</h5>
+                    <p>We've got your back with our customer care - from order updates to troubleshooting</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quality-card p-4 h-100">
+                    <i class="fas fa-shield-alt quality-icon mb-3"></i>
+                    <h4>Warranty</h4>
+                    <h5 class="text-primary mb-3">3 year warranty</h5>
+                    <p>Our PCs are built to last. Just in-case anything goes wrong, we include an industry leading 3 year warranty</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recommended Products Section -->
+    <div class="recommended-products mt-5">
+        <h3 class="section-title mb-4">You May Also Like</h3>
+        <div class="row">
+            <!-- Featured builds from our prebuilt collection -->
+            {% set exclude_id = config.id %}
+            {% set counter = 0 %}
+            {% for prebuilt in PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).limit(3).all() %}
+            <div class="col-md-4">
+                <div class="card product-card h-100">
+                    {% if prebuilt.category == 'gaming' %}
+                    <img src="/static/img/gaming-pc-{{ (counter % 3) + 1 }}.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% elif prebuilt.category == 'professional' or prebuilt.category == 'workstation' %}
+                    <img src="/static/img/workstation-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% else %}
+                    <img src="/static/img/custom-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prebuilt.name }}</h5>
+                        <p class="card-text">{{ prebuilt.description[:100] }}{% if prebuilt.description|length > 100 %}...{% endif %}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price">£{{ prebuilt.price }}</span>
+                            <a href="{{ url_for('product_detail', config_id=prebuilt.id) }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% set counter = counter + 1 %}
+            {% endfor %}
+            
+            {% if PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).count() == 0 %}
+            <!-- Fallback content if no other prebuilds are available -->
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> Looking for more options? <a href="{{ url_for('builds.prebuilt_configs') }}" class="alert-link">Check out all our prebuilt configurations</a> or <a href="{{ url_for('step_builder') }}" class="alert-link">build your own custom PC</a>.
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Product Detail Page Styles */
+    .product-title {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: white;
+    }
+    
+    .product-rating .stars {
+        color: #ffc107;
+    }
+    
+    .product-description {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .shipping-info .badge {
+        font-weight: 500;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .availability {
+        color: var(--bs-success);
+        font-weight: 500;
+    }
+    
+    .product-price-box {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-price {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .price-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .price-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--bs-success);
+    }
+    
+    .price-options small {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Gallery */
+    .product-gallery .main-image-container {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    .thumbnail-item {
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        opacity: 0.7;
+    }
+    
+    .thumbnail-item.active {
+        opacity: 1;
+        box-shadow: 0 0 0 2px var(--bs-primary);
+    }
+    
+    .thumbnail-item:hover {
+        opacity: 1;
+    }
+    
+    /* Key Feature Blocks */
+    .key-feature-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .key-feature-card:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        transform: translateY(-5px);
+    }
+    
+    .feature-icon {
+        color: var(--bs-primary);
+        font-size: 2rem;
+    }
+    
+    /* Tabs & Specifications */
+    .nav-tabs {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-tabs .nav-link {
+        color: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-tabs .nav-link:hover {
+        color: white;
+        border-color: transparent;
+    }
+    
+    .nav-tabs .nav-link.active {
+        color: var(--bs-primary);
+        background-color: transparent;
+        border-bottom-color: var(--bs-primary);
+    }
+    
+    .tab-content {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Specifications Tab */
+    .specs-block {
+        margin-bottom: 1.5rem;
+    }
+    
+    .specs-title {
+        color: var(--bs-primary);
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .specs-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .specs-list li {
+        margin-bottom: 0.25rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Story Tab */
+    .component-story h4 {
+        color: var(--bs-primary);
+        margin-bottom: 0.75rem;
+    }
+    
+    .component-story p {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+    }
+    
+    /* Warranty Tab */
+    .warranty-features {
+        margin-top: 1.5rem;
+    }
+    
+    .warranty-item {
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+    
+    .warranty-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .warranty-item h5 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+    
+    .warranty-item p {
+        margin-bottom: 0;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Build Quality Section */
+    .build-quality-section {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .quality-card {
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .quality-card:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        transform: translateY(-5px);
+    }
+    
+    .quality-icon {
+        color: var(--bs-primary);
+        font-size: 2.5rem;
+    }
+    
+    /* Recommended Products */
+    .product-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-card .price {
+        font-weight: 700;
+        color: var(--bs-success);
+    }
+    
+    @media (max-width: 767.98px) {
+        .product-title {
+            font-size: 1.75rem;
+        }
+        
+        .price-value {
+            font-size: 2rem;
+        }
+        
+        .product-gallery .main-image-container {
+            padding: 0.5rem;
+        }
+        
+        .thumbnail-item {
+            width: 60px;
+            height: 60px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Thumbnail gallery functionality
+        const thumbnails = document.querySelectorAll('.thumbnail-item');
+        const mainImage = document.querySelector('.main-image-container img');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+                
+                // Set main image source to clicked thumbnail source
+                mainImage.src = this.querySelector('img').src;
+            });
+        });
+    });
+</script>
+{% endblock %}

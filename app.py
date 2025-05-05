@@ -386,14 +386,25 @@ def product_detail(config_id):
             
     compatibility_issues = check_compatibility(temp_config)
     
-    return render_template(
-        'product_detail.html',
-        config=config,
-        config_details=config_details,
-        performance=performance_summary,
-        compatibility_issues=compatibility_issues,
-        PreBuiltConfig=PreBuiltConfig
-    )
+    # Use specialized template for the Ryzen 5 5500 RTX 4060 product
+    if config.name == "Ryzen 5 5500 RTX 4060 Gaming PC":
+        return render_template(
+            'product_detail_ryzen.html',
+            config=config,
+            config_details=config_details,
+            performance=performance_summary,
+            compatibility_issues=compatibility_issues,
+            PreBuiltConfig=PreBuiltConfig
+        )
+    else:
+        return render_template(
+            'product_detail.html',
+            config=config,
+            config_details=config_details,
+            performance=performance_summary,
+            compatibility_issues=compatibility_issues,
+            PreBuiltConfig=PreBuiltConfig
+        )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

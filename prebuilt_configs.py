@@ -1,9 +1,33 @@
+import json
 from app import app
 from utils import load_component_data, calculate_total_price
 from models import db, PreBuiltConfig
 
 # Define prebuilt configurations
 PREBUILT_CONFIGS = [
+    {
+        "name": "Ryzen 5 5500 RTX 4060 Gaming PC",
+        "description": "A powerful mid-range gaming PC featuring the AMD Ryzen 5 5500 CPU and NVIDIA RTX 4060 GPU. Ideal for 1080p gaming with ray tracing and DLSS capabilities.",
+        "category": "gaming",
+        "components": {
+            "cpu": "cpu10",  # Using Ryzen 5 as a placeholder since we don't have the exact 5500 model
+            "motherboard": "mobo8",  # A520 chipset motherboard 
+            "ram": "ram4",  # 16GB DDR4 3200MT/s memory
+            "gpu": "gpu6",  # Using RTX model as placeholder
+            "storage": "storage1",  # 2TB NVMe SSD
+            "power_supply": "psu2",  # 750W power supply
+            "case": "case5",  # Corsair case
+            "cooling": "cooling1"  # 240mm AIO liquid cooler
+        },
+        "special_features": [
+            "240mm AIO Liquid Cooling",
+            "RTX Ray Tracing & DLSS",
+            "Full RGB Lighting",
+            "PCIe 4.0 Support",
+            "High-Speed 2TB NVMe Storage"
+        ],
+        "price": 999.99
+    },
     {
         "name": "Budget Gaming PC",
         "description": "A cost-effective gaming build capable of running modern games at 1080p with medium settings.",
@@ -110,9 +134,16 @@ def create_prebuilt_configs():
         for category, component_id in config_data["components"].items():
             setattr(config, f"{category}_id", component_id)
         
-        # Calculate price based on components
-        config_dict = config_data["components"]
-        config.price = calculate_total_price(config_dict)
+        # Set price if provided directly, otherwise calculate from components
+        if "price" in config_data:
+            config.price = config_data["price"]
+        else:
+            config_dict = config_data["components"]
+            config.price = calculate_total_price(config_dict)
+            
+        # Set special features if provided
+        if "special_features" in config_data:
+            config.special_features = json.dumps(config_data["special_features"])
         
         # Add to database
         db.session.add(config)
