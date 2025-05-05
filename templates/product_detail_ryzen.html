@@ -3,164 +3,176 @@
 {% block title %}{{ config.name }} | RIGFREAKS{% endblock %}
 
 {% block content %}
-<!-- Hero Section with Glass Effect -->
-<div class="product-hero-section position-relative overflow-hidden py-5">
-    <div class="hero-bg-blur"></div>
-    <div class="container position-relative mt-5 pt-3">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <div class="hero-badge mb-3">NEW ARRIVAL</div>
-                <h1 class="product-title display-4 fw-bold mb-3">{{ config.name }}</h1>
-                <div class="product-rating d-flex align-items-center mb-3">
-                    <div class="stars me-2">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span class="reviews-count">(28 Reviews)</span>
-                    <span class="verified-badge ms-3"><i class="fas fa-check-circle me-1"></i>Verified Product</span>
-                </div>
-                <p class="product-description lead mb-4">{{ config.description }}</p>
-                <div class="product-highlights d-flex flex-wrap mb-4">
-                    <span class="highlight-badge"><i class="fas fa-bolt me-1"></i>Fast Shipping</span>
-                    <span class="highlight-badge"><i class="fas fa-certificate me-1"></i>3-Year Warranty</span>
-                    <span class="highlight-badge"><i class="fas fa-headset me-1"></i>Lifetime Support</span>
-                    <span class="highlight-badge"><i class="fas fa-tools me-1"></i>Free Assembly</span>
-                </div>
+<div class="container mt-5 pt-5">
+    <!-- Product Header Section -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <h1 class="product-title mb-2">{{ config.name }}</h1>
+            <div class="product-rating mb-3">
+                <span class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </span>
+                <span class="reviews-count ms-2">(28 Reviews)</span>
             </div>
-            <div class="col-lg-4">
-                <div class="product-price-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="availability-status"><i class="fas fa-circle text-success me-2"></i>In Stock</span>
-                            <span class="shipping-estimate">Ships in 2-3 days</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="price-container mb-3">
-                            <div class="price-value">£{{ config.price }}</div>
-                            <div class="price-options">or £{{ (config.price / 12) | round(2) }}/month with finance</div>
-                        </div>
-                        <div class="product-actions">
-                            <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-primary btn-lg w-100 mb-3 add-to-cart-btn">
-                                <i class="fas fa-shopping-cart me-2"></i> Add to Cart
-                            </a>
-                            <a href="{{ url_for('contact') }}" class="btn btn-outline-primary w-100">
-                                <i class="fas fa-question-circle me-2"></i> Ask a Question
-                            </a>
-                        </div>
-                    </div>
+            <p class="product-description lead">{{ config.description }}</p>
+            <div class="shipping-info mt-3">
+                <span class="badge bg-success me-2">Ships within 2-3 days</span>
+                <span class="availability">In Stock</span>
+            </div>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+            <div class="product-price-box">
+                <div class="product-price">
+                    <span class="price-label">Price</span>
+                    <span class="price-value">£{{ config.price }}</span>
+                </div>
+                <div class="price-options mt-2">
+                    <small>or as low as £{{ (config.price / 12) | round(2) }}/month with finance</small>
+                </div>
+                <div class="product-actions mt-3">
+                    <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-primary btn-lg w-100 mb-2">
+                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-question-circle me-2"></i> Ask a Question
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Main Product Content Section -->
-<div class="container">
-    <div class="product-detail-section">
-        <div class="row g-4 py-5">
-            <!-- Product Gallery with Advanced Features -->
-            <div class="col-lg-6 mb-4">
-                <div class="product-showcase position-relative">
-                    <!-- Modern 3D-style main image container with hover effect -->
-                    <div class="product-main-image-3d mb-4">
-                        <div class="image-glow-effect"></div>
-                        <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" class="img-fluid rounded" alt="{{ config.name }}">
-                        <div class="image-overlay-controls">
-                            <button class="btn btn-sm btn-light rounded-circle" data-action="zoom"><i class="fas fa-search-plus"></i></button>
-                            <button class="btn btn-sm btn-light rounded-circle" data-action="rotate"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    
-                    <!-- Modern thumbnail gallery with active indicator -->
-                    <div class="product-thumbnails d-flex justify-content-between">
-                        <div class="thumbnail-item active">
-                            <div class="active-indicator"></div>
-                            <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" class="rounded" alt="Front view">
-                        </div>
-                        <div class="thumbnail-item">
-                            <img src="{{ url_for('static', filename='img/gaming-pc-1.jpg') }}" class="rounded" alt="Side view">
-                        </div>
-                        <div class="thumbnail-item">
-                            <img src="{{ url_for('static', filename='img/gaming-pc-2.jpg') }}" class="rounded" alt="Interior view">
-                        </div>
-                        <div class="thumbnail-item">
-                            <img src="{{ url_for('static', filename='img/gaming-pc-3.jpg') }}" class="rounded" alt="Back view">
-                        </div>
-                    </div>
+    <!-- Main Product Content Section -->
+    <div class="row">
+        <!-- Product Gallery -->
+        <div class="col-lg-6 mb-4">
+            <div class="product-gallery">
+                <div class="main-image-container mb-3">
+                    <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" class="img-fluid rounded" alt="{{ config.name }}">
                 </div>
-                
-                <!-- Key Feature Blocks - Modernized with Cards -->
-                <div class="key-features-section mt-5">
-                    <h3 class="section-title mb-4">Key Features</h3>
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-microchip"></i></div>
-                                <div class="feature-content">
-                                    <h5>AMD Ryzen 5</h5>
-                                    <p>6 cores, 12 threads for ultimate gaming performance</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-tv"></i></div>
-                                <div class="feature-content">
-                                    <h5>RTX 4060 8GB</h5>
-                                    <p>Ray tracing and DLSS 3.0 for incredible visuals</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-memory"></i></div>
-                                <div class="feature-content">
-                                    <h5>16GB DDR4</h5>
-                                    <p>High-speed memory for smooth multitasking</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-hdd"></i></div>
-                                <div class="feature-content">
-                                    <h5>2TB NVMe SSD</h5>
-                                    <p>Lightning-fast storage with ample capacity</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="thumbnail-gallery d-flex">
+                    <div class="thumbnail-item active me-2">
+                        <img src="{{ url_for('static', filename='img/custom/ryzen-5500-rtx4060-pc.png') }}" class="img-fluid rounded" alt="Front view">
+                    </div>
+                    <div class="thumbnail-item me-2">
+                        <img src="/static/img/gaming-pc-1.jpg" class="img-fluid rounded" alt="Side view">
+                    </div>
+                    <div class="thumbnail-item me-2">
+                        <img src="/static/img/gaming-pc-2.jpg" class="img-fluid rounded" alt="Interior view">
+                    </div>
+                    <div class="thumbnail-item">
+                        <img src="/static/img/gaming-pc-3.jpg" class="img-fluid rounded" alt="Back view">
                     </div>
                 </div>
             </div>
             
-            <!-- Product Details and Specs -->
-            <div class="col-lg-6">
-                <div class="product-details-tabs">
-                    <!-- Modern tab navigation with indicator -->
-                    <ul class="nav nav-pills nav-justified mb-4" id="productDetailTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab">
-                                <i class="fas fa-clipboard-list me-2"></i>Specifications
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="performance-tab" data-bs-toggle="tab" data-bs-target="#performance" type="button" role="tab">
-                                <i class="fas fa-tachometer-alt me-2"></i>Performance
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#warranty" type="button" role="tab">
-                                <i class="fas fa-shield-alt me-2"></i>Warranty
-                            </button>
-                        </li>
-                    </ul>
+            <!-- Key Feature Blocks -->
+            <div class="key-feature-blocks mt-4">
+                <div class="row">
+                    {% set feature_icons = {
+                        'microchip': ['AMD Ryzen 5', 'Ryzen', 'CPU'],
+                        'tv': ['RTX', 'GPU', 'Graphics', 'GeForce'],
+                        'memory': ['DDR4', 'RAM', 'Memory'],
+                        'hdd': ['Storage', 'SSD', 'NVMe'],
+                        'snowflake': ['Cooling', 'AIO', 'Liquid'],
+                        'lightbulb': ['RGB', 'Lighting'],
+                        'wifi': ['PCIe', 'WiFi', 'Bluetooth']
+                    } %}
                     
-                    <!-- Tab content with modern styling -->
-                    <div class="tab-content" id="productDetailTabsContent">
+                    {% if config.special_features %}
+                        {% for feature in config.get_special_features() %}
+                            {% set feature_text = feature %}
+                            <div class="col-6 mb-3">
+                                <div class="key-feature-card p-3 text-center h-100">
+                                    {% set icon = 'bolt' %}
+                                    {# Simpler icon selection logic - choose first matching keyword #}
+                                    {% if 'Ryzen' in feature_text or 'CPU' in feature_text %}
+                                        {% set icon = 'microchip' %}
+                                    {% elif 'RTX' in feature_text or 'GPU' in feature_text or 'Graphics' in feature_text %}
+                                        {% set icon = 'tv' %}
+                                    {% elif 'Memory' in feature_text or 'RAM' in feature_text or 'DDR' in feature_text %}
+                                        {% set icon = 'memory' %}
+                                    {% elif 'Storage' in feature_text or 'SSD' in feature_text or 'NVMe' in feature_text %}
+                                        {% set icon = 'hdd' %}
+                                    {% elif 'Cooling' in feature_text or 'AIO' in feature_text or 'Liquid' in feature_text %}
+                                        {% set icon = 'snowflake' %}
+                                    {% elif 'RGB' in feature_text or 'Lighting' in feature_text %}
+                                        {% set icon = 'lightbulb' %}
+                                    {% elif 'PCIe' in feature_text or 'WiFi' in feature_text or 'Bluetooth' in feature_text %}
+                                        {% set icon = 'wifi' %}
+                                    {% endif %}
+                                    <i class="fas fa-{{ icon }} feature-icon mb-3"></i>
+                                    <h5>{{ feature_text }}</h5>
+                                    <p class="small mb-0">
+                                        {% if 'Cooling' in feature_text %}
+                                            Better thermal performance for overclocking and quiet operation
+                                        {% elif 'RTX' in feature_text %}
+                                            Incredible gaming performance with realistic lighting and reflections
+                                        {% elif 'RGB' in feature_text %}
+                                            Customizable lighting to match your style and room aesthetic
+                                        {% elif 'PCIe' in feature_text %}
+                                            Faster data transfer speeds for better component performance
+                                        {% elif 'NVMe' in feature_text or 'Storage' in feature_text %}
+                                            Ultra-fast load times and responsive system performance
+                                        {% else %}
+                                            Premium feature for enhanced gaming and computing experience
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-microchip feature-icon mb-3"></i>
+                                <h5>AMD Ryzen 5</h5>
+                                <p class="small mb-0">6 cores, 12 threads for smooth gaming and multitasking</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-tv feature-icon mb-3"></i>
+                                <h5>GeForce RTX 4060</h5>
+                                <p class="small mb-0">Ray tracing and DLSS 3 for unparalleled gaming performance</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-memory feature-icon mb-3"></i>
+                                <h5>High-speed DDR4</h5>
+                                <p class="small mb-0">16GB DDR4 3200MHz for responsive gaming and multitasking</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="key-feature-card p-3 text-center h-100">
+                                <i class="fas fa-hdd feature-icon mb-3"></i>
+                                <h5>Ultra-fast Storage</h5>
+                                <p class="small mb-0">2TB NVMe SSD for lightning-fast game loading times</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Details and Specs -->
+        <div class="col-lg-6">
+            <div class="product-specs">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="true">Specifications</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="story-tab" data-bs-toggle="tab" data-bs-target="#story" type="button" role="tab" aria-controls="story" aria-selected="false">Story</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="warranty-tab" data-bs-toggle="tab" data-bs-target="#warranty" type="button" role="tab" aria-controls="warranty" aria-selected="false">Warranty</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom" id="productTabsContent">
                     <!-- Specifications Tab -->
                     <div class="tab-pane fade show active" id="specs" role="tabpanel" aria-labelledby="specs-tab">
                         <div class="specs-block mb-4">
@@ -248,137 +260,21 @@
                         </div>
                     </div>
                     
-                    <!-- Performance Tab with Visual Charts and Game Performance Info -->
-                    <div class="tab-pane fade" id="performance" role="tabpanel" aria-labelledby="performance-tab">
-                        <h4 class="tech-heading mb-4">Performance Metrics</h4>
-                        
-                        <!-- Gaming Performance Visual Charts -->
-                        <div class="performance-charts mb-5">
-                            <h5 class="mb-3">Gaming Performance</h5>
-                            <p class="text-muted mb-4">Frame rates you can expect in popular games at different resolutions</p>
-                            
-                            <div class="game-benchmark mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <div class="game-title">Cyberpunk 2077</div>
-                                    <div class="fps-badge">118 FPS</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="settings-info mt-1">1080p, High Settings, DLSS Quality</div>
-                            </div>
-                            
-                            <div class="game-benchmark mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <div class="game-title">Fortnite</div>
-                                    <div class="fps-badge">210+ FPS</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="settings-info mt-1">1080p, Competitive Settings</div>
-                            </div>
-                            
-                            <div class="game-benchmark mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <div class="game-title">Call of Duty: Warzone</div>
-                                    <div class="fps-badge">155 FPS</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="settings-info mt-1">1080p, High Settings, DLSS Balanced</div>
-                            </div>
+                    <!-- Story Tab -->
+                    <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="story-tab">
+                        <div class="component-story mb-5">
+                            <h4>AMD Ryzen 5</h4>
+                            <p>The AMD Ryzen 5 is a fantastic choice for a gaming PC, offering a balance of performance and affordability. With its 6 cores and 12 threads, it handles demanding games and multitasking with ease. While it may not be the most powerful CPU on the market, it's more than capable of delivering smooth gameplay at high settings, especially when paired with a powerful graphics card like the GeForce RTX 4060.</p>
                         </div>
                         
-                        <!-- Productivity Performance -->
-                        <div class="productivity-benchmarks mb-5">
-                            <h5 class="mb-3">Productivity Performance</h5>
-                            <div class="row g-4">
-                                <div class="col-md-6">
-                                    <div class="benchmark-card p-3 h-100">
-                                        <div class="benchmark-icon mb-3">
-                                            <i class="fas fa-video"></i>
-                                        </div>
-                                        <h6>Video Editing</h6>
-                                        <div class="score-indicator my-2">Very Good</div>
-                                        <p class="small mb-0">Fast rendering times for 1080p and 4K video in Adobe Premiere Pro</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="benchmark-card p-3 h-100">
-                                        <div class="benchmark-icon mb-3">
-                                            <i class="fas fa-photo-video"></i>
-                                        </div>
-                                        <h6>Photo Editing</h6>
-                                        <div class="score-indicator my-2">Excellent</div>
-                                        <p class="small mb-0">Smooth performance with large files in Adobe Photoshop</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="benchmark-card p-3 h-100">
-                                        <div class="benchmark-icon mb-3">
-                                            <i class="fas fa-chart-line"></i>
-                                        </div>
-                                        <h6>3D Modeling</h6>
-                                        <div class="score-indicator my-2">Good</div>
-                                        <p class="small mb-0">Capable performance for moderate 3D modeling tasks</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="benchmark-card p-3 h-100">
-                                        <div class="benchmark-icon mb-3">
-                                            <i class="fas fa-desktop"></i>
-                                        </div>
-                                        <h6>Streaming</h6>
-                                        <div class="score-indicator my-2">Excellent</div>
-                                        <p class="small mb-0">Smooth 1080p streaming with NVENC encoding</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="component-story mb-5">
+                            <h4>GeForce RTX 4060</h4>
+                            <p>The GeForce RTX 4060 is a powerful graphics card that delivers exceptional performance for 1080p gaming. Leveraging the latest Ada Lovelace architecture, it supports ray tracing for realistic lighting and reflections, and DLSS 3 technology for higher frame rates and resolutions. Whether you're playing the latest AAA titles or competitive esports, the RTX 4060 is the right GPU for the job.</p>
                         </div>
-                    </div>
-                    
-                    <!-- Warranty Tab -->
-                    <div class="tab-pane fade" id="warranty" role="tabpanel" aria-labelledby="warranty-tab">
-                        <div class="warranty-details p-4 rounded">
-                            <div class="warranty-header d-flex align-items-center mb-4">
-                                <div class="warranty-icon me-3">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="mb-0">3-Year Premium Warranty</h4>
-                                    <p class="text-muted mb-0">Peace of mind protection for your investment</p>
-                                </div>
-                            </div>
-                            
-                            <div class="warranty-features mb-4">
-                                <h5 class="mb-3">What's Covered</h5>
-                                <ul class="coverage-list">
-                                    <li><i class="fas fa-check-circle text-success me-2"></i>All hardware components</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i>Labor and shipping costs for repairs</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i>Priority technical support</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i>Free performance tune-ups</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="warranty-support mb-4">
-                                <h5 class="mb-3">Technical Support</h5>
-                                <ul class="support-list">
-                                    <li><i class="fas fa-headset me-2"></i>24/7 phone support</li>
-                                    <li><i class="fas fa-comments me-2"></i>Live chat assistance</li>
-                                    <li><i class="fas fa-envelope me-2"></i>Email support with 24-hour response</li>
-                                    <li><i class="fas fa-video me-2"></i>Video troubleshooting available</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="warranty-cta text-center mt-5">
-                                <a href="{{ url_for('contact') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-file-contract me-2"></i>View Full Warranty Details
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                        
+                        <div class="component-story mb-5">
+                            <h4>A520 motherboard</h4>
+                            <p>The A520 motherboard offers a solid foundation for a gaming PC. It features a robust power delivery system, ensuring stable power supply to the CPU during intense gaming sessions. The rear I/O panel provides a comprehensive array of ports, including USB 3.2 Gen 2 Type-A ports for high-speed data transfer, and a Gigabit Ethernet port for reliable network connectivity. The integrated Wi-Fi and Bluetooth capabilities offer wireless convenience.</p>
                         </div>
                         
                         <div class="component-story mb-5">
@@ -488,96 +384,44 @@
         </div>
     </div>
     
-    <!-- Related Products Section with Modern Cards -->
-    <div class="related-products-section py-5 mt-5">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <h2 class="display-6 fw-bold">You May Also Like</h2>
-                <p class="lead text-muted">Explore other powerful gaming and creative workstations</p>
+    <!-- Recommended Products Section -->
+    <div class="recommended-products mt-5">
+        <h3 class="section-title mb-4">You May Also Like</h3>
+        <div class="row">
+            <!-- Featured builds from our prebuilt collection -->
+            {% set exclude_id = config.id %}
+            {% set counter = 0 %}
+            {% for prebuilt in PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).limit(3).all() %}
+            <div class="col-md-4">
+                <div class="card product-card h-100">
+                    {% if prebuilt.category == 'gaming' %}
+                    <img src="/static/img/gaming-pc-{{ (counter % 3) + 1 }}.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% elif prebuilt.category == 'professional' or prebuilt.category == 'workstation' %}
+                    <img src="/static/img/workstation-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% else %}
+                    <img src="/static/img/custom-pc.jpg" class="card-img-top" alt="{{ prebuilt.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prebuilt.name }}</h5>
+                        <p class="card-text">{{ prebuilt.description[:100] }}{% if prebuilt.description|length > 100 %}...{% endif %}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price">£{{ prebuilt.price }}</span>
+                            <a href="{{ url_for('product_detail', config_id=prebuilt.id) }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% set counter = counter + 1 %}
+            {% endfor %}
             
-            <div class="row g-4">
-                <!-- Dynamic Related Products -->
-                {% set exclude_id = config.id %}
-                {% set counter = 0 %}
-                {% for prebuilt in PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).limit(3).all() %}
-                <div class="col-lg-4 col-md-6">
-                    <div class="related-product-card h-100">
-                        {% if loop.first %}
-                        <div class="product-badge best-value">BEST VALUE</div>
-                        {% elif loop.index == 2 %}
-                        <div class="product-badge hot-seller">HOT SELLER</div>
-                        {% elif loop.index == 3 %}
-                        <div class="product-badge premium">PREMIUM</div>
-                        {% endif %}
-                        
-                        <div class="product-image">
-                            {% if prebuilt.category == 'gaming' %}
-                            <img src="{{ url_for('static', filename='img/lummi/gaming_pc1.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
-                            {% elif prebuilt.category == 'enthusiast' %}
-                            <img src="{{ url_for('static', filename='img/lummi/gaming_pc2.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
-                            {% elif prebuilt.category == 'professional' or prebuilt.category == 'workstation' %}
-                            <img src="{{ url_for('static', filename='img/lummi/workstation_pc.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
-                            {% else %}
-                            <img src="{{ url_for('static', filename='img/lummi/compact_pc.svg') }}" class="img-fluid" alt="{{ prebuilt.name }}">
-                            {% endif %}
-                        </div>
-                        
-                        <div class="product-details p-4">
-                            <h5 class="product-title mb-3">{{ prebuilt.name }}</h5>
-                            
-                            <div class="product-specs mb-3">
-                                <div class="spec-item">
-                                    <i class="fas fa-microchip me-2"></i> {{ prebuilt.cpu_id }}
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-tv me-2"></i> {{ prebuilt.gpu_id }}
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-memory me-2"></i> {{ prebuilt.ram_id }}
-                                </div>
-                                <div class="spec-item">
-                                    <i class="fas fa-hdd me-2"></i> {{ prebuilt.storage_id }}
-                                </div>
-                            </div>
-                            
-                            <div class="product-footer d-flex justify-content-between align-items-center mt-4">
-                                <div class="price fs-4 fw-bold">£{{ prebuilt.price }}</div>
-                                <a href="{{ url_for('product_detail', config_id=prebuilt.id) }}" class="btn btn-primary rounded-pill">
-                                    View Details
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            {% if PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).count() == 0 %}
+            <!-- Fallback content if no other prebuilds are available -->
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> Looking for more options? <a href="{{ url_for('builds.prebuilt_configs') }}" class="alert-link">Check out all our prebuilt configurations</a> or <a href="{{ url_for('step_builder') }}" class="alert-link">build your own custom PC</a>.
                 </div>
-                {% set counter = counter + 1 %}
-                {% endfor %}
-                
-                {% if PreBuiltConfig.query.filter(PreBuiltConfig.id != exclude_id).count() == 0 %}
-                <!-- Fallback content if no other prebuilds are available -->
-                <div class="col-12 text-center">
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i> Looking for more options? <a href="{{ url_for('builds.prebuilt_configs') }}" class="alert-link">Check out all our prebuilt configurations</a> or <a href="{{ url_for('step_builder') }}" class="alert-link">build your own custom PC</a>.
-                    </div>
-                </div>
-                {% endif %}
             </div>
-        </div>
-    </div>
-    
-    <!-- Call to Action Section -->
-    <div class="cta-section py-5 bg-primary text-white">
-        <div class="container text-center">
-            <h2 class="display-6 fw-bold mb-4">Ready to Experience Next-Level Gaming?</h2>
-            <p class="lead mb-4">Get your Ryzen 5 5500 RTX 4060 Gaming PC today and elevate your gaming experience</p>
-            <div class="cta-buttons">
-                <a href="{{ url_for('builds.load_prebuilt', config_id=config.id) }}" class="btn btn-light btn-lg me-3">
-                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
-                </a>
-                <a href="{{ url_for('contact') }}" class="btn btn-outline-light btn-lg">
-                    <i class="fas fa-headset me-2"></i>Ask an Expert
-                </a>
-            </div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -792,505 +636,21 @@
         font-size: 2.5rem;
     }
     
-    /* Modern Hero Section */
-    .product-hero-section {
-        background: linear-gradient(135deg, rgba(33, 37, 41, 0.95) 0%, rgba(18, 18, 18, 0.98) 100%);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .hero-bg-blur {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 30% 50%, rgba(var(--bs-primary-rgb), 0.3) 0%, transparent 70%);
-        filter: blur(60px);
-        z-index: 0;
-    }
-    
-    .hero-badge {
-        display: inline-block;
-        background: linear-gradient(90deg, var(--bs-primary) 0%, var(--bs-danger) 100%);
-        color: white;
-        padding: 0.5rem 1.25rem;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 0.875rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-    
-    .product-highlights {
-        gap: 0.75rem;
-    }
-    
-    .highlight-badge {
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.875rem;
-        transition: all 0.2s ease;
-    }
-    
-    .highlight-badge:hover {
-        background-color: rgba(var(--bs-primary-rgb), 0.2);
-    }
-    
-    .verified-badge {
-        background-color: rgba(var(--bs-success-rgb), 0.2);
-        color: var(--bs-success);
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-    }
-    
-    .product-price-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .product-price-card .card-header {
-        background: rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 1rem 1.5rem;
-    }
-    
-    .product-price-card .card-body {
-        padding: 1.5rem;
-    }
-    
-    .availability-status {
-        font-size: 0.875rem;
-    }
-    
-    .shipping-estimate {
-        font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.7);
-    }
-    
-    .price-container {
-        text-align: center;
-    }
-    
-    .price-value {
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: linear-gradient(90deg, var(--bs-success) 0%, #26c9a8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-    }
-    
-    .price-options {
-        font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.7);
-    }
-    
-    .add-to-cart-btn {
-        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
-        border: none;
-        box-shadow: 0 5px 15px rgba(var(--bs-primary-rgb), 0.3);
-        transition: all 0.3s ease;
-    }
-    
-    .add-to-cart-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(var(--bs-primary-rgb), 0.4);
-    }
-    
-    /* Product Gallery with 3D Effects */
-    .product-main-image-3d {
-        position: relative;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        transition: all 0.5s ease;
-    }
-    
-    .product-main-image-3d:hover {
-        transform: translateY(-10px) rotateY(5deg);
-    }
-    
-    .image-glow-effect {
-        position: absolute;
-        top: -20%;
-        left: -20%;
-        width: 140%;
-        height: 140%;
-        background: radial-gradient(circle at center, rgba(var(--bs-primary-rgb), 0.3) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        z-index: 1;
-        pointer-events: none;
-    }
-    
-    .product-main-image-3d:hover .image-glow-effect {
-        opacity: 1;
-    }
-    
-    .image-overlay-controls {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        display: flex;
-        gap: 0.5rem;
-        z-index: 2;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.3s ease;
-    }
-    
-    .product-main-image-3d:hover .image-overlay-controls {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .product-thumbnails {
-        margin-top: 1rem;
-    }
-    
-    .thumbnail-item {
-        position: relative;
-        width: 22%;
-        aspect-ratio: 1;
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        opacity: 0.6;
-        border: 2px solid transparent;
-    }
-    
-    .thumbnail-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .thumbnail-item.active {
-        opacity: 1;
-        border-color: var(--bs-primary);
-    }
-    
-    .active-indicator {
-        position: absolute;
-        top: -2px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 6px solid var(--bs-primary);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .thumbnail-item.active .active-indicator {
-        opacity: 1;
-    }
-    
-    /* Feature Cards with Hover Effects */
-    .feature-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        height: 100%;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-5px);
-        background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.1) 0%, rgba(var(--bs-primary-rgb), 0.03) 100%);
-        border-color: rgba(var(--bs-primary-rgb), 0.2);
-    }
-    
-    .feature-icon {
-        height: 3rem;
-        width: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--bs-primary) 0%, #6f42c1 100%);
-        color: white;
-        font-size: 1.25rem;
-        border-radius: 50%;
-        margin-bottom: 1rem;
-    }
-    
-    /* Modern Tabs with Pills */
-    .product-details-tabs .nav-pills .nav-link {
-        border-radius: 30px;
-        padding: 0.75rem 1.5rem;
-        color: rgba(255, 255, 255, 0.7);
+    /* Recommended Products */
+    .product-card {
         background-color: rgba(255, 255, 255, 0.05);
-        transition: all 0.3s ease;
-    }
-    
-    .product-details-tabs .nav-pills .nav-link:hover {
-        color: rgba(255, 255, 255, 0.9);
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .product-details-tabs .nav-pills .nav-link.active {
-        color: white;
-        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
-        box-shadow: 0 5px 15px rgba(var(--bs-primary-rgb), 0.3);
-    }
-    
-    /* Performance Tab Styling */
-    .game-benchmark {
-        background-color: rgba(255, 255, 255, 0.03);
-        padding: 1.25rem;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-    
-    .game-benchmark:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    
-    .game-title {
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-    
-    .fps-badge {
-        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
-        color: white;
-        font-weight: 700;
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-    }
-    
-    .settings-info {
-        font-size: 0.8rem;
-        color: rgba(255, 255, 255, 0.6);
-    }
-    
-    .progress {
-        height: 10px;
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .progress-bar {
-        background: linear-gradient(90deg, var(--bs-primary) 0%, #6f42c1 100%);
-    }
-    
-    .benchmark-card {
-        background-color: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-    
-    .benchmark-card:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-        transform: translateY(-5px);
-    }
-    
-    .benchmark-icon {
-        color: var(--bs-primary);
-        font-size: 1.5rem;
-    }
-    
-    .score-indicator {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        background-color: rgba(var(--bs-success-rgb), 0.2);
-        color: var(--bs-success);
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    
-    /* Warranty Details Card */
-    .warranty-details {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .warranty-icon {
-        font-size: 2.5rem;
-        color: var(--bs-primary);
-        background: rgba(var(--bs-primary-rgb), 0.1);
-        height: 4rem;
-        width: 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-    }
-    
-    .warranty-header h4 {
-        color: white;
-        font-weight: 600;
-    }
-    
-    .warranty-header p {
-        color: rgba(255, 255, 255, 0.8);
-    }
-    
-    .warranty-features h5, .warranty-support h5 {
-        color: white;
-        font-weight: 600;
-        margin-bottom: 1.25rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .coverage-list, .support-list {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .coverage-list li, .support-list li {
-        margin-bottom: 1rem;
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.9);
-        padding-left: 2rem;
-        position: relative;
-    }
-    
-    .coverage-list li i, .support-list li i {
-        position: absolute;
-        left: 0;
-        top: 0.25rem;
-    }
-    
-    .warranty-cta .btn {
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-        border-width: 2px;
-    }
-    
-    /* Trust Badges Section */
-    .trust-badges-section {
-        background: linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(33, 37, 41, 0.95) 100%);
-    }
-    
-    .trust-card {
-        display: flex;
-        align-items: flex-start;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 12px;
-        padding: 2rem;
-        height: 100%;
         transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    .trust-card:hover {
-        transform: translateY(-10px);
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(var(--bs-primary-rgb), 0.3);
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
     
-    .trust-icon {
-        font-size: 2.5rem;
-        color: var(--bs-primary);
-        margin-right: 1.5rem;
-        background: rgba(var(--bs-primary-rgb), 0.1);
-        height: 4rem;
-        width: 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-    }
-    
-    .trust-content h4 {
-        margin-bottom: 0.75rem;
-        font-weight: 600;
-    }
-    
-    .trust-content p {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.95rem;
-        margin-bottom: 0;
-    }
-    
-    /* Related Products Cards */
-    .related-product-card {
-        position: relative;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .related-product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        border-color: rgba(var(--bs-primary-rgb), 0.2);
-    }
-    
-    .product-badge {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        padding: 0.35rem 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        border-radius: 20px;
-        z-index: 2;
-    }
-    
-    .product-badge.best-value {
-        background-color: var(--bs-success);
-        color: white;
-    }
-    
-    .product-badge.hot-seller {
-        background-color: var(--bs-danger);
-        color: white;
-    }
-    
-    .product-badge.premium {
-        background-color: var(--bs-info);
-        color: white;
-    }
-    
-    .product-image {
-        padding: 2rem;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-        text-align: center;
-    }
-    
-    .product-title {
-        font-weight: 600;
-        color: white;
-    }
-    
-    .product-specs .spec-item {
-        margin-bottom: 0.5rem;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
-    }
-    
-    /* Call to Action Section */
-    .cta-section {
-        background: linear-gradient(135deg, var(--bs-primary) 0%, #6f42c1 100%);
-    }
-    
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
+    .product-card .price {
+        font-weight: 700;
+        color: var(--bs-success);
     }
     
     @media (max-width: 767.98px) {
