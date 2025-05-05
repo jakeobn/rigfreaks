@@ -1,7 +1,7 @@
-/* Dark gradient background for entire website - matching hero section */
+/* Light background for entire website */
 body {
-    background-color: var(--bg-darker); /* Same as hero background */
-    color: rgba(255, 255, 255, 0.85);
+    background-color: #ffffff;
+    color: #333333;
     position: relative;
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Create blobs that match the hero section exactly */
+/* Subtle light background patterns */
 body::before {
     content: "";
     position: fixed;
@@ -19,29 +19,27 @@ body::before {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.15;
+    opacity: 0.05;
     background: 
-        /* Match blob-1 from hero */
+        /* Light subtle gradient patterns */
         radial-gradient(circle at 90% 10%, 
-            rgba(var(--bs-primary-rgb), 0.5), 
+            rgba(var(--bs-primary-rgb), 0.2), 
             transparent 50%) top right no-repeat,
-        /* Match blob-2 from hero */
         radial-gradient(circle at 10% 90%, 
-            rgba(var(--bs-success-rgb), 0.5),
-            rgba(var(--bs-primary-rgb), 0.5), 
+            rgba(var(--bs-success-rgb), 0.2),
+            rgba(var(--bs-primary-rgb), 0.2), 
             transparent 50%) bottom left no-repeat,
-        /* Match blob-3 from hero */
         radial-gradient(circle at 40% 40%, 
-            rgba(var(--bs-info-rgb), 0.5),
-            rgba(var(--bs-purple-rgb), 0.5), 
+            rgba(var(--bs-info-rgb), 0.2),
+            rgba(var(--bs-primary-rgb), 0.2), 
             transparent 50%) center left no-repeat;
     background-size: 
-        45vw 45vw,  /* blob-1 size */
-        30vw 30vw,  /* blob-2 size */
-        25vw 25vw;  /* blob-3 size */
+        45vw 45vw,
+        30vw 30vw,
+        25vw 25vw;
 }
 
-/* Subtle grid pattern overlay like hero section */
+/* Subtle grid pattern overlay */
 body::after {
     content: "";
     position: fixed;
@@ -52,74 +50,75 @@ body::after {
     z-index: -2;
     pointer-events: none;
     background-image: 
-        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
-    opacity: 0.7;
-    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+    opacity: 0.3;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0) 80%);
 }
 
-/* Adjust cards and other elements to work with dark background */
+/* Cards and elements styled for light background */
 .card, .component-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .modal-content {
-    background-color: var(--bs-gray-900);
-    border-color: rgba(255, 255, 255, 0.1);
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .modal-header, .modal-footer {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Make sure text is readable on dark background */
+/* Text colors for light background */
 .text-dark {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: #333333 !important;
 }
 
 .text-muted {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: #6c757d !important;
 }
 
-/* Adjust alert styles for dark background */
+/* Alert styles for light background */
 .alert {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background-color: #f8f9fa;
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Style form elements for dark background */
+/* Form elements styled for light background */
 .form-control, .form-select {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.85);
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #333333;
 }
 
 .form-control:focus, .form-select:focus {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #ffffff;
     border-color: var(--bs-primary);
-    color: white;
+    color: #333333;
 }
 
-/* Style tables for dark background */
+/* Tables styled for light background */
 .table {
-    color: rgba(255, 255, 255, 0.85);
+    color: #333333;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(0, 0, 0, 0.02);
+    color: #333333;
 }
 
 .table-hover > tbody > tr:hover > * {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background-color: rgba(0, 0, 0, 0.04);
+    color: #333333;
 }
 
-/* Style form labels for better visibility */
+/* Form labels for light background */
 label {
-    color: rgba(255, 255, 255, 0.85);
+    color: #333333;
 }
 
 /* Fix hero section to work with dark background */
@@ -155,7 +154,9 @@ label {
     opacity: 0.15;
 }
 
-/* Adjust feature-card for dark background */
+/* Feature card for light background */
 .feature-card-inner {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
