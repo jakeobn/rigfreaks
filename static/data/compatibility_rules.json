@@ -1,66 +1,54 @@
 {
-  "cpu_motherboard": [
+  "cpu_socket": [
     {
-      "rule_type": "socket_match",
-      "description": "CPU socket must match motherboard socket",
-      "check": "cpu.socket == motherboard.socket"
-    }
-  ],
-  "ram_motherboard": [
-    {
-      "rule_type": "ram_type_match",
-      "description": "RAM type must match motherboard supported RAM type",
-      "check": "ram.type == motherboard.ram_type"
+      "name": "AM5",
+      "compatible_with": ["AM5"]
     },
     {
-      "rule_type": "ram_capacity_check",
-      "description": "Total RAM capacity must not exceed motherboard maximum",
-      "check": "ram.capacity <= motherboard.max_ram"
-    }
-  ],
-  "case_motherboard": [
-    {
-      "rule_type": "form_factor_match",
-      "description": "Motherboard form factor must be compatible with case",
-      "check": "case.form_factor supports motherboard.form_factor"
-    }
-  ],
-  "gpu_case": [
-    {
-      "rule_type": "gpu_length_check",
-      "description": "GPU length must fit within case",
-      "check": "gpu.length <= case.max_gpu_length"
-    }
-  ],
-  "cooling_case": [
-    {
-      "rule_type": "cooler_clearance",
-      "description": "CPU cooler height must fit within case",
-      "check": "cooling.height <= case.max_cpu_cooler_height"
+      "name": "LGA 1700",
+      "compatible_with": ["LGA 1700"]
     },
     {
-      "rule_type": "radiator_support",
-      "description": "Case must support liquid cooler radiator size",
-      "check": "case.radiator_support includes cooling.radiator_size"
+      "name": "AM4",
+      "compatible_with": ["AM4"]
     }
   ],
-  "power_requirements": [
+  "ram_types": [
     {
-      "rule_type": "power_sufficient",
-      "description": "Power supply must provide sufficient wattage for all components",
-      "check": "power_supply.wattage >= total_system_power_required"
-    }
-  ],
-  "storage_motherboard": [
-    {
-      "rule_type": "m2_slots_check",
-      "description": "Number of M.2 SSDs must not exceed motherboard M.2 slots",
-      "check": "count(storage.form_factor == 'M.2') <= motherboard.m2_slots"
+      "name": "DDR4",
+      "socket_compatibility": ["AM4", "LGA 1700"]
     },
     {
-      "rule_type": "sata_ports_check",
-      "description": "Number of SATA drives must not exceed motherboard SATA ports",
-      "check": "count(storage.interface == 'SATA') <= motherboard.sata_ports"
+      "name": "DDR5",
+      "socket_compatibility": ["AM5", "LGA 1700"]
     }
-  ]
+  ],
+  "form_factors": [
+    {
+      "name": "ATX",
+      "compatible_with": ["Full Tower", "Mid Tower"]
+    },
+    {
+      "name": "Micro-ATX",
+      "compatible_with": ["Full Tower", "Mid Tower", "Mini Tower"]
+    },
+    {
+      "name": "Mini-ITX",
+      "compatible_with": ["Full Tower", "Mid Tower", "Mini Tower", "ITX Case"]
+    }
+  ],
+  "power_requirements": {
+    "base": 150,
+    "cpu": {
+      "default": 95,
+      "high_performance": 125,
+      "extreme": 150
+    },
+    "gpu": {
+      "default": 150,
+      "mid_range": 250,
+      "high_end": 350,
+      "extreme": 450
+    }
+  }
 }

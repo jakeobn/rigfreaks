@@ -11,9 +11,17 @@ CACHE_LIFETIME = 300  # Cache lifetime in seconds (5 minutes)
 def load_component_data():
     current_time = time.time()
     if _component_cache['data'] is None or current_time - _component_cache['timestamp'] > CACHE_LIFETIME:
-        with open('static/data/components.json', 'r') as f:
-            _component_cache['data'] = json.load(f)
-            _component_cache['timestamp'] = current_time
+        _component_cache['data'] = {}
+        # Load each component category from its own file
+        categories = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'power_supply', 'case', 'cooling']
+        for category in categories:
+            try:
+                with open(f'data/{category}.json', 'r') as f:
+                    _component_cache['data'][category] = json.load(f)
+            except FileNotFoundError:
+                print(f"Warning: Component data file for {category} not found")
+                _component_cache['data'][category] = []
+        _component_cache['timestamp'] = current_time
     return _component_cache['data']
 
 # Load compatibility rules with caching
