@@ -13,7 +13,7 @@ section,
 /* Add extra padding to hero section for the header */
 .modern-hero {
     padding-top: 5rem !important;
-    padding-bottom: 5rem !important;
+    padding-bottom: 0 !important; /* Remove bottom padding completely */
 }
 
 /* Remove any transitions/gradients that might create visual seams */

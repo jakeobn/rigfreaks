@@ -16,10 +16,10 @@ html, body {
 }
 
 /* Force all section backgrounds to be transparent */
-section, .container-fluid, .featured-pcs-section, .pc-categories-section, 
+section, .container-fluid, div, .featured-pcs-section, .pc-categories-section, 
 .usp-features-section, .trending-products-section, .shop-components-section,
 .special-offers-section, .testimonials-section, .why-choose-section,
-.blog-section, .cta-section, .features-modern {
+.blog-section, .cta-section, .features-modern, .page-content, .main-content {
     background-color: transparent !important;
     background-image: none !important;
 }

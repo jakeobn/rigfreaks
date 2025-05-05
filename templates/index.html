@@ -132,17 +132,15 @@
     </div>
 </section>
 
-<!-- Ensuring seamless background transition -->
-<div class="container-fluid px-0">
-    <!-- PC Categories Section (Chillblast-style) -->
-    <section class="pc-categories-section py-5 mb-0">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <h2 class="section-title mb-3">PCs For Every Need</h2>
-                <p class="section-subtitle">Browse our specialized PC configurations or design your own</p>
-            </div>
-            
-            <div class="row g-3 g-md-4">
+<!-- PC Categories Section (Chillblast-style) -->
+<section class="pc-categories-section py-5 mb-0 mt-0">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title mb-3">PCs For Every Need</h2>
+            <p class="section-subtitle">Browse our specialized PC configurations or design your own</p>
+        </div>
+        
+        <div class="row g-3 g-md-4">
                 <!-- Gaming PC Category -->
                 <div class="col-6 col-md-3">
                     <a href="{{ url_for('builds.prebuilt_configs') }}" class="pc-category-card">
@@ -697,9 +695,6 @@
             </div>
         </div>
     </section>
-    
-
-</div>
 {% endblock %}
 
 {% block extra_js %}
