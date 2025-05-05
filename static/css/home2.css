@@ -1,0 +1,476 @@
+/* Home2 Page Styles */
+
+/* Hero Section Styles */
+.hero-section {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Main Hero */
+.hero-main {
+    grid-column: span 6;
+    grid-row: span 1;
+    height: 500px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.hero-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    max-width: 650px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.hero-title .accent {
+    color: #00c8ff;
+    display: block;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Secondary Hero Units */
+.hero-secondary {
+    grid-column: span 2;
+    grid-row: span 1;
+    height: 200px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero-secondary.gaming {
+    background-image: url('../img/gaming-pc.jpg');
+}
+
+.hero-secondary.workstation {
+    background-image: url('../img/workstation-pc.jpg');
+}
+
+.hero-secondary.creator {
+    background-image: url('../img/creator-pc.jpg');
+}
+
+.hero-secondary .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+}
+
+.secondary-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    z-index: 2;
+}
+
+.secondary-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.secondary-content p {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Feature Categories */
+.feature-category {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    height: 300px;
+    margin-bottom: 1rem;
+}
+
+.feature-image {
+    height: 100%;
+    position: relative;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.feature-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    color: white;
+}
+
+.feature-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.feature-description {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+/* Product Cards */
+.product-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #f39c12;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.product-image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+}
+
+.product-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.product-details {
+    padding: 1.5rem;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #343a40;
+}
+
+.product-specs {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.product-specs .spec {
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+}
+
+.product-specs .spec i {
+    margin-right: 0.5rem;
+    width: 20px;
+    text-align: center;
+    color: #0066cc;
+}
+
+.product-performance {
+    margin-bottom: 1rem;
+}
+
+.performance-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.performance-bar {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.performance-fill {
+    height: 100%;
+    background: linear-gradient(to right, #0066cc, #33b5e5);
+    border-radius: 4px;
+}
+
+.product-price-row {
+    margin-top: 1.5rem;
+}
+
+.product-price .price-now {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0066cc;
+    margin-right: 0.5rem;
+}
+
+.product-price .price-was {
+    font-size: 1rem;
+    color: #6c757d;
+    text-decoration: line-through;
+}
+
+/* Why Choose Us Section */
+.why-choose-item {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.why-choose-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #0066cc;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #343a40;
+}
+
+.feature-description {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* Performance Section */
+.performance-section {
+    background-color: #212529;
+}
+
+.game-fps-chart {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.game-title {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.fps-comparison {
+    position: relative;
+    height: 40px;
+}
+
+.fps-bar {
+    position: absolute;
+    height: 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.fps-bar.entry-level {
+    background-color: #f39c12;
+    top: 0;
+}
+
+.fps-bar.mid-range {
+    background-color: #3498db;
+    top: 25px;
+}
+
+.fps-bar.high-end {
+    background-color: #2ecc71;
+    top: 50px;
+}
+
+.performance-image {
+    text-align: center;
+}
+
+.performance-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Configurator CTA */
+.configurator-cta {
+    background: linear-gradient(45deg, #005bb5, #0066cc);
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-text {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.cta-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.cta-features li {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.cta-features li i {
+    margin-right: 0.5rem;
+    color: #79e2ff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .hero-grid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+    }
+    
+    .hero-main {
+        grid-column: span 1;
+        height: 400px;
+    }
+    
+    .hero-secondary {
+        grid-column: span 1;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .cta-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-main {
+        height: 350px;
+    }
+    
+    .hero-content {
+        padding: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .feature-title {
+        font-size: 1.75rem;
+    }
+}

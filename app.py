@@ -338,6 +338,11 @@ def sitemap():
     """Site Map page showing all website pages in an organized format."""
     return render_template('sitemap.html')
 
+@app.route('/test/homepage2')
+def home2_test():
+    """Alternative homepage design for testing purposes - not linked in navigation."""
+    return render_template('home2.html')
+
 @app.route('/prebuilt')
 def prebuilt_redirect():
     """Redirect to the prebuilt configurations page."""
