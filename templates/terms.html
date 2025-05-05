@@ -4,229 +4,115 @@
 
 {% set active_page = 'terms' %}
 
-{% block legal_icon %}<i class="fas fa-file-contract"></i>{% endblock %}
+{% block legal_icon %}<i class="fas fa-file-alt"></i>{% endblock %}
 
 {% block legal_title %}Terms & Conditions{% endblock %}
 
 {% block legal_intro %}
-    These Terms and Conditions ("Terms") govern your use of the RigFreaks website and services, operated in the United Kingdom. By accessing or using our site, you agree to comply with these Terms. If you do not agree, please do not use this website.
+    These Terms govern your use of the RigFreaks website. By using our site, you agree to these terms.
 {% endblock %}
 
 {% block legal_content %}
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">1</span>
-                Use of Website
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>You must be at least 18 years old or of legal age in your jurisdiction to use or purchase from our site.</li>
-                    <li>You agree not to misuse the website or commit any fraudulent, abusive, or illegal acts while using our services.</li>
-                    <li>Any disruption, unauthorised access, or tampering with the website is strictly prohibited.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Use of Website</h2>
+        <ul>
+            <li>You must be at least 18 years old to use or purchase from our site</li>
+            <li>You agree not to misuse the website or commit fraudulent, abusive, or illegal acts</li>
+            <li>Any disruption or unauthorized access to the website is prohibited</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">2</span>
-                Products and Listings
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>Product descriptions, specifications, and pricing may change at any time without prior notice.</li>
-                    <li>We strive for accuracy, but errors may occur, and we do not guarantee all content is fully accurate or up to date.</li>
-                    <li>Availability of products is not guaranteed. We reserve the right to cancel any order if a product becomes unavailable.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Products and Listings</h2>
+        <ul>
+            <li>Product descriptions, specifications, and pricing may change without notice</li>
+            <li>We strive for accuracy but cannot guarantee all content is fully accurate</li>
+            <li>Availability of products is not guaranteed</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">3</span>
-                Orders and Payment
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>Orders are only confirmed once accepted by RigFreaks.</li>
-                    <li>Prices are listed in GBP (£) and may include VAT unless otherwise stated.</li>
-                    <li>We accept debit/credit cards and other secure payment methods. Payment must be made in full at the time of order.</li>
-                    <li>We reserve the right to cancel any order at our discretion, including errors in pricing or availability.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Orders and Payment</h2>
+        <ul>
+            <li>Orders are only confirmed once accepted by RigFreaks</li>
+            <li>Prices are listed in GBP (£) and may include VAT unless stated otherwise</li>
+            <li>Payment must be made in full at the time of order</li>
+            <li>We reserve the right to cancel any order at our discretion</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">4</span>
-                Compatibility
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>Our configurator is designed to help users select compatible parts, but it does not guarantee 100% compatibility.</li>
-                    <li>Customers are responsible for verifying the final compatibility of selected parts before placing an order.</li>
-                    <li>RigFreaks is not liable for any issues resulting from incompatible selections made by the customer.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Compatibility</h2>
+        <ul>
+            <li>Our configurator helps select compatible parts but does not guarantee 100% compatibility</li>
+            <li>Customers must verify final compatibility before placing an order</li>
+            <li>RigFreaks is not liable for issues from incompatible selections made by customers</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">5</span>
-                Shipping and Delivery
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>We aim to dispatch orders promptly; however, delivery times are estimates and not guaranteed.</li>
-                    <li>Risk of damage or loss passes to the customer once the order is handed to the delivery service.</li>
-                    <li>Customers are responsible for providing accurate shipping information. We are not liable for delays due to incorrect details.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Shipping and Delivery</h2>
+        <ul>
+            <li>Delivery times are estimates and not guaranteed</li>
+            <li>Risk of damage passes to the customer once the order is handed to the delivery service</li>
+            <li>Customers must provide accurate shipping information</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">6</span>
-                Returns and Refunds
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>Customers have the right to return products within 14 days of delivery, in accordance with UK consumer law.</li>
-                    <li>Custom-built or modified PC systems may be subject to restocking fees or may not be eligible for return.</li>
-                    <li>All returns must be in unused condition with original packaging. Proof of purchase is required.</li>
-                    <li>Refunds are issued to the original payment method, minus applicable fees if necessary.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Returns and Refunds</h2>
+        <ul>
+            <li>Products can be returned within 14 days of delivery (UK consumer law)</li>
+            <li>Custom-built PC systems may not be eligible for return</li>
+            <li>Returns must be in unused condition with original packaging</li>
+            <li>Refunds are issued to the original payment method</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">7</span>
-                Warranty and Liability
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>Products may come with manufacturer warranties. RigFreaks does not provide extended warranties unless stated.</li>
-                    <li>RigFreaks is not liable for damage caused by user error, improper installation, or third-party modifications.</li>
-                    <li>To the extent permitted by UK law, RigFreaks excludes all liability for indirect or consequential loss.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Warranty and Liability</h2>
+        <ul>
+            <li>RigFreaks does not provide extended warranties unless stated</li>
+            <li>We are not liable for damage caused by user error or third-party modifications</li>
+            <li>Liability for indirect or consequential loss is excluded where permitted by law</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">8</span>
-                Intellectual Property
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>All site content, including logos, product images, and text, is owned or licensed by RigFreaks.</li>
-                    <li>You may not copy, reproduce, or use any content without written permission.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Intellectual Property</h2>
+        <ul>
+            <li>All site content is owned or licensed by RigFreaks</li>
+            <li>Content may not be copied or reproduced without permission</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">9</span>
-                User Accounts
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
-                    <li>You agree to notify us immediately of any unauthorised use of your account.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">User Accounts</h2>
+        <ul>
+            <li>You are responsible for maintaining the confidentiality of your account</li>
+            <li>You must notify us immediately of any unauthorized account use</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">10</span>
-                Governing Law
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>These Terms are governed by and interpreted in accordance with the laws of England and Wales.</li>
-                    <li>Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Governing Law</h2>
+        <ul>
+            <li>These Terms are governed by the laws of England and Wales</li>
+            <li>Disputes are subject to the exclusive jurisdiction of the courts of England and Wales</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">11</span>
-                Amendments
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <ul class="mb-0">
-                    <li>We may update these Terms at any time. It is your responsibility to review them periodically.</li>
-                    <li>Continued use of the site after changes have been posted will constitute acceptance of those changes.</li>
-                </ul>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Amendments</h2>
+        <ul>
+            <li>We may update these Terms at any time</li>
+            <li>Continued use of the site after changes constitutes acceptance</li>
+        </ul>
     </div>
 
-    <div class="legal-section-card">
-        <div class="legal-section-header">
-            <h2 class="h5 mb-0 d-flex align-items-center">
-                <span class="badge bg-primary rounded-circle me-2">12</span>
-                Contact Us
-            </h2>
-        </div>
-        <div class="legal-section-body">
-            <div class="legal-section-content">
-                <p>For any questions or concerns regarding these Terms, please contact us:</p>
-                <div class="p-3 rounded-3 bg-dark bg-opacity-50 mt-3">
-                    <p class="mb-0">
-                        <strong>RigFreaks</strong><br>
-                        Email: support@rigfreaks.com<br>
-                        Website: https://www.rigfreaks.com
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div class="minimal-legal-section">
+        <h2 class="minimal-legal-heading">Contact Us</h2>
+        <p>For questions about these Terms:</p>
+        <p class="minimal-contact">support@rigfreaks.com</p>
     </div>
 {% endblock %}
