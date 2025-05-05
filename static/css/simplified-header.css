@@ -100,8 +100,8 @@
 }
 
 /* Mobile navigation menu */
-#mobileNav {
-    background: #121212; /* Solid dark background */
+#mobileNav, header .navbar-collapse#mobileNav {
+    background: #121212 !important; /* Solid dark background with !important */
     position: absolute;
     width: 100%;
     left: 0;
@@ -112,6 +112,7 @@
 
 .mobile-nav-container {
     padding: 1rem 0;
+    background-color: #121212 !important;
 }
 
 #mobileNav .nav-link {

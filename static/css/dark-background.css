@@ -349,3 +349,10 @@ label {
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
+
+/* Extra overrides for mobile navigation with highest specificity */
+body header .navbar-collapse#mobileNav, 
+body header .navbar-collapse#mobileNav .mobile-nav-container,
+body header .navbar-collapse#mobileNav .navbar-nav {
+    background-color: #121212 !important;
+}
