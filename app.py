@@ -348,10 +348,15 @@ def prebuilt_redirect():
 def product_detail(config_id):
     """Product detail page for a specific prebuilt configuration."""
     # Get the prebuilt configuration
-    config = PreBuiltConfig.query.get_or_404(config_id)
-    
-    # Load component details
-    components = load_component_data()
+    try:
+        config = PreBuiltConfig.query.get_or_404(config_id)
+        
+        # Load component details
+        components = load_component_data()
+    except Exception as e:
+        app.logger.error(f"Error loading product with ID {config_id}: {str(e)}")
+        flash('The requested product could not be found.', 'error')
+        return redirect(url_for('builds.prebuilt_configs'))
     config_details = {}
     
     # Get component details for each category
